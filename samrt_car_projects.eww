@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<workspace>
+  <project>
+    <path>$WS_DIR$\build\bigbang\bigbang.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$\build\camera_demo\camera_demo.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$\build\camera_test_demo\camera_test_demo.ewp</path>
+  </project>
+  <batchBuild/>
+</workspace>
+
+
