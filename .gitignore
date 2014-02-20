@@ -1,6 +1,6 @@
 *.o
-*.pdi
-*.pdi.cout
+*.pbi
+*.pbi.cout
 *.map
 *.hex
 *.out
