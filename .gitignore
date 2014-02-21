@@ -10,7 +10,7 @@
 # Object files
 *.o
 
-# Libraries
+
 *.lib
 *.a
 
