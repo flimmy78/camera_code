@@ -1,6 +1,8 @@
 *.o
-*.pdi
-*.pdi.cout
+*.pbd
+*.browser
+*.pbi
+*.pbi.cout
 *.map
 *.hex
 *.out
