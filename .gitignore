@@ -1,4 +1,6 @@
 *.o
+*.pbd
+*.browser
 *.pbi
 *.pbi.cout
 *.map
