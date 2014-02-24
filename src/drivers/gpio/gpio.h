@@ -16,6 +16,7 @@
 #define __GPIO_H__
 
 #include "gpio_cfg.h"
+#include "common.h"
 
 //¶Ë¿Úºê¶¨Òå
 typedef enum PORTx

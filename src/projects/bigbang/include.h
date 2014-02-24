@@ -17,7 +17,7 @@
 #include  "PIT.h"			//PIT定时器中断模块
 #include  "dma.h"
 #include  "FTM.h"
-#include  "LED.h"
+#include  "LED_CORE.h"
 //#include  "nokia_5110.h"
 
 #define ROW 120
