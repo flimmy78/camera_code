@@ -34,8 +34,12 @@ volatile u8 SampleFlag = 0;
 void main()
 {
   Light_init;
+  FTM_PWM_init(FTM1,CH0,500,20);
+  FTM_PWM_init(FTM1,CH2,500,0);
     while(1)
     {
       Light1_turn();
+      FTM_PWM_Duty(FTM1,CH0,20);
+      FTM_PWM_Duty(FTM1,CH2,0);
     }
 }
