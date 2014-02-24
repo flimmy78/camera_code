@@ -33,87 +33,9 @@ volatile u8 SampleFlag = 0;
 
 void main()
 {
-    u16  i;
-    u16  j;
-//
-//    //----初始化图像数组----//
-//    for(i=0; i<ROW; i++)
-//    {
-//      	for(j=0; j<COL; j++)
-//      	{
-//       	 	ImageBuf[i][j] = 0;
-//     	}
-//    }
-    
-    uart_init(UART0,115200);
-    
-//    FTM_PWM_init(FTM0,CH0,5000000,80);       //利用PWM波触发DMA，触发频率5MHz
-    
-    DisableInterrupts;  
-    
-    //----初始化外部中断---//
-    exti_init(PORTD,  9, rising_down);       //HREF----PORTD10 端口外部中断初始化 ，上升沿触发中断，内部下拉
-    exti_init(PORTC, 16, rising_down);       //VSYN----PORTE0 端口外部中断初始化 ，上升沿触发中断，内部下拉
-
-    EnableInterrupts;
-
-//    for(;;)
-//    {
-//      while(SampleFlag != 2);				//SampleFlag==1,单片机正处于采集图像时间段
-//
-//      for(i=0;i<ROW;i++)
-//      {
-//          for(j=0;j<COL;j++)
-//          {
-//              printf("%-4d",ImageBuf[i][j]);
-//          }
-//          printf("\n");
-//      }
-//	  
-//	  SampleFlag = 0;
-      
-//      EnableInterrupts;
-	while(1)
-	{
-		if(i!=rowCnt)
-		{
-			printf("%d ",rowCnt);
-			i=rowCnt;
-		}
-		if(j!=SampleFlag)
-			{
-			printf("\n%d\n ",SampleFlag);
-			j=SampleFlag;
-		}
-			
-	}
-//    }
-    
+  Light_init;
+    while(1)
+    {
+      Light1_turn();
+    }
 }
-
-/**************测试行中断时间***************/
-//extern u8 VSYN_Flag;
-//void main()
-//{
-////	u32 a,b;
-//	
-//	DisableInterrupts;
-//	
-//	uart_init(UART0,115200);
-//	exti_init(PORTC, 16, falling_up);
-//	
-//	EnableInterrupts;
-//	
-//	for(;;)
-//	{
-////		while(VSYN_Flag != 2);
-////		
-////		a = PIT_LDVAL0;
-////		b = PIT_CVAL0;
-////		printf("PIT_LDVAL0 = %d\n",a);
-////		printf("PIT_CVAL0  = %d\n",b);
-////		
-////		VSYN_Flag = 0;
-//	}
-//
-//}
