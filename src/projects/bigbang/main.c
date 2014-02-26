@@ -22,6 +22,8 @@
 
 #include "common.h"
 #include "include.h"
+#include "stdlib.h"
+#include "stdio.h"
 
 u8 ImageBuf[ROW][COL];
 
@@ -33,13 +35,24 @@ volatile u8 SampleFlag = 0;
 
 void main()
 {
+  char s[20];
+  int AD;
   Light_init;
-  FTM_PWM_init(FTM1,CH0,500,20);
-  FTM_PWM_init(FTM1,CH2,500,0);
-    while(1)
-    {
-      Light1_turn();
-      FTM_PWM_Duty(FTM1,CH0,20);
-      FTM_PWM_Duty(FTM1,CH2,0);
-    }
+  uart_init(UART0,115200);
+  LCD_init();
+  LCD_write_english_string(0,0,"hello");
+  adc_init(ADC0,AD8);
+  while(1)
+  {
+    AD   =   ad_once(ADC0,AD8,ADC_16bit);
+    sprintf(s,"%u",AD);                        //利用该函数将整型数据转换为字符串
+    LCD_write_english_string(0,0,s);
+    printf("%u\t",AD);
+    AD = ad_once(ADC0,AD9,ADC_16bit);
+    sprintf(s,"%u",AD); 
+    LCD_write_english_string(0,1,s);
+    printf("%u\n",AD);
+  }
+                     
+  
 }

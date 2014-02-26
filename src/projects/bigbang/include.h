@@ -18,6 +18,8 @@
 #include  "dma.h"
 #include  "FTM.h"
 #include  "LED_CORE.h"
+#include  "nokia_5110.h"
+#include  "adc.h"
 //#include  "nokia_5110.h"
 
 #define ROW 120
