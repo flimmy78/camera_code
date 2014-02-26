@@ -9,13 +9,11 @@
 *.ini
 *.pdb
 *.bat
-# Object files
-*.o
-
-# Libraries
+*.dbgdt
 *.lib
+*.wsdt
 *.a
-
+*.dni
 # Shared objects (inc. Windows DLLs)
 *.dll
 *.so
