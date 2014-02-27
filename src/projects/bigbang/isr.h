@@ -31,18 +31,17 @@
  */
 
 
-#undef     VECTOR_105
-#define		VECTOR_105		PORTC_IRQHandler		//PORTC中断
-
 #undef     VECTOR_106
 #define		VECTOR_106		PORTD_IRQHandler		//PORTD中断
 
+#undef     VECTOR_107
+#define       VECTOR_107    PORTE_IRQHandler
 
 #undef     VECTOR_020
 #define		VECTOR_020		DMA_CH4_Handler
 
 extern void PORTD_IRQHandler();				//PORTA中断服务函数
-extern void PORTC_IRQHandler();
+extern void PORTE_IRQHandler();
 extern void DMA_CH4_Handler();					//DMA通道4中断服务函数
 
 
