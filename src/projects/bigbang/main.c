@@ -33,13 +33,45 @@ volatile u8 SampleFlag = 0;
 
 void main()
 {
-  Light_init;
-  FTM_PWM_init(FTM1,CH0,500,20);
-  FTM_PWM_init(FTM1,CH2,500,0);
-    while(1)
+    u16  i;
+    u16  j;
+
+    //----初始化图像数组----//
+    for(i=0; i<ROW; i++)
     {
-      Light1_turn();
-      FTM_PWM_Duty(FTM1,CH0,20);
-      FTM_PWM_Duty(FTM1,CH2,0);
+      	for(j=0; j<COL; j++)
+      	{
+       	 	ImageBuf[i][j] = 0;
+     	}
     }
+    
+    uart_init(UART1,115200);
+    
+    FTM_PWM_init(FTM0,CH0,5000000,80);       //利用PWM波触发DMA，触发频率5MHz
+    
+    DisableInterrupts;  
+    
+    //----初始化外部中断---//
+    exti_init(PORTD, 10, rising_down);       //HREF----PORTD10 端口外部中断初始化 ，上升沿触发中断，内部下拉
+    exti_init(PORTE,  0, rising_down);       //VSYN----PORTE0 端口外部中断初始化 ，上升沿触发中断，内部下拉
+
+    EnableInterrupts;
+
+    for(;;)
+    {
+      while(SampleFlag == 1);				//SampleFlag==1,单片机正处于采集图像时间段
+
+      for(i=0;i<ROW;i++)
+      {
+          for(j=0;j<COL;j++)
+          {
+              printf("%-4d",ImageBuf[i][j]);
+          }
+          printf("\n");
+      }
+      
+      EnableInterrupts;
+    }
+    
+         
 }
