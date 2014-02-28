@@ -134,18 +134,18 @@ extern u8 SampleFlag;
 
 /*----------------使用串口猎人接受一幅图像数据的中断服务程序--------------------*/
 
-void PORTD_IRQHandler()
-{
-   //---HREF行中断处理
-    if( PORTD_ISFR & (1 << 9))         //PTD10触发中断  
-    {
-        PORTD_ISFR  |= (1 << 9);        //写1清中断标志位
-        
-         if ( SampleFlag == 0 )         //不足一场时返回
-        { 
-          return;
-        }
-        
+//void PORTD_IRQHandler()
+//{
+//   //---HREF行中断处理
+//    if( PORTD_ISFR & (1 << 9))         //PTD10触发中断  
+//    {
+//        PORTD_ISFR  |= (1 << 9);        //写1清中断标志位
+//        
+//         if ( SampleFlag == 0 )         //不足一场时返回
+//        { 
+//          return;
+//        }
+//        
 //        delayms(2);                     //延时1.6ms，跳过消隐区
         
         
@@ -157,7 +157,7 @@ void PORTD_IRQHandler()
             //----使能DMA，初始化的时候禁止DMA
 //            DMA_EN(DMA_CH4); 
         //-------------DAM初始化通道4，数据源为PTD，每次存在数组ImageBuf[]指针中，PCLK接PTE7触发，每次传输1个字节，每次触发传输320次，上升沿触发
-            rowCnt++;
+//            rowCnt++;
 			
 //			printf("%d ",rowCnt);
 //        }
@@ -173,9 +173,9 @@ void PORTD_IRQHandler()
 //		  
 ////		  printf("%d ",SampleFlag);
 //        }
-    }
-
-}
+//    }
+//
+//}
 
 void PORTC_IRQHandler()
 {
@@ -241,10 +241,10 @@ void PORTC_IRQHandler()
 *  函数返回：无
 *
 *************************************************************************/
-void DMA_CH4_Handler(void)
-{
-    //DMA通道4
-    DMA_IRQ_CLEAN(DMA_CH4);                             //清除通道传输中断标志位    (这样才能再次进入中断)
-    DMA_IRQ_DIS(DMA_CH4);                               //禁止DMA   等待下一次行中断来临开启DMA
-}
+//void DMA_CH4_Handler(void)
+//{
+//    //DMA通道4
+//    DMA_IRQ_CLEAN(DMA_CH4);                             //清除通道传输中断标志位    (这样才能再次进入中断)
+//    DMA_IRQ_DIS(DMA_CH4);                               //禁止DMA   等待下一次行中断来临开启DMA
+//}
 

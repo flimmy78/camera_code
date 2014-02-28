@@ -1899,7 +1899,25 @@
   <group>
     <name>app</name>
     <file>
+      <name>$PROJ_DIR$\..\..\src\init\board.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\src\drivers\fire_drivers_cfg.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\src\init\init.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\src\init\init.h</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\..\..\src\projects\bigbang\isr.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\src\projects\bigbang\isr.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\src\platforms\k60_fire.h</name>
     </file>
     <file>
       <name>$PROJ_DIR$\..\..\src\projects\bigbang\main.c</name>
@@ -2004,24 +2022,9 @@
       <name>$PROJ_DIR$\..\..\src\common\common.h</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\src\drivers\fire_drivers_cfg.h</name>
-    </file>
-    <file>
       <name>$PROJ_DIR$\..\..\src\projects\bigbang\include.h</name>
     </file>
-    <file>
-      <name>$PROJ_DIR$\..\..\src\projects\bigbang\isr.h</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\..\src\platforms\k60_fire.h</name>
-    </file>
   </group>
-  <file>
-    <name>$PROJ_DIR$\..\..\src\init\init.c</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\..\..\src\init\init.h</name>
-  </file>
 </project>
 
 
