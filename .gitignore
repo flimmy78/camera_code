@@ -22,6 +22,7 @@
 *.jlink
 *.sim
 *.browse
+*.dep
 # Executables
 *.out
 *.app

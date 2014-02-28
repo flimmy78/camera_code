@@ -331,6 +331,7 @@
           <state>$PROJ_DIR$\..\..\src\LIB\CMSIS</state>
           <state>$PROJ_DIR$\..\..\src\LIB\FatFs</state>
           <state>$PROJ_DIR$\..\..\build</state>
+          <state>$PROJ_DIR$\..\..\src\init</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -1955,6 +1956,9 @@
   <group>
     <name>drivers</name>
     <file>
+      <name>$PROJ_DIR$\..\..\src\drivers\adc\adc.c</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\..\..\src\drivers\delay\delay.c</name>
     </file>
     <file>
@@ -2012,6 +2016,12 @@
       <name>$PROJ_DIR$\..\..\src\platforms\k60_fire.h</name>
     </file>
   </group>
+  <file>
+    <name>$PROJ_DIR$\..\..\src\init\init.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\..\..\src\init\init.h</name>
+  </file>
 </project>
 
 

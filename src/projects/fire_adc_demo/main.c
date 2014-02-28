@@ -65,11 +65,11 @@ void  main()
     uart_init(UART1,115200);                 //初始化串口，用来发送转换数据
 
   //  adc_init(ADC1,SE4a);                    //初始化ADC1_SE4a ,从adc.h里的表格就可以看到ADC1_SE4a对应为PTE0
-    adc_init(ADC1,DAD0);
+    adc_init(ADC0,AD8);
     while(1)
     {
         /****** 读取一次 ******/
-        ADresult    =   ad_once(ADC1,DAD0,ADC_16bit);           //读取 ADC1_SE4a ，16位精度
+        ADresult    =   ad_once(ADC0,AD8,ADC_16bit);           //读取 ADC1_SE4a ，16位精度
         printf("%d\t",ADresult);
 //        printf("AD转换一次的结果为:%d\n\n",ADresult);
 
