@@ -39,14 +39,14 @@ volatile u8 SampleFlag = 0;
 
 void main()
 {
- 
-  board_init();            //≥ı ºªØ
+ DisableInterrupts;
+  board_init();  
+  uart_init(UART0,115200);
+ // EnableInterrupts;
 
-  right_run(20,ahead);
-  left_run(20,ahead);
-  
   while(1)
   {
-    ;
+    printf("hello");
+   Light3_turn();
   }
 }

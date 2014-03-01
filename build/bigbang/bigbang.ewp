@@ -732,7 +732,7 @@
         </option>
         <option>
           <name>IlinkIcfFile</name>
-          <state>$PROJ_DIR$\..\config files\512KB_Pflash.icf</state>
+          <state>E:\git\oschina\camera_code\build\config files\fire_ROM_K60N512.icf</state>
         </option>
         <option>
           <name>IlinkIcfFileSlave</name>
