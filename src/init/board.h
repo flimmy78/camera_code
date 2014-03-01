@@ -26,6 +26,16 @@
 //电机驱动初始化的占空比，【强烈要求为【0】】
 #define INIT_DUTY (0)
 
+/********加速度计标准值配置*******/
+//正倾角时加速度计 770mV/g ,对应为AD值 15220/g , 1553 * m/s^2
+//负倾角时加速度计 820mV/g ,对应为AD值 16230/g , 1656 * m/s^2
+//加速度计 		  794mV/g ,对应为AD值 15725/g , 1605 * m/s^2
+
+#define	ACC_ZERO	26420	//0度对应的AD值
+#define	ACC_90		11200	//实际为加速度计-90度的值
+#define	ACC_NEG_90	42650	//实际为加速度计90度的值
+
+#define	ACC_GRA		15725   
 /*******************<<*********************/
 
 /*************数据结构定义区**********>>**/
@@ -44,7 +54,11 @@ uint16_t gyro_data_get(void);
 //加速度计数据获取
 uint16_t acc_data_get(void);
 
+//数据获取初始化
+void angle_get_init();
 
+//加速度计角度获取
+float acc_angle_get();
 
 void right_run(uint32_t speed,direction direct);
 

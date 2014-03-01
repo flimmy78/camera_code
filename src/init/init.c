@@ -55,7 +55,7 @@ void board_init()
   printf("陀螺仪 is inited");
   
   
-  board_pit_init(void);
+ // board_pit_init(void);
   
   //电机驱动初始化
   motor_init();

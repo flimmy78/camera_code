@@ -31,10 +31,29 @@ uint16_t acc_data_get(void)
 }
 
 
+/*******************************************
+ *
+ * 角度获取函数配置
+ *
+********************************************/
 
+//**********数据获取初始化**********
 
+void	angle_get_init()
+{
+	adc_init(ADC0,AD8);		//加速度计数据获取初始化
+	adc_init(ADC1,AD9);		//陀螺仪数据获取初始化
+}
 
-
+//**********加速度计角度获取************
+float	acc_angle_get()
+{
+	u16	 data;
+	data = ad_once(ADC0,AD8,ADC_16bit);
+	
+//	return( (ACC_ZERO - data)/ACC_GRA );   //sin = (data - ACC_ZERO)/ACC_GRA , 弧度制输出
+	return( 57.3 * (ACC_ZERO - data)/ACC_GRA ); 	//  180/pi = 57.3 , 角度制输出
+}
 
 
 

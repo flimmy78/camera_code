@@ -37,16 +37,29 @@ volatile u8 SampleFlag = 0;
 
 /*-----------------使用串口猎人接受一幅图像数据的主程序-------------*/
 
+//void main()
+//{
+// 
+//  board_init();            //初始化
+//
+//  right_run(20,ahead);
+//  left_run(20,ahead);
+//  
+//  while(1)
+//  {
+//    ;
+//  }
+//}
+
+
 void main()
 {
- 
-  board_init();            //初始化
-
-  right_run(20,ahead);
-  left_run(20,ahead);
-  
-  while(1)
-  {
-    ;
-  }
+	adc_init(ADC0,AD8);		//加速度计数据获取初始化
+	
+	for(;;)
+	{
+		printf("%f\n",acc_angle_get());
+		
+		delayms(30);
+	}
 }
