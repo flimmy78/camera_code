@@ -34,13 +34,6 @@ uint16_t acc_data_get(void)
 }
 
 
-//**********数据获取初始化**********//
-
-void	angle_get_init()
-{
-	adc_init(ADC0,AD8);		//加速度计数据获取初始化
-	adc_init(ADC1,AD9);		//陀螺仪数据获取初始化
-}
 
 //**********加速度计角度获取************
 //******用theta代替sin(theta)
