@@ -28,6 +28,7 @@
 #include "board_config.h"
 #include "init.h"
 #include "board.h"
+#include "Kalman.h"
 
 u8 ImageBuf[ROW][COL];
 
@@ -39,14 +40,32 @@ volatile u8 SampleFlag = 0;
 
 void main()
 {
- DisableInterrupts;
-  board_init();  
-  uart_init(UART0,115200);
- // EnableInterrupts;
-
-  while(1)
-  {
-    printf("hello");
-   Light3_turn();
-  }
+// DisableInterrupts;
+//  board_init();  
+//  uart_init(UART0,115200);
+// // EnableInterrupts;
+//
+//  while(1)
+//  {
+//    printf("hello");
+//   Light3_turn();
+//  }
+  
+   uint16_t  angle_m;
+     uint16_t  gyro_m;
+     DisableInterrupts;
+     board_init();
+     uart_init(UART0,115200);
+    while(1)
+    {
+      uint16_t acc_m,gyro_m;
+      angle_m   = acc_data_get();
+      gyro_m = gyro_data_get(); 
+      Kalman_Filter(acc_m,gyro_m);
+      sent_to_computer((uint16_t)angle_m , (uint16_t)gyro_m ,(uint16_t)angle);
+      delayms(1);
+       
+    }
+ 
+  
 }
