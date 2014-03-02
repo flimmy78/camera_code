@@ -87,7 +87,7 @@
         </option>
         <option>
           <name>OGLastSavedByProductVersion</name>
-          <state>6.70.3.6347</state>
+          <state>6.60.2.5494</state>
         </option>
         <option>
           <name>GeneralEnableMisra</name>
@@ -732,7 +732,7 @@
         </option>
         <option>
           <name>IlinkIcfFile</name>
-          <state>E:\git\oschina\camera_code\build\config files\fire_ROM_K60N512.icf</state>
+          <state>$PROJ_DIR$\..\config files\512KB_Pflash.icf</state>
         </option>
         <option>
           <name>IlinkIcfFileSlave</name>

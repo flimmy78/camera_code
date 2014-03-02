@@ -41,6 +41,7 @@ void	angle_get_init()
 }
 
 //**********加速度计角度获取************
+//******用theta代替sin(theta)
 float	acc_angle_get()
 {
 	u16	 data;
