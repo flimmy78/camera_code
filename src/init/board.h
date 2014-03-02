@@ -47,19 +47,21 @@ typedef enum
 
 
 
-/**************函数声明*****************/
-//陀螺仪数据获取
-uint16_t gyro_data_get(void);
+/*******************函数声明********************/
 
-//加速度计数据获取
-uint16_t acc_data_get(void);
+//******陀螺仪和加速度计函数声明*****//
 
-//数据获取初始化
-void angle_get_init();
+uint16_t gyro_data_get(void);	//陀螺仪数据获取
 
-//加速度计角度获取
-float acc_angle_get();
+uint16_t acc_data_get(void);	//加速度计数据获取
 
+void angle_get_init();			//陀螺仪和加速度计数据获取初始化
+
+float acc_angle_get();			//加速度计角度获取，直接获取角度值
+
+
+
+//******电机函数声明********//
 void right_run(uint32_t speed,direction direct);
 
 void left_run(uint32_t speed,direction direct);

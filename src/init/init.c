@@ -25,7 +25,8 @@ void motor_init(void)
 
 void board_pit_init(void)
 {
-  ;
+  pit_init(PIT0,50000);
+  pit_init(PIT1,25030);
 }
 
 
@@ -55,7 +56,7 @@ void board_init()
   printf("陀螺仪 is inited");
   
   
- // board_pit_init(void);
+  board_pit_init();
   
   //电机驱动初始化
   motor_init();

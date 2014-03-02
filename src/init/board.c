@@ -12,32 +12,27 @@
 
 direction dir_flag;
 
-
-//陀螺仪数据获取
-
-uint16_t gyro_data_get(void)
-{
-  return(ad_once(ADC1,AD9,ADC_16bit));
-}
-
-
-
-
-//加速度计数据获取
-
-uint16_t acc_data_get(void)
-{
-  return(ad_once(ADC0,AD8,ADC_16bit));
-}
-
-
 /*******************************************
  *
  * 角度获取函数配置
  *
 ********************************************/
 
-//**********数据获取初始化**********
+//陀螺仪数据获取,获取AD值
+uint16_t gyro_data_get(void)
+{
+  return(ad_once(ADC1,AD9,ADC_16bit));
+}
+
+
+//加速度计数据获取，获取AD值
+uint16_t acc_data_get(void)
+{
+  return(ad_once(ADC0,AD8,ADC_16bit));
+}
+
+
+//**********数据获取初始化**********//
 
 void	angle_get_init()
 {
