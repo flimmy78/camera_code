@@ -37,6 +37,7 @@
 
 /********陀螺仪标准值配置********/
 #define	GYRO_ZERO	24360	//陀螺仪零值
+#define	GYRO_SCALE	13.3    // 13.3/deg./sec
 /*******************<<*********************/
 
 /*************数据结构定义区**********>>**/
@@ -60,7 +61,7 @@ void angle_get_init();			//陀螺仪和加速度计数据获取初始化
 
 float acc_angle_get();			//加速度计角度获取，直接获取角度值
 
-
+float gyro_angular_get();		//陀螺仪角速度获取
 
 //******电机函数声明********//
 void right_run(uint32_t speed,direction direct);

@@ -40,6 +40,8 @@ void	angle_get_init()
 	adc_init(ADC1,AD9);		//陀螺仪数据获取初始化
 }
 
+//*****加速度计角度获取*****
+//****用theta代替sin(theta)
 //**********加速度计角度获取************
 //******用theta代替sin(theta)
 float	acc_angle_get()
@@ -51,7 +53,14 @@ float	acc_angle_get()
 	return( 57.3 * (ACC_ZERO - data)/ACC_GRA ); 	//  180/pi = 57.3 , 角度制输出
 }
 
-
+//*****陀螺仪角速度获取*****
+float  gyro_angular_get()
+{
+	u16 data;
+	data = ad_once(ADC1,AD9,ADC_16bit);
+	
+	return((GYRO_ZERO - data)/GYRO_SCALE);		//(data - GRYO_ZERO)/GYRO_SCALE,单位deg/sec,角度制
+}
 
 
 /*************左电机速度控制，包含方向*****************/
