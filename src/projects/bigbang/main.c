@@ -25,7 +25,6 @@
 #include "stdlib.h"
 #include "stdio.h"
 #include "stdint.h"
-#include "board_config.h"
 #include "init.h"
 #include "board.h"
 #include "Kalman.h"

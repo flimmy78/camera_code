@@ -64,6 +64,8 @@ float acc_angle_get();			//加速度计角度获取，直接获取角度值
 float gyro_angular_get();		//陀螺仪角速度获取
 
 //******电机函数声明********//
+void motor_init(void);
+
 void right_run(uint32_t speed,direction direct);
 
 void left_run(uint32_t speed,direction direct);

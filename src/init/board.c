@@ -11,7 +11,6 @@
 #include "uart.h"
 #include "board.h"
 
-
 direction dir_flag;
 
 /*******************************************
@@ -33,29 +32,41 @@ uint16_t acc_data_get(void)
   return(ad_once(ADC0,AD8,ADC_16bit));
 }
 
+//****陀螺仪和加速度计初始化
+void angle_get_init()
+{
 
+  adc_init(ADC0,AD8); 	//加速度计的AD通道初始化
+
+  adc_init(ADC1,AD9);  //陀螺仪AD通道初始化
+}
 
 //*****加速度计角度获取*****
-//****用theta代替sin(theta)
-//**********加速度计角度获取************
-//******用theta代替sin(theta)
 float	acc_angle_get()
 {
-	u16	 data;
-	data = ad_once(ADC0,AD8,ADC_16bit);
 	
-//	return( (ACC_ZERO - data)/ACC_GRA );   //sin = (data - ACC_ZERO)/ACC_GRA , 弧度制输出
-	return( 57.3 * (ACC_ZERO - data)/ACC_GRA ); 	//  180/pi = 57.3 , 角度制输出
+//	return( (ACC_ZERO - ad_once(ADC0,AD8,ADC_16bit))/ACC_GRA );   //sin = (ad_once(ADC1,AD9,ADC_16bit) - ACC_ZERO)/ACC_GRA , 弧度制输出
+	return( arcsin[(u8)(100*(ACC_ZERO - ad_once(ADC0,AD8,ADC_16bit))/ACC_GRA + 100)]); 	//  角度制输出
 }
 
 //*****陀螺仪角速度获取*****
 float  gyro_angular_get()
 {
-	u16 data;
-	data = ad_once(ADC1,AD9,ADC_16bit);
 	
-	return((GYRO_ZERO - data)/GYRO_SCALE);		//(data - GRYO_ZERO)/GYRO_SCALE,单位deg/sec,角度制
+	return((GYRO_ZERO - ad_once(ADC1,AD9,ADC_16bit))/GYRO_SCALE);		//(ad_once(ADC1,AD9,ADC_16bit) - GRYO_ZERO)/GYRO_SCALE,单位deg/sec,角度制
 }
+
+
+
+/*************电机驱动初始化*****************/
+void motor_init(void)
+{
+  FTM_PWM_init(RIGHT_A_FTM,RIGHT_A_CH,MOTOR_FRE,INIT_DUTY);
+  FTM_PWM_init(RIGHT_B_FTM,RIGHT_B_CH,MOTOR_FRE,INIT_DUTY);
+  FTM_PWM_init(LEFT_A_FTM,LEFT_A_CH,MOTOR_FRE,INIT_DUTY);
+  FTM_PWM_init(LEFT_B_FTM,LEFT_B_CH,MOTOR_FRE,INIT_DUTY);
+}
+
 
 
 /*************左电机速度控制，包含方向*****************/
