@@ -154,6 +154,71 @@ done:
 }
 
 /********************************************************************/
+
+static int
+printk_mkfloatnumstr (char *numstr, void *nump, int radix)
+{
+    int a,b,c,i;
+    double r, fractpart, intpart;
+
+    int nlen;
+    char *nstrp;
+    nlen = 0;
+    nstrp = numstr;
+    *nstrp++ = '\0';
+	r = *(double *)nump;
+	if (r == 0)
+	{
+		*nstrp = '0';
+		++nlen;
+		goto done;
+	}
+	fractpart = modf((double)r , (double *)&intpart);
+	/* Process fractional part */
+	for (i = 0; i < 6; i++)
+	{
+		fractpart *= radix;		
+	}
+	//a = (int)floor(fractpart + (double)0.5);
+	a = (int)(fractpart + (double)0.5);
+	for (i = 0; i < 6; i++)
+	{
+		b = (int)a / (int)radix;
+		c = (int)a - ((int)b * (int)radix);
+		if (c < 0)
+		{
+			c = ~c + 1 + '0';
+		}else
+		{		
+			c = c + '0';
+		}
+		a = b;
+		*nstrp++ = (char)c;
+		++nlen;
+	}
+	*nstrp++ = (char)'.';
+	++nlen;	
+	a = (int)intpart;
+	while (a != 0)
+	{
+		b = (int)a / (int)radix;
+		c = (int)a - ((int)b * (int)radix);
+        if (c < 0)
+        {
+            c = ~c + 1 + '0';
+        }else
+        {		
+        	c = c + '0';
+        }
+		a = b;
+		*nstrp++ = (char)c;
+		++nlen;
+	}
+    done:
+    return nlen;
+}
+/********************************************************************/
+
 static void
 printk_pad_zero (int curlen, int field_width, int *count, PRINTK_INFO *info)
 {
@@ -206,6 +271,7 @@ printk (PRINTK_INFO *info, const char *fmt, va_list ap)
     char *sval;
     int cval;
     unsigned int uval;
+	double fval;
 
     /*
      * Start parsing apart the format string and display appropriate
@@ -225,7 +291,7 @@ printk (PRINTK_INFO *info, const char *fmt, va_list ap)
              * This needs to be replaced with something like
              * 'out_char()' or call an OS routine.
              */
-#ifndef UNIX_DEBUG
+//#ifndef UNIX_DEBUG
             if (c != '\n')
             {
                 printk_putc(c, &count, info);
@@ -235,9 +301,9 @@ printk (PRINTK_INFO *info, const char *fmt, va_list ap)
                 printk_putc(0x0D /* CR */, &count, info);
                 printk_putc(0x0A /* LF */, &count, info);
             }
-#else
-            printk_putc(c, &count, info);
-#endif
+//#else
+//           printk_putc(c, &count, info);
+//#endif
 
             /*
              * By using 'continue', the next iteration of the loop
@@ -333,10 +399,10 @@ printk (PRINTK_INFO *info, const char *fmt, va_list ap)
                 case '7':
                 case '8':
                 case '9':
-#if 0
+/* #if 0
                     precision_width = (precision_width * 10) +
                                       (c - '0');
-#endif
+#endif */
                     break;
                 default:
                     /* we've gone one char too far */
@@ -350,10 +416,10 @@ printk (PRINTK_INFO *info, const char *fmt, va_list ap)
         {
             /* we've gone one char too far */
             --p;
-#if 0
+/* #if 0
             precision_used = FALSE;
             precision_width = 0;
-#endif
+#endif */
         }
 
         /*
@@ -446,6 +512,61 @@ printk (PRINTK_INFO *info, const char *fmt, va_list ap)
                 printk_putc(schar, &count, info);
             }
             goto cont_xd;
+		    case 'f':
+            case 'F':
+                fval = (double)va_arg(ap, double);
+                vlen = printk_mkfloatnumstr(vstr,&fval,10);
+                vstrp = &vstr[vlen];
+
+                if (fval < 0)
+                {
+                    schar = '-';
+                    ++vlen;
+                }
+                else
+                {
+                    if (IS_FLAG_PLUS(flags_used))
+                    {
+                        schar = '+';
+                        ++vlen;
+                    }
+                    else
+                    {
+                        if (IS_FLAG_SPACE(flags_used))
+                        {
+                            schar = ' ';
+                            ++vlen;
+                        }
+                        else
+                        {
+                            schar = 0;
+                        }
+                    }
+                }
+                dschar = FALSE;
+                if (IS_FLAG_ZERO(flags_used))
+                {
+                    if (schar)
+                        printk_putc(schar, &count, info);
+                    dschar = TRUE;
+                    printk_pad_zero (vlen, field_width, &count, info);
+                    vlen = field_width;
+                }
+                else
+                {
+                    if (!IS_FLAG_MINUS(flags_used))
+                    {
+                        printk_pad_space (vlen, field_width, &count, info);
+                        if (schar)
+                            printk_putc(schar, &count, info);
+                        dschar = TRUE;
+                    }
+                }
+                if (!dschar && schar)
+                {
+                    printk_putc(schar, &count, info);
+                }
+                goto cont_xd;
 
         case 'x':
         case 'X':

@@ -63,6 +63,7 @@ void main()
       gyro_m = gyro_data_get(); 
       Kalman_Filter(acc_m,gyro_m);
       sent_to_computer((uint16_t)angle_m , (uint16_t)gyro_m ,(uint16_t)angle);
+      printf("%f",1.2);
       delayms(1);
        
     }
