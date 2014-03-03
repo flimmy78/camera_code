@@ -68,4 +68,6 @@ void right_run(uint32_t speed,direction direct);
 
 void left_run(uint32_t speed,direction direct);
 
+void sent_to_computer(uint16_t data1 , uint16_t data2 , uint16_t  data3);
+
 #endif

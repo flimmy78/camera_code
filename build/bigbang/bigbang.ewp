@@ -1920,6 +1920,9 @@
       <name>$PROJ_DIR$\..\..\src\platforms\k60_fire.h</name>
     </file>
     <file>
+      <name>$PROJ_DIR$\..\..\src\projects\bigbang\Kalman.c</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\..\..\src\projects\bigbang\main.c</name>
     </file>
   </group>
