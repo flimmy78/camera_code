@@ -17,7 +17,7 @@
 void board_init();
 
 //电机初始化
-void motor_init(void);
+
 
 //定时器初始化
 

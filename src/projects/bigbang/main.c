@@ -25,7 +25,6 @@
 #include "stdlib.h"
 #include "stdio.h"
 #include "stdint.h"
-#include "board_config.h"
 #include "init.h"
 #include "board.h"
 #include "Kalman.h"
@@ -63,7 +62,7 @@ void main()
       gyro_m = gyro_data_get(); 
       Kalman_Filter(acc_m,gyro_m);
       sent_to_computer((uint16_t)angle_m , (uint16_t)gyro_m ,(uint16_t)angle);
-      printf("%f  %f %f\n",1.2,1.2,1.2);
+      printf("%f",1.2);
       delayms(1);
        
     }

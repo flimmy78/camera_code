@@ -13,15 +13,6 @@ static void used_pin_config()
   asm ("nop");
 }
 
-/*************电机驱动初始化*****************/
-
-void motor_init(void)
-{
-  FTM_PWM_init(RIGHT_A_FTM,RIGHT_A_CH,MOTOR_FRE,INIT_DUTY);
-  FTM_PWM_init(RIGHT_B_FTM,RIGHT_B_CH,MOTOR_FRE,INIT_DUTY);
-  FTM_PWM_init(LEFT_A_FTM,LEFT_A_CH,MOTOR_FRE,INIT_DUTY);
-  FTM_PWM_init(LEFT_B_FTM,LEFT_B_CH,MOTOR_FRE,INIT_DUTY);
-}
 
 void board_pit_init(void)
 {
@@ -47,14 +38,10 @@ void board_init()
   LCD_init();
   printf("LCD is inited\n");
   
-  //加速度计的AD通道初始化
-  adc_init(ADC0,AD8); 
+  //陀螺仪和加速度计初始化
+  angle_get_init();
   printf("加速度计 is inited\n");
-  
-  //陀螺仪AD通道初始化
-  adc_init(ADC1,AD9);
   printf("陀螺仪 is inited");
-  
   
   board_pit_init();
   
