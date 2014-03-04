@@ -291,7 +291,7 @@ printk (PRINTK_INFO *info, const char *fmt, va_list ap)
              * This needs to be replaced with something like
              * 'out_char()' or call an OS routine.
              */
-//#ifndef UNIX_DEBUG
+#ifndef UNIX_DEBUG
             if (c != '\n')
             {
                 printk_putc(c, &count, info);
@@ -301,9 +301,9 @@ printk (PRINTK_INFO *info, const char *fmt, va_list ap)
                 printk_putc(0x0D /* CR */, &count, info);
                 printk_putc(0x0A /* LF */, &count, info);
             }
-//#else
-//           printk_putc(c, &count, info);
-//#endif
+#else
+           printk_putc(c, &count, info);
+#endif
 
             /*
              * By using 'continue', the next iteration of the loop
@@ -512,7 +512,7 @@ printk (PRINTK_INFO *info, const char *fmt, va_list ap)
                 printk_putc(schar, &count, info);
             }
             goto cont_xd;
-		    case 'f':
+            case 'f':
             case 'F':
                 fval = (double)va_arg(ap, double);
                 vlen = printk_mkfloatnumstr(vstr,&fval,10);
