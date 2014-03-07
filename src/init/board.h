@@ -6,19 +6,19 @@
 /******************配置区**>>***********/
 //右电机前进的FTM模块
 #define RIGHT_A_FTM FTM1
-#define RIGHT_A_CH  CH1
+#define RIGHT_A_CH  CH0
 
 //右电机后退的FTM模块
 #define RIGHT_B_FTM FTM1
-#define RIGHT_B_CH  CH0
+#define RIGHT_B_CH  CH1
 
 //左电机前进的FTM模块
 #define LEFT_A_FTM FTM0
-#define LEFT_A_CH  CH3
+#define LEFT_A_CH  CH4
 
 //左电机后退的FTM模块
 #define LEFT_B_FTM  FTM0
-#define LEFT_B_CH   CH4
+#define LEFT_B_CH   CH3
 
 //电机驱动频率
 #define MOTOR_FRE 15000
@@ -29,14 +29,14 @@
 /********加速度计标准值配置*******/
 //加速度计 		  800mV/g ,对应为AD值 15887/g , 1605 * m/s^2
 
-#define	ACC_ZERO	26420	//0度对应的AD值
-#define	ACC_90		11200	//实际为加速度计-90度的值
-#define	ACC_NEG_90	42650	//实际为加速度计90度的值
+#define	ACC_ZERO	26420.p	//0度对应的AD值
+#define	ACC_90		11200.0	//实际为加速度计-90度的值
+#define	ACC_NEG_90	42650.0	//实际为加速度计90度的值
 
-#define	ACC_GRA		15887   
+#define	ACC_GRA		15887.0   
 
 /********陀螺仪标准值配置********/
-#define	GYRO_ZERO	24360	//陀螺仪零值
+#define	GYRO_ZERO	24360.0	//陀螺仪零值
 #define	GYRO_SCALE	13.3    // 13.3/deg./sec
 /*******************<<*********************/
 
@@ -49,6 +49,18 @@ typedef enum
 
 
 
+
+typedef struct {
+  float SetData;      //目标数据
+  float ActualData;   // 实测数据
+  float err;         //偏差
+  float err_last;    //上一次的偏差
+  float Kp,Ki,Kd;    //比例、积分、微分系数
+  float Implement;     //执行器的值
+  float intergal;  //积分值
+}* pid_struct;
+
+
 /*******************函数声明********************/
 
 //******陀螺仪和加速度计函数声明*****//
@@ -59,7 +71,7 @@ uint16_t acc_data_get(void);	//加速度计数据获取
 
 void angle_get_init();			//陀螺仪和加速度计数据获取初始化
 
-float acc_angle_get();			//加速度计角度获取，直接获取角度值
+//float acc_angle_get();			//加速度计角度获取，直接获取角度值
 
 float gyro_angular_get();		//陀螺仪角速度获取
 

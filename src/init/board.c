@@ -42,12 +42,21 @@ void angle_get_init()
 }
 
 //*****加速度计角度获取*****
-float	acc_angle_get()
-{
-	
-//	return( (ACC_ZERO - ad_once(ADC0,AD8,ADC_16bit))/ACC_GRA );   //sin = (ad_once(ADC1,AD9,ADC_16bit) - ACC_ZERO)/ACC_GRA , 弧度制输出
-	return( arcsin[(u8)(100*(ACC_ZERO - ad_once(ADC0,AD8,ADC_16bit))/ACC_GRA + 100)]); 	//  角度制输出
-}
+//float	acc_angle_get()
+//{
+//	
+////	return( (ACC_ZERO - ad_once(ADC0,AD8,ADC_16bit))/ACC_GRA );   //sin = (ad_once(ADC1,AD9,ADC_16bit) - ACC_ZERO)/ACC_GRA , 弧度制输出
+//	return( arcsin[
+//               (u8) 
+//                 ( 
+//                    (100*
+//                      (
+//                       ACC_ZERO - ad_once(ADC0,AD8,ADC_16bit)
+//                         )/ACC_GRA) + 100
+//                  )
+//                 ]
+//               ); 	//  角度制输出
+//}
 
 //*****陀螺仪角速度获取*****
 float  gyro_angular_get()
@@ -135,3 +144,13 @@ void sent_to_computer(uint16_t data1 , uint16_t data2 , uint16_t  data3)
      uart_putchar(UART0,(char)(data3 >> 8));        //  发送第三个数据的高八位
      uart_putchar(UART0,(char)(data3 & 0x00ff));    //  发送第三个数据的低第八位
 }
+
+
+
+//float PID_implement(float data_in,pid_struct pid)
+//{
+//  pid->SetDate = data_in;
+//  pid->err =pid->SetData-pid->ActualData;
+//  pid->intergal +=pid->err;
+//  pid->Implement
+//}
