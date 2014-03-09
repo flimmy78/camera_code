@@ -13,6 +13,9 @@
 
 direction dir_flag;
 
+const int dead_right = 9;  //电机死区
+const int dead_left  = 9;
+
 /*******************************************
  *
  * 角度获取函数配置
@@ -85,14 +88,42 @@ void right_run(uint32_t speed,direction d)
   if(d == ahead)
   {
     FTM_PWM_Duty(RIGHT_B_FTM,RIGHT_B_CH,0);
-    FTM_PWM_Duty(RIGHT_A_FTM,RIGHT_A_CH,speed);
+    FTM_PWM_Duty(RIGHT_A_FTM,RIGHT_A_CH,speed+dead_right);
   }
   else
   {
     FTM_PWM_Duty(RIGHT_A_FTM,RIGHT_A_CH,0);
-    FTM_PWM_Duty(RIGHT_B_FTM,RIGHT_B_CH,speed);
+    FTM_PWM_Duty(RIGHT_B_FTM,RIGHT_B_CH,speed+dead_right);
   }
 }
+
+
+void right_run_s(int32_t speed)       //speed的符号体现方向
+{
+  char dir;
+  dir = (speed > 0) ? 1 :((speed<0)? -1 : 0);
+  switch(dir)
+  {
+    case 1:
+      {
+        FTM_PWM_Duty(RIGHT_B_FTM,RIGHT_B_CH,0);
+        FTM_PWM_Duty(RIGHT_A_FTM,RIGHT_A_CH,speed+dead_right);
+      }break;
+    case -1:
+    {
+      FTM_PWM_Duty(RIGHT_A_FTM,RIGHT_A_CH,0);
+      FTM_PWM_Duty(RIGHT_B_FTM,RIGHT_B_CH,-speed+dead_right);
+    }break;
+    case 0:
+      {
+        FTM_PWM_Duty(RIGHT_A_FTM,RIGHT_A_CH,0);
+        FTM_PWM_Duty(RIGHT_B_FTM,RIGHT_B_CH,0);
+      }break;
+  }
+}
+
+
+
 
 
 
@@ -107,12 +138,42 @@ void left_run(uint32_t speed,direction d)
   if(d == ahead)
   {
     FTM_PWM_Duty(LEFT_B_FTM,LEFT_B_CH,0);
-    FTM_PWM_Duty(LEFT_A_FTM,LEFT_A_CH,speed);
+    FTM_PWM_Duty(LEFT_A_FTM,LEFT_A_CH,speed+dead_left);
   }
   else
   {
     FTM_PWM_Duty(LEFT_A_FTM,LEFT_A_CH,0);
-    FTM_PWM_Duty(LEFT_B_FTM,LEFT_B_CH,speed);
+    FTM_PWM_Duty(LEFT_B_FTM,LEFT_B_CH,speed+dead_left);
+  }
+}
+
+
+
+void left_run_s(int32_t speed)   //speed的符号体现方向
+{
+  char dir;
+  dir = (speed > 0) ? 1 :((speed<0)? -1 : 0);
+  switch(dir)
+  {
+    case 1:
+      {
+        FTM_PWM_Duty(LEFT_B_FTM,LEFT_B_CH,0);
+        FTM_PWM_Duty(LEFT_A_FTM,LEFT_A_CH,speed+dead_left);
+      }break;
+    case -1:
+    {
+      FTM_PWM_Duty(LEFT_A_FTM,LEFT_A_CH,0);
+      FTM_PWM_Duty(LEFT_B_FTM,LEFT_B_CH,-speed+dead_left);
+    }break;
+    case 0:
+      {
+        FTM_PWM_Duty(LEFT_A_FTM,LEFT_A_CH,0);
+        FTM_PWM_Duty(LEFT_B_FTM,LEFT_B_CH,0);
+      }break;
+    default:
+      {
+        
+      }
   }
 }
 
