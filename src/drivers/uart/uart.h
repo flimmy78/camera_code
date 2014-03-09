@@ -47,7 +47,7 @@ void uart_sendStr   (UARTn , const u8 *str);          //发送字符串
 void uart_irq_EN    (UARTn);                          //开串口接收中断
 void uart_irq_DIS   (UARTn);                          //关串口接收中断
 
-
+float uart_getfloat(UARTn);
 
 #define UART_IRQ_EN(UARTn)   UART_C2_REG(UARTx[UARTn])|=UART_C2_RIE_MASK; enable_irq((UARTn<<1)+45)     //宏定义开串口接收中断
 #define UART_IRQ_DIS(UARTn)  UART_C2_REG(UARTx[UARTn])&=~UART_C2_RIE_MASK; disable_irq((UARTn<<1)+45)   //宏定义关接收引脚的IRQ中断
