@@ -43,16 +43,44 @@ volatile u8 SampleFlag = 0;
 
 void main()
 { 
-  s32 acc_32;
+  s32 acc_32=1;
   u16 acc;
   float ans1;
   board_init();
   uart_init(UART0,115200);
+  left_run(15,ahead);
+  right_run(15,ahead);
+  printf("getchar\n");
+  uart_getchar(UART0);
   while(1)
   {
-    acc = acc_data_get();
-    acc_32 = acc;
-    ans1 = asin((acc_32-zero)/g);
-    printf("AD16:%u\tAD32:%d\tasin:%f\n",acc,acc_32,ans1);
+    left_run_s(acc_32);
+    right_run_s(acc_32);
+    printf("getchar\n");
+    acc = uart_getchar(UART0);
+    switch (acc)
+    {
+    case 'a':
+      acc_32++;
+      break;
+    case 'b':
+      acc_32--;
+      break;
+    case 'd':
+      acc_32 = 0-acc_32;
+      break;
+    }
+    printf("%d",acc_32);
+    
+//    if(acc > 'd')
+//      acc_32++;
+//    else
+//      acc_32--;
+//    printf("%d\n",acc_32);
+//    
+//    acc = acc_data_get();
+//    acc_32 = acc;
+//    ans1 = asin((acc_32-zero)/g);
+//    printf("AD16:%u\tAD32:%d\tasin:%f\n",acc,acc_32,ans1);
   }
 }

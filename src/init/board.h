@@ -40,6 +40,7 @@
 #define	GYRO_SCALE	13.3    // 13.3/deg./sec
 /*******************<<*********************/
 
+
 /*************数据结构定义区**********>>**/
 typedef enum 
 {
@@ -81,6 +82,11 @@ void motor_init(void);
 void right_run(uint32_t speed,direction direct);
 
 void left_run(uint32_t speed,direction direct);
+
+void right_run_s(int32_t speed);
+
+void left_run_s(int32_t speed);
+
 
 void sent_to_computer(uint16_t data1 , uint16_t data2 , uint16_t  data3);
 
