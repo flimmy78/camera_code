@@ -50,22 +50,34 @@ void main()
 //   Light3_turn();
 //  }
   
-   uint16_t  angle_m;
-     uint16_t  gyro_m;
-     DisableInterrupts;
-     board_init();
-     uart_init(UART0,115200);
-    while(1)
-    {
-      uint16_t acc_m,gyro_m;
-      angle_m   = acc_data_get();
-      gyro_m = gyro_data_get(); 
-      Kalman_Filter(acc_m,gyro_m);
-      sent_to_computer((uint16_t)angle_m , (uint16_t)gyro_m ,(uint16_t)angle);
-      printf("%f",1.2);
-      delayms(1);
-       
-    }
+//   uint16_t  angle_m;
+//     uint16_t  gyro_m;
+//     DisableInterrupts;
+//     board_init();
+//     uart_init(UART0,115200);
+//    while(1)
+//    {
+//      uint16_t acc_m,gyro_m;
+//      angle_m   = acc_data_get();
+//      gyro_m = gyro_data_get(); 
+//      Kalman_Filter(acc_m,gyro_m);
+//      sent_to_computer((uint16_t)angle_m , (uint16_t)gyro_m ,(uint16_t)angle);
+//      printf("%f",1.2);
+//      delayms(1);
+//       
+//    }
  
+//  FTM_PWM_init(FTM0,CH0,10000,50);
+//  for(;;);
+    
+    uart_init(UART0,115200);
+    angle_get_init();
+    for(;;)
+    {
+        printf("%d\n",ad_once(ADC1,AD9,ADC_16bit));
+//        printf("%d\n",(int)acc_angle_get());
+        
+        delayms(500);
+    }
   
 }
