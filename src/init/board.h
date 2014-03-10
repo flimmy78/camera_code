@@ -90,4 +90,7 @@ void left_run_s(int32_t speed);
 
 void sent_to_computer(uint16_t data1 , uint16_t data2 , uint16_t  data3);
 
+
+float str2num(char * str,u8 n);
+
 #endif
