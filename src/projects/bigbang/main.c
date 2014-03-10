@@ -43,6 +43,7 @@ volatile u8 SampleFlag = 0;
 
 void main()
 { 
+  direction dir;
   s32 acc_32=1;
   u16 acc;
   float ans1;
@@ -54,8 +55,8 @@ void main()
   uart_getchar(UART0);
   while(1)
   {
-    left_run_s(acc_32);
-    right_run_s(acc_32);
+    left_run(acc_32,dir);
+    right_run(acc_32,dir);
     printf("getchar\n");
     acc = uart_getchar(UART0);
     switch (acc)
@@ -67,10 +68,18 @@ void main()
       acc_32--;
       break;
     case 'd':
-      acc_32 = 0-acc_32;
+      {
+        if(dir == ahead)
+          dir = back;
+        else
+          dir = ahead;
+      }
       break;
     }
-    printf("%d",acc_32);
+    if (acc_32>100)
+      acc_32 = 0;
+
+    printf("duty:%d\n",acc_32);
     
 //    if(acc > 'd')
 //      acc_32++;
