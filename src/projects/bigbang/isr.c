@@ -125,10 +125,14 @@ float num;
 void UART0_IRQHandler(void)
 {
     u8 i;
-    
     DisableInterrupts;
     
-    uart_pendstr(UART0,str);
+    uart_pendstr(UART1,str);
+    if(str[0] == '\0')
+    {
+        EnableInterrupts;
+        return;
+    }
     len = strlen(str);
     
     if((str[0] == 'p')||(str[0] == 'P'))
@@ -145,7 +149,6 @@ void UART0_IRQHandler(void)
         
         
     }
-    
     else if((str[0] == 'd')||(str[0] == 'D'))
     {
         for(i=0; i<len-1;i++)
@@ -160,6 +163,6 @@ void UART0_IRQHandler(void)
         
         
     }
-    
+
     EnableInterrupts;
 }
