@@ -141,7 +141,7 @@ void UART0_IRQHandler(void)
         {
             str[i] = str[i+1];
         }
-        num = str2num(str,len-1);
+        num = str2ufloat(str,len-1);
         printf("you send p = %f\n",num);
         
         /*****用户函数*********/
@@ -155,7 +155,7 @@ void UART0_IRQHandler(void)
         {
             str[i] = str[i+1];
         }
-        num = str2num(str,len-1);
+        num = str2ufloat(str,len-1);
         printf("you send d = %f\n",num);
         
         /*****用户函数*********/

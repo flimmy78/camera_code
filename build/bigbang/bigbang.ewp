@@ -87,7 +87,7 @@
         </option>
         <option>
           <name>OGLastSavedByProductVersion</name>
-          <state>6.70.3.6347</state>
+          <state>6.60.2.5494</state>
         </option>
         <option>
           <name>GeneralEnableMisra</name>
@@ -1924,6 +1924,12 @@
     </file>
     <file>
       <name>$PROJ_DIR$\..\..\src\projects\bigbang\main.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\src\init\str2num.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\src\init\str2num.h</name>
     </file>
   </group>
   <group>
