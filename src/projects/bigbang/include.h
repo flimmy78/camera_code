@@ -21,6 +21,7 @@
 #include  "nokia_5110.h"
 #include  "adc.h"
 //#include  "nokia_5110.h"
+#include   "board.h"
 
 #define ROW 120
 #define COL 180

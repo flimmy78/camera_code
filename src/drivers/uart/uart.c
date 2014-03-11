@@ -364,3 +364,60 @@ void uart_irq_DIS(UARTn uratn)
     disable_irq((uratn << 1) + 45);			        //关接收引脚的IRQ中断
 }
 
+/*********************************************************************
+*   接收浮点数
+*   以字符形式接收，最多只能接受6个字符
+*********************************************************************/
+float uart_getfloat(UARTn uartn)
+{
+    char str[6] = {0};
+    u8 point = 0;       //查询小数点，返回小数点的位置，若无则为0
+    int len = 0;               //字符串长度
+    float inc = 1;
+    u8 p,l;
+    float num;
+    
+    uart_pendstr(uartn,str);
+    
+    for(len=0; str[len] != '\0'; len++)
+    {
+        if(str[point] != '.')
+           point ++;
+    }
+    
+    if(point == len)      //无小数点
+    {
+        for(len=len-1; len>=0; len--)       //最后一个字符的标号
+        {
+            num = num + ((u8)str[len]-48)*inc;
+            
+            inc = inc*10;
+        }
+    }
+    else
+    {
+        len = len-1;
+        p = point;
+        l = len;
+        while(point < len)
+        {
+            point++;
+            inc = inc*0.1;
+            
+            num = num + ((u8)str[point]-48)*inc;
+        }
+        point = p;
+        len = l;
+        inc = 1;
+        while(point > 0)
+        {
+            point--;
+            
+            num = num+((u8)str[point]-48)*inc;
+            
+            inc = inc*10;
+        }
+    }
+    
+    return num;
+}

@@ -13,8 +13,8 @@
 
 direction dir_flag;
 
-const int dead_right = 0;  //电机死区
-const int dead_left  = 0;
+const int dead_right = 9;  //电机死区
+const int dead_left  = 9;
 
 /*******************************************
  *
@@ -215,3 +215,59 @@ void sent_to_computer(uint16_t data1 , uint16_t data2 , uint16_t  data3)
 //  pid->intergal +=pid->err;
 //  pid->Implement
 //}
+
+/***********************************************
+*   将字符串转换为浮点数
+*   str为字符串首地址，n为字符串长度
+***********************************************/
+
+float str2num(char * str,u8 n)
+{
+    u8 point = 0;       //查询小数点，返回小数点的位置，若无则为0
+    int len = 0;               //字符串长度
+    float inc = 1;
+    u8 p,l;
+    float num;
+    
+    for(len=0; len<n; len++)
+    {
+        if(str[point] != '.')
+           point ++;
+    }
+    
+    if(point > len)      //无小数点
+    {
+        for(len=n-1; len>=0; len--)       //最后一个字符的标号
+        {
+            num = num + ((u8)str[len]-48)*inc;
+            
+            inc = inc*10;
+        }
+    }
+    else
+    {
+        len = n-1;              //最后一个字符的标号
+        p = point;
+        l = len;
+        while(point < len)
+        {
+            point++;
+            inc = inc*0.1;
+            
+            num = num + ((u8)str[point]-48)*inc;
+        }
+        point = p;
+        len = l;
+        inc = 1;
+        while(point > 0)
+        {
+            point--;
+            
+            num = num+((u8)str[point]-48)*inc;
+            
+            inc = inc*10;
+        }
+    }
+    
+    return num;
+}

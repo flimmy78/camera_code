@@ -118,3 +118,51 @@ void PIT_CH1_Handler(void)
   }
   
 }
+
+char str[10];
+u8 len;
+float num;
+void UART0_IRQHandler(void)
+{
+    u8 i;
+    DisableInterrupts;
+    
+    uart_pendstr(UART1,str);
+    if(str[0] == '\0')
+    {
+        EnableInterrupts;
+        return;
+    }
+    len = strlen(str);
+    
+    if((str[0] == 'p')||(str[0] == 'P'))
+    {
+        for(i=0; i<len-1;i++)
+        {
+            str[i] = str[i+1];
+        }
+        num = str2num(str,len-1);
+        printf("you send p = %f\n",num);
+        
+        /*****用户函数*********/
+        
+        
+        
+    }
+    else if((str[0] == 'd')||(str[0] == 'D'))
+    {
+        for(i=0; i<len-1;i++)
+        {
+            str[i] = str[i+1];
+        }
+        num = str2num(str,len-1);
+        printf("you send d = %f\n",num);
+        
+        /*****用户函数*********/
+        
+        
+        
+    }
+
+    EnableInterrupts;
+}

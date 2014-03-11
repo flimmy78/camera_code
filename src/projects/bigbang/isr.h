@@ -32,19 +32,22 @@
 
 
 #undef     VECTOR_106
-#define		VECTOR_106		PORTD_IRQHandler		//PORTD中断
+#define	VECTOR_106		    PORTD_IRQHandler		//PORTD中断
 
 #undef     VECTOR_107
-#define       VECTOR_107                PORTE_IRQHandler
+#define    VECTOR_107          PORTE_IRQHandler
 
 #undef     VECTOR_020
-#define		VECTOR_020		DMA_CH4_Handler
+#define	VECTOR_020		    DMA_CH4_Handler
 
 #undef     VECTOR_084
-#define    VECTOR_084                   PIT_CH0_Handler
+#define    VECTOR_084          PIT_CH0_Handler
 
 #undef     VECTOR_085             
-#define    VECTOR_085                   PIT_CH1_Handler
+#define    VECTOR_085          PIT_CH1_Handler
+
+#undef     VECTOR_061
+#define    VECTOR_061          UART0_IRQHandler
 
 extern void PORTD_IRQHandler();				//PORTA中断服务函数
 extern void PORTE_IRQHandler();
@@ -53,6 +56,7 @@ extern void DMA_CH4_Handler();					//DMA通道4中断服务函数
 extern void PIT_CH0_Handler();                                 //PIT通道0中断
 extern void PIT_CH1_Handler();
 
+extern void UART0_IRQHandler();
 
 #endif  //__ISR_H
 
