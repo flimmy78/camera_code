@@ -13,8 +13,8 @@
 
 direction dir_flag;
 
-const int dead_right = 9;  //电机死区
-const int dead_left  = 9;
+const int right_dead = 3;  //电机死区
+const int left_dead_  = 3;
 
 /*******************************************
  *
@@ -88,38 +88,34 @@ void right_run(uint32_t speed,direction d)
   if(d == ahead)
   {
     FTM_PWM_Duty(RIGHT_B_FTM,RIGHT_B_CH,0);
-    FTM_PWM_Duty(RIGHT_A_FTM,RIGHT_A_CH,speed+dead_right);
+    FTM_PWM_Duty(RIGHT_A_FTM,RIGHT_A_CH,speed);
   }
   else
   {
     FTM_PWM_Duty(RIGHT_A_FTM,RIGHT_A_CH,0);
-    FTM_PWM_Duty(RIGHT_B_FTM,RIGHT_B_CH,speed+dead_right);
+    FTM_PWM_Duty(RIGHT_B_FTM,RIGHT_B_CH,speed);
   }
 }
 
 
 void right_run_s(int32_t speed)       //speed的符号体现方向
 {
-  char dir;
-  dir = (speed > 0) ? 1 :((speed<0)? -1 : 0);
-  switch(dir)
+  direction dir;
+  if(speed > 0)
   {
-    case 1:
-      {
-        FTM_PWM_Duty(RIGHT_B_FTM,RIGHT_B_CH,0);
-        FTM_PWM_Duty(RIGHT_A_FTM,RIGHT_A_CH,speed+dead_right);
-      }break;
-    case -1:
-    {
-      FTM_PWM_Duty(RIGHT_A_FTM,RIGHT_A_CH,0);
-      FTM_PWM_Duty(RIGHT_B_FTM,RIGHT_B_CH,-speed+dead_right);
-    }break;
-    case 0:
-      {
-        FTM_PWM_Duty(RIGHT_A_FTM,RIGHT_A_CH,0);
-        FTM_PWM_Duty(RIGHT_B_FTM,RIGHT_B_CH,0);
-      }break;
+    dir = ahead;
+    speed = speed +right_dead;
   }
+  else if(speed <0)
+  {
+    dir = back;
+    speed = -speed + right_dead;
+  }
+  else
+  {
+    speed = 0;
+  }
+  right_run(speed,dir);
 }
 
 
@@ -138,12 +134,12 @@ void left_run(uint32_t speed,direction d)
   if(d == ahead)
   {
     FTM_PWM_Duty(LEFT_B_FTM,LEFT_B_CH,0);
-    FTM_PWM_Duty(LEFT_A_FTM,LEFT_A_CH,speed+dead_left);
+    FTM_PWM_Duty(LEFT_A_FTM,LEFT_A_CH,speed);
   }
   else
   {
     FTM_PWM_Duty(LEFT_A_FTM,LEFT_A_CH,0);
-    FTM_PWM_Duty(LEFT_B_FTM,LEFT_B_CH,speed+dead_left);
+    FTM_PWM_Duty(LEFT_B_FTM,LEFT_B_CH,speed);
   }
 }
 
@@ -151,30 +147,22 @@ void left_run(uint32_t speed,direction d)
 
 void left_run_s(int32_t speed)   //speed的符号体现方向
 {
-  char dir;
-  dir = (speed > 0) ? 1 :((speed<0)? -1 : 0);
-  switch(dir)
+  direction dir;
+  if(speed > 0)
   {
-    case 1:
-      {
-        FTM_PWM_Duty(LEFT_B_FTM,LEFT_B_CH,0);
-        FTM_PWM_Duty(LEFT_A_FTM,LEFT_A_CH,speed+dead_left);
-      }break;
-    case -1:
-    {
-      FTM_PWM_Duty(LEFT_A_FTM,LEFT_A_CH,0);
-      FTM_PWM_Duty(LEFT_B_FTM,LEFT_B_CH,-speed+dead_left);
-    }break;
-    case 0:
-      {
-        FTM_PWM_Duty(LEFT_A_FTM,LEFT_A_CH,0);
-        FTM_PWM_Duty(LEFT_B_FTM,LEFT_B_CH,0);
-      }break;
-    default:
-      {
-        
-      }
+    dir = ahead;
+    speed = speed +right_dead;
   }
+  else if(speed <0)
+  {
+    dir = back;
+    speed = -speed + right_dead;
+  }
+  else
+  {
+    speed = 0;
+  }
+  left_run(speed,dir);
 }
 
 
