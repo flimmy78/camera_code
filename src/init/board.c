@@ -13,8 +13,8 @@
 
 direction dir_flag;
 
-const int dead_right = 9;  //电机死区
-const int dead_left  = 9;
+const int dead_right = 0;  //电机死区
+const int dead_left  = 0;
 
 /*******************************************
  *

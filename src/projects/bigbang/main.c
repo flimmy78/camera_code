@@ -49,10 +49,10 @@ void main()
   float ans1;
   board_init();
   uart_init(UART0,115200);
-  left_run(15,ahead);
-  right_run(15,ahead);
-  printf("getchar\n");
-  uart_getchar(UART0);
+//  left_run(15,ahead);
+//  right_run(15,ahead);
+//  printf("getchar\n");
+//  uart_getchar(UART0);
   while(1)
   {
     left_run(acc_32,dir);
