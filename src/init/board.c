@@ -2,7 +2,6 @@
   板级使用的函数，便于理解和配置
 */
 
-
 #include "common.h"
 #include "stdint.h"
 #include "board_config.h"
@@ -10,11 +9,12 @@
 //#include "FTM.h"
 #include "uart.h"
 #include "board.h"
-
+#include "Kalman.h"
 direction dir_flag;
 
 const int right_dead = 3;  //电机死区
-const int left_dead_  = 3;
+const int left_dead  = 3;
+
 
 /*******************************************
  *
@@ -23,16 +23,20 @@ const int left_dead_  = 3;
 ********************************************/
 
 //陀螺仪数据获取,获取AD值
-uint16_t gyro_data_get(void)
+float gyro_data_get(void)
 {
-  return(ad_once(ADC1,AD9,ADC_16bit));
+  
+  return(-((GYRO_ZERO - ad_once(ADC1,AD9,ADC_16bit)) / GYRO_SCALE));
+  
 }
 
 
 //加速度计数据获取，获取AD值
-uint16_t acc_data_get(void)
+float acc_data_get(void)
 {
-  return(ad_once(ADC0,AD8,ADC_16bit));
+  
+   return(180*(ACC_ZERO-ad_once(ADC0,AD8,ADC_16bit))/(3.14*ACC_GRA));
+  
 }
 
 //****陀螺仪和加速度计初始化
@@ -42,30 +46,6 @@ void angle_get_init()
   adc_init(ADC0,AD8); 	//加速度计的AD通道初始化
 
   adc_init(ADC1,AD9);  //陀螺仪AD通道初始化
-}
-
-//*****加速度计角度获取*****
-//float	acc_angle_get()
-//{
-//	
-////	return( (ACC_ZERO - ad_once(ADC0,AD8,ADC_16bit))/ACC_GRA );   //sin = (ad_once(ADC1,AD9,ADC_16bit) - ACC_ZERO)/ACC_GRA , 弧度制输出
-//	return( arcsin[
-//               (u8) 
-//                 ( 
-//                    (100*
-//                      (
-//                       ACC_ZERO - ad_once(ADC0,AD8,ADC_16bit)
-//                         )/ACC_GRA) + 100
-//                  )
-//                 ]
-//               ); 	//  角度制输出
-//}
-
-//*****陀螺仪角速度获取*****
-float  gyro_angular_get()
-{
-	
-	return((GYRO_ZERO - ad_once(ADC1,AD9,ADC_16bit))/GYRO_SCALE);		//(ad_once(ADC1,AD9,ADC_16bit) - GRYO_ZERO)/GYRO_SCALE,单位deg/sec,角度制
 }
 
 
@@ -117,14 +97,6 @@ void right_run_s(int32_t speed)       //speed的符号体现方向
   }
   right_run(speed,dir);
 }
-
-
-
-
-
-
-
-
 
 
 /*************左电机速度控制，包含方向*****************/
@@ -203,3 +175,73 @@ void sent_to_computer(uint16_t data1 , uint16_t data2 , uint16_t  data3)
 //  pid->intergal +=pid->err;
 //  pid->Implement
 //}
+
+/***********************************************
+*   将字符串转换为浮点数
+*   str为字符串首地址，n为字符串长度
+***********************************************/
+
+float str2num(char * str,u8 n)
+{
+    u8 point = 0;       //查询小数点，返回小数点的位置，若无则为0
+    int len = 0;               //字符串长度
+    float inc = 1;
+    u8 p,l;
+    float num;
+    
+    for(len=0; len<n; len++)
+    {
+        if(str[point] != '.')
+           point ++;
+    }
+    
+    if(point > len)      //无小数点
+    {
+        for(len=n-1; len>=0; len--)       //最后一个字符的标号
+        {
+            num = num + ((u8)str[len]-48)*inc;
+            
+            inc = inc*10;
+        }
+    }
+    else
+    {
+        len = n-1;              //最后一个字符的标号
+        p = point;
+        l = len;
+        while(point < len)
+        {
+            point++;
+            inc = inc*0.1;
+            
+            num = num + ((u8)str[point]-48)*inc;
+        }
+        point = p;
+        len = l;
+        inc = 1;
+        while(point > 0)
+        {
+            point--;
+            
+            num = num+((u8)str[point]-48)*inc;
+            
+            inc = inc*10;
+        }
+    }
+    
+    return num;
+}
+
+
+//extern cars_status car;
+void blance_comp_filter(float tg,float dt,cars_status car)
+{
+  
+  float angle_m,gyro_m;
+  angle_m = acc_data_get();
+  gyro_m  = gyro_data_get();
+  comp_filter(angle_m,gyro_m,tg, dt,car);
+  (car->left_duty)=(car->right_duty) = (car->angle - car->angle_set)*car->angle_p + (gyro_m - car->gyro_set)*car->gyro_d;  
+   right_run_s((int32_t)car->right_duty);
+   left_run_s((int32_t)car->left_duty);
+}

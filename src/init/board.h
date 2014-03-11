@@ -3,6 +3,7 @@
 #define _BOARD_H_
 
 #include "FTM.h"
+#include "Kalman.h"
 /******************配置区**>>***********/
 //右电机前进的FTM模块
 #define RIGHT_A_FTM FTM1
@@ -29,7 +30,7 @@
 /********加速度计标准值配置*******/
 //加速度计 		  800mV/g ,对应为AD值 15887/g , 1605 * m/s^2
 
-#define	ACC_ZERO	26420.p	//0度对应的AD值
+#define	ACC_ZERO	26420.0	//0度对应的AD值
 #define	ACC_90		11200.0	//实际为加速度计-90度的值
 #define	ACC_NEG_90	42650.0	//实际为加速度计90度的值
 
@@ -37,15 +38,17 @@
 
 /********陀螺仪标准值配置********/
 #define	GYRO_ZERO	24360.0	//陀螺仪零值
-#define	GYRO_SCALE	13.3    // 13.3/deg./sec
+#define	GYRO_SCALE	119.7    // 13.3*9/deg./sec
 /*******************<<*********************/
+
+
 
 
 /*************数据结构定义区**********>>**/
 typedef enum 
 {
-  ahead=1,
-  back=0
+   ahead=1,
+   back=0
 }direction;
 
 
@@ -66,15 +69,11 @@ typedef struct {
 
 //******陀螺仪和加速度计函数声明*****//
 
-uint16_t gyro_data_get(void);	//陀螺仪数据获取
+float gyro_data_get(void);	//陀螺仪数据获取
 
-uint16_t acc_data_get(void);	//加速度计数据获取
+float acc_data_get(void);	//加速度计数据获取
 
 void angle_get_init();			//陀螺仪和加速度计数据获取初始化
-
-//float acc_angle_get();			//加速度计角度获取，直接获取角度值
-
-float gyro_angular_get();		//陀螺仪角速度获取
 
 //******电机函数声明********//
 void motor_init(void);
@@ -90,7 +89,7 @@ void left_run_s(int32_t speed);
 
 void sent_to_computer(uint16_t data1 , uint16_t data2 , uint16_t  data3);
 
-
 float str2num(char * str,u8 n);
+void blance_comp_filter(float tg,float dt,cars_status car);
 
 #endif
