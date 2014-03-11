@@ -38,49 +38,36 @@ u8 ImageBuf[ROW][COL];
 volatile u32 rowCnt = 0 ;
 volatile u8 SampleFlag = 0;
 
+//extern cars_status car;
+cars_status car;   //
 
-/*-----------------使用串口猎人接受一幅图像数据的主程序-------------*/
 
 void main()
 { 
-  s32 acc_32=1;
-  u16 acc;
-  float ans1;
+  float angle_m,gyro_m;
   board_init();
+  car->angle_p   = 125.5;
+  car->gyro_d    = 5;
+  car->angle_set =7.5;
+  car->gyro_set  =6.1;
   uart_init(UART0,115200);
-  left_run(15,ahead);
-  right_run(15,ahead);
-  printf("getchar\n");
+  right_run_s(100);
+  left_run_s(100);
   uart_getchar(UART0);
-  while(1)
-  {
-    left_run_s(acc_32);
-    right_run_s(acc_32);
-    printf("getchar\n");
-    acc = uart_getchar(UART0);
-    switch (acc)
-    {
-    case 'a':
-      acc_32++;
-      break;
-    case 'b':
-      acc_32--;
-      break;
-    case 'd':
-      acc_32 = 0-acc_32;
-      break;
-    }
-    printf("%d",acc_32);
-    
-//    if(acc > 'd')
-//      acc_32++;
-//    else
-//      acc_32--;
-//    printf("%d\n",acc_32);
-//    
-//    acc = acc_data_get();
-//    acc_32 = acc;
-//    ans1 = asin((acc_32-zero)/g);
-//    printf("AD16:%u\tAD32:%d\tasin:%f\n",acc,acc_32,ans1);
-  }
+ while(1)
+ {
+//   blance_comp_filter(3.5,0.005,car);
+//   delayms(5);
+   
+  angle_m = acc_data_get();
+  gyro_m  = gyro_data_get();
+  comp_filter(angle_m,gyro_m,3.5, 0.005,car);
+  (car->left_duty)=(car->right_duty) = (car->angle - car->angle_set)*car->angle_p + (gyro_m - car->gyro_set)*car->gyro_d;  
+   right_run_s((int32_t)car->right_duty);
+   left_run_s((int32_t)car->left_duty);
+   delayms(5);
+ }
+  
+
+  
 }

@@ -4,9 +4,12 @@
 //-------------------------------------------------------
 //Kalman滤波，8MHz的处理时间约1.8ms；
 //-------------------------------------------------------
-float angle, angle_dot; 		//外部需要引用的变量
+
+float  angle_dot; 		//外部需要引用的变量
+//cars_status car;  //声明车体状态函数.
+
 //-------------------------------------------------------
-float Q_angle=0.001, Q_gyro=0.003, R_angle=0.5, dt=0.001;
+float Q_angle=0.001, Q_gyro=0.003, R_angle=0.5;
 			//注意：dt的取值为kalman滤波器采样时间;
 float P[2][2] = {{ 1, 0 },{ 0, 1 }};
 	
@@ -17,11 +20,11 @@ const char C_0 = 1;
 float q_bias=25000, angle_err, PCt_0, PCt_1, E, K_0, K_1, t_0, t_1;
 //-------------------------------------------------------
 
-void Kalman_Filter(float angle_m,float gyro_m)			//gyro_m:gyro_measure
+void Kalman_Filter(float angle_m,float gyro_m,float dt,cars_status car)			//gyro_m:gyro_measure
 {
 	
 
-	angle+=(gyro_m-q_bias) * dt;//先验估计
+	car->angle +=(gyro_m-q_bias) * dt;//先验估计
 	
 	Pdot[0]=Q_angle - P[0][1] - P[1][0];// Pk-' 先验估计误差协方差的微分
 	Pdot[1]=- P[1][1];
@@ -34,7 +37,7 @@ void Kalman_Filter(float angle_m,float gyro_m)			//gyro_m:gyro_measure
 	P[1][1] += Pdot[3] * dt;
 	
 	
-	angle_err = angle_m - angle;//zk-先验估计
+	angle_err = angle_m - car->angle;//zk-先验估计
 	
 	
 	PCt_0 = C_0 * P[0][0];
@@ -54,14 +57,29 @@ void Kalman_Filter(float angle_m,float gyro_m)			//gyro_m:gyro_measure
 	P[1][1] -= K_1 * t_1;
 	
 	
-	angle	+= K_0 * angle_err;//后验估计
+	car->angle	+= K_0 * angle_err;//后验估计
 	q_bias	+= K_1 * angle_err;//后验估计
 	angle_dot = gyro_m-q_bias;//输出值（后验估计）的微分 = 角速度
-	
-       //OutData[0] = angle_m;
-       //OutData[1] = gyro_m;
-       //OutData[2] = angle;
-       //OutData[3] = angle_dot;
-	
+        
 
+}
+
+/*******************************************************************************
+ *  互补滤波函数
+ *  inpput：   angle_m,加速度计测量原始值，gyro_m，陀螺仪测量数据，tg，比例参数。
+ *  建议：    tg参数当大一些，当参数大于1的时候效果较为明显，当参数比较小的时后
+ *            会造成，滤波结果整体小于实测值，我把tg参数设定在2.5到4.5之间跟踪
+ *            效果比较好，没有明显区别，原理不明，建议设置2.5.
+ *  函数功能：利用加速度计测量的角度误差校正陀螺仪积分得出的角度误差。
+ *  函数输出：函数输出是将滤波得出的角度存入车体状态结构体car的car.angle.
+ *
+********************************************************************************/
+void comp_filter(float angle_m,float gyro_m,float tg,float dt,cars_status car)
+{
+  
+  float angle_err;
+  angle_err     = tg*(angle_m - car->angle);   //计算误差
+  car->angle    += (angle_err + gyro_m)*dt;   //角速度积分得出角度。
+ 
+  
 }

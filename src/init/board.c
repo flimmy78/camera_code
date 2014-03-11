@@ -2,7 +2,6 @@
   板级使用的函数，便于理解和配置
 */
 
-
 #include "common.h"
 #include "stdint.h"
 #include "board_config.h"
@@ -10,11 +9,12 @@
 //#include "FTM.h"
 #include "uart.h"
 #include "board.h"
-
+#include "Kalman.h"
 direction dir_flag;
 
 const int right_dead = 3;  //电机死区
-const int left_dead_  = 3;
+const int left_dead  = 3;
+
 
 /*******************************************
  *
@@ -23,16 +23,20 @@ const int left_dead_  = 3;
 ********************************************/
 
 //陀螺仪数据获取,获取AD值
-uint16_t gyro_data_get(void)
+float gyro_data_get(void)
 {
-  return(ad_once(ADC1,AD9,ADC_16bit));
+  
+  return(-((GYRO_ZERO - ad_once(ADC1,AD9,ADC_16bit)) / GYRO_SCALE));
+  
 }
 
 
 //加速度计数据获取，获取AD值
-uint16_t acc_data_get(void)
+float acc_data_get(void)
 {
-  return(ad_once(ADC0,AD8,ADC_16bit));
+  
+   return(180*(ACC_ZERO-ad_once(ADC0,AD8,ADC_16bit))/(3.14*ACC_GRA));
+  
 }
 
 //****陀螺仪和加速度计初始化
@@ -42,30 +46,6 @@ void angle_get_init()
   adc_init(ADC0,AD8); 	//加速度计的AD通道初始化
 
   adc_init(ADC1,AD9);  //陀螺仪AD通道初始化
-}
-
-//*****加速度计角度获取*****
-//float	acc_angle_get()
-//{
-//	
-////	return( (ACC_ZERO - ad_once(ADC0,AD8,ADC_16bit))/ACC_GRA );   //sin = (ad_once(ADC1,AD9,ADC_16bit) - ACC_ZERO)/ACC_GRA , 弧度制输出
-//	return( arcsin[
-//               (u8) 
-//                 ( 
-//                    (100*
-//                      (
-//                       ACC_ZERO - ad_once(ADC0,AD8,ADC_16bit)
-//                         )/ACC_GRA) + 100
-//                  )
-//                 ]
-//               ); 	//  角度制输出
-//}
-
-//*****陀螺仪角速度获取*****
-float  gyro_angular_get()
-{
-	
-	return((GYRO_ZERO - ad_once(ADC1,AD9,ADC_16bit))/GYRO_SCALE);		//(ad_once(ADC1,AD9,ADC_16bit) - GRYO_ZERO)/GYRO_SCALE,单位deg/sec,角度制
 }
 
 
@@ -117,14 +97,6 @@ void right_run_s(int32_t speed)       //speed的符号体现方向
   }
   right_run(speed,dir);
 }
-
-
-
-
-
-
-
-
 
 
 /*************左电机速度控制，包含方向*****************/
@@ -258,4 +230,18 @@ float str2num(char * str,u8 n)
     }
     
     return num;
+}
+
+
+//extern cars_status car;
+void blance_comp_filter(float tg,float dt,cars_status car)
+{
+  
+  float angle_m,gyro_m;
+  angle_m = acc_data_get();
+  gyro_m  = gyro_data_get();
+  comp_filter(angle_m,gyro_m,tg, dt,car);
+  (car->left_duty)=(car->right_duty) = (car->angle - car->angle_set)*car->angle_p + (gyro_m - car->gyro_set)*car->gyro_d;  
+   right_run_s((int32_t)car->right_duty);
+   left_run_s((int32_t)car->left_duty);
 }
