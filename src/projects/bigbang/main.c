@@ -39,35 +39,34 @@ volatile u32 rowCnt = 0 ;
 volatile u8 SampleFlag = 0;
 
 //extern cars_status car;
-cars_status car;   //
 
+struct cars_status car_s;
+cars_status car= &car_s;   //
 
+float angle_m,gyro_m;
 void main()
 { 
-  float angle_m,gyro_m;
+  DisableInterrupts;
   board_init();
-  car->angle_p   = 125.5;
+  car->angle_p   = 55.5;
   car->gyro_d    = 5;
-  car->angle_set =7.5;
-  car->gyro_set  =6.1;
+  car->angle_set = 3.6;
+  car->gyro_set  = -10.5;
   uart_init(UART0,115200);
-  right_run_s(100);
-  left_run_s(100);
-  uart_getchar(UART0);
+//  uart_getchar(UART0);
+ car->left_duty   = 300;
+ car->right_duty  = 300;
+ right_run_s((int32_t)car->right_duty);
+ left_run_s((int32_t)car->left_duty);
  while(1)
  {
-//   blance_comp_filter(3.5,0.005,car);
-//   delayms(5);
+    blance_comp_filter(3.5,0.005,car);
+     delayms(5);
+//   angle_m = ad_once(ADC0,AD8,ADC_16bit);
+//   gyro_m  = ad_once(ADC1,AD9,ADC_16bit);
+//   printf("%f\t%f\n",angle_m,gyro_m);
+//   delayms(10);
    
-  angle_m = acc_data_get();
-  gyro_m  = gyro_data_get();
-  comp_filter(angle_m,gyro_m,3.5, 0.005,car);
-  (car->left_duty)=(car->right_duty) = (car->angle - car->angle_set)*car->angle_p + (gyro_m - car->gyro_set)*car->gyro_d;  
-   right_run_s((int32_t)car->right_duty);
-   left_run_s((int32_t)car->left_duty);
-   delayms(5);
- }
-  
 
-  
+ } 
 }

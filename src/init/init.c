@@ -43,7 +43,7 @@ void board_init()
   printf("加速度计 is inited\n");
   printf("陀螺仪 is inited");
   
-  board_pit_init();
+ // board_pit_init();
   
   //电机驱动初始化
   motor_init();
