@@ -223,7 +223,7 @@ void DMA_count_Init(DMA_CHn CHn, PTxn ptxn, u32 count, DMA_Count_cfg cfg)
 *************************************************************************/
 u32 DMA_count_get(DMA_CHn CHn)
 {
-    u32 temp =  count_init[CHn] - DMA_CITER_ELINKNO(CHn)  ;
+    u32 temp =  count_init[CHn] - DMA_CITER_ELINKNO(CHn);
     return temp;
 }
 

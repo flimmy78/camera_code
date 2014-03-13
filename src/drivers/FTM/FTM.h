@@ -25,7 +25,7 @@ typedef enum FTMn
 
 typedef enum CHn
 {
-    //   --FTM0--  --FTM1--  --FTM2--
+           //   --FTM0--  --FTM1--  --FTM2--
     CH0,   //     PTC1      PTA8      PTA10
     CH1,   //     PTC2      PTA9      PTA11
     CH2,   //     PTC3       ¡Á         ¡Á
