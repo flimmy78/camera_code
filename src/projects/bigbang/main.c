@@ -51,7 +51,7 @@ void main()
   car->angle_p   = 55.5;
   car->gyro_d    = 5;
   car->angle_set = 3.6;
-  car->gyro_set  = -10.5;
+  car->gyro_set  = -2;
   uart_init(UART0,115200);
 //  uart_getchar(UART0);
 // car->left_duty   = -100;
