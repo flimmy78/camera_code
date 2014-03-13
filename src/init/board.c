@@ -84,7 +84,7 @@ void right_run_s(int32_t speed)       //speed的符号体现方向
   if(speed > 0)
   {
     dir = ahead;
-    speed = speed +right_dead;
+//    speed = speed +right_dead;
   }
   else if(speed <0)
   {
