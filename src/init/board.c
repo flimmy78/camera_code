@@ -12,8 +12,11 @@
 #include "Kalman.h"
 direction dir_flag;
 
-const int right_dead = 3;  //电机死区
-const int left_dead  = 3;
+
+#define RIGHT_DEAD 10
+#define LEFT_DEAD  10
+const int right_dead = 10;  //电机死区
+const int left_dead  = 10;
 
 
 /*******************************************
@@ -35,7 +38,7 @@ float gyro_data_get(void)
 float acc_data_get(void)
 {
   
-   return(180*(ACC_ZERO-ad_once(ADC0,AD8,ADC_16bit))/(3.14*ACC_GRA));
+   return(180*(ACC_ZERO-ad_once(ADC0,AD8,ADC_16bit))/(3.1416*ACC_GRA));
   
 }
 
@@ -81,7 +84,7 @@ void right_run(uint32_t speed,direction d)
 void right_run_s(int32_t speed)       //speed的符号体现方向
 {
   direction dir;
-  if(speed > 0)
+  if(speed>0)
   {
     dir = ahead;
     speed = speed +right_dead;
@@ -241,7 +244,12 @@ void blance_comp_filter(float tg,float dt,cars_status car)
   angle_m = acc_data_get();
   gyro_m  = gyro_data_get();
   comp_filter(angle_m,gyro_m,tg, dt,car);
-  (car->left_duty)=(car->right_duty) = (car->angle - car->angle_set)*car->angle_p + (gyro_m - car->gyro_set)*car->gyro_d;  
+  (car->left_duty)=(car->right_duty)= (car->angle - car->angle_set)*car->angle_p + (gyro_m - car->gyro_set)*car->gyro_d;
+  if(car->left_duty>990||car->right_duty<-990)
+    {
+        (car->left_duty)=(car->right_duty) = 0;
+    }
+  
    right_run_s((int32_t)car->right_duty);
    left_run_s((int32_t)car->left_duty);
 }
