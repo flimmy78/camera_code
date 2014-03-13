@@ -54,7 +54,7 @@ void main()
   car->angle_set =7.5;
   car->gyro_set  =2;
   uart_init(UART0,115200);
-  uart_getchar(UART0);
+
  while(1)
  {
    blance_comp_filter(3.5,0.005,car);
