@@ -45,15 +45,15 @@ cars_status car;   //
 void main()
 { 
   board_init();
-  
-  DMA_count_Init(DMA_CH4, PTC0, 10000, DMA_rising_down);
-  pit_init_ms(PIT0,200);
-    
-  car->angle_p   = 125.5;
-  car->gyro_d    = 5;
-  car->angle_set =7.5;
-  car->gyro_set  =6.1;
-  uart_init(UART0,115200);
+//  
+//  DMA_count_Init(DMA_CH4, PTC0, 10000, DMA_rising_down);
+//  pit_init_ms(PIT0,200);
+//    
+//  car->angle_p   = 125.5;
+//  car->gyro_d    = 5;
+//  car->angle_set =7.5;
+//  car->gyro_set  =6.1;
+//  uart_init(UART0,115200);
  while(1)
  { 
   angle_m = acc_data_get();
