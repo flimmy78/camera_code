@@ -54,19 +54,14 @@ void main()
   car->gyro_set  = -10.5;
   uart_init(UART0,115200);
 //  uart_getchar(UART0);
- car->left_duty   = 300;
- car->right_duty  = 300;
- right_run_s((int32_t)car->right_duty);
- left_run_s((int32_t)car->left_duty);
+// car->left_duty   = -100;
+// car->right_duty  = -100;
+// right_run_s((int32_t)car->right_duty);
+// left_run_s((int32_t)car->left_duty);
  while(1)
  {
     blance_comp_filter(3.5,0.005,car);
      delayms(5);
-//   angle_m = ad_once(ADC0,AD8,ADC_16bit);
-//   gyro_m  = ad_once(ADC1,AD9,ADC_16bit);
-//   printf("%f\t%f\n",angle_m,gyro_m);
-//   delayms(10);
-   
 
  } 
 }
