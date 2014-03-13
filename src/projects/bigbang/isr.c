@@ -86,22 +86,31 @@ void PORTE_IRQHandler()
 void DMA_CH4_Handler(void)
 {
     //DMA通道4
-    DMA_IRQ_CLEAN(DMA_CH4);                             //清除通道传输中断标志位    (这样才能再次进入中断)
-    DMA_IRQ_DIS(DMA_CH4);                               //禁止DMA   等待下一次行中断来临开启DMA
+    DMA_IRQ_CLEAN(DMA_CH4); 
+
+//    printf("%d\n",DMA_count_get(DMA_CH4));
+//    DMA_count_reset(DMA_CH4);
+    
+                            //清除通道传输中断标志位    (这样才能再次进入中断)
+    DMA_EN(DMA_CH4);                                    //使能通道CHn 硬件请求      (这样才能继续触发DMA传输)
 }
 
 
 
 void PIT_CH0_Handler(void)
 {
-  PIT_Flag_Clear(PIT0);
-  static int count=0;
-  count++;
-  if(300 < count)
-  {
-    count = 0;
-    Light1_turn();
-  }
+    PIT_Flag_Clear(PIT0);
+    
+    
+//  static int count=0;
+//  count++;
+//  if(300 < count)
+//  {
+//    count = 0;
+//    Light1_turn();
+//  }
+    printf("%d\n",DMA_count_get(DMA_CH4));
+    DMA_count_reset(DMA_CH4);
   
 }
 
@@ -166,3 +175,4 @@ void UART0_IRQHandler(void)
 
     EnableInterrupts;
 }
+

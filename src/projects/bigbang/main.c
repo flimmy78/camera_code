@@ -30,21 +30,25 @@
 #include "Kalman.h"
 
 
-const s32 g=15587;
-const s32 zero=26420;
-
+//const s32 g=15587;
+//const s32 zero=26420;
+//
 u8 ImageBuf[ROW][COL];
 
 volatile u32 rowCnt = 0 ;
 volatile u8 SampleFlag = 0;
 
-//extern cars_status car;
+extern cars_status car;
 cars_status car;   //
 
 
 void main()
 { 
   board_init();
+  
+  DMA_count_Init(DMA_CH4, PTC0, 10000, DMA_rising_down);
+  pit_init_ms(PIT0,200);
+    
   car->angle_p   = 125.5;
   car->gyro_d    = 5;
   car->angle_set =7.5;
@@ -64,3 +68,13 @@ void main()
 
   
 }
+
+//void main()
+//{
+//    FTM_PWM_init(FTM0,CH0,10000,50);
+//    uart_init(UART0,115200);
+//    DMA_count_Init(DMA_CH4, PTC0, 10000, DMA_rising_down);
+//    pit_init_ms(PIT0,200);
+//    
+//    for(;;);
+//}
