@@ -257,13 +257,11 @@ void blance_comp_filter(float tg,float dt,cars_status car)
 *
 *
 **********************************************************************************************/
-void speed_control(car_status car)
+void speed_control(cars_status car)
 {
   float speed_err,speed_integral;
   speed_err        = car->speed_set - car->speed_m;
   speed_integral  += (car->speed_p)*speed_err;
   car->left_duty   = car->left_duty + speed_integral + (car->speed_d)*speed_err;
-  car->right_duty  = car->right_duty + speed_integral + (car->speed_d)*speed_err;
-  
-  
+  car->right_duty  = car->right_duty + speed_integral + (car->speed_d)*speed_err;  
 }

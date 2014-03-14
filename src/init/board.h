@@ -91,6 +91,5 @@ void sent_to_computer(uint16_t data1 , uint16_t data2 , uint16_t  data3);
 
 float str2num(char * str,u8 n);
 void blance_comp_filter(float tg,float dt,cars_status car);
-void speed_control(car_status car)
-
+void speed_control(cars_status car);
 #endif
