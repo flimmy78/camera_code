@@ -115,17 +115,18 @@ void PIT_CH0_Handler(void)
 }
 
 
+extern cars_status car;   //
+
 void PIT_CH1_Handler(void)
 {
-  PIT_Flag_Clear(PIT1);
-  static int count1=0;
-  count1++;
-  if(300 < count1)
+  static char count =0;
+  blance_comp_filter(3.5,0.005,car);
+  count++;
+  if(count>100)
   {
-    count1 = 0;
-    Light2_turn();
+    Light1_turn();
   }
-  
+  PIT_Flag_Clear(PIT1); 
 }
 
 char str[10];
