@@ -46,27 +46,32 @@ cars_status car= &car_s;   //
 float angle_m,gyro_m;
 void main()
 { 
+  //车体系统设置
   DisableInterrupts;
   board_init();
+   uart_init(UART0,115200);
+   
+  //车体参数设置。
+   
+  car->left_duty = 0;
+  car->right_duty =0;
+  
   car->angle_p   = 85.5;
   car->gyro_d    = 5;
-  car->angle_set = 2.0;
+  car->angle_set = 5.4;
   car->gyro_set  = 1;
-  car->speed_d   = 1;
-  car->speed_set = 10;
-  car->speed_p   = 1;
-  car->left_duty = 10;
-  car->right_duty =10;
-  uart_init(UART0,115200);
+  
+  car->speed_set = 0;
+  car->speed_d   = 0.0001;
+  car->speed_p   = 0.0001;
+  car->speed_duty =0;
+  car->direction_left_duty  = 0;
+  car->direction_right_duty =0;
+  
   EnableInterrupts;
-//  uart_getchar(UART0);
-// car->left_duty   = -100;
-// car->right_duty  = -100;
-// right_run_s((int32_t)car->right_duty);
-// left_run_s((int32_t)car->left_duty);
  while(1)
  {
+    motor_set(car);
     
-
  } 
 }
