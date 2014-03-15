@@ -309,7 +309,6 @@
           <state>$PROJ_DIR$\..\..\src\cpu </state>
           <state>$PROJ_DIR$\..\..\src\cpu\headers </state>
           <state>$PROJ_DIR$\..\..\src\platforms</state>
-          <state>$PROJ_DIR$\..\..\src\init</state>
           <state>$PROJ_DIR$\..\..\src\drivers</state>
           <state>$PROJ_DIR$\..\..\src\drivers\adc</state>
           <state>$PROJ_DIR$\..\..\src\drivers\dac</state>
@@ -328,6 +327,7 @@
           <state>$PROJ_DIR$\..\..\src\drivers\rtc</state>
           <state>$PROJ_DIR$\..\..\src\drivers\uart </state>
           <state>$PROJ_DIR$\..\..\src\drivers\wdog</state>
+          <state>$PROJ_DIR$\..\..\src\drivers\nokia_5110</state>
           <state>$PROJ_DIR$\..\..\src\LIB\CMSIS</state>
           <state>$PROJ_DIR$\..\..\src\LIB\FatFs</state>
           <state>$PROJ_DIR$\..\..\build</state>
@@ -1898,31 +1898,10 @@
   <group>
     <name>app</name>
     <file>
-      <name>$PROJ_DIR$\..\..\src\init\board.c</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\..\src\init\board.h</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\..\src\init\board_config.h</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\..\src\init\init.c</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\..\src\init\init.h</name>
-    </file>
-    <file>
       <name>$PROJ_DIR$\..\..\src\projects\camera_test_demo\isr.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\..\..\src\projects\camera_test_demo\main.c</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\..\src\init\str2num.c</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\..\src\init\str2num.h</name>
     </file>
   </group>
   <group>
