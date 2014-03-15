@@ -244,14 +244,7 @@ void blance_comp_filter(float tg,float dt,cars_status car)
   angle_m = acc_data_get();
   gyro_m  = gyro_data_get();
   comp_filter(angle_m,gyro_m,tg, dt,car);
-  (car->left_duty)=(car->right_duty)= (car->angle - car->angle_set)*car->angle_p + (gyro_m - car->gyro_set)*car->gyro_d;
-  if(car->left_duty>990||car->right_duty<-990)
-    {
-        (car->left_duty)=(car->right_duty) = 0;
-    }
-  
-   right_run_s((int32_t)car->right_duty);
-   left_run_s((int32_t)car->left_duty);
+  car->blance_duty = (car->angle - car->angle_set)*car->angle_p + (gyro_m - car->gyro_set)*car->gyro_d ;
 }
 
 
@@ -264,8 +257,8 @@ void speed_control(cars_status car)
 {
   float speed_err;
   static float speed_integral;
-  speed_err        = car->speed_set - car->speed_m;
+  speed_err        = car->speed_set - car->speed_left_m;
   speed_integral  += (car->speed_p)*speed_err;
-  car->left_duty   = car->left_duty + speed_integral + (car->speed_d)*speed_err;
-  car->right_duty  = car->right_duty + speed_integral + (car->speed_d)*speed_err;  
+  car->speed_duty   =  speed_integral + (car->speed_d)*speed_err;
+  
 }

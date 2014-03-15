@@ -50,11 +50,11 @@ void main()
   board_init();
   car->angle_p   = 85.5;
   car->gyro_d    = 5;
-  car->angle_set = 2.0;
+  car->angle_set = 5.4;
   car->gyro_set  = 1;
-  car->speed_d   = 1;
-  car->speed_set = 10;
-  car->speed_p   = 1;
+  car->speed_d   = 0.0001;
+  car->speed_set = 0;
+  car->speed_p   = 0.0001;
   car->left_duty = 10;
   car->right_duty =10;
   uart_init(UART0,115200);
