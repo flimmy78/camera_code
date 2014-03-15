@@ -44,21 +44,32 @@ cars_status car;   //
 
 void main()
 { 
-  board_init();
+  //board_init();
   
  // DMA_count_Init(DMA_CH4, PTC0, 10000, DMA_rising_down);
  // pit_init_ms(PIT0,200);
+  gpio_init(PORTC,0,GPO,0);
+  gpio_init(PORTC,2,GPO,0);
+  gpio_init(PORTB,20,GPO,0);
+  gpio_init(PORTB,22,GPO,1);
     
-  car->angle_p   = 35.5;
-  car->gyro_d    = 0.5;
-  car->angle_set =7.5;
-  car->gyro_set  =2;
-  uart_init(UART0,115200);
+//  car->angle_p   = 35.5;
+//  car->gyro_d    = 0.5;
+//  car->angle_set =7.5;
+//  car->gyro_set  =2;
+//  uart_init(UART0,115200);
 
  while(1)
  {
-   blance_comp_filter(3.5,0.005,car);
-   delayms(5);
+//   blance_comp_filter(3.5,0.005,car);
+//   delayms(5);
+   
+   PTC2_OUT = 1;
+   PTC0_OUT = 0;
+   delayms(3);
+   PTC2_OUT = 0;
+   PTC0_OUT = 0;
+    delayms(7);
  }
    
 }

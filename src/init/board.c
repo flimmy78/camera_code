@@ -263,12 +263,5 @@ void speed_control(cars_status car)
   speed_err        = car->speed_set - car->speed_m;
   speed_integral  += (car->speed_p)*speed_err;
   car->left_duty   = car->left_duty + speed_integral + (car->speed_d)*speed_err;
-<<<<<<< HEAD
   car->right_duty  = car->right_duty + speed_integral + (car->speed_d)*speed_err;  
 }
-=======
-  car->right_duty  = car->right_duty + speed_integral + (car->speed_d)*speed_err;
-  
-  
-}
->>>>>>> 44824fb16eccec3ac8c5cc9013d10cf89efa44ff
