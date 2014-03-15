@@ -47,7 +47,7 @@ void main()
   
   board_init(); 
   DisableInterrupts;
-  Light_init;
+  
   DMA_count_Init(DMA_CH4, PTC0, 10000, DMA_rising_down);
   pit_init_ms(PIT0,200);
   pit_init_ms(PIT1,5);
@@ -56,12 +56,6 @@ void main()
   car->angle_set =7.5;
   car->gyro_set  =2;
   uart_init(UART0,115200);
-  right_run_s(-300);
-  left_run_s(-300);
-  Light1_on;
-  Light2_on;
-  Light3_on;
-  Light4_on;
   EnableInterrupts;
  while(1)
  {

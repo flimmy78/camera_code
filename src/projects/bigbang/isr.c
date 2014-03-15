@@ -119,14 +119,9 @@ extern cars_status car;   //
 
 void PIT_CH1_Handler(void)
 {
-  static char count =0;
+   PIT_Flag_Clear(PIT1);
   blance_comp_filter(3.5,0.005,car);
-  count++;
-  if(count>100)
-  {
-    Light1_turn();
-  }
-  PIT_Flag_Clear(PIT1); 
+ 
 }
 
 char str[10];
