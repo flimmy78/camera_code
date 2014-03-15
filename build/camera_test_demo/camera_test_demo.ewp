@@ -309,6 +309,7 @@
           <state>$PROJ_DIR$\..\..\src\cpu </state>
           <state>$PROJ_DIR$\..\..\src\cpu\headers </state>
           <state>$PROJ_DIR$\..\..\src\platforms</state>
+          <state>$PROJ_DIR$\..\..\src\init</state>
           <state>$PROJ_DIR$\..\..\src\drivers</state>
           <state>$PROJ_DIR$\..\..\src\drivers\adc</state>
           <state>$PROJ_DIR$\..\..\src\drivers\dac</state>
