@@ -31,6 +31,9 @@ typedef struct cars_status
   float speed_duty;     //速度控制计算出的占空比。
   
   //摄像头采集，角度控制
+  float direction_left_duty;     //电机转向左轮占空比。
+  float direction_right_duty;    //电机转向游轮占空比。
+  
   
 }*cars_status;
 

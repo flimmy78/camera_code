@@ -201,7 +201,7 @@ void blance_comp_filter(float tg,float dt,cars_status car)
 
 
 /*********************************************************************************************
-*       速度控制函数，根据设定速度对占空比进行设置。
+*       速度控制函数，根据设定速度计算占空比。
 *
 *
 **********************************************************************************************/
@@ -213,4 +213,19 @@ void speed_control(cars_status car)
   speed_integral  += (car->speed_p)*speed_err;
   car->speed_duty   =  speed_integral + (car->speed_d)*speed_err;
   
+}
+
+/*********************************************************************************************
+*       电机控制。
+*
+*
+**********************************************************************************************/
+
+
+void motor_set(cars_status car)
+{
+  car->left_duty  = car->blance_duty -car->speed_duty - car->direction_left_duty;
+  car->right_duty = car->blance_duty -car->speed_duty +car->direction_right_duty;
+  left_run_s((int32_t)car->left_duty);
+  right_run_s((uint32_t)car->right_duty);
 }
