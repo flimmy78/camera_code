@@ -46,6 +46,7 @@ cars_status car= &car_s;   //
 float angle_m,gyro_m;
 void main()
 { 
+  s32 a =150;
   //车体系统设置
   DisableInterrupts;
   board_init();
@@ -62,16 +63,26 @@ void main()
   car->gyro_set  = 1;
   
   car->speed_set = 0;
-  car->speed_d   = 0.0001;
-  car->speed_p   = 0.0001;
+  car->speed_d   = 0.001;
+  car->speed_p   = 0.001;
   car->speed_duty =0;
   car->direction_left_duty  = 0;
   car->direction_right_duty =0;
   
   EnableInterrupts;
+  left_run_s(-150);
+  right_run_s(-150);
  while(1)
  {
-    motor_set(car);
+   left_run_s(a);
+  right_run_s(a);
+   delayms(2000);
+   a = -a;
+   left_run_s(a);
+  right_run_s(a);
+  delayms(2000);
+  a = -a;
+  // motor_set(car);
     
  } 
 }
