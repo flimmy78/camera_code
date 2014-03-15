@@ -46,6 +46,8 @@ cars_status car= &car_s;   //
 float angle_m,gyro_m;
 void main()
 { 
+  DMA_count_Init(DMA_CH4, PTC0, 10000, DMA_rising_down);
+  pit_init_ms(PIT0,200);
   DisableInterrupts;
   pit_init_ms(PIT1,5);
   board_init();
