@@ -1900,15 +1900,6 @@
       <name>$PROJ_DIR$\..\..\src\init\board.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\src\init\board.c.BASE.c</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\..\src\init\board.c.LOCAL.c</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\..\src\init\board.c.REMOTE.c</name>
-    </file>
-    <file>
       <name>$PROJ_DIR$\..\..\src\init\board.h</name>
     </file>
     <file>
