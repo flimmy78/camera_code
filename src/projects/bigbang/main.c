@@ -70,19 +70,10 @@ void main()
   car->direction_right_duty =0;
   
   EnableInterrupts;
-  left_run_s(-150);
-  right_run_s(-150);
+ 
  while(1)
  {
-   left_run_s(a);
-  right_run_s(a);
-   delayms(2000);
-   a = -a;
-   left_run_s(a);
-  right_run_s(a);
-  delayms(2000);
-  a = -a;
-  // motor_set(car);
+   motor_set(car);
     
  } 
 }
