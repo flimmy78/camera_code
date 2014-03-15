@@ -96,35 +96,21 @@ void DMA_CH4_Handler(void)
 }
 
 
-
+extern cars_status car;
 void PIT_CH0_Handler(void)
 {
     PIT_Flag_Clear(PIT0);
-    
-    
-//  static int count=0;
-//  count++;
-//  if(300 < count)
-//  {
-//    count = 0;
-//    Light1_turn();
-//  }
-    printf("%d\n",DMA_count_get(DMA_CH4));
-    DMA_count_reset(DMA_CH4);
+    DMA_count_reset(DMA_CH5);
+    car->speed_left_m = ((car->left_duty) > 0 ? 1:-1) * (float)DMA_count_get(DMA_CH5);
+    speed_control(car);
+   
   
 }
-
 
 void PIT_CH1_Handler(void)
 {
   PIT_Flag_Clear(PIT1);
-  static int count1=0;
-  count1++;
-  if(300 < count1)
-  {
-    count1 = 0;
-    Light2_turn();
-  }
+  blance_comp_filter(3.5,0.005,car);
   
 }
 

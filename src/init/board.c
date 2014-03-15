@@ -1,12 +1,11 @@
 /*
   板级使用的函数，便于理解和配置
 */
-
+#include "include.h"
 #include "common.h"
 #include "stdint.h"
 #include "board_config.h"
 #include "adc.h"
-//#include "FTM.h"
 #include "uart.h"
 #include "board.h"
 #include "Kalman.h"
@@ -87,7 +86,7 @@ void right_run_s(int32_t speed)       //speed的符号体现方向
   if(speed>0)
   {
     dir = ahead;
-//    speed = speed +right_dead;
+    speed = speed +right_dead;
   }
   else if(speed <0)
   {
@@ -141,7 +140,16 @@ void left_run_s(int32_t speed)   //speed的符号体现方向
 }
 
 
-
+/*************************************
+*   编码器初始化
+*************************************/
+void encoder_init()
+{
+    DMA_count_Init(DMA_CH4, PTA24, 10000, DMA_rising_up);
+    DMA_count_Init(DMA_CH5, PTA26, 10000, DMA_rising_up);
+    DMA_count_Init(DMA_CH6, PTA28, 10000, DMA_rising_up);
+    DMA_count_Init(DMA_CH7, PTA29, 10000, DMA_rising_up);
+}
 
 
 /*
@@ -179,89 +187,45 @@ void sent_to_computer(uint16_t data1 , uint16_t data2 , uint16_t  data3)
 //  pid->Implement
 //}
 
-/***********************************************
-*   将字符串转换为浮点数
-*   str为字符串首地址，n为字符串长度
-***********************************************/
-
-float str2num(char * str,u8 n)
-{
-    u8 point = 0;       //查询小数点，返回小数点的位置，若无则为0
-    int len = 0;               //字符串长度
-    float inc = 1;
-    u8 p,l;
-    float num;
-    
-    for(len=0; len<n; len++)
-    {
-        if(str[point] != '.')
-           point ++;
-    }
-    
-    if(point > len)      //无小数点
-    {
-        for(len=n-1; len>=0; len--)       //最后一个字符的标号
-        {
-            num = num + ((u8)str[len]-48)*inc;
-            
-            inc = inc*10;
-        }
-    }
-    else
-    {
-        len = n-1;              //最后一个字符的标号
-        p = point;
-        l = len;
-        while(point < len)
-        {
-            point++;
-            inc = inc*0.1;
-            
-            num = num + ((u8)str[point]-48)*inc;
-        }
-        point = p;
-        len = l;
-        inc = 1;
-        while(point > 0)
-        {
-            point--;
-            
-            num = num+((u8)str[point]-48)*inc;
-            
-            inc = inc*10;
-        }
-    }
-    
-    return num;
-}
-
 
 //extern cars_status car;
 void blance_comp_filter(float tg,float dt,cars_status car)
 {
   
-  car->angle_m = acc_data_get();
-  car->gyro_m  = gyro_data_get();
-  comp_filter(car->angle_m,car->gyro_m,tg, dt,car);
-  (car->left_duty)=(car->right_duty)= (car->angle - car->angle_set)*car->angle_p + (car->gyro_m - car->gyro_set)*car->gyro_d;
-  if(car->left_duty>990||car->right_duty<-990)
-    {
-        (car->left_duty)=(car->right_duty) = 0;
-    }
-  
-   right_run_s((int32_t)car->right_duty);
-   left_run_s((int32_t)car->left_duty);
+  float angle_m,gyro_m;
+  angle_m = acc_data_get();
+  gyro_m  = gyro_data_get();
+  comp_filter(angle_m,gyro_m,tg, dt,car);
+  car->blance_duty = (car->angle - car->angle_set)*car->angle_p + (gyro_m - car->gyro_set)*car->gyro_d ;
 }
+
+
 /*********************************************************************************************
-*       速度控制函数，根据设定速度对占空比进行设置。
+*       速度控制函数，根据设定速度计算占空比。
 *
 *
 **********************************************************************************************/
 void speed_control(cars_status car)
 {
-  float speed_err,speed_integral;
-  speed_err        = car->speed_set - car->speed_m;
+  float speed_err;
+  static float speed_integral;
+  speed_err        = car->speed_set - car->speed_left_m;
   speed_integral  += (car->speed_p)*speed_err;
-  car->left_duty   = car->left_duty + speed_integral + (car->speed_d)*speed_err;
-  car->right_duty  = car->right_duty + speed_integral + (car->speed_d)*speed_err;  
+  car->speed_duty   =  speed_integral + (car->speed_d)*speed_err;
+  
+}
+
+/*********************************************************************************************
+*       电机控制。
+*
+*
+**********************************************************************************************/
+
+
+void motor_set(cars_status car)
+{
+  car->left_duty  = car->blance_duty -car->speed_duty - car->direction_left_duty;
+  car->right_duty = car->blance_duty -car->speed_duty +car->direction_right_duty;
+  left_run_s((int32_t)car->left_duty);
+  right_run_s((uint32_t)car->right_duty);
 }

@@ -22,6 +22,7 @@
 #include  "adc.h"
 #include   "board.h"
 #include  "str2num.h"
+#include  "Kalman.h"
 
 #define ROW 120
 #define COL 180

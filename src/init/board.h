@@ -5,6 +5,8 @@
 #include "FTM.h"
 #include "Kalman.h"
 /******************配置区**>>***********/
+
+/************电机配置**************/
 //右电机前进的FTM模块
 #define RIGHT_A_FTM FTM1
 #define RIGHT_A_CH  CH0
@@ -26,6 +28,21 @@
 
 //电机驱动初始化的占空比，【强烈要求为【0】】
 #define INIT_DUTY (0)
+
+/***********编码器配置************/
+#define     TRANSFER        1.0         //传送比
+
+#define     SPEED_LA_GET    DMA_count_get(DMA_CH4)/TRANSFER     //左轮前进
+#define     SPEED_LB_GET    DMA_count_get(DMA_CH5)/TRANSFER     //左轮后退
+#define     SPEED_RA_GET    DMA_count_get(DMA_CH6)/TRANSFER
+#define     SPEED_RB_GET    DMA_count_get(DMA_CH7)/TRANSFER
+
+#define     SPEED_LA_CLEAR  DMA_count_reset(DMA_CH4)
+#define     SPEED_LB_CLEAR  DMA_count_reset(DMA_CH5)
+#define     SPEED_RA_CLEAR  DMA_count_reset(DMA_CH6)
+#define     SPEED_RB_CLEAR  DMA_count_reset(DMA_CH7)
+
+void    encoder_init();
 
 /********加速度计标准值配置*******/
 //加速度计 		  800mV/g ,对应为AD值 15887/g , 1605 * m/s^2
@@ -92,4 +109,6 @@ void sent_to_computer(uint16_t data1 , uint16_t data2 , uint16_t  data3);
 float str2num(char * str,u8 n);
 void blance_comp_filter(float tg,float dt,cars_status car);
 void speed_control(cars_status car);
+//设置电机。
+void motor_set(cars_status car);
 #endif

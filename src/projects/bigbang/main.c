@@ -30,56 +30,48 @@
 #include "Kalman.h"
 
 
-//const s32 g=15587;
-//const s32 zero=26420;
-//
+const s32 g=15587;
+const s32 zero=26420;
+
 u8 ImageBuf[ROW][COL];
 
 volatile u32 rowCnt = 0 ;
 volatile u8 SampleFlag = 0;
 
-extern cars_status car;
-cars_status car;   //
+//extern cars_status car;
 
+struct cars_status car_s;
+cars_status car= &car_s;   //
 
+float angle_m,gyro_m;
 void main()
 { 
-  //board_init();
+  //车体系统设置
+  DisableInterrupts;
+  board_init();
+   uart_init(UART0,115200);
+   
+  //车体参数设置。
+   
+  car->left_duty = 0;
+  car->right_duty =0;
   
- // DMA_count_Init(DMA_CH4, PTC0, 10000, DMA_rising_down);
- // pit_init_ms(PIT0,200);
-  gpio_init(PORTC,0,GPO,0);
-  gpio_init(PORTC,2,GPO,0);
-  gpio_init(PORTB,20,GPO,0);
-  gpio_init(PORTB,22,GPO,1);
-    
-//  car->angle_p   = 35.5;
-//  car->gyro_d    = 0.5;
-//  car->angle_set =7.5;
-//  car->gyro_set  =2;
-//  uart_init(UART0,115200);
-
+  car->angle_p   = 85.5;
+  car->gyro_d    = 5;
+  car->angle_set = 5.4;
+  car->gyro_set  = 1;
+  
+  car->speed_set = 0;
+  car->speed_d   = 0.0001;
+  car->speed_p   = 0.0001;
+  car->speed_duty =0;
+  car->direction_left_duty  = 0;
+  car->direction_right_duty =0;
+  
+  EnableInterrupts;
  while(1)
  {
-//   blance_comp_filter(3.5,0.005,car);
-//   delayms(5);
-   
-   PTC2_OUT = 1;
-   PTC0_OUT = 0;
-   delayms(3);
-   PTC2_OUT = 0;
-   PTC0_OUT = 0;
-    delayms(7);
- }
-   
+    motor_set(car);
+    
+ } 
 }
-
-//void main()
-//{
-//    FTM_PWM_init(FTM0,CH0,10000,50);
-//    uart_init(UART0,115200);
-//    DMA_count_Init(DMA_CH4, PTC0, 10000, DMA_rising_down);
-//    pit_init_ms(PIT0,200);
-//    
-//    for(;;);
-//}

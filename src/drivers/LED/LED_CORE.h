@@ -14,8 +14,8 @@
 #define   DISABLE    0
 
 #define   __QRSKFW__         DISABLE
-#define   __FIRE_LIGHT__     DISABLE
-#define   __LQ_LIGHT__       ENABLE
+#define   __FIRE_LIGHT__     ENABLE
+#define   __LQ_LIGHT__       DISABLE
 #define   __LQ_LIGHT_100P__  DISABLE
 
 /*******************ºêº¯Êý***************************/
