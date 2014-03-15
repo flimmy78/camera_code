@@ -50,8 +50,8 @@ void main()
   board_init();
   car->angle_p   = 85.5;
   car->gyro_d    = 5;
-  car->angle_set = 3.6;
-  car->gyro_set  = -2;
+  car->angle_set = 2.0;
+  car->gyro_set  = 1;
   car->speed_d   = 1;
   car->speed_set = 10;
   car->speed_p   = 1;
