@@ -47,12 +47,14 @@ float angle_m,gyro_m;
 void main()
 { 
   DisableInterrupts;
+  pit_init_ms(PIT1,5);
   board_init();
   car->angle_p   = 55.5;
   car->gyro_d    = 5;
   car->angle_set = 3.6;
   car->gyro_set  = -2;
   uart_init(UART0,115200);
+  EnableInterrupts;
 //  uart_getchar(UART0);
 // car->left_duty   = -100;
 // car->right_duty  = -100;
@@ -60,8 +62,7 @@ void main()
 // left_run_s((int32_t)car->left_duty);
  while(1)
  {
-    blance_comp_filter(3.5,0.005,car);
-     delayms(5);
+    
 
  } 
 }
