@@ -30,46 +30,43 @@
 #include "Kalman.h"
 
 
-//const s32 g=15587;
-//const s32 zero=26420;
-//
+const s32 g=15587;
+const s32 zero=26420;
+
 u8 ImageBuf[ROW][COL];
 
 volatile u32 rowCnt = 0 ;
 volatile u8 SampleFlag = 0;
 
-extern cars_status car;
-cars_status car;   //
+//extern cars_status car;
 
+struct cars_status car_s;
+cars_status car= &car_s;   //
 
+float angle_m,gyro_m;
 void main()
 { 
-  
-  board_init(); 
   DisableInterrupts;
-  
-  DMA_count_Init(DMA_CH4, PTC0, 10000, DMA_rising_down);
-  pit_init_ms(PIT0,200);
-  pit_init_ms(PIT1,5);
-  car->angle_p   = 35.5;
-  car->gyro_d    = 0.5;
-  car->angle_set =7.5;
-  car->gyro_set  =2;
+  board_init();
+  car->angle_p   = 85.5;
+  car->gyro_d    = 5;
+  car->angle_set = 3.6;
+  car->gyro_set  = -2;
+  car->speed_d   = 1;
+  car->speed_set = 10;
+  car->speed_p   = 1;
+  car->left_duty = 10;
+  car->right_duty =10;
   uart_init(UART0,115200);
   EnableInterrupts;
+//  uart_getchar(UART0);
+// car->left_duty   = -100;
+// car->right_duty  = -100;
+// right_run_s((int32_t)car->right_duty);
+// left_run_s((int32_t)car->left_duty);
  while(1)
  {
-   
- }
-   
-}
+    
 
-//void main()
-//{
-//    FTM_PWM_init(FTM0,CH0,10000,50);
-//    uart_init(UART0,115200);
-//    DMA_count_Init(DMA_CH4, PTC0, 10000, DMA_rising_down);
-//    pit_init_ms(PIT0,200);
-//    
-//    for(;;);
-//}
+ } 
+}

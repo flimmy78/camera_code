@@ -49,5 +49,11 @@ void board_init()
   motor_init();
   
   //“˝Ω≈≈‰÷√≥ı ºªØ
-  used_pin_config();                    
+  used_pin_config();      
+  
+  DMA_count_Init(DMA_CH4, PTA24, 10000, DMA_rising_down);
+  DMA_count_Init(DMA_CH5, PTA26, 10000, DMA_rising_down);
+  
+  pit_init_ms(PIT0,200);
+  pit_init_ms(PIT1,5);
 }
