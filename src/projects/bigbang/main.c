@@ -46,15 +46,17 @@ cars_status car= &car_s;   //
 float angle_m,gyro_m;
 void main()
 { 
-  DMA_count_Init(DMA_CH4, PTC0, 10000, DMA_rising_down);
-  pit_init_ms(PIT0,200);
   DisableInterrupts;
-  pit_init_ms(PIT1,5);
   board_init();
-  car->angle_p   = 55.5;
+  car->angle_p   = 85.5;
   car->gyro_d    = 5;
   car->angle_set = 3.6;
   car->gyro_set  = -2;
+  car->speed_d   = 1;
+  car->speed_set = 10;
+  car->speed_p   = 1;
+  car->left_duty = 10;
+  car->right_duty =10;
   uart_init(UART0,115200);
   EnableInterrupts;
 //  uart_getchar(UART0);
