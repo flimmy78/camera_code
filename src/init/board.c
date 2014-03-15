@@ -240,10 +240,11 @@ float str2num(char * str,u8 n)
 void blance_comp_filter(float tg,float dt,cars_status car)
 {
   
-  car->angle_m = acc_data_get();
-  car->gyro_m  = gyro_data_get();
-  comp_filter(car->angle_m,car->gyro_m,tg, dt,car);
-  (car->left_duty)=(car->right_duty)= (car->angle - car->angle_set)*car->angle_p + (car->gyro_m - car->gyro_set)*car->gyro_d;
+  float angle_m,gyro_m;
+  angle_m = acc_data_get();
+  gyro_m  = gyro_data_get();
+  comp_filter(angle_m,gyro_m,tg, dt,car);
+  (car->left_duty)=(car->right_duty)= (car->angle - car->angle_set)*car->angle_p + (gyro_m - car->gyro_set)*car->gyro_d;
   if(car->left_duty>990||car->right_duty<-990)
     {
         (car->left_duty)=(car->right_duty) = 0;
@@ -252,6 +253,8 @@ void blance_comp_filter(float tg,float dt,cars_status car)
    right_run_s((int32_t)car->right_duty);
    left_run_s((int32_t)car->left_duty);
 }
+
+
 /*********************************************************************************************
 *       速度控制函数，根据设定速度对占空比进行设置。
 *
@@ -266,4 +269,3 @@ void speed_control(cars_status car)
   car->left_duty   = car->left_duty + speed_integral + (car->speed_d)*speed_err;
   car->right_duty  = car->right_duty + speed_integral + (car->speed_d)*speed_err;  
 }
-
