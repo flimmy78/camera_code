@@ -44,36 +44,24 @@ cars_status car;   //
 
 void main()
 { 
-  float angle_m,gyro_m;
-  board_init();
+  
+  board_init(); 
+  DisableInterrupts;
   
   DMA_count_Init(DMA_CH4, PTC0, 10000, DMA_rising_down);
   pit_init_ms(PIT0,200);
-    
-  car->angle_p   = 125.5;
-  car->gyro_d    = 5;
+  pit_init_ms(PIT1,5);
+  car->angle_p   = 35.5;
+  car->gyro_d    = 0.5;
   car->angle_set =7.5;
-  car->gyro_set  =6.1;
+  car->gyro_set  =2;
   uart_init(UART0,115200);
-  right_run_s(100);
-  left_run_s(100);
-  uart_getchar(UART0);
+  EnableInterrupts;
  while(1)
  {
-//   blance_comp_filter(3.5,0.005,car);
-//   delayms(5);
    
-  angle_m = acc_data_get();
-  gyro_m  = gyro_data_get();
-  comp_filter(angle_m,gyro_m,3.5, 0.005,car);
-  (car->left_duty)=(car->right_duty) = (car->angle - car->angle_set)*car->angle_p + (gyro_m - car->gyro_set)*car->gyro_d;  
-   right_run_s((int32_t)car->right_duty);
-   left_run_s((int32_t)car->left_duty);
-   delayms(5);
  }
-  
-
-  
+   
 }
 
 //void main()
