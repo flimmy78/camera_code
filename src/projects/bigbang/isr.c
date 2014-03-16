@@ -101,8 +101,9 @@ void PIT_CH0_Handler(void)
 {
     PIT_Flag_Clear(PIT0);
     car->speed_left_m = ((car->left_duty) > 0 ? 1:-1) * (float)DMA_count_get(DMA_CH5);
-    speed_control(car);
-    DMA_count_reset(DMA_CH5);
+       DMA_count_reset(DMA_CH5);
+       printf("%f\n",car->speed_left_m);
+      speed_control(car);
   
 }
 
@@ -135,7 +136,7 @@ void UART0_IRQHandler(void)
         {
             str[i] = str[i+1];
         }
-        num = str2ufloat(str,len-1);
+        car->speed_p = str2ufloat(str,len-1);
         printf("you send p = %f\n",num);
         
         /*****用户函数*********/
@@ -149,7 +150,7 @@ void UART0_IRQHandler(void)
         {
             str[i] = str[i+1];
         }
-        num = str2ufloat(str,len-1);
+        car->speed_d = str2ufloat(str,len-1);
         printf("you send d = %f\n",num);
         
         /*****用户函数*********/

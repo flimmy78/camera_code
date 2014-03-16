@@ -226,10 +226,11 @@ void motor_set(cars_status car)
 {
   car->left_duty  = (car->blance_duty) - (car->speed_duty) - (car->direction_left_duty);
   car->right_duty = (car->blance_duty) - (car->speed_duty) + (car->direction_right_duty);
+ // printf("%f\t%f\n",car->left_duty,car->right_duty);
   if(((car->left_duty)>990)||((car->left_duty)<-990)||((car->right_duty)>990)||((car->right_duty)<-990))
     {
       (car->left_duty) = (car->right_duty) = 0;
     }
   left_run_s((int32_t)(car->left_duty));
-  right_run_s((uint32_t)(car->right_duty));
+  right_run_s((int32_t)(car->right_duty));
 }

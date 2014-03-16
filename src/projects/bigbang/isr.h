@@ -46,8 +46,8 @@
 #undef     VECTOR_085             
 #define    VECTOR_085          PIT_CH1_Handler
 
-//#undef     VECTOR_061
-//#define    VECTOR_061          UART0_IRQHandler
+#undef     VECTOR_061
+#define    VECTOR_061          UART0_IRQHandler
 
 #undef     VECTOR_020
 #define    VECTOR_020          DMA_CH4_Handler
