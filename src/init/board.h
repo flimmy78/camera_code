@@ -31,6 +31,7 @@
 
 /***********编码器配置************/
 #define     TRANSFER        1.0         //传送比
+#define     SPEED_PER        500.0       //编码器每转脉冲数。
 
 #define     SPEED_LA_GET    DMA_count_get(DMA_CH4)/TRANSFER     //左轮前进
 #define     SPEED_LB_GET    DMA_count_get(DMA_CH5)/TRANSFER     //左轮后退
