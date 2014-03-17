@@ -25,7 +25,7 @@ typedef enum FTMn
 
 typedef enum CHn
 {
-    //   --FTM0--  --FTM1--  --FTM2--
+           //   --FTM0--  --FTM1--  --FTM2--
     CH0,   //     PTC1      PTA8      PTA10
     CH1,   //     PTC2      PTA9      PTA11
     CH2,   //     PTC3       ×         ×
@@ -41,7 +41,7 @@ typedef enum CHn
 
 /*********************** PWM **************************/
 
-#define FTM_PRECISON 100u     //定义占空比精度，100即精度为1%，1000u则精度为0.1%，用于占空比 duty 形参传入，即占空比为 duty/FTM_PRECISON
+#define FTM_PRECISON 1000u     //定义占空比精度，100即精度为1%，1000u则精度为0.1%，用于占空比 duty 形参传入，即占空比为 duty/FTM_PRECISON
 
 void  FTM_PWM_init(FTMn, CHn, u32 freq, u32 duty);  //初始化FTM的PWM功能并设置频率、占空比。设置通道输出占空比。同一个FTM，各通道的PWM频率是一样的，共3个FTM
 
@@ -60,6 +60,9 @@ typedef enum Input_cfg
 
 
 void FTM_Input_init(FTMn, CHn, Input_cfg);
+
+void FTM2_QUAD_init();
+void FTM1_QUAD_init();
 
 #define FTM_IRQ_EN(FTMn,CHn)        FTM_CnSC_REG(FTMx[FTMn],CHn) |= FTM_CnSC_CHIE_MASK       //开启 FTMn_CHn 中断
 #define FTM_IRQ_DIS(FTMn,CHn)       FTM_CnSC_REG(FTMx[FTMn],CHn) &= ~FTM_CnSC_CHIE_MASK      //关闭 FTMn_CHn 中断
