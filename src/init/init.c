@@ -51,8 +51,8 @@ void board_init()
   //引脚配置初始化
   used_pin_config();      
   
-  DMA_count_Init(DMA_CH4, PTA24, 10000, DMA_falling_up);
-  DMA_count_Init(DMA_CH5, PTA26, 10000, DMA_falling_up);
-  pit_init_ms(PIT0,200);
+  //速度采样初始化
+  speed_init();
+  
   pit_init_ms(PIT1,5);
 }

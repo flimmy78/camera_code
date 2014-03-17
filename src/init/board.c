@@ -143,12 +143,14 @@ void left_run_s(int32_t speed)   //speed的符号体现方向
 /*************************************
 *   编码器初始化
 *************************************/
-void encoder_init()
+void speed_init()
 {
     DMA_count_Init(DMA_CH4, PTA24, 10000, DMA_rising_up);
     DMA_count_Init(DMA_CH5, PTA26, 10000, DMA_rising_up);
     DMA_count_Init(DMA_CH6, PTA28, 10000, DMA_rising_up);
     DMA_count_Init(DMA_CH7, PTA29, 10000, DMA_rising_up);
+    
+    pit_init_ms(SPEED_PIT,SPEED_SAMPLING_TIME);
 }
 
 
