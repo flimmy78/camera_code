@@ -30,12 +30,12 @@
 #define INIT_DUTY (0)
 
 /*****************编码器配置*********************/
-#define     TRANSFER        1.0         //传送比,(pi*r齿*R齿)/(100*R轮)
+#define     TRANSFER        0.000383         //传送比,(pi*r齿*R轮)/(100*R齿),(3.14 * 40 * 0.032)/(100 * 105),轮胎半径0.032cm
 #define     SPEED_PER       200.0       //编码器每转脉冲数。
 #define     SPEED_PIT       PIT0        //编码器采样使用的定时器
 #define     SPEED_SAMPLING_TIME     5   //采样时间  5ms
 
-//*****算的是轮子的线速度
+//*****算的是轮子的线速度，单位m/s
 #define     SPEED_LA_GET    (DMA_count_get(DMA_CH4)*TRANSFER)/(SPEED_SAMPLING_TIME*1000)     //左轮前进
 #define     SPEED_LB_GET    (DMA_count_get(DMA_CH5)*TRANSFER)/(SPEED_SAMPLING_TIME*1000)     //左轮后退
 #define     SPEED_RA_GET    (DMA_count_get(DMA_CH6)*TRANSFER)/(SPEED_SAMPLING_TIME*1000)
