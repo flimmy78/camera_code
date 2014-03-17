@@ -43,13 +43,14 @@ volatile u8 SampleFlag = 0;
 struct cars_status car_s;
 cars_status car= &car_s;   //
 
-float angle_m,gyro_m;
 void main()
 { 
-//  //车体系统设置
+ 
+  //车体系统设置
   DisableInterrupts;
   board_init();
-
+  uart_init(UART0,115200);
+   
   //车体参数设置。
    
   car->left_duty = 0;
@@ -57,20 +58,22 @@ void main()
   
   car->angle_p   = 85.5;
   car->gyro_d    = 5;
-  car->angle_set = 5.4;
+  car->angle_set = 5.0;
   car->gyro_set  = 1;
   
-  car->speed_set = 0;
-  car->speed_d   = 0.0001;
-  car->speed_p   = 0.0001;
+  car->speed_set = 0.0;
+  car->speed_d   = 75.5;
+  car->speed_p   = 4.1;
   car->speed_duty =0;
   car->direction_left_duty  = 0;
   car->direction_right_duty =0;
   
   EnableInterrupts;
+ 
  while(1)
  {
+   
     motor_set(car);
+    
  } 
-
 }

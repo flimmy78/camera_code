@@ -197,6 +197,7 @@ void blance_comp_filter(float tg,float dt,cars_status car)
   gyro_m  = gyro_data_get();
   comp_filter(angle_m,gyro_m,tg, dt,car);
   car->blance_duty = (car->angle - car->angle_set)*car->angle_p + (gyro_m - car->gyro_set)*car->gyro_d ;
+  //printf("blance_duty:%f\n",car->blance_duty);
 }
 
 
@@ -211,7 +212,8 @@ void speed_control(cars_status car)
   static float speed_integral;
   speed_err        = car->speed_set - car->speed_left_m;
   speed_integral  += (car->speed_p)*speed_err;
-  car->speed_duty   =  speed_integral + (car->speed_d)*speed_err;
+  car->speed_duty  =  speed_integral + (car->speed_d)*speed_err;
+  printf("speed_duty:%f\n",car->speed_duty);
   
 }
 
@@ -224,8 +226,13 @@ void speed_control(cars_status car)
 
 void motor_set(cars_status car)
 {
-  car->left_duty  = car->blance_duty -car->speed_duty - car->direction_left_duty;
-  car->right_duty = car->blance_duty -car->speed_duty +car->direction_right_duty;
-  left_run_s((int32_t)car->left_duty);
-  right_run_s((uint32_t)car->right_duty);
+  car->left_duty  = (car->blance_duty) - (car->speed_duty) - (car->direction_left_duty);
+  car->right_duty = (car->blance_duty) - (car->speed_duty) + (car->direction_right_duty);
+ // printf("%f\t%f\n",car->left_duty,car->right_duty);
+  if(((car->left_duty)>990)||((car->left_duty)<-990)||((car->right_duty)>990)||((car->right_duty)<-990))
+    {
+      (car->left_duty) = (car->right_duty) = 0;
+    }
+  left_run_s((int32_t)(car->left_duty));
+  right_run_s((int32_t)(car->right_duty));
 }
