@@ -86,15 +86,18 @@ void PORTE_IRQHandler()
 void DMA_CH4_Handler(void)
 {
     //DMA通道4
-    DMA_IRQ_CLEAN(DMA_CH4); 
-
-//    printf("%d\n",DMA_count_get(DMA_CH4));
-//    DMA_count_reset(DMA_CH4);
+    DMA_IRQ_CLEAN(DMA_CH4); //清除通道传输中断标志位    (这样才能再次进入中断)
     
-                            //清除通道传输中断标志位    (这样才能再次进入中断)
     DMA_EN(DMA_CH4);                                    //使能通道CHn 硬件请求      (这样才能继续触发DMA传输)
 }
 
+void DMA_CH1_Handler(void)
+{
+    //DMA通道4
+    DMA_IRQ_CLEAN(DMA_CH1); //清除通道传输中断标志位    (这样才能再次进入中断)
+    
+    DMA_EN(DMA_CH1);                                    //使能通道CHn 硬件请求      (这样才能继续触发DMA传输)
+}
 
 extern cars_status car;
 u32 a,b,c,d;
@@ -109,7 +112,6 @@ void PIT_CH0_Handler()
        DMA_count_reset(DMA_CH5);
        DMA_count_reset(DMA_CH6);
        speed_control(car);
-  
 }
 
 void PIT_CH1_Handler(void)
