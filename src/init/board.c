@@ -212,10 +212,10 @@ void speed_control(cars_status car)
 {
   float speed_err;
   static float speed_integral;
-  speed_err        = car->speed_set - car->speed_left_m;
+  speed_err        = car->speed_set - (car->speed_left_m +  car->speed_right_m)/2.0 ;
   speed_integral  += (car->speed_p)*speed_err;
   car->speed_duty  =  speed_integral + (car->speed_d)*speed_err;
-  printf("speed_duty:%f\n",car->speed_duty);
+ // printf("speed_duty:%f\n",car->speed_duty);
   
 }
 

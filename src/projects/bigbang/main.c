@@ -53,8 +53,8 @@ void main()
    
   //车体参数设置。
    
-  car->left_duty = 0;
-  car->right_duty =0;
+  car->left_duty = 200;
+  car->right_duty =200;
   
   car->angle_p   = 85.5;
   car->gyro_d    = 5;
@@ -67,13 +67,14 @@ void main()
   car->speed_duty =0;
   car->direction_left_duty  = 0;
   car->direction_right_duty =0;
-  
-  EnableInterrupts;
+  left_run_s((int32_t)(car->left_duty));
+  right_run_s((int32_t)(car->right_duty));
+  //EnableInterrupts;
  
  while(1)
  {
    
-    motor_set(car);
+   // motor_set(car);
     
  } 
 }
