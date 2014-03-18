@@ -104,14 +104,11 @@ u32 a,b,c,d;
 void PIT_CH0_Handler()
 {
     PIT_Flag_Clear(PIT0);
-//    car->speed_left_m  = DMA_count_get(DMA_CH5);
-//    car->speed_right_m = 0;
-       
-       printf("speed_left_m:%d\n",DMA_count_get(DMA_CH5));
-       printf("speed_right_m:%d\n",DMA_count_get(DMA_CH7));
-       DMA_count_reset(DMA_CH5);
-       DMA_count_reset(DMA_CH6);
-       speed_control(car);
+   car->speed_left_m  = SPEED_LA_GET;
+    car->speed_right_m = SPEED_RA_GET;  
+    DMA_count_reset(DMA_CH1);
+    DMA_count_reset(DMA_CH4);
+    speed_control(car);
 }
 
 void PIT_CH1_Handler(void)
