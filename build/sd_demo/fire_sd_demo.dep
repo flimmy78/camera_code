@@ -6,6 +6,7 @@
   <configuration>
     <name>Debug</name>
     <outputs>
+<<<<<<< HEAD
       <file>$PROJ_DIR$\..\..\src\drivers\gpio\gpio_cfg.h</file>
       <file>H:\fire_Kinetis\build\config files\512KB_Pflash.icf</file>
       <file>$PROJ_DIR$\Debug\Obj\alloc.o</file>
@@ -29,9 +30,55 @@
       <file>$PROJ_DIR$\..\..\src\common\printf.c</file>
       <file>$PROJ_DIR$\..\..\src\cpu\crt0.s</file>
       <file>$PROJ_DIR$\..\..\src\cpu\start.c</file>
+=======
+      <file>$PROJ_DIR$\..\..\src\HWdrivers\Nokia5110_LCD\src\nokia_5110.c</file>
+      <file>$PROJ_DIR$\..\..\src\drivers\wdog\wdog.c</file>
+      <file>$PROJ_DIR$\..\..\src\LIB\FatFs\ff.c</file>
+      <file>$PROJ_DIR$\Debug\Obj\wdog.o</file>
+      <file>$PROJ_DIR$\..\iar.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\LED.pbi</file>
+      <file>$PROJ_DIR$\..\..\src\common\assert.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\lptmr.pbi</file>
+      <file>$TOOLKIT_DIR$\lib\rt7M_tl.a</file>
+      <file>$PROJ_DIR$\..\..\src\HWdrivers\LED\LED_CORE.c</file>
+      <file>$PROJ_DIR$\Debug\Obj\assert.o</file>
+      <file>$PROJ_DIR$\..\..\src\common\stdlib.h</file>
+      <file>$PROJ_DIR$\..\..\src\platforms\k60_fire.h</file>
+      <file>$PROJ_DIR$\..\..\src\LIB\FatFs\diskio.c</file>
+      <file>$PROJ_DIR$\Debug\Obj\sysinit.pbi</file>
+      <file>$PROJ_DIR$\..\..\src\LIB\CMSIS\iar_cortexM4l_math.a</file>
+      <file>$PROJ_DIR$\Debug\Exe\fire_gpio_demo.out</file>
+      <file>$PROJ_DIR$\..\..\src\common\io.h</file>
+      <file>$PROJ_DIR$\..\..\src\cpu\clk_cfg.h</file>
+      <file>$TOOLKIT_DIR$\lib\m7M_tl.a</file>
+      <file>$PROJ_DIR$\Debug\Obj\stdlib.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\vectors.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\crt0.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\alloc.o</file>
+      <file>$PROJ_DIR$\..\..\src\drivers\fire_drivers_cfg.h</file>
+      <file>$PROJ_DIR$\..\..\src\cpu\vectors.h</file>
+      <file>$PROJ_DIR$\..\..\src\cpu\arm_cm4.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\mcg.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\memtest.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\wdog.pbi</file>
+      <file>$PROJ_DIR$\..\..\src\HWdrivers\LED\LED_CORE.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\uif.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\nokia_5110.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\uif.pbi</file>
+      <file>$PROJ_DIR$\..\..\src\common\queue.h</file>
+      <file>H:\fire_Kinetis\build\config files\512KB_Pflash.icf</file>
+      <file>$PROJ_DIR$\Debug\Obj\printf.pbi</file>
+      <file>$PROJ_DIR$\..\..\src\drivers\gpio\gpio_cfg.h</file>
+      <file>$PROJ_DIR$\..\..\src\cpu\crt0.s</file>
+      <file>$PROJ_DIR$\..\..\src\common\printf.c</file>
+      <file>$PROJ_DIR$\..\..\src\common\startup.c</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
       <file>$PROJ_DIR$\..\..\src\cpu\sysinit.c</file>
       <file>$PROJ_DIR$\..\..\src\cpu\vectors.c</file>
+      <file>$PROJ_DIR$\..\..\src\common\uif.c</file>
+      <file>$PROJ_DIR$\..\..\src\common\memtest.c</file>
       <file>$PROJ_DIR$\..\..\src\drivers\delay\delay.c</file>
+<<<<<<< HEAD
       <file>$PROJ_DIR$\..\..\src\drivers\mcg\mcg.c</file>
       <file>$PROJ_DIR$\..\..\src\common\common.h</file>
       <file>$PROJ_DIR$\..\..\src\drivers\sdhc\sdhc.c</file>
@@ -90,16 +137,51 @@
         <tool>
           <name>BICOMP</name>
           <file> 20</file>
+=======
+      <file>$PROJ_DIR$\..\..\src\common\assert.c</file>
+      <file>$PROJ_DIR$\..\..\src\projects\fire_sd_demo\isr.c</file>
+      <file>$PROJ_DIR$\..\..\src\common\alloc.c</file>
+      <file>$PROJ_DIR$\..\..\src\projects\fire_sd_demo\main.c</file>
+      <file>$PROJ_DIR$\..\..\src\common\stdlib.c</file>
+      <file>$PROJ_DIR$\..\..\src\cpu\start.c</file>
+      <file>$PROJ_DIR$\..\..\src\cpu\arm_cm4.c</file>
+      <file>$PROJ_DIR$\..\..\src\common\io.c</file>
+      <file>$PROJ_DIR$\..\..\src\common\queue.c</file>
+      <file>$PROJ_DIR$\..\..\src\drivers\LED\LED.C</file>
+      <file>$PROJ_DIR$\..\..\src\projects\fire_sd_demo\include.h</file>
+      <file>$PROJ_DIR$\..\..\src\drivers\gpio\gpio.c</file>
+      <file>$PROJ_DIR$\..\..\src\drivers\mcg\mcg.c</file>
+      <file>$PROJ_DIR$\..\..\src\drivers\uart\uart.c</file>
+      <file>$PROJ_DIR$\..\..\src\common\common.h</file>
+      <file>$PROJ_DIR$\..\..\src\projects\fire_sd_demo\isr.h</file>
+      <file>$PROJ_DIR$\..\..\src\drivers\lptmr\lptmr.c</file>
+      <file>$PROJ_DIR$\..\..\src\drivers\sdhc\sdhc.c</file>
+    </outputs>
+    <file>
+      <name>$PROJ_DIR$\..\..\src\HWdrivers\Nokia5110_LCD\src\nokia_5110.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 8</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 52 11 0 4 5 61 29 8 47 63 17 38 35 33</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 52 11 0 4 5 61 29 8 47 63 17 38 35 33</file>
+=======
+          <file> 31 22 53 37 56 61 25 59 55 13 33 44 3 2 7 57 35</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 31 22 53 37 56 61 25 59 55 13 33 44 3 2 7 57 35</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
@@ -108,15 +190,24 @@
       <inputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 52 11 0 4 5 61 29 8 47 63 17 38 35 23 33 53</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 52 11 0 4 5 61 29 8 47 63 17 38 35 23 33 53</file>
+=======
+          <file> 22 53 37 56 61 25 59 55 13 33 44 3 2</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 22 53 37 56 61 25 59 55 13 33 44 3 2</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\drivers\LED\LED.C</name>
       <inputs>
         <tool>
@@ -135,35 +226,74 @@
         <tool>
           <name>ICCARM</name>
           <file> 16</file>
+=======
+      <name>$PROJ_DIR$\..\..\src\LIB\FatFs\ff.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 63</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 34</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 52 11 0 4 5 61 29 8 47 63 17 38 35</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 52 11 0 4 5 61 29 8 47 63 17 38 35</file>
+=======
+          <file> 42 36 57 48 22 53 37 56 61 25 59 55 13 33 44 3 40</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 42 36 57 48 22 53 37 56 61 25 59 55 13 33 44 3 40</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\common\alloc.c</name>
+=======
+      <name>$PROJ_DIR$\..\..\src\HWdrivers\LED\LED_CORE.c</name>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
       <outputs>
         <tool>
+          <name>ICCARM</name>
+          <file> 58</file>
+        </tool>
+        <tool>
           <name>BICOMP</name>
+<<<<<<< HEAD
           <file> 36</file>
+=======
+          <file> 50</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 52 11 0 4 5 61 29 8 47 63 17 38 35</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 52 11 0 4 5 61 29 8 47 63 17 38 35</file>
+=======
+          <file> 7 22 53 37 56 61 25 59 55 13 33 44 3 2</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 7 22 53 37 56 61 25 59 55 13 33 44 3 2</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
@@ -172,25 +302,42 @@
       <outputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 34</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 45</file>
+=======
+          <file> 60</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 63</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 52 0 4 5 61 29 8 47 63 17 38 35 44</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 52 0 4 5 61 29 8 47 63 17 38 35 44</file>
+=======
+          <file> 22 53 37 56 61 25 59 55 33 44 3 2 43 48 36</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 22 53 37 56 61 25 59 55 33 44 3 2 43 48 36</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\common\queue.c</name>
       <outputs>
         <tool>
@@ -200,20 +347,37 @@
         <tool>
           <name>BICOMP</name>
           <file> 50</file>
+=======
+      <name>$PROJ_DIR$\Debug\Exe\fire_gpio_demo.out</name>
+      <outputs>
+        <tool>
+          <name>OBJCOPY</name>
+          <file> 27</file>
+        </tool>
+        <tool>
+          <name>ILINK</name>
+          <file> 45</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
+<<<<<<< HEAD
           <name>ICCARM</name>
           <file> 52 11 0 4 5 61 29 8 47 63 17 38 35</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 52 11 0 4 5 61 29 8 47 63 17 38 35</file>
+=======
+          <name>ILINK</name>
+          <file> 51 38 60 63 18 12 14 58 47 29 20 45 5 52 49 41 54 6 9 24 26</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\cpu\arm_cm4.c</name>
       <outputs>
         <tool>
@@ -223,43 +387,75 @@
         <tool>
           <name>BICOMP</name>
           <file> 42</file>
+=======
+      <name>$PROJ_DIR$\..\..\src\common\printf.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 20</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 52 11 0 4 5 61 29 8 47 63 17 38 35</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 52 11 0 4 5 61 29 8 47 63 17 38 35</file>
+=======
+          <file> 22 53 37 56 61 25 59 55 13 33 44 3 2 40</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 22 53 37 56 61 25 59 55 13 33 44 3 2 40</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\projects\fire_sd_demo\main.c</name>
       <outputs>
         <tool>
           <name>ICCARM</name>
           <file> 62</file>
+=======
+      <name>$PROJ_DIR$\..\..\src\common\startup.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 49</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 27</file>
+          <file> 4</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 52 11 0 4 5 61 29 8 47 63 17 38 35 33 44 23 53 24 51 6</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 52 11 0 4 5 61 29 8 47 63 17 38 35 33 44 23 53 24 51 6</file>
+=======
+          <file> 22 53 37 56 61 25 59 55 13 33 44 3 2</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 22 53 37 56 61 25 59 55 13 33 44 3 2</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\common\startup.c</name>
       <outputs>
         <tool>
@@ -269,20 +465,36 @@
         <tool>
           <name>BICOMP</name>
           <file> 57</file>
+=======
+      <name>$PROJ_DIR$\..\..\src\cpu\sysinit.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 54</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 52 11 0 4 5 61 29 8 47 63 17 38 35</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 52 11 0 4 5 61 29 8 47 63 17 38 35</file>
+=======
+          <file> 22 53 37 56 61 25 59 55 13 33 44 3 2 19</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 22 53 37 56 61 25 59 55 13 33 44 3 2 19</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\projects\fire_sd_demo\isr.c</name>
       <outputs>
         <tool>
@@ -292,16 +504,44 @@
         <tool>
           <name>BICOMP</name>
           <file> 2</file>
+=======
+      <name>$PROJ_DIR$\..\..\src\cpu\vectors.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 9</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
+          <file> 22 53 37 56 61 25 59 55 13 33 44 3 2 7 19 41 30</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 22 53 37 56 61 25 59 55 13 33 44 3 2 7 19 41 30</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\src\common\uif.c</name>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 52 11 0 4 5 61 29 8 47 63 17 38 35 33 44 23 53</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 52 11 0 4 5 61 29 8 47 63 17 38 35 33 44 23 53</file>
+=======
+          <file> 22 53 37 56 61 25 59 55 13 33 44 3 2 62</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 22 53 37 56 61 25 59 55 13 33 44 3 2 62</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
@@ -310,40 +550,65 @@
       <outputs>
         <tool>
           <name>BICOMP</name>
+<<<<<<< HEAD
           <file> 30</file>
+=======
+          <file> 21</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 39</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 39</file>
+=======
+          <file> 32</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 32</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\src\common\stdlib.c</name>
+      <name>$PROJ_DIR$\..\..\src\drivers\delay\delay.c</name>
       <outputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 23</file>
+=======
+          <file> 38</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 52 11 0 4 5 61 29 8 47 63 17 38 35</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 52 11 0 4 5 61 29 8 47 63 17 38 35</file>
+=======
+          <file> 30 22 53 37 56 61 25 59 55 13 33 44 3 2</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 30 22 53 37 56 61 25 59 55 13 33 44 3 2</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\common\uif.c</name>
       <inputs>
         <tool>
@@ -353,29 +618,61 @@
         <tool>
           <name>BICOMP</name>
           <file> 52 11 0 4 5 61 29 8 47 63 17 38 35 9</file>
+=======
+      <name>$PROJ_DIR$\..\..\src\common\assert.c</name>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 22 53 37 56 61 25 59 55 13 33 44 3 2 41 7 30</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 22 53 37 56 61 25 59 55 13 33 44 3 2 41 7 30</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\common\printf.c</name>
       <outputs>
         <tool>
           <name>ICCARM</name>
           <file> 56</file>
+=======
+      <name>$PROJ_DIR$\..\..\src\projects\fire_sd_demo\isr.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 14</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 23</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 52 11 0 4 5 61 29 8 47 63 17 38 35 15</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 52 11 0 4 5 61 29 8 47 63 17 38 35 15</file>
+=======
+          <file> 22 53 37 56 61 25 59 55 13 33 44 3 2 7 19 41 30</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 22 53 37 56 61 25 59 55 13 33 44 3 2 7 19 41 30</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\cpu\start.c</name>
       <outputs>
         <tool>
@@ -385,40 +682,79 @@
         <tool>
           <name>BICOMP</name>
           <file> 7</file>
+=======
+      <name>$PROJ_DIR$\..\..\src\common\alloc.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 17</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 52 11 0 4 5 61 29 8 47 63 17 38 35 26</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 52 11 0 4 5 61 29 8 47 63 17 38 35 26</file>
+=======
+          <file> 22 53 37 56 61 25 59 55 13 33 44 3 2</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 22 53 37 56 61 25 59 55 13 33 44 3 2</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\cpu\sysinit.c</name>
       <outputs>
         <tool>
           <name>ICCARM</name>
           <file> 12</file>
+=======
+      <name>$PROJ_DIR$\..\..\src\projects\fire_sd_demo\main.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 29</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 60</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 52 11 0 4 5 61 29 8 47 63 17 38 35 44</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 52 11 0 4 5 61 29 8 47 63 17 38 35 44</file>
+=======
+          <file> 22 53 37 56 61 25 59 55 13 33 44 3 2 7 19 41 30 42 36 57</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 22 53 37 56 61 25 59 55 13 33 44 3 2 7 19 41 30 42 36 57</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\cpu\vectors.c</name>
+=======
+      <name>$PROJ_DIR$\..\..\src\common\stdlib.c</name>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
       <outputs>
         <tool>
           <name>ICCARM</name>
@@ -428,34 +764,63 @@
       <inputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 52 11 0 4 5 61 29 8 47 63 17 38 35 33 44 23 53</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 52 11 0 4 5 61 29 8 47 63 17 38 35 33 44 23 53</file>
+=======
+          <file> 22 53 37 56 61 25 59 55 13 33 44 3 2</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 22 53 37 56 61 25 59 55 13 33 44 3 2</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\drivers\delay\delay.c</name>
       <outputs>
         <tool>
           <name>ICCARM</name>
           <file> 21</file>
+=======
+      <name>$PROJ_DIR$\..\..\src\cpu\start.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 52</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 46</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 53 52 11 0 4 5 61 29 8 47 63 17 38 35</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 53 52 11 0 4 5 61 29 8 47 63 17 38 35</file>
+=======
+          <file> 22 53 37 56 61 25 59 55 13 33 44 3 2 58</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 22 53 37 56 61 25 59 55 13 33 44 3 2 58</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\drivers\mcg\mcg.c</name>
       <outputs>
         <tool>
@@ -484,20 +849,40 @@
         <tool>
           <name>BICOMP</name>
           <file> 9</file>
+=======
+      <name>$PROJ_DIR$\..\..\src\cpu\arm_cm4.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 51</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 0</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 19 52 11 0 4 5 61 29 8 47 63 17 38 35</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 19 52 11 0 4 5 61 29 8 47 63 17 38 35</file>
+=======
+          <file> 22 53 37 56 61 25 59 55 13 33 44 3 2</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 22 53 37 56 61 25 59 55 13 33 44 3 2</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\drivers\uart\uart.c</name>
       <outputs>
         <tool>
@@ -507,20 +892,40 @@
         <tool>
           <name>BICOMP</name>
           <file> 8</file>
+=======
+      <name>$PROJ_DIR$\..\..\src\common\io.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 12</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 10</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 52 11 0 4 5 61 8 47 63 17 38 35 44</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 52 11 0 4 5 61 8 47 63 17 38 35 44</file>
+=======
+          <file> 22 37 56 61 25 59 55 13 33 44 3 2 19</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 22 37 56 61 25 59 55 13 33 44 3 2 19</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\LIB\FatFs\ff.c</name>
       <outputs>
         <tool>
@@ -530,20 +935,40 @@
         <tool>
           <name>BICOMP</name>
           <file> 54</file>
+=======
+      <name>$PROJ_DIR$\..\..\src\common\queue.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 45</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 15</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 24 51 6 10 52 11 0 4 5 61 29 8 47 63 17 38 15</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 24 51 6 10 52 11 0 4 5 61 29 8 47 63 17 38 15</file>
+=======
+          <file> 22 53 37 56 61 25 59 55 13 33 44 3 2</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 22 53 37 56 61 25 59 55 13 33 44 3 2</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\drivers\wdog\wdog.c</name>
       <inputs>
         <tool>
@@ -553,10 +978,22 @@
         <tool>
           <name>BICOMP</name>
           <file> 52 11 0 4 5 61 29 8 47 63 17 38 35</file>
+=======
+      <name>$PROJ_DIR$\..\..\src\drivers\LED\LED.C</name>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 41 22 53 37 56 61 25 59 13 33 44 3 2 7 30</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 41 22 53 37 56 61 25 59 13 33 44 3 2 7 30</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\HWdrivers\LED\LED_CORE.c</name>
       <outputs>
         <tool>
@@ -566,39 +1003,98 @@
         <tool>
           <name>BICOMP</name>
           <file> 18</file>
+=======
+      <name>$PROJ_DIR$\..\..\src\drivers\gpio\gpio.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 18</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 39</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 33 52 11 0 4 5 61 29 8 47 63 17 38 35</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 33 52 11 0 4 5 61 29 8 47 63 17 38 35</file>
+=======
+          <file> 22 53 37 56 61 25 59 55 13 33 44 3 2 7</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 22 53 37 56 61 25 59 55 13 33 44 3 2 7</file>
         </tool>
       </inputs>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\src\HWdrivers\Nokia5110_LCD\src\nokia_5110.c</name>
+      <name>$PROJ_DIR$\..\..\src\drivers\mcg\mcg.c</name>
       <outputs>
         <tool>
           <name>BICOMP</name>
-          <file> 60</file>
+          <file> 11</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
+          <file> 22 53 37 56 61 25 59 55 13 33 44 3 2 1</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 22 53 37 56 61 25 59 55 13 33 44 3 2 1</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
+        </tool>
+      </inputs>
+    </file>
+    <file>
+<<<<<<< HEAD
+      <name>$PROJ_DIR$\..\..\src\HWdrivers\Nokia5110_LCD\src\nokia_5110.c</name>
+=======
+      <name>$PROJ_DIR$\..\..\src\drivers\uart\uart.c</name>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 6</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+<<<<<<< HEAD
+          <file> 60</file>
+=======
+          <file> 55</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 32 52 11 0 4 5 61 29 8 47 63 17 38 35 33 6 1</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 32 52 11 0 4 5 61 29 8 47 63 17 38 35 33 6 1</file>
+=======
+          <file> 22 53 37 56 61 25 55 13 33 44 3 2 19</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 22 53 37 56 61 25 55 13 33 44 3 2 19</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\Debug\Exe\fire_gpio_demo.out</name>
       <outputs>
         <tool>
@@ -608,16 +1104,33 @@
         <tool>
           <name>OBJCOPY</name>
           <file> 3</file>
+=======
+      <name>$PROJ_DIR$\..\..\src\drivers\lptmr\lptmr.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 47</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
+<<<<<<< HEAD
           <name>ILINK</name>
           <file> 22 21 27 28 31 34 37 26 16 62 56 25 59 13 14 23 12 48 41 55 49</file>
+=======
+          <name>ICCARM</name>
+          <file> 22 53 37 56 61 25 59 55 13 33 44 3 2</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 22 53 37 56 61 25 59 55 13 33 44 3 2</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\LIB\FatFs\diskio.c</name>
       <outputs>
         <tool>
@@ -627,23 +1140,52 @@
         <tool>
           <name>BICOMP</name>
           <file> 28</file>
+=======
+      <name>$PROJ_DIR$\..\..\src\drivers\sdhc\sdhc.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 5</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 62</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 52 11 0 4 5 61 29 8 63 17 38 35 19 10 51</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 52 11 0 4 5 61 29 8 63 17 38 35 19 10 51</file>
+=======
+          <file> 43 22 53 37 56 61 25 59 55 13 33 44 3 2</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 43 22 53 37 56 61 25 59 55 13 33 44 3 2</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
+    </file>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>ILINK</name>
+          <file> 45 28</file>
+        </tool>
+      </outputs>
     </file>
   </configuration>
   <configuration>
     <name>Release</name>
     <outputs>
+<<<<<<< HEAD
       <file>$PROJ_DIR$\..\..\src\projects\fire_gpio_demo\main.c</file>
       <file>$PROJ_DIR$\Release\Obj\ff.pbi</file>
       <file>$PROJ_DIR$\..\config files\fire_ROM_K60N512.icf</file>
@@ -805,20 +1347,192 @@
         <tool>
           <name>BICOMP</name>
           <file> 85</file>
+=======
+      <file>$TOOLKIT_DIR$\inc\c\intrinsics.h</file>
+      <file>$PROJ_DIR$\Release\Obj\LED.pbi</file>
+      <file>$PROJ_DIR$\..\..\src\drivers\wdog\wdog.c</file>
+      <file>$PROJ_DIR$\..\..\src\LIB\FatFs\ff.c</file>
+      <file>$PROJ_DIR$\..\iar.h</file>
+      <file>$PROJ_DIR$\..\..\src\common\assert.h</file>
+      <file>$TOOLKIT_DIR$\lib\rt7M_tl.a</file>
+      <file>$PROJ_DIR$\..\..\src\common\stdlib.h</file>
+      <file>$PROJ_DIR$\..\..\src\platforms\k60_fire.h</file>
+      <file>$PROJ_DIR$\..\..\src\LIB\FatFs\diskio.c</file>
+      <file>$PROJ_DIR$\..\..\src\LIB\CMSIS\iar_cortexM4l_math.a</file>
+      <file>$TOOLKIT_DIR$\inc\c\ymath.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\xencoding_limits.h</file>
+      <file>$PROJ_DIR$\..\..\src\common\io.h</file>
+      <file>$TOOLKIT_DIR$\lib\m7M_tl.a</file>
+      <file>$PROJ_DIR$\..\..\src\drivers\fire_drivers_cfg.h</file>
+      <file>$PROJ_DIR$\..\..\src\LIB\arm_math.h</file>
+      <file>$PROJ_DIR$\..\..\src\cpu\vectors.h</file>
+      <file>$PROJ_DIR$\..\..\src\cpu\arm_cm4.h</file>
+      <file>$PROJ_DIR$\Release\Obj\main.pbi</file>
+      <file>$PROJ_DIR$\..\..\src\common\queue.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\yvals.h</file>
+      <file>$PROJ_DIR$\Release\Obj\uif.o</file>
+      <file>$PROJ_DIR$\..\..\src\drivers\gpio\gpio_cfg.h</file>
+      <file>$PROJ_DIR$\..\..\src\cpu\crt0.s</file>
+      <file>$PROJ_DIR$\..\..\src\common\printf.c</file>
+      <file>$PROJ_DIR$\..\..\src\common\startup.c</file>
+      <file>$PROJ_DIR$\..\..\src\cpu\sysinit.c</file>
+      <file>$PROJ_DIR$\..\..\src\cpu\vectors.c</file>
+      <file>$PROJ_DIR$\..\..\src\common\uif.c</file>
+      <file>$PROJ_DIR$\..\..\src\common\memtest.c</file>
+      <file>$PROJ_DIR$\..\..\src\drivers\delay\delay.c</file>
+      <file>$PROJ_DIR$\Release\Obj\mcg.pbi</file>
+      <file>$PROJ_DIR$\..\..\src\common\assert.c</file>
+      <file>$PROJ_DIR$\..\..\src\projects\fire_sd_demo\isr.c</file>
+      <file>$PROJ_DIR$\..\..\src\common\alloc.c</file>
+      <file>$PROJ_DIR$\..\..\src\projects\fire_sd_demo\main.c</file>
+      <file>$PROJ_DIR$\..\..\src\common\stdlib.c</file>
+      <file>$PROJ_DIR$\..\..\src\cpu\start.c</file>
+      <file>$PROJ_DIR$\..\..\src\cpu\arm_cm4.c</file>
+      <file>$PROJ_DIR$\..\..\src\common\io.c</file>
+      <file>$PROJ_DIR$\..\..\src\common\queue.c</file>
+      <file>$PROJ_DIR$\..\..\src\drivers\LED\LED.C</file>
+      <file>$PROJ_DIR$\..\..\src\projects\fire_sd_demo\include.h</file>
+      <file>$PROJ_DIR$\..\..\src\drivers\gpio\gpio.c</file>
+      <file>$PROJ_DIR$\..\..\src\drivers\mcg\mcg.c</file>
+      <file>$PROJ_DIR$\..\..\src\drivers\uart\uart.c</file>
+      <file>$PROJ_DIR$\..\..\src\common\common.h</file>
+      <file>$PROJ_DIR$\..\..\src\projects\fire_sd_demo\isr.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\ysizet.h</file>
+      <file>$PROJ_DIR$\..\..\src\drivers\lptmr\lptmr.c</file>
+      <file>$PROJ_DIR$\..\..\src\drivers\sdhc\sdhc.c</file>
+      <file>$PROJ_DIR$\Release\Obj\isr.o</file>
+      <file>$PROJ_DIR$\Release\Obj\start.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\c\DLib_Defaults.h</file>
+      <file>$PROJ_DIR$\Release\Exe\fire_gpio_demo.hex</file>
+      <file>$PROJ_DIR$\Release\Obj\assert.pbi</file>
+      <file>$PROJ_DIR$\..\..\src\common\memtest.h</file>
+      <file>$PROJ_DIR$\Release\Obj\uart.o</file>
+      <file>$TOOLKIT_DIR$\inc\c\xtgmath.h</file>
+      <file>$PROJ_DIR$\Release\Obj\uart.pbi</file>
+      <file>$PROJ_DIR$\..\..\src\drivers\lptmr\lptmr.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\stdarg.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\math.h</file>
+      <file>$TOOLKIT_DIR$\lib\shb_l.a</file>
+      <file>$PROJ_DIR$\Release\Obj\wdog.o</file>
+      <file>$PROJ_DIR$\..\..\src\projects\fire_cmsis_demo\isr.c</file>
+      <file>$PROJ_DIR$\Release\Obj\delay.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\c\string.h</file>
+      <file>$PROJ_DIR$\Release\Obj\stdlib.o</file>
+      <file>$PROJ_DIR$\..\..\src\projects\fire_gpio_demo\include.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\DLib_Product_string.h</file>
+      <file>$PROJ_DIR$\Release\Obj\LED.o</file>
+      <file>$PROJ_DIR$\..\..\src\cpu\headers\MK60DZ10.h</file>
+      <file>$PROJ_DIR$\..\..\src\projects\fire_gpio_demo\main.c</file>
+      <file>$PROJ_DIR$\..\..\src\common\uif.h</file>
+      <file>$PROJ_DIR$\..\..\src\drivers\mcg\mcg_cfg.h</file>
+      <file>$PROJ_DIR$\Release\Obj\printf.o</file>
+      <file>$PROJ_DIR$\Release\Obj\main.o</file>
+      <file>$PROJ_DIR$\Release\Obj\startup.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\c\cmsis_iar.h</file>
+      <file>$PROJ_DIR$\Release\Obj\ff.o</file>
+      <file>$TOOLKIT_DIR$\inc\c\stdint.h</file>
+      <file>$PROJ_DIR$\..\..\src\LIB\CMSIS\core_cmInstr.h</file>
+      <file>$PROJ_DIR$\..\..\src\drivers\sdhc\sdhc.h</file>
+      <file>$PROJ_DIR$\Release\Obj\startup.o</file>
+      <file>$PROJ_DIR$\..\..\src\drivers\delay\delay.h</file>
+      <file>$PROJ_DIR$\..\..\src\drivers\LED\LED.H</file>
+      <file>$PROJ_DIR$\Release\Obj\memtest.o</file>
+      <file>$PROJ_DIR$\..\..\src\LIB\CMSIS\core_cmFunc.h</file>
+      <file>$PROJ_DIR$\Release\Obj\vectors.o</file>
+      <file>$PROJ_DIR$\Release\Obj\io.o</file>
+      <file>$PROJ_DIR$\Release\Obj\lptmr.pbi</file>
+      <file>$PROJ_DIR$\..\..\src\drivers\uart\uart.h</file>
+      <file>$PROJ_DIR$\Release\Obj\sysinit.pbi</file>
+      <file>$PROJ_DIR$\Release\Obj\delay.o</file>
+      <file>$PROJ_DIR$\Release\Obj\wdog.pbi</file>
+      <file>$PROJ_DIR$\..\..\src\common\startup.h</file>
+      <file>$PROJ_DIR$\Release\Obj\start.o</file>
+      <file>$PROJ_DIR$\Release\Obj\assert.o</file>
+      <file>$PROJ_DIR$\Release\Obj\sdhc.o</file>
+      <file>$PROJ_DIR$\Release\Obj\diskio.o</file>
+      <file>$PROJ_DIR$\Release\Obj\ff.pbi</file>
+      <file>$PROJ_DIR$\Release\Obj\alloc.pbi</file>
+      <file>$PROJ_DIR$\Release\Obj\gpio.pbi</file>
+      <file>$PROJ_DIR$\..\..\src\projects\fire_gpio_demo\isr.c</file>
+      <file>$PROJ_DIR$\..\..\src\cpu\sysinit.h</file>
+      <file>$PROJ_DIR$\..\..\src\projects\fire_cmsis_demo\include.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\DLib_Product.h</file>
+      <file>$PROJ_DIR$\..\..\src\LIB\CMSIS\core_cm4_simd.h</file>
+      <file>$PROJ_DIR$\..\..\src\projects\fire_cmsis_demo\main.c</file>
+      <file>$PROJ_DIR$\Release\Obj\sdhc.pbi</file>
+      <file>$PROJ_DIR$\Release\Obj\arm_cm4.o</file>
+      <file>$PROJ_DIR$\Release\Obj\stdlib.pbi</file>
+      <file>$PROJ_DIR$\..\config files\fire_ROM_K60N512.icf</file>
+      <file>$PROJ_DIR$\..\..\src\LIB\FatFs\ffconf.h</file>
+      <file>$PROJ_DIR$\Release\Obj\uif.pbi</file>
+      <file>$PROJ_DIR$\..\..\src\LIB\FatFs\ff.h</file>
+      <file>$PROJ_DIR$\..\..\src\drivers\mcg\mcg.h</file>
+      <file>$PROJ_DIR$\Release\Obj\alloc.o</file>
+      <file>$PROJ_DIR$\..\..\src\drivers\wdog\wdog.h</file>
+      <file>$PROJ_DIR$\Release\Obj\fire_gpio_demo.pbd</file>
+      <file>$PROJ_DIR$\Release\Obj\crt0.o</file>
+      <file>$PROJ_DIR$\..\..\src\LIB\CMSIS\arm_math.h</file>
+      <file>$TOOLKIT_DIR$\lib\dl7M_tln.a</file>
+      <file>$PROJ_DIR$\Release\Obj\queue.pbi</file>
+      <file>$PROJ_DIR$\Release\Obj\diskio.pbi</file>
+      <file>$PROJ_DIR$\Release\Exe\fire_gpio_demo.out</file>
+      <file>$PROJ_DIR$\Release\Obj\vectors.pbi</file>
+      <file>$PROJ_DIR$\..\..\src\LIB\FatFs\integer.h</file>
+      <file>$PROJ_DIR$\Release\Obj\lptmr.o</file>
+      <file>$PROJ_DIR$\Release\Obj\isr.pbi</file>
+      <file>$PROJ_DIR$\Release\Obj\gpio.o</file>
+      <file>$PROJ_DIR$\Release\Obj\mcg.o</file>
+      <file>$PROJ_DIR$\Release\Obj\printf.pbi</file>
+      <file>$PROJ_DIR$\Release\Obj\queue.o</file>
+      <file>$PROJ_DIR$\Release\Obj\fire_cmsis_demo.pbd</file>
+      <file>$TOOLKIT_DIR$\inc\c\DLib_Config_Normal.h</file>
+      <file>$PROJ_DIR$\Release\Obj\sysinit.o</file>
+      <file>$PROJ_DIR$\Release\Obj\fire_sd_demo.pbd</file>
+      <file>$PROJ_DIR$\Release\Obj\memtest.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\c\DLib_Threads.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\ycheck.h</file>
+      <file>$PROJ_DIR$\..\..\src\drivers\mcg\Fire_kinetis_MCG_CFG.h</file>
+      <file>$PROJ_DIR$\..\..\src\LIB\CMSIS\core_cm4.h</file>
+      <file>$PROJ_DIR$\Release\Obj\io.pbi</file>
+      <file>$PROJ_DIR$\..\..\src\drivers\gpio\gpio.h</file>
+      <file>$PROJ_DIR$\..\..\src\cpu\start.h</file>
+      <file>$PROJ_DIR$\Release\Obj\arm_cm4.pbi</file>
+      <file>$PROJ_DIR$\..\..\src\LIB\FatFs\diskio.h</file>
+    </outputs>
+    <file>
+      <name>$PROJ_DIR$\..\..\src\drivers\wdog\wdog.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 65</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 96</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 132 143 135 33 75 97 61 108 103 54 78 28 16 82 147 142 137 32 140 4 39 98 83 6 45 52</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 132 143 135 33 75 97 61 108 103 54 28 16 82 147 142 137 32 140 4 39 146 6 98 83 45 52</file>
+=======
+          <file> 47 123 144 82 142 21 54 137 108 12 141 83 80 0 89 109 63 11 59 18 8 118 143 73 4 5 13 97 7 106 15 23 61 120</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 47 123 144 82 142 21 54 108 12 141 83 80 0 89 109 63 11 59 18 8 118 143 73 4 5 13 97 7 106 15 23 61 120</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\projects\fire_cmsis_demo\isr.c</name>
       <outputs>
         <tool>
@@ -828,12 +1542,32 @@
         <tool>
           <name>BICOMP</name>
           <file> 106</file>
+=======
+      <name>$PROJ_DIR$\..\..\src\LIB\FatFs\ff.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 81</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 102</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
+<<<<<<< HEAD
           <name>BICOMP</name>
           <file> 132 143 135 33 75 97 61 108 103 54 28 16 82 147 142 137 32 140 4 39 146 6 38 83 45 52</file>
+=======
+          <name>ICCARM</name>
+          <file> 117 129 115 149 47 123 144 82 142 21 54 137 108 12 141 83 80 0 89 109 63 11 59 18 8 118 143 73 4 5 13 97 7 106 15 23 61 62</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 117 129 115 149 47 123 144 82 142 21 54 108 12 141 83 80 0 89 109 63 11 59 18 8 118 143 73 4 5 13 97 7 106 15 23 61 62</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
@@ -842,21 +1576,39 @@
       <outputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 15</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 85</file>
+=======
+          <file> 101</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 126</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
+<<<<<<< HEAD
           <name>BICOMP</name>
           <file> 132 143 135 33 75 97 61 108 103 54 28 16 82 147 142 137 32 140 4 39 146 6 38 83 45 52 68 53 107 57 26 93 102</file>
+=======
+          <name>ICCARM</name>
+          <file> 47 123 144 82 142 21 54 137 108 12 141 83 80 0 89 109 63 11 59 18 8 118 143 73 4 5 13 97 7 106 15 23 61 84 149 129</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 47 123 144 82 142 21 54 108 12 141 83 80 0 89 109 63 11 59 18 8 118 143 73 4 5 13 97 7 106 15 23 61 84 149 129</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\projects\fire_gpio_demo\isr.c</name>
       <outputs>
         <tool>
@@ -866,25 +1618,61 @@
         <tool>
           <name>BICOMP</name>
           <file> 106</file>
+=======
+      <name>$PROJ_DIR$\..\..\src\cpu\crt0.s</name>
+      <outputs>
+        <tool>
+          <name>AARM</name>
+          <file> 122</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\src\common\printf.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 77</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 134</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 132 143 135 33 75 97 61 108 103 54 78 28 16 82 147 142 137 32 140 4 39 98 83 6 45 52</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 132 143 135 33 75 97 61 108 103 54 28 16 82 147 142 137 32 140 4 39 146 6 98 83 45 52</file>
+=======
+          <file> 47 123 144 82 142 21 54 137 108 12 141 83 80 0 89 109 63 11 59 18 8 118 143 73 4 5 13 97 7 106 15 23 61 62</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 47 18 8 118 143 73 82 142 21 54 108 12 141 4 5 13 97 7 0 106 15 23 61 62</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\Release\Obj\fire_gpio_demo.pbd</name>
       <inputs>
         <tool>
           <name>BILINK</name>
           <file> 96 40 76 100 55 31 81 106 65 85 74 73 69 27 59 3 29 7 58 17 50 37</file>
+=======
+      <name>$PROJ_DIR$\..\..\src\common\startup.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 85</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
@@ -892,8 +1680,13 @@
       <name>$PROJ_DIR$\Release\Obj\fire_sd_demo.pbd</name>
       <inputs>
         <tool>
+<<<<<<< HEAD
           <name>BILINK</name>
           <file> 96 40 76 100 55 91 1 31 81 106 65 85 74 73 69 27 30 59 3 29 7 58 17 50 37</file>
+=======
+          <name>BICOMP</name>
+          <file> 79</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
@@ -901,21 +1694,43 @@
       <name>$PROJ_DIR$\Release\Obj\fire_cmsis_demo.pbd</name>
       <inputs>
         <tool>
+<<<<<<< HEAD
           <name>BILINK</name>
           <file> 96 40 76 100 55 31 81 106 65 85 74 73 69 27 59 3 29 7 58 17 50 37</file>
+=======
+          <name>ICCARM</name>
+          <file> 47 123 144 82 142 21 54 137 108 12 141 83 80 0 89 109 63 11 59 18 8 118 143 73 4 5 13 97 7 106 15 23 61</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 47 18 8 118 143 73 82 142 21 54 108 12 141 4 5 13 97 7 0 106 15 23 61</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\Release\Exe\fire_gpio_demo.out</name>
       <outputs>
         <tool>
           <name>OBJCOPY</name>
           <file> 99</file>
+=======
+      <name>$PROJ_DIR$\..\..\src\cpu\sysinit.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 138</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 94</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
+<<<<<<< HEAD
           <name>ILINK</name>
           <file> 2 19 49 8 70 47 36 48 95 101 66 64 89 15 87 60 5 51 46 11 63 23 79 25 42 71 67 144 92 148 139 80</file>
         </tool>
@@ -927,10 +1742,19 @@
         <tool>
           <name>ILINK</name>
           <file> 105</file>
+=======
+          <name>ICCARM</name>
+          <file> 47 123 144 82 142 21 54 137 108 12 141 83 80 0 89 109 63 11 59 18 8 118 143 73 4 5 13 97 7 106 15 23 61 93</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 47 123 144 82 142 21 54 108 12 141 83 80 0 89 109 63 11 59 18 8 118 143 73 4 5 13 97 7 106 15 23 61 93</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\drivers\gpio\gpio.c</name>
       <outputs>
         <tool>
@@ -940,20 +1764,40 @@
         <tool>
           <name>BICOMP</name>
           <file> 31</file>
+=======
+      <name>$PROJ_DIR$\..\..\src\cpu\vectors.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 90</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 128</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 132 86 88 61 108 103 54 78 28 16 82 84 10 4 56 24 26 93 102 143 135 33 75 97 147 142 137 32 140 39 146 6 52 83</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 132 86 88 61 108 103 54 28 16 82 84 10 4 56 24 26 93 102 143 135 33 75 97 147 142 137 32 140 39 146 6 52 83</file>
+=======
+          <file> 17 48 43 47 123 144 82 142 21 54 137 108 12 141 83 80 0 89 109 63 11 59 18 8 118 143 73 4 5 13 97 7 106 15 23 61 146 93 87 86</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 17 48 43 47 123 144 82 142 21 54 108 12 141 83 80 0 89 109 63 11 59 18 8 118 143 73 4 5 13 97 7 106 15 23 61 146 93 87 86</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\common\assert.c</name>
       <outputs>
         <tool>
@@ -986,20 +1830,41 @@
         <tool>
           <name>BICOMP</name>
           <file> 96</file>
+=======
+      <name>$PROJ_DIR$\..\..\src\common\uif.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 22</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 116</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
+          <name>ICCARM</name>
+          <file> 47 123 144 82 142 21 54 137 108 12 141 83 80 0 89 109 63 11 59 18 8 118 143 73 4 5 13 97 7 106 15 23 61 75</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
+        </tool>
+        <tool>
+<<<<<<< HEAD
           <name>ICCARM</name>
           <file> 12 132 86 88 61 108 103 54 78 28 16 82 84 10 4 56 24 26 93 102 143 135 33 75 97 147 142 137 32 140 39 146 6 52 83 9</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 12 132 86 88 61 108 103 54 28 16 82 84 10 4 56 24 26 93 102 143 135 33 75 97 147 142 137 32 140 39 146 6 52 83 9</file>
+=======
+          <name>BICOMP</name>
+          <file> 47 18 8 118 143 73 82 142 21 54 108 12 141 4 5 13 97 7 0 106 15 23 61 75</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\drivers\lptmr\lptmr.c</name>
       <outputs>
         <tool>
@@ -1009,20 +1874,40 @@
         <tool>
           <name>BICOMP</name>
           <file> 65</file>
+=======
+      <name>$PROJ_DIR$\..\..\src\common\memtest.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 88</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 140</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 132 86 88 61 108 103 54 78 28 16 82 84 10 4 56 24 26 93 102 143 135 33 75 97 147 142 137 32 140 39 146 6 52</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 132 86 88 61 108 103 54 28 16 82 84 10 4 56 24 26 93 102 143 135 33 75 97 147 142 137 32 140 39 146 6 52</file>
+=======
+          <file> 57</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 57</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\common\alloc.c</name>
       <outputs>
         <tool>
@@ -1032,20 +1917,40 @@
         <tool>
           <name>BICOMP</name>
           <file> 40</file>
+=======
+      <name>$PROJ_DIR$\..\..\src\drivers\delay\delay.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 95</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 67</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 132 86 88 61 108 103 54 78 28 16 82 84 10 4 56 24 26 93 102 143 135 33 75 97 147 142 137 32 140 39 146 6 52</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 132 86 88 61 108 103 54 28 16 82 84 10 4 56 24 26 93 102 143 135 33 75 97 147 142 137 32 140 39 146 6 52</file>
+=======
+          <file> 86 47 123 144 82 142 21 54 137 108 12 141 83 80 0 89 109 63 11 59 18 8 118 143 73 4 5 13 97 7 106 15 23 61</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 86 47 123 144 82 142 21 54 108 12 141 83 80 0 89 109 63 11 59 18 8 118 143 73 4 5 13 97 7 106 15 23 61</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\common\io.c</name>
       <outputs>
         <tool>
@@ -1055,20 +1960,40 @@
         <tool>
           <name>BICOMP</name>
           <file> 81</file>
+=======
+      <name>$PROJ_DIR$\..\..\src\common\assert.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 99</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 56</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 132 86 88 61 108 103 54 78 28 16 82 84 10 4 56 24 26 93 102 143 135 33 75 97 147 142 137 32 140 39 146 6 52 45</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 132 86 88 61 108 103 54 28 16 82 84 10 4 56 24 26 93 102 143 135 33 75 97 147 142 137 32 140 39 146 6 52 45</file>
+=======
+          <file> 47 123 144 82 142 21 54 137 108 12 141 83 80 0 89 109 63 11 59 18 8 118 143 73 4 5 13 97 7 106 15 23 61 87 146 86</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 47 123 144 82 142 21 54 108 12 141 83 80 0 89 109 63 11 59 18 8 118 143 73 4 5 13 97 7 106 15 23 61 87 146 86</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\common\queue.c</name>
       <outputs>
         <tool>
@@ -1078,20 +2003,40 @@
         <tool>
           <name>BICOMP</name>
           <file> 27</file>
+=======
+      <name>$PROJ_DIR$\..\..\src\projects\fire_sd_demo\isr.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 52</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 131</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 132 86 88 61 108 103 54 78 28 16 82 84 10 4 56 24 26 93 102 143 135 33 75 97 147 142 137 32 140 39 146 6 52 145</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 132 143 135 33 75 97 61 108 103 54 28 16 82 147 142 137 32 140 4 39 146 6 52 145</file>
+=======
+          <file> 47 123 144 82 142 21 54 137 108 12 141 83 80 0 89 109 63 11 59 18 8 118 143 73 4 5 13 97 7 106 15 23 61 43 146 93 87 86</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 47 123 144 82 142 21 54 108 12 141 83 80 0 89 109 63 11 59 18 8 118 143 73 4 5 13 97 7 106 15 23 61 43 146 93 87 86</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\cpu\arm_cm4.c</name>
       <outputs>
         <tool>
@@ -1101,16 +2046,35 @@
         <tool>
           <name>BICOMP</name>
           <file> 76</file>
+=======
+      <name>$PROJ_DIR$\..\..\src\common\alloc.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 119</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 103</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 132 86 88 61 108 103 54 78 28 16 82 84 10 4 56 24 26 93 102 143 135 33 75 97 147 142 137 32 140 39 146 6 52</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 132 143 135 33 75 97 61 108 103 54 28 16 82 147 142 137 32 140 4 39 146 6 52</file>
+=======
+          <file> 47 123 144 82 142 21 54 137 108 12 141 83 80 0 89 109 63 11 59 18 8 118 143 73 4 5 13 97 7 106 15 23 61</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 47 123 144 82 142 21 54 108 12 141 83 80 0 89 109 63 11 59 18 8 118 143 73 4 5 13 97 7 106 15 23 61</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
@@ -1119,26 +2083,46 @@
       <outputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 15</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 85</file>
+=======
+          <file> 78</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 19</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 132 86 88 61 108 103 54 78 28 16 82 84 10 4 56 24 26 93 102 143 135 33 75 97 147 142 137 32 140 39 146 6 52 109 83 45 12 9 41 90 20</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 132 86 88 61 108 103 54 28 16 82 84 10 4 56 24 26 93 102 143 135 33 75 97 147 142 137 32 140 39 146 6 52 109 83 45 12 9 41 90 20</file>
+=======
+          <file> 47 123 144 82 142 21 54 137 108 12 141 83 80 0 89 109 63 11 59 18 8 118 143 73 4 5 13 97 7 106 15 23 61 43 146 93 87 86 117 129 115</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 47 123 144 82 142 21 54 108 12 141 83 80 0 89 109 63 11 59 18 8 118 143 73 4 5 13 97 7 106 15 23 61 43 146 93 87 86 117 129 115</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\common\startup.c</name>
+=======
+      <name>$PROJ_DIR$\..\..\src\common\stdlib.c</name>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
       <outputs>
         <tool>
           <name>ICCARM</name>
@@ -1146,21 +2130,34 @@
         </tool>
         <tool>
           <name>BICOMP</name>
+<<<<<<< HEAD
           <file> 3</file>
+=======
+          <file> 113</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 132 86 88 61 108 103 54 78 28 16 82 84 10 4 56 24 26 93 102 143 135 33 75 97 147 142 137 32 140 39 146 6 52</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 132 143 135 33 75 97 61 108 103 54 28 16 82 147 142 137 32 140 4 39 146 6 52</file>
+=======
+          <file> 47 123 144 82 142 21 54 137 108 12 141 83 80 0 89 109 63 11 59 18 8 118 143 73 4 5 13 97 7 106 15 23 61</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 47 18 8 118 143 73 82 142 21 54 108 12 141 4 5 13 97 7 0 106 15 23 61</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\projects\fire_sd_demo\isr.c</name>
       <outputs>
         <tool>
@@ -1170,20 +2167,40 @@
         <tool>
           <name>BICOMP</name>
           <file> 106</file>
+=======
+      <name>$PROJ_DIR$\..\..\src\cpu\start.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 98</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 53</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 132 86 88 61 108 103 54 78 28 16 82 84 10 4 56 24 26 93 102 143 135 33 75 97 147 142 137 32 140 39 146 6 52 109 83 45 12 9</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 132 86 88 61 108 103 54 28 16 82 84 10 4 56 24 26 93 102 143 135 33 75 97 147 142 137 32 140 39 146 6 52 109 83 45 12 9</file>
+=======
+          <file> 47 123 144 82 142 21 54 137 108 12 141 83 80 0 89 109 63 11 59 18 8 118 143 73 4 5 13 97 7 106 15 23 61 147 120</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 47 123 144 82 142 21 54 108 12 141 83 80 0 89 109 63 11 59 18 8 118 143 73 4 5 13 97 7 106 15 23 61 147 120</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\common\memtest.c</name>
       <outputs>
         <tool>
@@ -1193,20 +2210,40 @@
         <tool>
           <name>BICOMP</name>
           <file> 73</file>
+=======
+      <name>$PROJ_DIR$\..\..\src\cpu\arm_cm4.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 112</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 148</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 104</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 104</file>
+=======
+          <file> 47 123 144 82 142 21 54 137 108 12 141 83 80 0 89 109 63 11 59 18 8 118 143 73 4 5 13 97 7 106 15 23 61</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 47 18 8 118 143 73 82 142 21 54 108 12 141 4 5 13 97 7 0 106 15 23 61</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\common\stdlib.c</name>
       <outputs>
         <tool>
@@ -1216,20 +2253,40 @@
         <tool>
           <name>BICOMP</name>
           <file> 29</file>
+=======
+      <name>$PROJ_DIR$\..\..\src\common\io.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 91</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 145</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 132 86 88 61 108 103 54 78 28 16 82 84 10 4 56 24 26 93 102 143 135 33 75 97 147 142 137 32 140 39 146 6 52</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 132 143 135 33 75 97 61 108 103 54 28 16 82 147 142 137 32 140 4 39 146 6 52</file>
+=======
+          <file> 47 123 144 82 142 21 54 137 108 12 141 83 80 0 89 109 63 11 59 18 8 118 143 73 4 5 13 97 7 106 15 23 61 93</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 47 123 144 82 142 21 54 108 12 141 83 80 0 89 109 63 11 59 18 8 118 143 73 4 5 13 97 7 106 15 23 61 93</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\common\uif.c</name>
       <outputs>
         <tool>
@@ -1239,20 +2296,40 @@
         <tool>
           <name>BICOMP</name>
           <file> 17</file>
+=======
+      <name>$PROJ_DIR$\..\..\src\common\queue.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 135</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 125</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 132 86 88 61 108 103 54 78 28 16 82 84 10 4 56 24 26 93 102 143 135 33 75 97 147 142 137 32 140 39 146 6 52 62</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 132 143 135 33 75 97 61 108 103 54 28 16 82 147 142 137 32 140 4 39 146 6 52 62</file>
+=======
+          <file> 47 123 144 82 142 21 54 137 108 12 141 83 80 0 89 109 63 11 59 18 8 118 143 73 4 5 13 97 7 106 15 23 61 20</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 47 18 8 118 143 73 82 142 21 54 108 12 141 4 5 13 97 7 0 106 15 23 61 20</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\common\printf.c</name>
       <outputs>
         <tool>
@@ -1262,20 +2339,40 @@
         <tool>
           <name>BICOMP</name>
           <file> 69</file>
+=======
+      <name>$PROJ_DIR$\..\..\src\drivers\LED\LED.C</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 72</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 1</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 132 86 88 61 108 103 54 78 28 16 82 84 10 4 56 24 26 93 102 143 135 33 75 97 147 142 137 32 140 39 146 6 52 35</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 132 143 135 33 75 97 61 108 103 54 28 16 82 147 142 137 32 140 4 39 146 6 52 35</file>
+=======
+          <file> 87 47 123 144 82 142 21 54 137 108 12 141 83 80 0 89 109 63 11 59 18 8 118 143 73 4 5 13 97 7 106 15 23 61 146 86</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 87 47 123 144 82 142 21 54 108 12 141 83 80 0 89 109 63 11 59 18 8 118 143 73 4 5 13 97 7 106 15 23 61 146 86</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\cpu\crt0.s</name>
       <outputs>
         <tool>
@@ -1294,20 +2391,40 @@
         <tool>
           <name>BICOMP</name>
           <file> 59</file>
+=======
+      <name>$PROJ_DIR$\..\..\src\drivers\gpio\gpio.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 132</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 104</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 132 86 88 61 108 103 54 78 28 16 82 84 10 4 56 24 26 93 102 143 135 33 75 97 147 142 137 32 140 39 146 6 52 72 14</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 132 86 88 61 108 103 54 28 16 82 84 10 4 56 24 26 93 102 143 135 33 75 97 147 142 137 32 140 39 146 6 52 72 14</file>
+=======
+          <file> 47 123 144 82 142 21 54 137 108 12 141 83 80 0 89 109 63 11 59 18 8 118 143 73 4 5 13 97 7 106 15 23 61 146</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 47 123 144 82 142 21 54 108 12 141 83 80 0 89 109 63 11 59 18 8 118 143 73 4 5 13 97 7 106 15 23 61 146</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\cpu\sysinit.c</name>
       <outputs>
         <tool>
@@ -1317,20 +2434,40 @@
         <tool>
           <name>BICOMP</name>
           <file> 7</file>
+=======
+      <name>$PROJ_DIR$\..\..\src\drivers\mcg\mcg.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 133</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 32</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 132 86 88 61 108 103 54 78 28 16 82 84 10 4 56 24 26 93 102 143 135 33 75 97 147 142 137 32 140 39 146 6 52 45</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 132 86 88 61 108 103 54 28 16 82 84 10 4 56 24 26 93 102 143 135 33 75 97 147 142 137 32 140 39 146 6 52 45</file>
+=======
+          <file> 47 123 144 82 142 21 54 137 108 12 141 83 80 0 89 109 63 11 59 18 8 118 143 73 4 5 13 97 7 106 15 23 61 76</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 47 123 144 82 142 21 54 108 12 141 83 80 0 89 109 63 11 59 18 8 118 143 73 4 5 13 97 7 106 15 23 61 76</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\cpu\vectors.c</name>
       <outputs>
         <tool>
@@ -1340,20 +2477,40 @@
         <tool>
           <name>BICOMP</name>
           <file> 50</file>
+=======
+      <name>$PROJ_DIR$\..\..\src\drivers\uart\uart.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 58</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 60</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 149 110 109 132 86 88 61 108 103 54 78 28 16 82 84 10 4 56 24 26 93 102 143 135 33 75 97 147 142 137 32 140 39 146 6 52 83 45 12 9</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 149 110 109 132 86 88 61 108 103 54 28 16 82 84 10 4 56 24 26 93 102 143 135 33 75 97 147 142 137 32 140 39 146 6 52 83 45 12 9</file>
+=======
+          <file> 47 123 144 82 142 21 54 137 108 12 141 83 80 0 89 109 63 11 59 18 8 118 143 73 4 5 13 97 7 106 15 23 61 93</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 47 123 144 82 142 21 54 108 12 141 83 80 0 89 109 63 11 59 18 8 118 143 73 4 5 13 97 7 106 15 23 61 93</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\drivers\delay\delay.c</name>
       <outputs>
         <tool>
@@ -1363,20 +2520,40 @@
         <tool>
           <name>BICOMP</name>
           <file> 55</file>
+=======
+      <name>$PROJ_DIR$\..\..\src\drivers\lptmr\lptmr.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 130</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 92</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 9 132 86 88 61 108 103 54 78 28 16 82 84 10 4 56 24 26 93 102 143 135 33 75 97 147 142 137 32 140 39 146 6 52</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 9 132 86 88 61 108 103 54 28 16 82 84 10 4 56 24 26 93 102 143 135 33 75 97 147 142 137 32 140 39 146 6 52</file>
+=======
+          <file> 47 123 144 82 142 21 54 137 108 12 141 83 80 0 89 109 63 11 59 18 8 118 143 73 4 5 13 97 7 106 15 23 61</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 47 123 144 82 142 21 54 108 12 141 83 80 0 89 109 63 11 59 18 8 118 143 73 4 5 13 97 7 106 15 23 61</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\drivers\mcg\mcg.c</name>
       <outputs>
         <tool>
@@ -1386,20 +2563,40 @@
         <tool>
           <name>BICOMP</name>
           <file> 74</file>
+=======
+      <name>$PROJ_DIR$\..\..\src\drivers\sdhc\sdhc.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 100</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 111</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 132 86 88 61 108 103 54 78 28 16 82 84 10 4 56 24 26 93 102 143 135 33 75 97 147 142 137 32 140 39 146 6 52 21</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 132 86 88 61 108 103 54 28 16 82 84 10 4 56 24 26 93 102 143 135 33 75 97 147 142 137 32 140 39 146 6 52 21</file>
+=======
+          <file> 84 47 123 144 82 142 21 54 137 108 12 141 83 80 0 89 109 63 11 59 18 8 118 143 73 4 5 13 97 7 106 15 23 61</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 84 47 123 144 82 142 21 54 108 12 141 83 80 0 89 109 63 11 59 18 8 118 143 73 4 5 13 97 7 106 15 23 61</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\drivers\sdhc\sdhc.c</name>
       <outputs>
         <tool>
@@ -1409,20 +2606,37 @@
         <tool>
           <name>BICOMP</name>
           <file> 30</file>
+=======
+      <name>$PROJ_DIR$\..\..\src\projects\fire_cmsis_demo\isr.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 52</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 131</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
+<<<<<<< HEAD
           <name>ICCARM</name>
           <file> 13 132 86 88 61 108 103 54 78 28 16 82 84 10 4 56 24 26 93 102 143 135 33 75 97 147 142 137 32 140 39 146 6 52</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 13 132 86 88 61 108 103 54 28 16 82 84 10 4 56 24 26 93 102 143 135 33 75 97 147 142 137 32 140 39 146 6 52</file>
+=======
+          <name>BICOMP</name>
+          <file> 47 18 8 118 143 73 82 142 21 54 108 12 141 4 5 13 97 7 0 106 15 23 107 146 93 61</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\drivers\uart\uart.c</name>
       <outputs>
         <tool>
@@ -1432,20 +2646,40 @@
         <tool>
           <name>BICOMP</name>
           <file> 58</file>
+=======
+      <name>$PROJ_DIR$\..\..\src\projects\fire_gpio_demo\main.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 78</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 19</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 132 86 88 61 108 103 54 78 28 16 82 84 10 4 56 24 26 93 102 143 135 33 75 97 147 142 137 32 140 39 146 6 52 45</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 132 86 88 61 108 103 54 28 16 82 84 10 4 56 24 26 93 102 143 135 33 75 97 147 142 137 32 140 39 146 6 52 45</file>
+=======
+          <file> 47 18 8 118 143 73 82 142 21 54 137 108 12 141 4 5 13 97 7 0 106 70 146 23 93 61</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 47 18 8 118 143 73 82 142 21 54 108 12 141 4 5 13 97 7 0 106 15 23 70 146 93 61</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\LIB\FatFs\ff.c</name>
       <outputs>
         <tool>
@@ -1455,20 +2689,40 @@
         <tool>
           <name>BICOMP</name>
           <file> 1</file>
+=======
+      <name>$PROJ_DIR$\..\..\src\projects\fire_gpio_demo\isr.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 52</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 131</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
+<<<<<<< HEAD
           <file> 41 90 20 18 132 86 88 61 108 103 54 78 28 16 82 84 10 4 56 24 26 93 102 143 135 33 75 97 147 142 137 32 140 39 146 6 52 35</file>
         </tool>
         <tool>
           <name>BICOMP</name>
           <file> 41 90 20 18 132 86 88 61 108 103 54 28 16 82 84 10 4 56 24 26 93 102 143 135 33 75 97 147 142 137 32 140 39 146 6 52 35</file>
+=======
+          <file> 47 18 8 118 143 73 82 142 21 54 137 108 12 141 4 5 13 97 7 0 106 70 146 23 93 61</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 47 18 8 118 143 73 82 142 21 54 108 12 141 4 5 13 97 7 0 106 15 23 70 146 93 61</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\drivers\wdog\wdog.c</name>
       <outputs>
         <tool>
@@ -1478,52 +2732,120 @@
         <tool>
           <name>BICOMP</name>
           <file> 37</file>
+=======
+      <name>$PROJ_DIR$\..\..\src\projects\fire_cmsis_demo\main.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 78</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 19</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
+<<<<<<< HEAD
           <name>ICCARM</name>
           <file> 132 86 88 61 108 103 54 78 28 16 82 84 10 4 56 24 26 93 102 143 135 33 75 97 147 142 137 32 140 39 146 6 52 14</file>
-        </tool>
-        <tool>
+=======
           <name>BICOMP</name>
-          <file> 132 86 88 61 108 103 54 28 16 82 84 10 4 56 24 26 93 102 143 135 33 75 97 147 142 137 32 140 39 146 6 52 14</file>
+          <file> 47 18 8 118 143 73 82 142 21 54 108 12 141 4 5 13 97 7 0 106 15 23 107 146 93 61 16 68 49 71 63 11 59</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
     <file>
+      <name>$PROJ_DIR$\Release\Obj\fire_gpio_demo.pbd</name>
+      <inputs>
+        <tool>
+<<<<<<< HEAD
+          <name>BICOMP</name>
+          <file> 132 86 88 61 108 103 54 28 16 82 84 10 4 56 24 26 93 102 143 135 33 75 97 147 142 137 32 140 39 146 6 52 14</file>
+=======
+          <name>BILINK</name>
+          <file> 1 103 148 56 67 104 145 131 92 19 32 140 134 125 53 79 113 94 60 116 128 96</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
+        </tool>
+      </inputs>
+    </file>
+    <file>
+<<<<<<< HEAD
       <name>$PROJ_DIR$\..\..\src\LIB\FatFs\diskio.c</name>
       <outputs>
         <tool>
           <name>ICCARM</name>
           <file> 48</file>
-        </tool>
+=======
+      <name>$PROJ_DIR$\Release\Exe\fire_gpio_demo.out</name>
+      <outputs>
         <tool>
-          <name>BICOMP</name>
-          <file> 91</file>
+          <name>OBJCOPY</name>
+          <file> 55</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </outputs>
       <inputs>
         <tool>
-          <name>ICCARM</name>
-          <file> 132 86 88 61 108 103 54 78 28 16 82 84 10 4 56 24 26 93 102 143 135 33 75 97 147 142 137 32 140 39 146 6 52 13 18 90</file>
-        </tool>
-        <tool>
+<<<<<<< HEAD
           <name>BICOMP</name>
-          <file> 132 86 88 61 108 103 54 28 16 82 84 10 4 56 24 26 93 102 143 135 33 75 97 147 142 137 32 140 39 146 6 52 13 18 90</file>
+          <file> 91</file>
+=======
+          <name>ILINK</name>
+          <file> 114 72 119 112 99 122 95 101 81 132 91 52 130 78 133 88 77 135 100 98 85 69 138 58 22 90 65 10 64 6 14 124</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
         </tool>
       </inputs>
     </file>
+    <file>
+      <name>$PROJ_DIR$\Release\Obj\fire_cmsis_demo.pbd</name>
+      <inputs>
+        <tool>
+<<<<<<< HEAD
+          <name>ICCARM</name>
+          <file> 132 86 88 61 108 103 54 78 28 16 82 84 10 4 56 24 26 93 102 143 135 33 75 97 147 142 137 32 140 39 146 6 52 13 18 90</file>
+=======
+          <name>BILINK</name>
+          <file> 1 103 148 56 67 104 145 131 92 19 32 140 134 125 53 79 113 94 60 116 128 96</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Release\Obj\fire_sd_demo.pbd</name>
+      <inputs>
+        <tool>
+<<<<<<< HEAD
+          <name>BICOMP</name>
+          <file> 132 86 88 61 108 103 54 28 16 82 84 10 4 56 24 26 93 102 143 135 33 75 97 147 142 137 32 140 39 146 6 52 13 18 90</file>
+=======
+          <name>BILINK</name>
+          <file> 1 103 148 56 67 126 102 104 145 131 92 19 32 140 134 125 111 53 79 113 94 60 116 128 96</file>
+>>>>>>> 1c12163e94be133f9887bc175ff8aed284716025
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>ILINK</name>
+          <file> 127</file>
+        </tool>
+      </outputs>
+    </file>
     <forcedrebuild>
-      <name>$PROJ_DIR$\..\..\src\projects\fire_gpio_demo\main.c</name>
-      <tool>ICCARM</tool>
+      <name>[MULTI_TOOL]</name>
+      <tool>ILINK</tool>
     </forcedrebuild>
     <forcedrebuild>
       <name>$PROJ_DIR$\..\..\src\projects\fire_cmsis_demo\isr.c</name>
       <tool>ICCARM</tool>
     </forcedrebuild>
     <forcedrebuild>
-      <name>$PROJ_DIR$\..\..\src\projects\fire_cmsis_demo\main.c</name>
+      <name>$PROJ_DIR$\..\..\src\projects\fire_gpio_demo\main.c</name>
       <tool>ICCARM</tool>
     </forcedrebuild>
     <forcedrebuild>
@@ -1531,8 +2853,8 @@
       <tool>ICCARM</tool>
     </forcedrebuild>
     <forcedrebuild>
-      <name>[MULTI_TOOL]</name>
-      <tool>ILINK</tool>
+      <name>$PROJ_DIR$\..\..\src\projects\fire_cmsis_demo\main.c</name>
+      <tool>ICCARM</tool>
     </forcedrebuild>
   </configuration>
 </project>
