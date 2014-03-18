@@ -100,7 +100,8 @@ extern cars_status car;
 void PIT_CH0_Handler(void)
 {
     PIT_Flag_Clear(PIT0);
-    car->speed_left_m = ((car->left_duty) > 0 ? 1:-1) * (float)DMA_count_get(DMA_CH5)/SPEED_PER;
+    car->speed_left_m  = SPEED_LB_GET;
+    car->speed_right_m = 
        DMA_count_reset(DMA_CH5);
        printf("speed_left_m:%f\n",car->speed_left_m);
        speed_control(car);
