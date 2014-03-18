@@ -101,9 +101,13 @@ u32 a,b,c,d;
 void PIT_CH0_Handler()
 {
     PIT_Flag_Clear(PIT0);
-    car->speed_left_m = ((car->left_duty) > 0 ? 1:-1) * (float)DMA_count_get(DMA_CH5)/SPEED_PER;
+//    car->speed_left_m  = DMA_count_get(DMA_CH5);
+//    car->speed_right_m = 0;
+       
+       printf("speed_left_m:%d\n",DMA_count_get(DMA_CH5));
+       printf("speed_right_m:%d\n",DMA_count_get(DMA_CH7));
        DMA_count_reset(DMA_CH5);
-       printf("speed_left_m:%f\n",car->speed_left_m);
+       DMA_count_reset(DMA_CH6);
        speed_control(car);
   
 }

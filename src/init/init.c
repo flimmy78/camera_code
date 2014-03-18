@@ -46,7 +46,7 @@ void board_init()
 //  board_pit_init();
   
   //电机驱动初始化
-  motor_init();
+   motor_init();
   
   //引脚配置初始化
   used_pin_config();      
