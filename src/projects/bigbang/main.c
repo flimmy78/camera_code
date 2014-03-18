@@ -67,14 +67,12 @@ void main()
   car->speed_duty =0;
   car->direction_left_duty  = 0;
   car->direction_right_duty =0;
-  left_run_s((int32_t)(car->left_duty));
-  right_run_s((int32_t)(car->right_duty));
-  //EnableInterrupts;
+  EnableInterrupts;
  
  while(1)
  {
    
-   // motor_set(car);
+   motor_set(car);
     
  } 
 
