@@ -97,7 +97,8 @@ void DMA_CH4_Handler(void)
 
 
 extern cars_status car;
-void PIT_CH0_Handler(void)
+u32 a,b,c,d;
+void PIT_CH0_Handler()
 {
     PIT_Flag_Clear(PIT0);
     car->speed_left_m = ((car->left_duty) > 0 ? 1:-1) * (float)DMA_count_get(DMA_CH5)/SPEED_PER;
