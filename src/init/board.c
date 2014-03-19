@@ -125,12 +125,12 @@ void left_run_s(int32_t speed)   //speed的符号体现方向
   if(speed > 0)
   {
     dir = ahead;
-    speed = speed +right_dead;
+    speed = speed +left_dead;
   }
   else if(speed <0)
   {
     dir = back;
-    speed = -speed + right_dead;
+    speed = -speed + left_dead;
   }
   else
   {
@@ -145,7 +145,7 @@ void left_run_s(int32_t speed)   //speed的符号体现方向
 *************************************/
 void speed_init()
 {
-    DMA_count_Init(DMA_CH4, PTA24, 10000, DMA_falling_up);
+//    DMA_count_Init(DMA_CH4, PTA24, 10000, DMA_falling_up);
 //    DMA_count_Init(DMA_CH5, PTA26, 10000, DMA_falling_up);
     DMA_count_Init(DMA_CH1, PTA28, 10000, DMA_falling_up);
 //    DMA_count_Init(DMA_CH2, PTA29, 10000, DMA_falling_up);
