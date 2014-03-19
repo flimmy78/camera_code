@@ -125,12 +125,12 @@ void left_run_s(int32_t speed)   //speed的符号体现方向
   if(speed > 0)
   {
     dir = ahead;
-    speed = speed +right_dead;
+    speed = speed +left_dead;
   }
   else if(speed <0)
   {
     dir = back;
-    speed = -speed + right_dead;
+    speed = -speed + left_dead;
   }
   else
   {
@@ -143,12 +143,15 @@ void left_run_s(int32_t speed)   //speed的符号体现方向
 /*************************************
 *   编码器初始化
 *************************************/
-void encoder_init()
+void speed_init()
 {
-    DMA_count_Init(DMA_CH4, PTA24, 10000, DMA_rising_up);
-    DMA_count_Init(DMA_CH5, PTA26, 10000, DMA_rising_up);
-    DMA_count_Init(DMA_CH6, PTA28, 10000, DMA_rising_up);
-    DMA_count_Init(DMA_CH7, PTA29, 10000, DMA_rising_up);
+//    DMA_count_Init(DMA_CH4, PTA24, 10000, DMA_falling_up);
+//    DMA_count_Init(DMA_CH5, PTA26, 10000, DMA_falling_up);
+    DMA_count_Init(DMA_CH1, PTA28, 10000, DMA_falling_up);
+//    DMA_count_Init(DMA_CH2, PTA29, 10000, DMA_falling_up);
+    
+    pit_init_ms(SPEED_PIT,SPEED_SAMPLING_TIME);
+    pit_init_ms(PIT1,5);
 }
 
 
@@ -197,6 +200,7 @@ void blance_comp_filter(float tg,float dt,cars_status car)
   gyro_m  = gyro_data_get();
   comp_filter(angle_m,gyro_m,tg, dt,car);
   car->blance_duty = (car->angle - car->angle_set)*car->angle_p + (gyro_m - car->gyro_set)*car->gyro_d ;
+  //printf("blance_duty:%f\n",car->blance_duty);
 }
 
 
@@ -209,9 +213,10 @@ void speed_control(cars_status car)
 {
   float speed_err;
   static float speed_integral;
-  speed_err        = car->speed_set - car->speed_left_m;
+  speed_err        = car->speed_set - (car->speed_left_m +  car->speed_right_m)/2.0 ;
   speed_integral  += (car->speed_p)*speed_err;
-  car->speed_duty   =  speed_integral + (car->speed_d)*speed_err;
+  car->speed_duty  =  speed_integral + (car->speed_d)*speed_err;
+  printf("speed_duty:%f\n",car->speed_duty);
   
 }
 
@@ -224,8 +229,13 @@ void speed_control(cars_status car)
 
 void motor_set(cars_status car)
 {
-  car->left_duty  = car->blance_duty -car->speed_duty - car->direction_left_duty;
-  car->right_duty = car->blance_duty -car->speed_duty +car->direction_right_duty;
-  left_run_s((int32_t)car->left_duty);
-  right_run_s((uint32_t)car->right_duty);
+  car->left_duty  = (car->blance_duty) - (car->speed_duty) - (car->direction_left_duty);
+  car->right_duty = (car->blance_duty) - (car->speed_duty) + (car->direction_right_duty);
+ // printf("%f\t%f\n",car->left_duty,car->right_duty);
+  if(((car->left_duty)>990)||((car->left_duty)<-990)||((car->right_duty)>990)||((car->right_duty)<-990))
+    {
+      (car->left_duty) = (car->right_duty) = 0;
+    }
+  left_run_s((int32_t)(car->left_duty));
+  right_run_s((int32_t)(car->right_duty));
 }

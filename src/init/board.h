@@ -29,20 +29,24 @@
 //电机驱动初始化的占空比，【强烈要求为【0】】
 #define INIT_DUTY (0)
 
-/***********编码器配置************/
-#define     TRANSFER        1.0         //传送比
+/*****************编码器配置*********************/
+#define     TRANSFER        0.000383         //传送比,(pi*r齿*R轮)/(100*R齿),(3.14 * 40 * 0.032)/(100 * 105),轮胎半径0.032cm
+#define     SPEED_PER       200.0       //编码器每转脉冲数。
+#define     SPEED_PIT       PIT0        //编码器采样使用的定时器
+#define     SPEED_SAMPLING_TIME     200  //采样时间  200ms
 
-#define     SPEED_LA_GET    DMA_count_get(DMA_CH4)/TRANSFER     //左轮前进
-#define     SPEED_LB_GET    DMA_count_get(DMA_CH5)/TRANSFER     //左轮后退
-#define     SPEED_RA_GET    DMA_count_get(DMA_CH6)/TRANSFER
-#define     SPEED_RB_GET    DMA_count_get(DMA_CH7)/TRANSFER
+//*****算的是轮子的线速度，单位m/s
+#define     SPEED_LA_GET    (DMA_count_get(DMA_CH4)*TRANSFER)/(SPEED_SAMPLING_TIME*0.001)     //左轮前进
+#define     SPEED_LB_GET    (DMA_count_get(DMA_CH5)*TRANSFER)/(SPEED_SAMPLING_TIME*0.001)     //左轮后退
+#define     SPEED_RA_GET    (DMA_count_get(DMA_CH1)*TRANSFER)/(SPEED_SAMPLING_TIME*0.001)
+#define     SPEED_RB_GET    (DMA_count_get(DMA_CH2)*TRANSFER)/(SPEED_SAMPLING_TIME*0.001)
 
 #define     SPEED_LA_CLEAR  DMA_count_reset(DMA_CH4)
 #define     SPEED_LB_CLEAR  DMA_count_reset(DMA_CH5)
-#define     SPEED_RA_CLEAR  DMA_count_reset(DMA_CH6)
-#define     SPEED_RB_CLEAR  DMA_count_reset(DMA_CH7)
+#define     SPEED_RA_CLEAR  DMA_count_reset(DMA_CH1)
+#define     SPEED_RB_CLEAR  DMA_count_reset(DMA_CH2)
 
-void    encoder_init();
+void    speed_init();
 
 /********加速度计标准值配置*******/
 //加速度计 		  800mV/g ,对应为AD值 15887/g , 1605 * m/s^2

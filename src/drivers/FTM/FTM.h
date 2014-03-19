@@ -61,6 +61,9 @@ typedef enum Input_cfg
 
 void FTM_Input_init(FTMn, CHn, Input_cfg);
 
+void FTM2_QUAD_init();
+void FTM1_QUAD_init();
+
 #define FTM_IRQ_EN(FTMn,CHn)        FTM_CnSC_REG(FTMx[FTMn],CHn) |= FTM_CnSC_CHIE_MASK       //开启 FTMn_CHn 中断
 #define FTM_IRQ_DIS(FTMn,CHn)       FTM_CnSC_REG(FTMx[FTMn],CHn) &= ~FTM_CnSC_CHIE_MASK      //关闭 FTMn_CHn 中断
 

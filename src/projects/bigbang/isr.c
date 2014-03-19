@@ -86,31 +86,36 @@ void PORTE_IRQHandler()
 void DMA_CH4_Handler(void)
 {
     //DMA通道4
-    DMA_IRQ_CLEAN(DMA_CH4); 
-
-//    printf("%d\n",DMA_count_get(DMA_CH4));
-//    DMA_count_reset(DMA_CH4);
+    DMA_IRQ_CLEAN(DMA_CH4); //清除通道传输中断标志位    (这样才能再次进入中断)
     
-                            //清除通道传输中断标志位    (这样才能再次进入中断)
     DMA_EN(DMA_CH4);                                    //使能通道CHn 硬件请求      (这样才能继续触发DMA传输)
 }
 
+void DMA_CH1_Handler(void)
+{
+    //DMA通道4
+    DMA_IRQ_CLEAN(DMA_CH1); //清除通道传输中断标志位    (这样才能再次进入中断)
+    
+    DMA_EN(DMA_CH1);                                    //使能通道CHn 硬件请求      (这样才能继续触发DMA传输)
+}
 
 extern cars_status car;
-void PIT_CH0_Handler(void)
+u32 a,b,c,d;
+void PIT_CH0_Handler()
 {
     PIT_Flag_Clear(PIT0);
-    DMA_count_reset(DMA_CH5);
-    car->speed_left_m = ((car->left_duty) > 0 ? 1:-1) * (float)DMA_count_get(DMA_CH5);
-    speed_control(car);
-   
-  
+    //car->speed_left_m  = (((car->left_duty) >0) ? 1 :-1)*((float)SPEED_LA_GET);
+    car->speed_right_m = ((car->right_duty)>0 ? 1 :-1)*(float)SPEED_RA_GET; 
+    printf("speed_left_m:%f \t speed_right_m:%f\n", car->speed_left_m,car->speed_right_m );
+   DMA_count_reset(DMA_CH1);
+   // DMA_count_reset(DMA_CH4);
+   // speed_control(car);
 }
 
 void PIT_CH1_Handler(void)
 {
   PIT_Flag_Clear(PIT1);
-  blance_comp_filter(3.5,0.005,car);
+ blance_comp_filter(3.5,0.005,car);
   
 }
 
@@ -136,7 +141,7 @@ void UART0_IRQHandler(void)
         {
             str[i] = str[i+1];
         }
-        num = str2ufloat(str,len-1);
+        car->speed_p = str2ufloat(str,len-1);
         printf("you send p = %f\n",num);
         
         /*****用户函数*********/
@@ -150,7 +155,7 @@ void UART0_IRQHandler(void)
         {
             str[i] = str[i+1];
         }
-        num = str2ufloat(str,len-1);
+        car->speed_d = str2ufloat(str,len-1);
         printf("you send d = %f\n",num);
         
         /*****用户函数*********/

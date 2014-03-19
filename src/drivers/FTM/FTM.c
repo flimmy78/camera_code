@@ -704,3 +704,33 @@ void FTM_Input_init(FTMn ftmn, CHn ch, Input_cfg cfg)
     enable_irq(78 - 16 + ftmn);
 }
 
+
+/**********配置正交解码**********/
+//FTM1_CNT=0;用s16变量保存，他就是脉冲,负数表示反方向
+void FTM2_QUAD_init(void)
+{
+    PORTB_PCR18= PORT_PCR_MUX(6); // 设置引脚A10引脚为FTM2_PHA功能  
+    PORTB_PCR19= PORT_PCR_MUX(6); // 设置引脚A11引脚为FTM2_PHB功能  
+    SIM_SCGC3|=SIM_SCGC3_FTM2_MASK;//使能FTM2时钟  
+    FTM2_MODE |= FTM_MODE_WPDIS_MASK;//写保护禁止  
+    FTM2_QDCTRL|=FTM_QDCTRL_QUADMODE_MASK;//AB相同时确定方向和计数值  
+    FTM2_CNTIN=0;//FTM0计数器初始值为0  
+    FTM2_MOD=65535;//结束值  
+    FTM2_QDCTRL|=FTM_QDCTRL_QUADEN_MASK;//启用FTM2正交解码模式  
+    FTM2_MODE |= FTM_MODE_FTMEN_MASK;//FTM2EN=1    
+    FTM2_CNT=0;  
+}
+
+void FTM1_QUAD_init(void)
+{
+    PORTA_PCR12= PORT_PCR_MUX(7); // 设置引脚A12引脚为FTM1_PHA功能  
+    PORTA_PCR13= PORT_PCR_MUX(7); // 设置引脚A13引脚为FTM1_PHB功能  
+    SIM_SCGC6|=SIM_SCGC6_FTM1_MASK;//使能FTM1时钟  
+    FTM1_MODE |= FTM_MODE_WPDIS_MASK;//写保护禁止  
+    FTM1_QDCTRL|=FTM_QDCTRL_QUADMODE_MASK;//AB相同时确定方向和计数值  
+    FTM1_CNTIN=0;//FTM0计数器初始值为0  
+    FTM1_MOD=65535;//结束值  
+    FTM1_QDCTRL|=FTM_QDCTRL_QUADEN_MASK;//启用FTM1正交解码模式  
+    FTM1_MODE |= FTM_MODE_FTMEN_MASK;//FTM1EN=1    
+    FTM1_CNT=0;  
+}
