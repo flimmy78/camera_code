@@ -53,29 +53,28 @@ void main()
    
   //车体参数设置。
    
-  car->left_duty = 0;
-  car->right_duty =0;
+  car->left_duty = 10;
+  car->right_duty =10;
   
   car->angle_p   = 85.5;
-  car->gyro_d    = 5.5;
-  car->angle_set = 8.0;
+  car->gyro_d    = 5;
+  car->angle_set = 5.0;
   car->gyro_set  = 1;
   
   car->speed_set = 0.0;
-  car->speed_d   = 85.5;
-  car->speed_p   = 5.1;
+  car->speed_d   = 75.5;
+  car->speed_p   = 4.1;
   car->speed_duty =0;
   car->direction_left_duty  = 0;
   car->direction_right_duty =0;
-  EnableInterrupts;
- 
   
+  EnableInterrupts;
+  left_run_s(-200);
+  right_run_s(-200);
  while(1)
  {
    
-  motor_set(car);
+   // motor_set(car);
     
  } 
-
-  
 }
