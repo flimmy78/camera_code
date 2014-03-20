@@ -69,12 +69,10 @@ void main()
   car->direction_right_duty =0;
   
   EnableInterrupts;
-  left_run_s(-200);
-  right_run_s(-200);
  while(1)
  {
    
-   // motor_set(car);
+   motor_set(car);
     
  } 
 }
