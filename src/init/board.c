@@ -15,7 +15,7 @@ direction dir_flag;
 #define RIGHT_DEAD 10
 #define LEFT_DEAD  10
 const int right_dead = 10;  //µç»úËÀÇø
-const int left_dead  = 10;
+const int left_dead  = 40;
 
 
 /*******************************************
