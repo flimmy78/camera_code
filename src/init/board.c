@@ -15,7 +15,7 @@ direction dir_flag;
 #define RIGHT_DEAD 10
 #define LEFT_DEAD  10
 const int right_dead = 10;  //µç»úËÀÇø
-const int left_dead  = 40;
+const int left_dead  = 10;
 
 
 /*******************************************
@@ -239,3 +239,21 @@ void motor_set(cars_status car)
   left_run_s((int32_t)(car->left_duty));
   right_run_s((int32_t)(car->right_duty));
 }
+
+
+
+
+
+void speed_pid(void)
+{
+  static float err[3];
+  
+  
+  
+   
+}
+
+
+
+
+
