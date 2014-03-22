@@ -59,10 +59,10 @@ void main()
   car->angle_p   =  85.5;
   car->gyro_d    =  5;
   car->angle_set =  0.0;
-  car->gyro_set  =  1;
+  car->gyro_set  =  8.0;
   
   car->speed_set = 0.0;
-  car->speed_p   = 990.9;        
+  car->speed_p   = 0;        
   car->speed_i   = 0.0;         
   car->speed_d   = 0.0;        
   car->speed_set = 0;      
@@ -74,25 +74,55 @@ void main()
   char str;
   int i;
   float data;
-  EnableInterrupts;
+  //EnableInterrupts;
   //发送调试数据，数据为5为，‘12345’对应123.45.
+  printf("\n\n");
+  printf("按c进入命令模式\n");
  while(1)
  {    
     str = uart_getchar(UART0);
-    for(i=0;i<5;i++)
-    {
-      num[i] = uart_getchar(UART0) - '0';
-    }
-    data = num[0]*100 + num[1] * 10 + num[2]  + num[3] * 0.1 +num[4] *0.01;
-   switch(str)
-   {
-   case 'P':
-   case 'p':  car->speed_p = data;printf("speed_p:%f\n",car->speed_p);break;
-   case 'i':
-   case 'I':  car->speed_i = data;printf("speed_i:%f\n",car->speed_i);break;
-   case 'D':
-   case 'd':  car->speed_d = data;printf("speed_d:%f\n",car->speed_d);break;
-   default :break;
-  } 
+    if(str == 'c')
+      {
+        while(1)
+        {
+          printf("命令模式\n");
+          printf("按s电机停止工作\n");
+          printf("按r电机开始工作\n");
+          printf("按p打印参数\n");
+          str = uart_getchar(UART0);
+          switch(str)
+          {
+          case 's': DisableInterrupts;
+                    left_run_s(0);
+                    right_run_s(0);  break;
+          case 'p': print(car);break;
+          
+          }
+          if(str == 'r')
+            {
+              EnableInterrupts;  break;
+            }
+         printf("输入命令错请重新输入\n");
+        }
+      }
+    else
+      {
+        for(i=0;i<5;i++)
+        {
+          num[i] = uart_getchar(UART0) - '0';
+        }
+        data = num[0]*100 + num[1] * 10 + num[2]  + num[3] * 0.1 +num[4] *0.01;
+       switch(str)
+       {
+       case 'a': car->angle_set = data ; printf("angle_set:%f\n",car->angle_set);break;
+       case 'P':
+       case 'p':  car->speed_p = data;printf("speed_p:%f\n",car->speed_p);break;
+       case 'i':
+       case 'I':  car->speed_i = data;printf("speed_i:%f\n",car->speed_i);break;
+       case 'D':
+       case 'd':  car->speed_d = data;printf("speed_d:%f\n",car->speed_d);break;
+       default :break;
+      } 
+      }
 }
 }

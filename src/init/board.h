@@ -118,5 +118,6 @@ void motor_set(cars_status car);
 
 void speed_pid(cars_status car);
 
+void print(cars_status car);
 
 #endif

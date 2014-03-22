@@ -257,5 +257,32 @@ void speed_pid(cars_status car)
 
 
 
+//打印车体运行参数。
+void print(cars_status car)
+{
+  printf("left_duty:%f\n",car->left_duty);
+  printf("right_duty:%f\n",car->right_duty);
+  printf("angle_p:%f\n",car->angle_p);  
+  printf("gyro_d:%f\n",car->gyro_d);
+  printf("angle_set:%f\n",car->angle_set);
+  printf("gyro_set:%f\n",car->gyro_set);
+  printf("speed_p:%f\n",car->speed_p);
+  printf("speed_i:%f\n",car->speed_i);
+  printf("speed_d:%f\n",car->speed_d);
+  printf("speed_set:%f\n",car->speed_set);
+  printf("angle_m:%f\n",car->angle_m);
+  printf(" gyro_m; :%f\n",car-> gyro_m);
+  printf("angle:%f\n",car->angle);
+  printf("angle:%f\n",car->angle);
+  printf("blance_duty:%f\n",car->blance_duty);
+  printf("speed_left_m:%f\n",car->speed_left_m);
+  printf("speed_right_m:%f\n",car->speed_right_m);
+  printf("speed_duty:%f\n",car->speed_duty);
+  printf("direction_left_duty:%f\n",car->direction_left_duty);
+  printf("direction_right_duty:%f\n",car->direction_right_duty);
+      
+ 
+}
+
 
 
