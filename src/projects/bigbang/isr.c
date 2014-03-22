@@ -107,7 +107,7 @@ void PIT_CH0_Handler()
     PIT_Flag_Clear(PIT0);
     //car->speed_left_m  = (((car->left_duty) >0) ? 1 :-1)*((float)SPEED_LA_GET);
    (car->speed_left_m) =(car->speed_right_m) = ((car->right_duty)>0 ? 1 :-1)*(float)SPEED_RA_GET; 
-   printf("speed_left_m:%f \n", car->speed_right_m);
+   //printf("speed_left_m:%f \n", car->speed_right_m);
     DMA_count_reset(DMA_CH1);
    // DMA_count_reset(DMA_CH4);
     speed_pid(car);
@@ -129,7 +129,7 @@ void UART0_IRQHandler(void)
     u8 i;
     DisableInterrupts;
     
-    uart_pendstr(UART1,str);
+    uart_pendstr(UART0,str);
     if(str[0] == '\0')
     {
         EnableInterrupts;

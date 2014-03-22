@@ -70,12 +70,29 @@ void main()
   
   car->direction_left_duty  = 0;
   car->direction_right_duty = 0;
-  
+  int num[5];
+  char str;
+  int i;
+  float data;
   EnableInterrupts;
+  //发送调试数据，数据为5为，‘12345’对应123.45.
  while(1)
- {
-   
-  
-    
- } 
+ {    
+    str = uart_getchar(UART0);
+    for(i=0;i<5;i++)
+    {
+      num[i] = uart_getchar(UART0) - '0';
+    }
+    data = num[0]*100 + num[1] * 10 + num[2]  + num[3] * 0.1 +num[4] *0.01;
+   switch(str)
+   {
+   case 'P':
+   case 'p':  car->speed_p = data;printf("speed_p:%f\n",car->speed_p);break;
+   case 'i':
+   case 'I':  car->speed_i = data;printf("speed_i:%f\n",car->speed_i);break;
+   case 'D':
+   case 'd':  car->speed_d = data;printf("speed_d:%f\n",car->speed_d);break;
+   default :break;
+  } 
+}
 }
