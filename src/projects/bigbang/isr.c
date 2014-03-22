@@ -101,15 +101,17 @@ void DMA_CH1_Handler(void)
 
 extern cars_status car;
 u32 a,b,c,d;
+
 void PIT_CH0_Handler()
 {
     PIT_Flag_Clear(PIT0);
     //car->speed_left_m  = (((car->left_duty) >0) ? 1 :-1)*((float)SPEED_LA_GET);
-    car->speed_right_m = ((car->right_duty)>0 ? 1 :-1)*(float)SPEED_RA_GET; 
-    printf("speed_left_m:%f \t speed_right_m:%f\n", car->speed_left_m,car->speed_right_m );
+   (car->speed_left_m) =(car->speed_right_m) = ((car->right_duty)>0 ? 1 :-1)*(float)SPEED_RA_GET; 
+   printf("speed_left_m:%f \n", car->speed_right_m);
     DMA_count_reset(DMA_CH1);
    // DMA_count_reset(DMA_CH4);
-    speed_control(car);
+    speed_pid(car);
+    //printf("%f\t%f\n",car->left_duty,car->speed_duty);
 }
 
 void PIT_CH1_Handler(void)
@@ -142,7 +144,7 @@ void UART0_IRQHandler(void)
             str[i] = str[i+1];
         }
         car->speed_p = str2ufloat(str,len-1);
-        printf("you send p = %f\n",num);
+        printf("you send p = %f\n",car->speed_p);
         
         /*****用户函数*********/
         
@@ -156,7 +158,7 @@ void UART0_IRQHandler(void)
             str[i] = str[i+1];
         }
         car->speed_d = str2ufloat(str,len-1);
-        printf("you send d = %f\n",num);
+        printf("you send d = %f\n",car->speed_d );
         
         /*****用户函数*********/
         

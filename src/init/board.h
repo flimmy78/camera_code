@@ -115,4 +115,8 @@ void blance_comp_filter(float tg,float dt,cars_status car);
 void speed_control(cars_status car);
 //ÉèÖÃµç»ú¡£
 void motor_set(cars_status car);
+
+void speed_pid(cars_status car);
+
+
 #endif

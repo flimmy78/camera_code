@@ -147,7 +147,7 @@ void speed_init()
 {
 //    DMA_count_Init(DMA_CH4, PTA24, 10000, DMA_falling_up);
 //    DMA_count_Init(DMA_CH5, PTA26, 10000, DMA_falling_up);
-    DMA_count_Init(DMA_CH1, PTA28, 10000, DMA_falling_up);
+      DMA_count_Init(DMA_CH1, PTA28, 10000, DMA_falling_up);
 //    DMA_count_Init(DMA_CH2, PTA29, 10000, DMA_falling_up);
     
     pit_init_ms(SPEED_PIT,SPEED_SAMPLING_TIME);
@@ -201,6 +201,7 @@ void blance_comp_filter(float tg,float dt,cars_status car)
   comp_filter(angle_m,gyro_m,tg, dt,car);
   car->blance_duty = (car->angle - car->angle_set)*car->angle_p + (gyro_m - car->gyro_set)*car->gyro_d ;
   //printf("blance_duty:%f\n",car->blance_duty);
+   motor_set(car);
 }
 
 
@@ -216,7 +217,7 @@ void speed_control(cars_status car)
   speed_err        = car->speed_set - (car->speed_left_m +  car->speed_right_m)/2.0 ;
   speed_integral  += (car->speed_p)*speed_err;
   car->speed_duty  =  speed_integral + (car->speed_d)*speed_err;
-  printf("speed_duty:%f\n",car->speed_duty);
+ // printf("speed_duty:%f\n",car->speed_duty);
   
 }
 
@@ -244,12 +245,13 @@ void motor_set(cars_status car)
 
 
 
-void speed_pid(void)
+void speed_pid(cars_status car)
 {
-  static float err[3];
-  
-  
-  
+   static float err[3];
+   err[0]           = err[1];
+   err[1]           = err[2];
+   err[2]           = car->speed_set - (car->speed_left_m + car->speed_right_m)/2.0;
+   car->speed_duty += (car->speed_p)*((err[2] - err[1]) + (car->speed_i)*err[2] + (car->speed_d)*(err[2] - 2 * err[1] + err[0]));
    
 }
 
