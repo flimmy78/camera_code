@@ -90,19 +90,21 @@ void main()
           printf("按r电机开始工作\n");
           printf("按p打印参数\n");
           str = uart_getchar(UART0);
+          if(str == 'r')
+            {
+              EnableInterrupts;  break;
+            }
           switch(str)
           {
           case 's': DisableInterrupts;
                     left_run_s(0);
                     right_run_s(0);  break;
           case 'p': print(car);break;
+          default : printf("输入命令错请重新输入\n");break;
           
           }
-          if(str == 'r')
-            {
-              EnableInterrupts;  break;
-            }
-         printf("输入命令错请重新输入\n");
+          
+        
         }
       }
     else

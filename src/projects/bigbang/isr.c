@@ -110,7 +110,7 @@ void PIT_CH0_Handler()
    //printf("speed_left_m:%f \n", car->speed_right_m);
     DMA_count_reset(DMA_CH1);
    // DMA_count_reset(DMA_CH4);
-    speed_pid(car);
+    speed_control(car);
     //printf("%f\t%f\n",car->left_duty,car->speed_duty);
 }
 
