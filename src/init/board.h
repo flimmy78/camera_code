@@ -33,7 +33,7 @@
 #define     TRANSFER        0.000383         //传送比,(pi*r齿*R轮)/(100*R齿),(3.14 * 40 * 0.032)/(100 * 105),轮胎半径0.032cm
 #define     SPEED_PER       200.0       //编码器每转脉冲数。
 #define     SPEED_PIT       PIT0        //编码器采样使用的定时器
-#define     SPEED_SAMPLING_TIME     500  //采样时间  5ms
+#define     SPEED_SAMPLING_TIME     20  //采样时间  200ms
 
 //*****算的是轮子的线速度，单位m/s
 #define     SPEED_LA_GET    (DMA_count_get(DMA_CH4)*TRANSFER)/(SPEED_SAMPLING_TIME*0.001)     //左轮前进
@@ -115,4 +115,9 @@ void blance_comp_filter(float tg,float dt,cars_status car);
 void speed_control(cars_status car);
 //设置电机。
 void motor_set(cars_status car);
+
+void speed_pid(cars_status car);
+
+void print(cars_status car);
+
 #endif

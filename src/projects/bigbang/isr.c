@@ -101,42 +101,17 @@ void DMA_CH1_Handler(void)
 
 extern cars_status car;
 u32 a,b,c,d;
-u8 n = 0;
-u16 duty = 100;
+
 void PIT_CH0_Handler()
 {
     PIT_Flag_Clear(PIT0);
-//    car->speed_left_m  = DMA_count_get(DMA_CH5);
-//    car->speed_right_m = 0;
-    if (duty >= 600)
-    {
-        printf("DONE\n");
-        return;
-    }
-       if(n < 10)
-       {
-//           printf("speed_left_m:%f  ,duty = %d\n",SPEED_LA_GET,duty);
-//           SPEED_LA_CLEAR;
-//           n++;
-           
-           printf("speed_right_m:%f  ,duty = %d\n",SPEED_RA_GET,duty);
-           SPEED_RA_CLEAR;
-           n++;
-       }
-       else
-       {
-//           duty += 100;
-//           FTM_PWM_Duty(LEFT_A_FTM,LEFT_A_CH,duty);
-//           n = 0;
-           
-           duty += 100;
-           FTM_PWM_Duty(RIGHT_A_FTM,RIGHT_A_CH,duty);
-           n = 0;
-       }
-//       printf("speed_right_m:%d\n",DMA_count_get(DMA_CH7));
-//       DMA_count_reset(DMA_CH5);
-//       DMA_count_reset(DMA_CH6);
-//       speed_control(car);
+    //car->speed_left_m  = (((car->left_duty) >0) ? 1 :-1)*((float)SPEED_LA_GET);
+   (car->speed_left_m) =(car->speed_right_m) = ((car->right_duty)>0 ? 1 :-1)*(float)SPEED_RA_GET; 
+   //printf("speed_left_m:%f \n", car->speed_right_m);
+    DMA_count_reset(DMA_CH1);
+   // DMA_count_reset(DMA_CH4);
+    speed_control(car);
+    //printf("%f\t%f\n",car->left_duty,car->speed_duty);
 }
 
 void PIT_CH1_Handler(void)
@@ -154,7 +129,7 @@ void UART0_IRQHandler(void)
     u8 i;
     DisableInterrupts;
     
-    uart_pendstr(UART1,str);
+    uart_pendstr(UART0,str);
     if(str[0] == '\0')
     {
         EnableInterrupts;
@@ -169,7 +144,7 @@ void UART0_IRQHandler(void)
             str[i] = str[i+1];
         }
         car->speed_p = str2ufloat(str,len-1);
-        printf("you send p = %f\n",num);
+        printf("you send p = %f\n",car->speed_p);
         
         /*****用户函数*********/
         
@@ -183,7 +158,7 @@ void UART0_IRQHandler(void)
             str[i] = str[i+1];
         }
         car->speed_d = str2ufloat(str,len-1);
-        printf("you send d = %f\n",num);
+        printf("you send d = %f\n",car->speed_d );
         
         /*****用户函数*********/
         

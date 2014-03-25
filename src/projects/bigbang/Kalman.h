@@ -14,8 +14,10 @@ typedef struct cars_status
   float gyro_d;         //直立控制角加速度参数d。
   float angle_set;      //设置平衡倾角。
   float gyro_set;       //设置目标加速度。
-  float speed_p;        //速度控制P参数。
-  float speed_d;        //速度空
+  
+  float speed_p;        //速度控制kP参数。
+  float speed_i;         //速度控制ki参数
+  float speed_d;        //速度控制kd参数
   float speed_set;      //设置目标加速度。
   
   //加速度陀螺仪测量控制与直立相关的值
