@@ -47,7 +47,14 @@ void main()
     
     uart_init(UART1,115200);
     
-    FTM_PWM_init(FTM0,CH0,5000000,80);       //利用PWM波触发DMA，触发频率5MHz
+ //   FTM_PWM_init(FTM0,CH0,5000000,80);       //利用PWM波触发DMA，触发频率5MHz
+    FTM_PWM_init(FTM0,CHO,15000,20);
+    FTM_PWM_init(FTM0,CH2,15000,20);
+    FTM_PWM_init(FTM0,CH1,15000,20); 
+    FTM_PWM_init(FTM0,CH3,15000,20);
+    
+    
+    
     
     DisableInterrupts;  
     
