@@ -54,5 +54,5 @@ void board_init()
   //速度采样初始化
   speed_init();
   
-  pit_init_ms(PIT1,5);
+ // pit_init_ms(PIT1,5);
 }

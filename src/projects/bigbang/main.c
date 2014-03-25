@@ -46,35 +46,40 @@ cars_status car= &car_s;   //
 void main()
 { 
  
-  //车体系统设置
-  DisableInterrupts;
-  board_init();
-  uart_init(UART0,115200);
-   
-  //车体参数设置。
-   
-  car->left_duty = 200;
-  car->right_duty =200;
-  
-  car->angle_p   = 85.5;
-  car->gyro_d    = 5;
-  car->angle_set = 5.0;
-  car->gyro_set  = 1;
-  
-  car->speed_set = 0.0;
-  car->speed_d   = 75.5;
-  car->speed_p   = 4.1;
-  car->speed_duty =0;
-  car->direction_left_duty  = 0;
-  car->direction_right_duty =0;
-  EnableInterrupts;
- 
- while(1)
- {
-   
-   motor_set(car);
-    
- } 
-
+//  //车体系统设置
+//  DisableInterrupts;
+//  board_init();
+//  uart_init(UART0,115200);
+//   
+//  //车体参数设置。
+//   
+//  car->left_duty = 200;
+//  car->right_duty =200;
+//  
+//  car->angle_p   = 85.5;
+//  car->gyro_d    = 5;
+//  car->angle_set = 5.0;
+//  car->gyro_set  = 1;
+//  
+//  car->speed_set = 0.0;
+//  car->speed_d   = 75.5;
+//  car->speed_p   = 4.1;
+//  car->speed_duty =0;
+//  car->direction_left_duty  = 0;
+//  car->direction_right_duty =0;
+//  EnableInterrupts;
+// 
+// while(1)
+// {
+//   
+//   motor_set(car);
+//    
+// } 
+board_init();
+    right_run_s(100);
+   // FTM_PWM_init(RIGHT_A_FTM,RIGHT_A_CH,MOTOR_FRE,100);
+    uart_init(UART0,115200);
+//    FTM_PWM_init(LEFT_A_FTM,LEFT_A_CH,MOTOR_FRE,100);
+    speed_init();
   
 }

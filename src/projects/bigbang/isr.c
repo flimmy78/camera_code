@@ -101,17 +101,42 @@ void DMA_CH1_Handler(void)
 
 extern cars_status car;
 u32 a,b,c,d;
+u8 n = 0;
+u16 duty = 100;
 void PIT_CH0_Handler()
 {
     PIT_Flag_Clear(PIT0);
 //    car->speed_left_m  = DMA_count_get(DMA_CH5);
 //    car->speed_right_m = 0;
-       
-       printf("speed_left_m:%d\n",DMA_count_get(DMA_CH5));
-       printf("speed_right_m:%d\n",DMA_count_get(DMA_CH7));
-       DMA_count_reset(DMA_CH5);
-       DMA_count_reset(DMA_CH6);
-       speed_control(car);
+    if (duty >= 600)
+    {
+        printf("DONE\n");
+        return;
+    }
+       if(n < 10)
+       {
+//           printf("speed_left_m:%f  ,duty = %d\n",SPEED_LA_GET,duty);
+//           SPEED_LA_CLEAR;
+//           n++;
+           
+           printf("speed_right_m:%f  ,duty = %d\n",SPEED_RA_GET,duty);
+           SPEED_RA_CLEAR;
+           n++;
+       }
+       else
+       {
+//           duty += 100;
+//           FTM_PWM_Duty(LEFT_A_FTM,LEFT_A_CH,duty);
+//           n = 0;
+           
+           duty += 100;
+           FTM_PWM_Duty(RIGHT_A_FTM,RIGHT_A_CH,duty);
+           n = 0;
+       }
+//       printf("speed_right_m:%d\n",DMA_count_get(DMA_CH7));
+//       DMA_count_reset(DMA_CH5);
+//       DMA_count_reset(DMA_CH6);
+//       speed_control(car);
 }
 
 void PIT_CH1_Handler(void)
