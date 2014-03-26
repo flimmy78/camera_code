@@ -8,16 +8,16 @@
 
 /************电机配置**************/
 //右电机前进的FTM模块
-#define RIGHT_A_FTM FTM1
+#define RIGHT_A_FTM FTM0
 #define RIGHT_A_CH  CH0
 
 //右电机后退的FTM模块
-#define RIGHT_B_FTM FTM1
-#define RIGHT_B_CH  CH1
+#define RIGHT_B_FTM FTM0
+#define RIGHT_B_CH  CH2
 
 //左电机前进的FTM模块
 #define LEFT_A_FTM FTM0
-#define LEFT_A_CH  CH4
+#define LEFT_A_CH  CH1
 
 //左电机后退的FTM模块
 #define LEFT_B_FTM  FTM0
@@ -28,6 +28,16 @@
 
 //电机驱动初始化的占空比，【强烈要求为【0】】
 #define INIT_DUTY (0)
+
+
+//拨码开关【输入】寄存器宏和【移位】位数的宏
+#define SW8_DATA_IN  GPIOC_PDIR
+#define SW8_MBITS    8
+
+//按键相关的宏
+#define KEY1_IN       PTE1_IN
+#define KEY2_IN       PTE3_IN
+#define KEY3_IN       PTE5_IN
 
 /*****************编码器配置*********************/
 #define     TRANSFER        0.000383         //传送比,(pi*r齿*R轮)/(100*R齿),(3.14 * 40 * 0.032)/(100 * 105),轮胎半径0.032cm
@@ -106,6 +116,14 @@ void left_run(uint32_t speed,direction direct);
 void right_run_s(int32_t speed);
 
 void left_run_s(int32_t speed);
+
+uint8_t sw8_data_get(void);
+
+void wait_key1(void);
+
+void wait_key2(void);
+
+void wait_key3(void);
 
 
 void sent_to_computer(uint16_t data1 , uint16_t data2 , uint16_t  data3);

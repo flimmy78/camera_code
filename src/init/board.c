@@ -17,6 +17,87 @@ direction dir_flag;
 const int right_dead = 10;  //电机死区
 const int left_dead  = 10;
 
+/*******************************************
+ *
+ * 按键、拨码开关相关函数
+ *
+********************************************/
+
+//拨码开关8位数据获取
+uint8_t sw8_data_get(void)
+{
+  uint32_t data;
+  data = SW8_DATA_IN;
+  //宏选择拨码开关拨上on是1还是0
+  //拨码开关拨上是1
+#define ON_MEAN_ONE
+#ifdef ON_MEAN_ONE
+  return((uint8_t)(((~data)&0x0000ff00)>>SW8_MBITS));
+#endif
+  
+  //拨码开关拨上是0
+#ifdef ON_MEAN_ZERO
+  return((uint8_t)(((data)&0x0000ff00)>>SW8_MBITS));
+#endif
+  
+  //取消宏定义
+#ifdef ON_MEAN_ONE
+#undef ON_MEAN_ONE
+#endif
+#ifdef ON_MEAN_ZERO
+#undef ON_MEAN_ZERO
+#endif
+  
+
+  
+}
+
+
+ //无限等待按键1按下
+void wait_key1(void)
+{
+  while(KEY1_IN == 1 );
+}
+
+
+//无限等待按键2按下
+void wait_key2(void)
+{
+  while(KEY2_IN == 1 );
+}
+
+//无限等待按键3按下
+void wait_key3(void)
+{
+  while(KEY3_IN == 1 );
+}
+
+
+//按键任务
+void key1_task(void (*task)())
+{
+  if(KEY1_IN == 0)
+  {
+    task();
+  }
+}
+
+void key2_task(void (*task)())
+{
+  if(KEY2_IN == 0)
+  {
+    task();
+  }
+}
+
+void key3_task(void (*task)())
+{
+  if(KEY3_IN == 0)
+  {
+    task();
+  }
+}
+
 
 /*******************************************
  *
