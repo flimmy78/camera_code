@@ -8,16 +8,16 @@
 
 /************电机配置**************/
 //右电机前进的FTM模块
-#define RIGHT_A_FTM FTM1
+#define RIGHT_A_FTM FTM0
 #define RIGHT_A_CH  CH0
 
 //右电机后退的FTM模块
-#define RIGHT_B_FTM FTM1
-#define RIGHT_B_CH  CH1
+#define RIGHT_B_FTM FTM0
+#define RIGHT_B_CH  CH2
 
 //左电机前进的FTM模块
 #define LEFT_A_FTM FTM0
-#define LEFT_A_CH  CH4
+#define LEFT_A_CH  CH1
 
 //左电机后退的FTM模块
 #define LEFT_B_FTM  FTM0
@@ -29,22 +29,27 @@
 //电机驱动初始化的占空比，【强烈要求为【0】】
 #define INIT_DUTY (0)
 
+
+//拨码开关【输入】寄存器宏和【移位】位数的宏
+#define SW8_DATA_IN  GPIOC_PDIR
+#define SW8_MBITS    8
+
+//按键相关的宏
+#define KEY1_IN       PTE1_IN
+#define KEY2_IN       PTE3_IN
+#define KEY3_IN       PTE5_IN
+
 /*****************编码器配置*********************/
-#define     TRANSFER        0.000383         //传送比,(pi*r齿*R轮)/(100*R齿),(3.14 * 40 * 0.032)/(100 * 105),轮胎半径0.032cm
+#define     TRANSFER        0.000383    //传送比,由脉冲数对应速度，单位是m，(pi*r齿*R轮)/(100*R齿),(3.14 * 40 * 0.032)/(100 * 105),轮胎半径0.032m
 #define     SPEED_PER       200.0       //编码器每转脉冲数。
-#define     SPEED_PIT       PIT0        //编码器采样使用的定时器
-#define     SPEED_SAMPLING_TIME     20  //采样时间  200ms
+#define     SPEED_SAMPLING_TIME     20  //采样时间  20ms
 
 //*****算的是轮子的线速度，单位m/s
-#define     SPEED_LA_GET    (DMA_count_get(DMA_CH4)*TRANSFER)/(SPEED_SAMPLING_TIME*0.001)     //左轮前进
-#define     SPEED_LB_GET    (DMA_count_get(DMA_CH5)*TRANSFER)/(SPEED_SAMPLING_TIME*0.001)     //左轮后退
-#define     SPEED_RA_GET    (DMA_count_get(DMA_CH1)*TRANSFER)/(SPEED_SAMPLING_TIME*0.001)
-#define     SPEED_RB_GET    (DMA_count_get(DMA_CH2)*TRANSFER)/(SPEED_SAMPLING_TIME*0.001)
+#define     SPEED_L_GET    ((s16)FTM2_CNT*TRANSFER)/(SPEED_SAMPLING_TIME*0.001)     //左轮前进
+#define     SPEED_R_GET    ((s16)FTM1_CNT*TRANSFER)/(SPEED_SAMPLING_TIME*0.001)
 
-#define     SPEED_LA_CLEAR  DMA_count_reset(DMA_CH4)
-#define     SPEED_LB_CLEAR  DMA_count_reset(DMA_CH5)
-#define     SPEED_RA_CLEAR  DMA_count_reset(DMA_CH1)
-#define     SPEED_RB_CLEAR  DMA_count_reset(DMA_CH2)
+#define     SPEED_L_CLEAR  FTM2_CNT=0
+#define     SPEED_R_CLEAR  FTM1_CNT=0
 
 void    speed_init();
 
@@ -106,6 +111,14 @@ void left_run(uint32_t speed,direction direct);
 void right_run_s(int32_t speed);
 
 void left_run_s(int32_t speed);
+
+uint8_t sw8_data_get(void);
+
+void wait_key1(void);
+
+void wait_key2(void);
+
+void wait_key3(void);
 
 
 void sent_to_computer(uint16_t data1 , uint16_t data2 , uint16_t  data3);

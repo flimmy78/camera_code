@@ -1902,6 +1902,9 @@
       <name>$PROJ_DIR$\..\..\src\init\board.c</name>
     </file>
     <file>
+      <name>$PROJ_DIR$\..\..\src\init\board.h</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\..\..\src\drivers\fire_drivers_cfg.h</name>
     </file>
     <file>

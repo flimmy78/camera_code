@@ -17,6 +17,84 @@ direction dir_flag;
 const int right_dead = 10;  //电机死区
 const int left_dead  = 10;
 
+/*******************************************
+ *
+ * 按键、拨码开关相关函数
+ *
+********************************************/
+
+//拨码开关8位数据获取
+uint8_t sw8_data_get(void)
+{
+  uint32_t data;
+  data = SW8_DATA_IN;
+  //宏选择拨码开关拨上on是1还是0
+  //拨码开关拨上是1
+#define ON_MEAN_ONE
+#ifdef ON_MEAN_ONE
+  return((uint8_t)(((~data)&0x0000ff00)>>SW8_MBITS));
+#endif
+  
+  //拨码开关拨上是0
+#ifdef ON_MEAN_ZERO
+  return((uint8_t)(((data)&0x0000ff00)>>SW8_MBITS));
+#endif
+  
+  //取消宏定义
+#ifdef ON_MEAN_ONE
+#undef ON_MEAN_ONE
+#endif
+#ifdef ON_MEAN_ZERO
+#undef ON_MEAN_ZERO
+#endif
+}
+
+
+ //无限等待按键1按下
+void wait_key1(void)
+{
+  while(KEY1_IN == 1 );
+}
+
+
+//无限等待按键2按下
+void wait_key2(void)
+{
+  while(KEY2_IN == 1 );
+}
+
+//无限等待按键3按下
+void wait_key3(void)
+{
+  while(KEY3_IN == 1 );
+}
+
+
+//按键任务
+void key1_task(void (*task)())
+{
+  if(KEY1_IN == 0)
+  {
+    task();
+  }
+}
+
+void key2_task(void (*task)())
+{
+  if(KEY2_IN == 0)
+  {
+    task();
+  }
+}
+
+void key3_task(void (*task)())
+{
+  if(KEY3_IN == 0)
+  {
+    task();
+  }
+}
+
 
 /*******************************************
  *
@@ -28,7 +106,7 @@ const int left_dead  = 10;
 float gyro_data_get(void)
 {
   
-  return(-((GYRO_ZERO - ad_once(ADC1,AD9,ADC_16bit)) / GYRO_SCALE));
+  return(-((GYRO_ZERO - ad_once(ADC0,SE16,ADC_16bit)) / GYRO_SCALE));
   
 }
 
@@ -37,7 +115,7 @@ float gyro_data_get(void)
 float acc_data_get(void)
 {
   
-   return(180*(ACC_ZERO-ad_once(ADC0,AD8,ADC_16bit))/(3.1416*ACC_GRA));
+   return(180*(ACC_ZERO-ad_once(ADC1,SE16,ADC_16bit))/(3.1416*ACC_GRA));
   
 }
 
@@ -45,9 +123,9 @@ float acc_data_get(void)
 void angle_get_init()
 {
 
-  adc_init(ADC0,AD8); 	//加速度计的AD通道初始化
+  adc_init(ADC1,SE16); 	//加速度计的AD通道初始化
 
-  adc_init(ADC1,AD9);  //陀螺仪AD通道初始化
+  adc_init(ADC0,SE16);  //陀螺仪AD通道初始化
 }
 
 
@@ -145,13 +223,10 @@ void left_run_s(int32_t speed)   //speed的符号体现方向
 *************************************/
 void speed_init()
 {
-//    DMA_count_Init(DMA_CH4, PTA24, 10000, DMA_falling_up);
-//    DMA_count_Init(DMA_CH5, PTA26, 10000, DMA_falling_up);
-      DMA_count_Init(DMA_CH1, PTA28, 10000, DMA_falling_up);
-//    DMA_count_Init(DMA_CH2, PTA29, 10000, DMA_falling_up);
+    FTM1_QUAD_init();
+    FTM2_QUAD_init();
     
-    pit_init_ms(SPEED_PIT,SPEED_SAMPLING_TIME);
-    pit_init_ms(PIT1,5);
+    pit_init_ms(PIT0,SPEED_SAMPLING_TIME);
 }
 
 

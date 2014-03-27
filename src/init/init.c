@@ -10,6 +10,30 @@
 **********************/
 static void used_pin_config()
 {
+  //按键配置
+  gpio_init(KEY1_PORT,KEY1_PIN,GPI,1);
+  gpio_init(KEY2_PORT,KEY2_PIN,GPI,1);
+  gpio_init(KEY3_PORT,KEY3_PIN,GPI,1);
+  
+  //拨码开关配置
+  gpio_init(SW8_PORT,SW8_PIN1,GPI,1);
+  gpio_init(SW8_PORT,SW8_PIN1,GPI,1);
+  gpio_init(SW8_PORT,SW8_PIN1,GPI,1);
+  gpio_init(SW8_PORT,SW8_PIN1,GPI,1);
+  gpio_init(SW8_PORT,SW8_PIN1,GPI,1);
+  gpio_init(SW8_PORT,SW8_PIN1,GPI,1);
+  gpio_init(SW8_PORT,SW8_PIN1,GPI,1);
+  gpio_init(SW8_PORT,SW8_PIN1,GPI,1);
+  
+  //AD输入引脚配置
+  gpio_init(AD_PORT,AD_PIN1,GPI,1);
+  gpio_init(AD_PORT,AD_PIN2,GPI,1);
+  gpio_init(AD_PORT,AD_PIN3,GPI,1);
+  gpio_init(AD_PORT,AD_PIN4,GPI,1);
+  gpio_init(AD_PORT,AD_PIN5,GPI,1);
+  gpio_init(AD_PORT,AD_PIN6,GPI,1);
+  gpio_init(AD_PORT,AD_PIN7,GPI,1);
+  gpio_init(AD_PORT,AD_PIN8,GPI,1);
   asm ("nop");
 }
 
@@ -35,8 +59,8 @@ void board_init()
   printf("light is inited\n");
   
   //5110LCD初始化
-  LCD_init();
-  printf("LCD is inited\n");
+//  LCD_init();
+//  printf("LCD is inited\n");
   
   //陀螺仪和加速度计初始化
   angle_get_init();
