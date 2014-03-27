@@ -45,13 +45,10 @@
 #define     SPEED_SAMPLING_TIME     20  //采样时间  20ms
 
 //*****算的是轮子的线速度，单位m/s
-#define     SPEED_L_GET    ((s16)FTM2_CNT*TRANSFER)/(SPEED_SAMPLING_TIME*0.001)     //左轮前进
-#define     SPEED_R_GET    ((s16)FTM1_CNT*TRANSFER)/(SPEED_SAMPLING_TIME*0.001)
-
-#define     SPEED_L_CLEAR  FTM2_CNT=0
-#define     SPEED_R_CLEAR  FTM1_CNT=0
 
 void    speed_init();
+float   left_speed();
+float   right_speed();
 
 /********加速度计标准值配置*******/
 //加速度计 		  800mV/g ,对应为AD值 15887/g , 1605 * m/s^2

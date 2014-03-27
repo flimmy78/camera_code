@@ -229,7 +229,23 @@ void speed_init()
     pit_init_ms(PIT0,SPEED_SAMPLING_TIME);
 }
 
+float left_speed()
+{
+    s16 temp;
+    temp = FTM2_CNT;
+    FTM2_CNT=0;
+    
+    return((temp*TRANSFER)/(SPEED_SAMPLING_TIME*0.001));
+}
 
+float right_speed()
+{
+    s16 temp;
+    temp = FTM1_CNT;
+    FTM1_CNT = 0;
+    
+    return((temp*TRANSFER)/(SPEED_SAMPLING_TIME*0.001));
+}
 /*
  *************************************************************************************************************
 *
