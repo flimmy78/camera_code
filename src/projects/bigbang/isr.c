@@ -43,7 +43,7 @@ void PORTD_IRQHandler()
         
         if(rowCnt < ROW)
         {
-            DMA_PORTx2BUFF_Init (DMA_CH4, (void *)&PTD_BYTE0_IN, ImageBuf[rowCnt-99], PTE7, DMA_BYTE1, COL, DMA_rising);
+            DMA_PORTx2BUFF_Init (DMA_CH4, (void *)&PTB_BYTE0_IN, ImageBuf[rowCnt-99], PTE7, DMA_BYTE1, COL, DMA_rising);
             //----使能DMA，初始化的时候禁止DMA
             DMA_EN(DMA_CH4); 
         //-------------DAM初始化通道4，数据源为PTD，每次存在数组ImageBuf[]指针中，PCLK接PTE7触发，每次传输1个字节，每次触发传输320次，上升沿触发

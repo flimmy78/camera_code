@@ -47,9 +47,6 @@ uint8_t sw8_data_get(void)
 #ifdef ON_MEAN_ZERO
 #undef ON_MEAN_ZERO
 #endif
-  
-
-  
 }
 
 
@@ -109,7 +106,7 @@ void key3_task(void (*task)())
 float gyro_data_get(void)
 {
   
-  return(-((GYRO_ZERO - ad_once(ADC1,AD9,ADC_16bit)) / GYRO_SCALE));
+  return(-((GYRO_ZERO - ad_once(ADC0,SE16,ADC_16bit)) / GYRO_SCALE));
   
 }
 
@@ -118,7 +115,7 @@ float gyro_data_get(void)
 float acc_data_get(void)
 {
   
-   return(180*(ACC_ZERO-ad_once(ADC0,AD8,ADC_16bit))/(3.1416*ACC_GRA));
+   return(180*(ACC_ZERO-ad_once(ADC1,SE16,ADC_16bit))/(3.1416*ACC_GRA));
   
 }
 
@@ -126,9 +123,9 @@ float acc_data_get(void)
 void angle_get_init()
 {
 
-  adc_init(ADC0,AD8); 	//加速度计的AD通道初始化
+  adc_init(ADC1,SE16); 	//加速度计的AD通道初始化
 
-  adc_init(ADC1,AD9);  //陀螺仪AD通道初始化
+  adc_init(ADC0,SE16);  //陀螺仪AD通道初始化
 }
 
 
@@ -226,16 +223,29 @@ void left_run_s(int32_t speed)   //speed的符号体现方向
 *************************************/
 void speed_init()
 {
-//    DMA_count_Init(DMA_CH4, PTA24, 10000, DMA_falling_up);
-//    DMA_count_Init(DMA_CH5, PTA26, 10000, DMA_falling_up);
-      DMA_count_Init(DMA_CH1, PTA28, 10000, DMA_falling_up);
-//    DMA_count_Init(DMA_CH2, PTA29, 10000, DMA_falling_up);
+    FTM1_QUAD_init();
+    FTM2_QUAD_init();
     
-    pit_init_ms(SPEED_PIT,SPEED_SAMPLING_TIME);
-    pit_init_ms(PIT1,5);
+    pit_init_ms(PIT0,SPEED_SAMPLING_TIME);
 }
 
+float left_speed()
+{
+    s16 temp;
+    temp = FTM2_CNT;
+    FTM2_CNT=0;
+    
+    return((temp*TRANSFER)/(SPEED_SAMPLING_TIME*0.001));
+}
 
+float right_speed()
+{
+    s16 temp;
+    temp = FTM1_CNT;
+    FTM1_CNT = 0;
+    
+    return((temp*TRANSFER)/(SPEED_SAMPLING_TIME*0.001));
+}
 /*
  *************************************************************************************************************
 *

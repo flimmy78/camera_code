@@ -45,7 +45,7 @@
 #define FTM0_CH0    PTC1        //PTC1、PTA3            PTA3不要用（与Jtag、SWD冲突）
 #define FTM0_CH1    PTC2        //PTC2、PTA4
 #define FTM0_CH2    PTC3        //PTC3、PTA5
-#define FTM0_CH3    PTA6        //PTC4、PTA6
+#define FTM0_CH3    PTC4        //PTC4、PTA6
 #define FTM0_CH4    PTA7        //PTD4、PTA7
 #define FTM0_CH5    PTD5        //PTD5、PTA0            PTA0不要用（与Jtag、SWD冲突）
 #define FTM0_CH6    PTD6        //PTD6、PTA1            PTA1不要用（与Jtag冲突）

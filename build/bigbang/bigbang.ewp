@@ -1912,6 +1912,9 @@
       <name>$PROJ_DIR$\..\..\src\init\board.c</name>
     </file>
     <file>
+      <name>$PROJ_DIR$\..\..\src\init\board.h</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\..\..\src\drivers\fire_drivers_cfg.h</name>
     </file>
     <file>
@@ -2043,6 +2046,15 @@
     <file>
       <name>$PROJ_DIR$\..\..\src\projects\bigbang\include.h</name>
     </file>
+  </group>
+  <group>
+    <name>lib</name>
+    <group>
+      <name>CMSIS</name>
+      <file>
+        <name>$PROJ_DIR$\..\..\src\LIB\CMSIS\iar_cortexM4l_math.a</name>
+      </file>
+    </group>
   </group>
 </project>
 
