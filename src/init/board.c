@@ -287,11 +287,11 @@ void sent_to_computer(uint16_t data1 , uint16_t data2 , uint16_t  data3)
 void blance_comp_filter(float tg,float dt,cars_status car)
 {
   
-  float angle_m,gyro_m;
-  angle_m = acc_data_get();
-  gyro_m  = gyro_data_get();
-  comp_filter(angle_m,gyro_m,tg, dt,car);
-  car->blance_duty = (car->angle - car->angle_set)*car->angle_p + (gyro_m - car->gyro_set)*car->gyro_d ;
+  car->angle_m = acc_data_get();
+  car->gyro_m  = gyro_data_get();
+  comp_filter(tg, dt,car);
+  car->blance_duty = (car->angle - car->angle_set)*car->angle_p + (car->gyro_m - car->gyro_set)*car->gyro_d ;
+  printf("%f\t%f\n",car->angle_m,car->angle);
    motor_set(car);
 }
 

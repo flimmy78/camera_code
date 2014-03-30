@@ -41,7 +41,7 @@ typedef struct cars_status
 
 extern float  angle_dot; 
 void Kalman_Filter(float angle_m,float gyro_m,float dt,cars_status car);
-void comp_filter(float angle_m,float gyro_m,float tg,float dt,cars_status car);
+void comp_filter(float tg,float dt,cars_status car);
 /******************************************
  *
  *定于车体状态结构体carstatus
