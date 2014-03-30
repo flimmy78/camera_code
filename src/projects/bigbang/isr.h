@@ -40,8 +40,8 @@
 #undef     VECTOR_020
 #define	VECTOR_020	       DMA_CH4_Handler
 
-#undef     VECTOR_084
-#define    VECTOR_084          PIT_CH0_Handler
+//#undef     VECTOR_084
+//#define    VECTOR_084          PIT_CH0_Handler
 
 #undef     VECTOR_085             
 #define    VECTOR_085          PIT_CH1_Handler
