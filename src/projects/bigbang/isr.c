@@ -106,18 +106,19 @@ void PIT_CH0_Handler()
 {
     PIT_Flag_Clear(PIT0);
     //car->speed_left_m  = (((car->left_duty) >0) ? 1 :-1)*((float)SPEED_LA_GET);
-   (car->speed_left_m) =(car->speed_right_m) = ((car->right_duty)>0 ? 1 :-1)*(float)SPEED_RA_GET; 
+   //(car->speed_left_m) =(car->speed_right_m) = ((car->right_duty)>0 ? 1 :-1)*(float)SPEED_RA_GET; 
    //printf("speed_left_m:%f \n", car->speed_right_m);
-    DMA_count_reset(DMA_CH1);
+    //DMA_count_reset(DMA_CH1);
    // DMA_count_reset(DMA_CH4);
-    speed_control(car);
+    //speed_control(car);
     //printf("%f\t%f\n",car->left_duty,car->speed_duty);
+   // printf("%4d,%4d\n",ad_once(ADC0,SE16,ADC_16bit),ad_once(ADC1,SE16,ADC_16bit));
 }
 
 void PIT_CH1_Handler(void)
 {
-  PIT_Flag_Clear(PIT1);
- blance_comp_filter(3.5,0.005,car);
+    PIT_Flag_Clear(PIT1);
+    blance_comp_filter(3.5,0.005,car);
   
 }
 
