@@ -732,7 +732,7 @@
         </option>
         <option>
           <name>IlinkIcfFile</name>
-          <state>$PROJ_DIR$\..\config files\512KB_Pflash.icf</state>
+          <state>G:\our_smartcar\Blocks\camera_code\build\config files\128KB_Ram.icf</state>
         </option>
         <option>
           <name>IlinkIcfFileSlave</name>

@@ -106,7 +106,7 @@ void PIT_CH0_Handler()
 {
     PIT_Flag_Clear(PIT0);
     //car->speed_left_m  = (((car->left_duty) >0) ? 1 :-1)*((float)SPEED_LA_GET);
-   (car->speed_left_m) =(car->speed_right_m) = ((car->right_duty)>0 ? 1 :-1)*(float)SPEED_RA_GET; 
+//   (car->speed_left_m) =(car->speed_right_m) = ((car->right_duty)>0 ? 1 :-1)*(float)SPEED_RA_GET; 
    //printf("speed_left_m:%f \n", car->speed_right_m);
     DMA_count_reset(DMA_CH1);
    // DMA_count_reset(DMA_CH4);
