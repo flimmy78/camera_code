@@ -74,12 +74,12 @@ void Kalman_Filter(float angle_m,float gyro_m,float dt,cars_status car)			//gyro
  *  函数输出：函数输出是将滤波得出的角度存入车体状态结构体car的car.angle.
  *
 ********************************************************************************/
-void comp_filter(float angle_m,float gyro_m,float tg,float dt,cars_status car)
+void comp_filter(float tg,float dt,cars_status car)
 {
   
   float angle_err;
-  angle_err     = tg*(angle_m - car->angle);   //计算误差
-  car->angle    += (angle_err + gyro_m)*dt;   //角速度积分得出角度。
+  angle_err     = tg*(car->angle_m - car->angle);   //计算误差
+  car->angle    += (angle_err + car->gyro_m)*dt;   //角速度积分得出角度。
  
   
 }

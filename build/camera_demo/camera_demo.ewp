@@ -12,7 +12,7 @@
       <name>General</name>
       <archiveVersion>3</archiveVersion>
       <data>
-        <version>21</version>
+        <version>22</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>1</debug>
         <option>
@@ -153,25 +153,22 @@
           <name>OGUseCmsisDspLib</name>
           <state>0</state>
         </option>
+        <option>
+          <name>GRuntimeLibThreads</name>
+          <state>0</state>
+        </option>
       </data>
     </settings>
     <settings>
       <name>ICCARM</name>
       <archiveVersion>2</archiveVersion>
       <data>
-        <version>28</version>
+        <version>29</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>1</debug>
         <option>
-          <name>CCOptimizationNoSizeConstraints</name>
-          <state>0</state>
-        </option>
-        <option>
           <name>CCDefines</name>
-          <state>IAR</state>
-          <state>DEBUG</state>
-          <state>TWR_K60N512</state>
-          <state>ARM_MATH_CM4</state>
+          <state></state>
         </option>
         <option>
           <name>CCPreprocFile</name>
@@ -284,7 +281,7 @@
         </option>
         <option>
           <name>OutputFile</name>
-          <state>$FILE_BNAME$.o</state>
+          <state></state>
         </option>
         <option>
           <name>CCLibConfigHeader</name>
@@ -300,32 +297,7 @@
         </option>
         <option>
           <name>CCIncludePath2</name>
-          <state>$PROJ_DIR$\..\..\src\projects\camera_demo</state>
-          <state>$PROJ_DIR$\..\..\src\common </state>
-          <state>$PROJ_DIR$\..\..\src\cpu </state>
-          <state>$PROJ_DIR$\..\..\src\cpu\headers </state>
-          <state>$PROJ_DIR$\..\..\src\platforms</state>
-          <state>$PROJ_DIR$\..\..\src\drivers</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\adc</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\dac</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\dma</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\AT24C02</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\exti</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\delay</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\FTM</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\gpio</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\i2c</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\LED </state>
-          <state>$PROJ_DIR$\..\..\src\drivers\lptmr</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\mcg </state>
-          <state>$PROJ_DIR$\..\..\src\drivers\PIT</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\pmc</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\rtc</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\uart </state>
-          <state>$PROJ_DIR$\..\..\src\drivers\wdog</state>
-          <state>$PROJ_DIR$\..\..\src\LIB\CMSIS</state>
-          <state>$PROJ_DIR$\..\..\src\LIB\FatFs</state>
-          <state>$PROJ_DIR$\..\..\build</state>
+          <state></state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -345,7 +317,7 @@
         </option>
         <option>
           <name>CCOptLevel</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>CCOptStrategy</name>
@@ -354,7 +326,7 @@
         </option>
         <option>
           <name>CCOptLevelSlave</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>CompilerMisraRules98</name>
@@ -418,13 +390,21 @@
           <name>IccFloatSemantics</name>
           <state>0</state>
         </option>
+        <option>
+          <name>CCOptimizationNoSizeConstraints</name>
+          <state>0</state>
+        </option>
+        <option>
+          <name>CCNoLiteralPool</name>
+          <state>0</state>
+        </option>
       </data>
     </settings>
     <settings>
       <name>AARM</name>
       <archiveVersion>2</archiveVersion>
       <data>
-        <version>8</version>
+        <version>9</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>1</debug>
         <option>
@@ -580,6 +560,10 @@
           <name>AExtraOptionsV2</name>
           <state></state>
         </option>
+        <option>
+          <name>AsmNoLiteralPool</name>
+          <state>0</state>
+        </option>
       </data>
     </settings>
     <settings>
@@ -637,7 +621,7 @@
       <name>ILINK</name>
       <archiveVersion>0</archiveVersion>
       <data>
-        <version>15</version>
+        <version>16</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>1</debug>
         <option>
@@ -917,6 +901,10 @@
           <version>0</version>
           <state>0</state>
         </option>
+        <option>
+          <name>IlinkThreadsSlave</name>
+          <state>1</state>
+        </option>
       </data>
     </settings>
     <settings>
@@ -956,7 +944,7 @@
       <name>General</name>
       <archiveVersion>3</archiveVersion>
       <data>
-        <version>21</version>
+        <version>22</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>0</debug>
         <option>
@@ -1097,19 +1085,19 @@
           <name>OGUseCmsisDspLib</name>
           <state>0</state>
         </option>
+        <option>
+          <name>GRuntimeLibThreads</name>
+          <state>0</state>
+        </option>
       </data>
     </settings>
     <settings>
       <name>ICCARM</name>
       <archiveVersion>2</archiveVersion>
       <data>
-        <version>28</version>
+        <version>29</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>0</debug>
-        <option>
-          <name>CCOptimizationNoSizeConstraints</name>
-          <state>0</state>
-        </option>
         <option>
           <name>CCDefines</name>
           <state>NDEBUG</state>
@@ -1334,13 +1322,21 @@
           <name>IccFloatSemantics</name>
           <state>0</state>
         </option>
+        <option>
+          <name>CCOptimizationNoSizeConstraints</name>
+          <state>0</state>
+        </option>
+        <option>
+          <name>CCNoLiteralPool</name>
+          <state>0</state>
+        </option>
       </data>
     </settings>
     <settings>
       <name>AARM</name>
       <archiveVersion>2</archiveVersion>
       <data>
-        <version>8</version>
+        <version>9</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>0</debug>
         <option>
@@ -1496,6 +1492,10 @@
           <name>AExtraOptionsV2</name>
           <state></state>
         </option>
+        <option>
+          <name>AsmNoLiteralPool</name>
+          <state>0</state>
+        </option>
       </data>
     </settings>
     <settings>
@@ -1553,7 +1553,7 @@
       <name>ILINK</name>
       <archiveVersion>0</archiveVersion>
       <data>
-        <version>15</version>
+        <version>16</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>0</debug>
         <option>
@@ -1832,6 +1832,10 @@
           <name>CrcUnitSize</name>
           <version>0</version>
           <state>0</state>
+        </option>
+        <option>
+          <name>IlinkThreadsSlave</name>
+          <state>1</state>
         </option>
       </data>
     </settings>

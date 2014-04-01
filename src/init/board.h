@@ -53,7 +53,7 @@ float   right_speed();
 /********加速度计标准值配置*******/
 //加速度计 		  800mV/g ,对应为AD值 15887/g , 1605 * m/s^2
 
-#define	ACC_ZERO	26420.0	//0度对应的AD值
+#define	ACC_ZERO	16416.0	//0度对应的AD值
 #define	ACC_90		11200.0	//实际为加速度计-90度的值
 #define	ACC_NEG_90	42650.0	//实际为加速度计90度的值
 
