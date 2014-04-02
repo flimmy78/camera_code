@@ -14,8 +14,8 @@ direction dir_flag;
 
 #define RIGHT_DEAD 10
 #define LEFT_DEAD  10
-const int right_dead = 10;  //电机死区
-const int left_dead  = 10;
+const int right_dead = 50;  //电机死区
+const int left_dead  = 60;
 
 /*******************************************
  *
@@ -291,7 +291,7 @@ void blance_comp_filter(float tg,float dt,cars_status car)
   car->gyro_m  = gyro_data_get();
   comp_filter(tg, dt,car);
   car->blance_duty = (car->angle - car->angle_set)*car->angle_p + (car->gyro_m - car->gyro_set)*car->gyro_d ;
-  printf("%f\t%f\n",car->angle_m,car->angle);
+ // printf("%f\t%f\n",car->angle_m,car->angle);
    motor_set(car);
 }
 
@@ -324,7 +324,7 @@ void motor_set(cars_status car)
   car->left_duty  = (car->blance_duty) - (car->speed_duty) - (car->direction_left_duty);
   car->right_duty = (car->blance_duty) - (car->speed_duty) + (car->direction_right_duty);
  // printf("%f\t%f\n",car->left_duty,car->right_duty);
-  if(((car->left_duty)>990)||((car->left_duty)<-990)||((car->right_duty)>990)||((car->right_duty)<-990))
+  if(((car->left_duty)>950)||((car->left_duty)<-950)||((car->right_duty)>940)||((car->right_duty)<-940))
     {
       (car->left_duty) = (car->right_duty) = 0;
     }

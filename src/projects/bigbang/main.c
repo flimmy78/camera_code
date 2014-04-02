@@ -76,42 +76,43 @@ void main()
   char str;
   int i;
   float data;
-                int duty_r=100,duty_l=100;
-                while(1)
-                {
-                  printf("duty %d,%d r+ l+ 1r- 2l-\n",duty_r,duty_l);
-                 str = uart_getchar(UART0);
-                  switch(str)
-                  {
-                  case 'r':
-                    {
-                      duty_r+=10;
-                    }break;
-                  case 'l':
-                  {
-                    duty_l+=10;
-                  }break;
-                  case '1':
-                    {
-                      duty_r-=10;
-                    }break;
-                  case '2':
-                  {
-                    duty_l-=10;
-                  }break;
-                  case 's':
-                  {
-                    duty_r = duty_l  = 0;
-                  }break;
-                  default:
-                  {
-                    duty_r = duty_l  = 0;
-                  }break;
-                  }
-                  
-                    left_run_s(duty_r);
-                    right_run_s(duty_l);
-                }
+
+//                int duty_r=100,duty_l=100;
+//                while(1)
+//                {
+//                  printf("duty %d,%d r+ l+ 1r- 2l-\n",duty_r,duty_l);
+//                 str = uart_getchar(UART0);
+//                  switch(str)
+//                  {
+//                  case 'r':
+//                    {
+//                      duty_r+=10;
+//                    }break;
+//                  case 'l':
+//                  {
+//                    duty_l+=10;
+//                  }break;
+//                  case '1':
+//                    {
+//                      duty_r-=10;
+//                    }break;
+//                  case '2':
+//                  {
+//                    duty_l-=10;
+//                  }break;
+//                  case 's':
+//                  {
+//                    duty_r = duty_l  = 0;
+//                  }break;
+//                  default:
+//                  {
+//                    duty_r = duty_l  = 0;
+//                  }break;
+//                  }
+//                  
+//                    left_run_s(duty_r);
+//                    right_run_s(duty_l);
+//                }
   //EnableInterrupts;
   //发送调试数据，数据为5为，‘12345’对应123.45.
   printf("\n\n");

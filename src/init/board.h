@@ -9,19 +9,19 @@
 /************电机配置**************/
 //右电机前进的FTM模块
 #define RIGHT_A_FTM FTM0
-#define RIGHT_A_CH  CH0
+#define RIGHT_A_CH  CH2
 
 //右电机后退的FTM模块
 #define RIGHT_B_FTM FTM0
-#define RIGHT_B_CH  CH2
+#define RIGHT_B_CH  CH0
 
 //左电机前进的FTM模块
 #define LEFT_A_FTM FTM0
-#define LEFT_A_CH  CH1
+#define LEFT_A_CH  CH3
 
 //左电机后退的FTM模块
 #define LEFT_B_FTM  FTM0
-#define LEFT_B_CH   CH3
+#define LEFT_B_CH   CH1
 
 //电机驱动频率
 #define MOTOR_FRE 15000
@@ -53,14 +53,14 @@ float   right_speed();
 /********加速度计标准值配置*******/
 //加速度计 		  800mV/g ,对应为AD值 15887/g , 1605 * m/s^2
 
-#define	ACC_ZERO	16416.0	//0度对应的AD值
+#define	ACC_ZERO	24707.0	//0度对应的AD值
 #define	ACC_90		11200.0	//实际为加速度计-90度的值
 #define	ACC_NEG_90	42650.0	//实际为加速度计90度的值
 
 #define	ACC_GRA		15887.0   
 
 /********陀螺仪标准值配置********/
-#define	GYRO_ZERO	27583.0	//陀螺仪零值
+#define	GYRO_ZERO	17197.0	//陀螺仪零值
 #define	GYRO_SCALE	119.7    // 13.3*9/deg./sec
 /*******************<<*********************/
 
