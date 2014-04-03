@@ -119,8 +119,6 @@ void PIT_CH1_Handler(void)
 {
     PIT_Flag_Clear(PIT1);
    blance_comp_filter(3.5,0.005,car);
-   printf("%f\n",car->gyro_m);
-  
 }
 
 char str[10];

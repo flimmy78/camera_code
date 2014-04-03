@@ -106,7 +106,7 @@ void key3_task(void (*task)())
 float gyro_data_get(void)
 {
   
-  return(-((GYRO_ZERO - ad_once(ADC0,SE16,ADC_16bit)) / GYRO_SCALE));
+  return(((GYRO_ZERO - ad_once(ADC0,SE16,ADC_16bit)) / GYRO_SCALE));
   
 }
 
@@ -115,7 +115,7 @@ float gyro_data_get(void)
 float acc_data_get(void)
 {
   
-   return(180*(ACC_ZERO-ad_once(ADC1,SE16,ADC_16bit))/(3.1416*ACC_GRA));
+   return(-180*(ACC_ZERO-ad_once(ADC1,SE16,ADC_16bit))/(3.1416*ACC_GRA));
   
 }
 
@@ -324,12 +324,18 @@ void motor_set(cars_status car)
   car->left_duty  = (car->blance_duty) - (car->speed_duty) - (car->direction_left_duty);
   car->right_duty = (car->blance_duty) - (car->speed_duty) + (car->direction_right_duty);
  // printf("%f\t%f\n",car->left_duty,car->right_duty);
-  if(((car->left_duty)>950)||((car->left_duty)<-950)||((car->right_duty)>940)||((car->right_duty)<-940))
-    {
-      (car->left_duty) = (car->right_duty) = 0;
-    }
+  if( (car->left_duty>0) && (car->left_duty + left_dead >=1000))
+        car->left_duty = 1000 -left_dead ;
+  if( (car->left_duty<0) && (car->left_duty - left_dead< -1000))
+        car->left_duty = -1000 + left_dead;
+  if( (car->right_duty>0) && (car->right_duty + right_dead >=1000))
+        car->right_duty = 1000 - right_dead;
+  if( (car->right_duty<0) && (car->right_duty - right_dead<= -1000))
+        car->right_duty = -1000 + right_dead;
+  
   left_run_s((int32_t)(car->left_duty));
   right_run_s((int32_t)(car->right_duty));
+  
 }
 
 
