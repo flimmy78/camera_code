@@ -226,8 +226,8 @@ void speed_init()
     FTM1_QUAD_init();
     FTM2_QUAD_init();
     
-    pit_init_ms(PIT0,SPEED_SAMPLING_TIME);
-    pit_init_ms(PIT1,5);
+//    pit_init_ms(PIT0,SPEED_SAMPLING_TIME);
+//    pit_init_ms(PIT1,5);
 }
 
 float left_speed()
@@ -246,6 +246,22 @@ float right_speed()
     FTM1_CNT = 0;
     
     return((temp*TRANSFER)/(SPEED_SAMPLING_TIME*0.001));
+}
+
+s16 pulse_cnt_left(void)
+{
+  s16 cnt;
+  cnt = FTM1_CNT;
+  FTM1_CNT = 0;
+  return cnt;
+}
+
+s16 pulse_cnt_right(void)
+{
+  s16 cnt;
+  cnt = FTM2_CNT;
+  FTM2_CNT = 0;
+  return cnt;
 }
 /*
  *************************************************************************************************************

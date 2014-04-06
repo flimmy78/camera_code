@@ -168,7 +168,10 @@
         <debug>1</debug>
         <option>
           <name>CCDefines</name>
-          <state></state>
+          <state>IAR</state>
+          <state>DEBUG</state>
+          <state>TWR_K60N512</state>
+          <state>ARM_MATH_CM4</state>
         </option>
         <option>
           <name>CCPreprocFile</name>
@@ -297,7 +300,34 @@
         </option>
         <option>
           <name>CCIncludePath2</name>
-          <state></state>
+          <state>$PROJ_DIR$\..\..\src\projects\bigbang</state>
+          <state>$PROJ_DIR$\..\..\src\common </state>
+          <state>$PROJ_DIR$\..\..\src\cpu </state>
+          <state>$PROJ_DIR$\..\..\src\cpu\headers </state>
+          <state>$PROJ_DIR$\..\..\src\platforms</state>
+          <state>$PROJ_DIR$\..\..\src\drivers</state>
+          <state>$PROJ_DIR$\..\..\src\drivers\adc</state>
+          <state>$PROJ_DIR$\..\..\src\drivers\dac</state>
+          <state>$PROJ_DIR$\..\..\src\drivers\dma</state>
+          <state>$PROJ_DIR$\..\..\src\drivers\AT24C02</state>
+          <state>$PROJ_DIR$\..\..\src\drivers\exti</state>
+          <state>$PROJ_DIR$\..\..\src\drivers\delay</state>
+          <state>$PROJ_DIR$\..\..\src\drivers\FTM</state>
+          <state>$PROJ_DIR$\..\..\src\drivers\gpio</state>
+          <state>$PROJ_DIR$\..\..\src\drivers\i2c</state>
+          <state>$PROJ_DIR$\..\..\src\drivers\LED </state>
+          <state>$PROJ_DIR$\..\..\src\drivers\lptmr</state>
+          <state>$PROJ_DIR$\..\..\src\drivers\mcg </state>
+          <state>$PROJ_DIR$\..\..\src\drivers\PIT</state>
+          <state>$PROJ_DIR$\..\..\src\drivers\pmc</state>
+          <state>$PROJ_DIR$\..\..\src\drivers\rtc</state>
+          <state>$PROJ_DIR$\..\..\src\drivers\uart </state>
+          <state>$PROJ_DIR$\..\..\src\drivers\wdog</state>
+          <state>$PROJ_DIR$\..\..\src\drivers\nokia_5110</state>
+          <state>$PROJ_DIR$\..\..\src\LIB\CMSIS</state>
+          <state>$PROJ_DIR$\..\..\src\LIB\FatFs</state>
+          <state>$PROJ_DIR$\..\..\build</state>
+          <state>$PROJ_DIR$\..\..\src\init</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
