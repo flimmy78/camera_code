@@ -45,8 +45,7 @@ cars_status car= &car_s;   //
 
 void main()
 { 
-  
-  
+ 
   //车体系统设置
   DisableInterrupts;
   board_init();
@@ -69,7 +68,6 @@ void main()
   car->speed_d   = 0.0;        
   car->speed_set = 0;      
   car->speed_duty= 0;
-  
   
   
   car->direction_left_duty  = 0;

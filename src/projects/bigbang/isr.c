@@ -117,7 +117,9 @@ void PIT_CH0_Handler()
 
 void PIT_CH1_Handler(void)
 {
+   
     PIT_Flag_Clear(PIT1);
+    
    blance_comp_filter(3.5,0.005,car);
 }
 
