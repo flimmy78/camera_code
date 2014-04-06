@@ -14,8 +14,8 @@ direction dir_flag;
 
 #define RIGHT_DEAD 10
 #define LEFT_DEAD  10
-const int right_dead = 10;  //电机死区
-const int left_dead  = 10;
+const int right_dead = 50;  //电机死区
+const int left_dead  = 60;
 
 /*******************************************
  *
@@ -106,7 +106,7 @@ void key3_task(void (*task)())
 float gyro_data_get(void)
 {
   
-  return(-((GYRO_ZERO - ad_once(ADC0,SE16,ADC_16bit)) / GYRO_SCALE));
+  return(((GYRO_ZERO - ad_once(ADC0,SE16,ADC_16bit)) / GYRO_SCALE));
   
 }
 
@@ -115,7 +115,7 @@ float gyro_data_get(void)
 float acc_data_get(void)
 {
   
-   return(180*(ACC_ZERO-ad_once(ADC1,SE16,ADC_16bit))/(3.1416*ACC_GRA));
+   return(-180*(ACC_ZERO-ad_once(ADC1,SE16,ADC_16bit))/(3.1416*ACC_GRA));
   
 }
 
@@ -163,12 +163,12 @@ void right_run_s(int32_t speed)       //speed的符号体现方向
   direction dir;
   if(speed>0)
   {
-    dir = ahead;
+    dir = back;
     speed = speed +right_dead;
   }
   else if(speed <0)
   {
-    dir = back;
+    dir = ahead;
     speed = -speed + right_dead;
   }
   else
@@ -202,12 +202,12 @@ void left_run_s(int32_t speed)   //speed的符号体现方向
   direction dir;
   if(speed > 0)
   {
-    dir = ahead;
+    dir = back;
     speed = speed +left_dead;
   }
   else if(speed <0)
   {
-    dir = back;
+    dir = ahead;
     speed = -speed + left_dead;
   }
   else
@@ -291,7 +291,7 @@ void blance_comp_filter(float tg,float dt,cars_status car)
   car->gyro_m  = gyro_data_get();
   comp_filter(tg, dt,car);
   car->blance_duty = (car->angle - car->angle_set)*car->angle_p + (car->gyro_m - car->gyro_set)*car->gyro_d ;
-  printf("%f\t%f\n",car->angle_m,car->angle);
+ // printf("%f\t%f\n",car->angle_m,car->angle);
    motor_set(car);
 }
 
@@ -324,12 +324,18 @@ void motor_set(cars_status car)
   car->left_duty  = (car->blance_duty) - (car->speed_duty) - (car->direction_left_duty);
   car->right_duty = (car->blance_duty) - (car->speed_duty) + (car->direction_right_duty);
  // printf("%f\t%f\n",car->left_duty,car->right_duty);
-  if(((car->left_duty)>990)||((car->left_duty)<-990)||((car->right_duty)>990)||((car->right_duty)<-990))
-    {
-      (car->left_duty) = (car->right_duty) = 0;
-    }
+  if( (car->left_duty>0) && (car->left_duty + left_dead >=1000))
+        car->left_duty = 1000 -left_dead ;
+  if( (car->left_duty<0) && (car->left_duty - left_dead< -1000))
+        car->left_duty = -1000 + left_dead;
+  if( (car->right_duty>0) && (car->right_duty + right_dead >=1000))
+        car->right_duty = 1000 - right_dead;
+  if( (car->right_duty<0) && (car->right_duty - right_dead<= -1000))
+        car->right_duty = -1000 + right_dead;
+  
   left_run_s((int32_t)(car->left_duty));
   right_run_s((int32_t)(car->right_duty));
+  
 }
 
 
