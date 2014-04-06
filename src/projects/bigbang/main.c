@@ -48,8 +48,17 @@ void main()
  
   //车体系统设置
   DisableInterrupts;
+  FTM_PWM_init(FTM0,CH0,15000,0);
+  FTM_PWM_init(FTM0,CH1,15000,0);
+  FTM_PWM_init(FTM0,CH2,15000,200);
+  FTM_PWM_init(FTM0,CH2,15000,200);
+  
+  while(1);
   board_init();
   uart_init(UART0,115200);
+  right_run_s(-20);
+  left_run_s(-20);
+  while(1);
    
   //车体参数设置。
    
