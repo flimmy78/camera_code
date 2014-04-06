@@ -59,10 +59,8 @@ void main()
     
     
    
-    speed1 = FTM1_CNT;
-    FTM1_CNT = 0;
-    speed2 = FTM2_CNT;
-    FTM2_CNT =0;
+    speed1 = pulse_cnt_right();
+    speed2 = pulse_cnt_left();
     printf("speed back %d %d\n",speed1,speed2);
      delayms(10);
 // //   printf("get command\n");
