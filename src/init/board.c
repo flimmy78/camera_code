@@ -247,6 +247,22 @@ float right_speed()
     
     return((temp*TRANSFER)/(SPEED_SAMPLING_TIME*0.001));
 }
+
+s16 pulse_cnt_left(void)
+{
+  s16 cnt;
+  cnt = FTM1_CNT;
+  FTM1_CNT = 0;
+  return cnt;
+}
+
+s16 pulse_cnt_right(void)
+{
+  s16 cnt;
+  cnt = FTM2_CNT;
+  FTM2_CNT = 0;
+  return cnt;
+}
 /*
  *************************************************************************************************************
 *

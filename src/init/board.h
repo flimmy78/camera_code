@@ -130,4 +130,9 @@ void speed_pid(cars_status car);
 
 void print(cars_status car);
 
+//编码器正交解码脉冲计数值返回并清除 有符号16位
+s16 pulse_cnt_left(void);
+
+s16 pulse_cnt_right(void);
+
 #endif
