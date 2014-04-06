@@ -163,12 +163,12 @@ void right_run_s(int32_t speed)       //speed的符号体现方向
   direction dir;
   if(speed>0)
   {
-    dir = ahead;
+    dir = back;
     speed = speed +right_dead;
   }
   else if(speed <0)
   {
-    dir = back;
+    dir = ahead;
     speed = -speed + right_dead;
   }
   else
@@ -202,12 +202,12 @@ void left_run_s(int32_t speed)   //speed的符号体现方向
   direction dir;
   if(speed > 0)
   {
-    dir = ahead;
+    dir = back;
     speed = speed +left_dead;
   }
   else if(speed <0)
   {
-    dir = back;
+    dir = ahead;
     speed = -speed + left_dead;
   }
   else
