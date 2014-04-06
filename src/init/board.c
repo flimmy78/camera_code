@@ -226,8 +226,8 @@ void speed_init()
     FTM1_QUAD_init();
     FTM2_QUAD_init();
     
-//    pit_init_ms(PIT0,SPEED_SAMPLING_TIME);
-//    pit_init_ms(PIT1,5);
+   //pit_init_ms(PIT0,SPEED_SAMPLING_TIME);
+   pit_init_ms(PIT1,5);
 }
 
 float left_speed()
@@ -308,7 +308,7 @@ void blance_comp_filter(float tg,float dt,cars_status car)
   comp_filter(tg, dt,car);
   car->blance_duty = (car->angle - car->angle_set)*car->angle_p + (car->gyro_m - car->gyro_set)*car->gyro_d ;
  // printf("%f\t%f\n",car->angle_m,car->angle);
-   motor_set(car);
+  
 }
 
 
@@ -321,9 +321,9 @@ void speed_control(cars_status car)
 {
   float speed_err;
   static float speed_integral;
-  speed_err        = car->speed_set - (car->speed_left_m +  car->speed_right_m)/2.0 ;
+  speed_err        = car->speed_set - ((float)(car->speed_left_m) +  (float)(car->speed_right_m))/2.0 ;
   speed_integral  += (car->speed_i)*speed_err;
-  car->speed_duty  =  speed_integral + (car->speed_p)*speed_err;
+  car->speed_duty  = car->speed_duty -  (speed_integral + (car->speed_p)*speed_err)/20;
  // printf("speed_duty:%f\n",car->speed_duty);
   
 }

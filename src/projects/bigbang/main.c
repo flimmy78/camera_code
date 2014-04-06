@@ -45,52 +45,11 @@ cars_status car= &car_s;   //
 
 void main()
 { 
-  char s;
-  int32_t duty =100;
-  s16 speed1,speed2;
+ 
+  
   DisableInterrupts;
   board_init();
-  left_run_s(duty);
-  right_run_s(duty);
   uart_init(UART0,115200);
-  while(1)
-  {
-    
-    
-    
-   
-    speed1 = pulse_cnt_right();
-    speed2 = pulse_cnt_left();
-    printf("speed back %d %d\n",speed1,speed2);
-     delayms(10);
-// //   printf("get command\n");
-//    s = uart_getchar(UART0);
-//    switch(s)
-//    {
-//    case 'a':
-//      {
-//        duty += 10;
-//      }break;
-//    case 'd':
-//      {
-//        duty -= 10;
-//      }break;
-//    case 'k':
-//      {
-//        ;
-//      }break;
-//    case 's':
-//      {
-//        duty = 0;
-//      }break;
-//    case '-':
-//      {
-//        duty = -duty;
-//      }break;
-//    default:
-//      ;
-//    }
-  }
   
   //车体系统设置
   DisableInterrupts;
@@ -104,13 +63,13 @@ void main()
   
   car->angle_p   =  85.5;
   car->gyro_d    =  5;
-  car->angle_set =  -1.0;
+  car->angle_set =  1.0;
   car->gyro_set  =  0.0;
   
   
   car->speed_set = 0.0;
-  car->speed_p   = 0;        
-  car->speed_i   = 0.0;         
+  car->speed_p   = 50.0;        
+  car->speed_i   = 1.0;         
   car->speed_d   = 0.0;        
   car->speed_set = 0;      
   car->speed_duty= 0;
@@ -123,7 +82,7 @@ void main()
   char str;
   int i;
   float data;
-  //EnableInterrupts;
+ //EnableInterrupts;
   //发送调试数据，数据为5为，‘12345’对应123.45.
   printf("\n\n");
   printf("按c进入命令模式\n");
