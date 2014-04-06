@@ -226,8 +226,8 @@ void speed_init()
     FTM1_QUAD_init();
     FTM2_QUAD_init();
     
-    pit_init_ms(PIT0,SPEED_SAMPLING_TIME);
-    pit_init_ms(PIT1,5);
+//    pit_init_ms(PIT0,SPEED_SAMPLING_TIME);
+//    pit_init_ms(PIT1,5);
 }
 
 float left_speed()

@@ -45,7 +45,54 @@ cars_status car= &car_s;   //
 
 void main()
 { 
-  
+  char s;
+  int32_t duty =100;
+  s16 speed1,speed2;
+  DisableInterrupts;
+  board_init();
+  left_run_s(duty);
+  right_run_s(duty);
+  uart_init(UART0,115200);
+  while(1)
+  {
+    
+    
+    
+   
+    speed1 = FTM1_CNT;
+    FTM1_CNT = 0;
+    speed2 = FTM2_CNT;
+    FTM2_CNT =0;
+    printf("speed back %d %d\n",speed1,speed2);
+     delayms(10);
+// //   printf("get command\n");
+//    s = uart_getchar(UART0);
+//    switch(s)
+//    {
+//    case 'a':
+//      {
+//        duty += 10;
+//      }break;
+//    case 'd':
+//      {
+//        duty -= 10;
+//      }break;
+//    case 'k':
+//      {
+//        ;
+//      }break;
+//    case 's':
+//      {
+//        duty = 0;
+//      }break;
+//    case '-':
+//      {
+//        duty = -duty;
+//      }break;
+//    default:
+//      ;
+//    }
+  }
   
   //车体系统设置
   DisableInterrupts;
