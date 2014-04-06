@@ -20,6 +20,9 @@
     <path>$WS_DIR$\build\exti_demo\fire_exti_demo.ewp</path>
   </project>
   <project>
+    <path>$WS_DIR$\fire_kinetis_new\Prj\IAR\fire_Kinetis.ewp</path>
+  </project>
+  <project>
     <path>$WS_DIR$\build\sd_demo\fire_sd_demo.ewp</path>
   </project>
   <batchBuild/>

@@ -45,20 +45,59 @@ cars_status car= &car_s;   //
 
 void main()
 { 
- 
+  char s;
+  int32_t duty =100;
+  s16 speed1,speed2;
+  DisableInterrupts;
+  board_init();
+  left_run_s(duty);
+  right_run_s(duty);
+  uart_init(UART0,115200);
+  while(1)
+  {
+    
+    
+    
+   
+    speed1 = FTM1_CNT;
+    FTM1_CNT = 0;
+    speed2 = FTM2_CNT;
+    FTM2_CNT =0;
+    printf("speed back %d %d\n",speed1,speed2);
+     delayms(10);
+// //   printf("get command\n");
+//    s = uart_getchar(UART0);
+//    switch(s)
+//    {
+//    case 'a':
+//      {
+//        duty += 10;
+//      }break;
+//    case 'd':
+//      {
+//        duty -= 10;
+//      }break;
+//    case 'k':
+//      {
+//        ;
+//      }break;
+//    case 's':
+//      {
+//        duty = 0;
+//      }break;
+//    case '-':
+//      {
+//        duty = -duty;
+//      }break;
+//    default:
+//      ;
+//    }
+  }
+  
   //车体系统设置
   DisableInterrupts;
-  FTM_PWM_init(FTM0,CH0,15000,0);
-  FTM_PWM_init(FTM0,CH1,15000,0);
-  FTM_PWM_init(FTM0,CH2,15000,200);
-  FTM_PWM_init(FTM0,CH2,15000,200);
-  
-  while(1);
   board_init();
   uart_init(UART0,115200);
-  right_run_s(-20);
-  left_run_s(-20);
-  while(1);
    
   //车体参数设置。
    
@@ -77,6 +116,7 @@ void main()
   car->speed_d   = 0.0;        
   car->speed_set = 0;      
   car->speed_duty= 0;
+  
   
   
   car->direction_left_duty  = 0;
