@@ -59,7 +59,7 @@ void main()
   
   car->angle_p   =  85.5;
   car->gyro_d    =  5;
-  car->angle_set =  3.0;
+  car->angle_set =  -1.0;
   car->gyro_set  =  0.0;
   
   
