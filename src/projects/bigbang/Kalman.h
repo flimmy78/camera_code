@@ -28,9 +28,11 @@ typedef struct cars_status
   
   //编码器测量与速度控制
   
-  float speed_left_m;   //左电机编码器速度采集值。
-  float speed_right_m;  //右电机编码器速度采集值
-  float speed_duty;     //速度控制计算出的占空比。
+  float speed_left_m;           //左电机编码器速度采集值。
+  float speed_right_m;          //右电机编码器速度采集值
+  float speed_duty;             //速度控制输出值。
+  float speed_duty_old;         //速度控制计算出的占空比上一次值。
+  float speed_duty_new;         //速度控制占空比输出更新值
   
   //摄像头采集，角度控制
   float direction_left_duty;     //电机转向左轮占空比。

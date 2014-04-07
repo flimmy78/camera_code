@@ -87,7 +87,7 @@
         </option>
         <option>
           <name>OGLastSavedByProductVersion</name>
-          <state>6.60.2.5494</state>
+          <state>7.10.1.6733</state>
         </option>
         <option>
           <name>GeneralEnableMisra</name>
@@ -163,7 +163,7 @@
       <name>ICCARM</name>
       <archiveVersion>2</archiveVersion>
       <data>
-        <version>29</version>
+        <version>30</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>1</debug>
         <option>
@@ -232,7 +232,7 @@
         <option>
           <name>CCAllowList</name>
           <version>1</version>
-          <state>0000000</state>
+          <state>00000000</state>
         </option>
         <option>
           <name>CCDebugInfo</name>
@@ -324,10 +324,10 @@
           <state>$PROJ_DIR$\..\..\src\drivers\uart </state>
           <state>$PROJ_DIR$\..\..\src\drivers\wdog</state>
           <state>$PROJ_DIR$\..\..\src\drivers\nokia_5110</state>
-          <state>$PROJ_DIR$\..\..\src\init</state>
           <state>$PROJ_DIR$\..\..\src\LIB\CMSIS</state>
           <state>$PROJ_DIR$\..\..\src\LIB\FatFs</state>
           <state>$PROJ_DIR$\..\..\build</state>
+          <state>$PROJ_DIR$\..\..\src\init</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -426,6 +426,11 @@
         </option>
         <option>
           <name>CCNoLiteralPool</name>
+          <state>0</state>
+        </option>
+        <option>
+          <name>CCOptStrategySlave</name>
+          <version>0</version>
           <state>0</state>
         </option>
       </data>
@@ -1125,7 +1130,7 @@
       <name>ICCARM</name>
       <archiveVersion>2</archiveVersion>
       <data>
-        <version>29</version>
+        <version>30</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>0</debug>
         <option>
@@ -1191,7 +1196,7 @@
         <option>
           <name>CCAllowList</name>
           <version>1</version>
-          <state>1111111</state>
+          <state>11111110</state>
         </option>
         <option>
           <name>CCDebugInfo</name>
@@ -1358,6 +1363,11 @@
         </option>
         <option>
           <name>CCNoLiteralPool</name>
+          <state>0</state>
+        </option>
+        <option>
+          <name>CCOptStrategySlave</name>
+          <version>0</version>
           <state>0</state>
         </option>
       </data>

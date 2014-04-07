@@ -135,4 +135,8 @@ s16 pulse_cnt_left(void);
 
 s16 pulse_cnt_right(void);
 
+void speed_control_output(cars_status car) ; //电机平滑输出。
+
+float left_speed();
+float right_speed();
 #endif
