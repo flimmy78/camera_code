@@ -230,7 +230,7 @@ void speed_init()
     pit_init_ms(PIT1,5);
 }
 
-float left_speed()
+float left_speed_get()
 {
     s16 temp;
     temp = FTM2_CNT;
@@ -239,7 +239,7 @@ float left_speed()
     return((temp*TRANSFER)/(SPEED_SAMPLING_TIME*0.001));
 }
 
-float right_speed()
+float right_speed_get()
 {
     s16 temp;
     temp = FTM1_CNT;
@@ -273,17 +273,6 @@ void sent_to_computer(uint16_t data1 , uint16_t data2 , uint16_t  data3)
 }
 
 
-
-//float PID_implement(float data_in,pid_struct pid)
-//{
-//  pid->SetDate = data_in;
-//  pid->err =pid->SetData-pid->ActualData;
-//  pid->intergal +=pid->err;
-//  pid->Implement
-//}
-
-
-//extern cars_status car;
 void blance_comp_filter(float tg,float dt,cars_status car)
 {
   
@@ -323,7 +312,7 @@ void motor_set(cars_status car)
 {
   car->left_duty  = (car->blance_duty) - (car->speed_duty) - (car->direction_left_duty);
   car->right_duty = (car->blance_duty) - (car->speed_duty) + (car->direction_right_duty);
- // printf("%f\t%f\n",car->left_duty,car->right_duty);
+
   if(((car->left_duty)>990)||((car->left_duty)<-990)||((car->right_duty)>990)||((car->right_duty)<-990))
     {
       (car->left_duty) = (car->right_duty) = 0;

@@ -47,8 +47,8 @@
 //*****算的是轮子的线速度，单位m/s
 
 void    speed_init();
-float   left_speed();
-float   right_speed();
+float   left_speed_get();
+float   right_speed_get();
 
 /********加速度计标准值配置*******/
 //加速度计 		  800mV/g ,对应为AD值 15887/g , 1605 * m/s^2

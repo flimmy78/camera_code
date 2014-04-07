@@ -38,131 +38,100 @@ u8 ImageBuf[ROW][COL];
 volatile u32 rowCnt = 0 ;
 volatile u8 SampleFlag = 0;
 
-//extern cars_status car;
-
 struct cars_status car_s;
 cars_status car= &car_s;   //
 
+//void main()
+//{ 
+//    //车体系统设置
+//    DisableInterrupts;
+//    board_init();
+//    uart_init(UART0,115200);
+//
+//    //车体参数设置。
+//
+//    car->left_duty = 10;
+//    car->right_duty =10;
+//
+//    car->angle_p   =  85.5;
+//    car->gyro_d    =  5;
+//    car->angle_set =  0.0;
+//    car->gyro_set  =  8.0;
+//
+//
+//    car->speed_set = 0.0;
+//    car->speed_p   = 0;        
+//    car->speed_i   = 0.0;         
+//    car->speed_d   = 0.0;        
+//    car->speed_set = 0;      
+//    car->speed_duty= 0;
+//
+//    car->direction_left_duty  = 0;
+//    car->direction_right_duty = 0;
+//    int num[5];
+//    char str;
+//    int i;
+//    float data;
+//
+//    printf("\n\n");
+//    printf("按c进入命令模式\n");
+//    while(1)
+//    {    
+//    str = uart_getchar(UART0);
+//    if(str == 'c')
+//      {
+//        while(1)
+//        {
+//          printf("命令模式\n");
+//          printf("按s电机停止工作\n");
+//          printf("按r电机开始工作\n");
+//          printf("按p打印参数\n");
+//          str = uart_getchar(UART0);
+//          if(str == 'r')
+//            {
+//              EnableInterrupts;  break;
+//            }
+//          switch(str)
+//          {
+//          case 's': DisableInterrupts;
+//                    left_run_s(0);
+//                    right_run_s(0);  break;
+//          case 'p': print(car);break;
+//          default : printf("输入命令错请重新输入\n");break;
+//          
+//          }
+//          
+//        
+//        }
+//      }
+//    else
+//      {
+//        for(i=0;i<5;i++)
+//        {
+//          num[i] = uart_getchar(UART0) - '0';
+//        }
+//        data = num[0]*100 + num[1] * 10 + num[2]  + num[3] * 0.1 +num[4] *0.01;
+//       switch(str)
+//       {
+//       case 'a': car->angle_set = data ; printf("angle_set:%f\n",car->angle_set);break;
+//       case 'P':
+//       case 'p':  car->speed_p = data;printf("speed_p:%f\n",car->speed_p);break;
+//       case 'i':
+//       case 'I':  car->speed_i = data;printf("speed_i:%f\n",car->speed_i);break;
+//       case 'D':
+//       case 'd':  car->speed_d = data;printf("speed_d:%f\n",car->speed_d);break;
+//       default :break;
+//      } 
+//      }
+//}
+//}
+
 void main()
-{ 
- 
-  
-  //车体系统设置
-  DisableInterrupts;
-  board_init();
-  uart_init(UART0,115200);
-   
-  //车体参数设置。
-   
-  car->left_duty = 10;
-  car->right_duty =10;
-  
-  car->angle_p   =  85.5;
-  car->gyro_d    =  5;
-  car->angle_set =  0.0;
-  car->gyro_set  =  8.0;
-  
-  
-  car->speed_set = 0.0;
-  car->speed_p   = 0;        
-  car->speed_i   = 0.0;         
-  car->speed_d   = 0.0;        
-  car->speed_set = 0;      
-  car->speed_duty= 0;
-  
-  car->direction_left_duty  = 0;
-  car->direction_right_duty = 0;
-  int num[5];
-  char str;
-  int i;
-  float data;
-              //  int duty_r=100,duty_l=100;
-              //  while(1)
-              //  {
-              //    printf("duty %d,%d r+ l+ 1r- 2l-\n",duty_r,duty_l);
-              //   str = uart_getchar(UART0);
-              //    switch(str)
-              //    {
-              //    case 'r':
-              //      {
-              //        duty_r+=10;
-              //      }break;
-              //    case 'l':
-              //    {
-              //      duty_l+=10;
-              //    }break;
-              //    case '1':
-              //      {
-              //        duty_r-=10;
-              //      }break;
-              //    case '2':
-              //    {
-              //      duty_l-=10;
-              //    }break;
-              //    case 's':
-              //    {
-              //      duty_r = duty_l  = 0;
-              //    }break;
-              //    default:
-              //    {
-              //      duty_r = duty_l  = 0;
-              //    }break;
-              //    }
-              //    
-              //      left_run_s(duty_r);
-              //      right_run_s(duty_l);
-              //  }
-  //EnableInterrupts;
-  //发送调试数据，数据为5为，‘12345’对应123.45.
-  printf("\n\n");
-  printf("按c进入命令模式\n");
- while(1)
- {    
-    str = uart_getchar(UART0);
-    if(str == 'c')
-      {
-        while(1)
-        {
-          printf("命令模式\n");
-          printf("按s电机停止工作\n");
-          printf("按r电机开始工作\n");
-          printf("按p打印参数\n");
-          str = uart_getchar(UART0);
-          if(str == 'r')
-            {
-              EnableInterrupts;  break;
-            }
-          switch(str)
-          {
-          case 's': DisableInterrupts;
-                    left_run_s(0);
-                    right_run_s(0);  break;
-          case 'p': print(car);break;
-          default : printf("输入命令错请重新输入\n");break;
-          
-          }
-          
-        
-        }
-      }
-    else
-      {
-        for(i=0;i<5;i++)
-        {
-          num[i] = uart_getchar(UART0) - '0';
-        }
-        data = num[0]*100 + num[1] * 10 + num[2]  + num[3] * 0.1 +num[4] *0.01;
-       switch(str)
-       {
-       case 'a': car->angle_set = data ; printf("angle_set:%f\n",car->angle_set);break;
-       case 'P':
-       case 'p':  car->speed_p = data;printf("speed_p:%f\n",car->speed_p);break;
-       case 'i':
-       case 'I':  car->speed_i = data;printf("speed_i:%f\n",car->speed_i);break;
-       case 'D':
-       case 'd':  car->speed_d = data;printf("speed_d:%f\n",car->speed_d);break;
-       default :break;
-      } 
-      }
-}
+{
+    FTM_PWM_init(FTM0,CH0,15000,100);
+    FTM_PWM_init(FTM0,CH1,15000,100);
+    FTM_PWM_init(FTM0,CH2,15000,100);
+    FTM_PWM_init(FTM0,CH3,15000,100);
+    
+    for(;;);
 }

@@ -105,19 +105,17 @@ u32 a,b,c,d;
 void PIT_CH0_Handler()
 {
     PIT_Flag_Clear(PIT0);
-    //car->speed_left_m  = (((car->left_duty) >0) ? 1 :-1)*((float)SPEED_LA_GET);
-   //(car->speed_left_m) =(car->speed_right_m) = ((car->right_duty)>0 ? 1 :-1)*(float)SPEED_RA_GET; 
-   //printf("speed_left_m:%f \n", car->speed_right_m);
-    //DMA_count_reset(DMA_CH1);
-   // DMA_count_reset(DMA_CH4);
-    //speed_control(car);
-    //printf("%f\t%f\n",car->left_duty,car->speed_duty);
-   // printf("%4d,%4d\n",ad_once(ADC0,SE16,ADC_16bit),ad_once(ADC1,SE16,ADC_16bit));
+    
+    /*******用户函数******/
+    
 }
 
 void PIT_CH1_Handler(void)
 {
     PIT_Flag_Clear(PIT1);
+    
+    /*******用户函数******/
+    
     blance_comp_filter(3.5,0.005,car);
   
 }
@@ -127,46 +125,12 @@ u8 len;
 float num;
 void UART0_IRQHandler(void)
 {
-    u8 i;
     DisableInterrupts;
     
-    uart_pendstr(UART0,str);
-    if(str[0] == '\0')
-    {
-        EnableInterrupts;
-        return;
-    }
-    len = strlen(str);
+    /*******用户函数********/
     
-    if((str[0] == 'p')||(str[0] == 'P'))
-    {
-        for(i=0; i<len-1;i++)
-        {
-            str[i] = str[i+1];
-        }
-        car->speed_p = str2ufloat(str,len-1);
-        printf("you send p = %f\n",car->speed_p);
-        
-        /*****用户函数*********/
-        
-        
-        
-    }
-    else if((str[0] == 'd')||(str[0] == 'D'))
-    {
-        for(i=0; i<len-1;i++)
-        {
-            str[i] = str[i+1];
-        }
-        car->speed_d = str2ufloat(str,len-1);
-        printf("you send d = %f\n",car->speed_d );
-        
-        /*****用户函数*********/
-        
-        
-        
-    }
-
+    
+    
     EnableInterrupts;
 }
 
