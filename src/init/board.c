@@ -14,8 +14,8 @@ direction dir_flag;
 
 #define RIGHT_DEAD 10
 #define LEFT_DEAD  10
-const int right_dead = 10;  //电机死区
-const int left_dead  = 10;
+const int right_dead = 50;  //电机死区
+const int left_dead  = 60;
 
 /*******************************************
  *
@@ -106,7 +106,7 @@ void key3_task(void (*task)())
 float gyro_data_get(void)
 {
   
-  return(-((GYRO_ZERO - ad_once(ADC0,SE16,ADC_16bit)) / GYRO_SCALE));
+  return(((GYRO_ZERO - ad_once(ADC0,SE16,ADC_16bit)) / GYRO_SCALE));
   
 }
 
@@ -115,7 +115,7 @@ float gyro_data_get(void)
 float acc_data_get(void)
 {
   
-   return(180*(ACC_ZERO-ad_once(ADC1,SE16,ADC_16bit))/(3.1416*ACC_GRA));
+   return(-180*(ACC_ZERO-ad_once(ADC1,SE16,ADC_16bit))/(3.1416*ACC_GRA));
   
 }
 
@@ -163,12 +163,12 @@ void right_run_s(int32_t speed)       //speed的符号体现方向
   direction dir;
   if(speed>0)
   {
-    dir = ahead;
+    dir = back;
     speed = speed +right_dead;
   }
   else if(speed <0)
   {
-    dir = back;
+    dir = ahead;
     speed = -speed + right_dead;
   }
   else
@@ -202,12 +202,12 @@ void left_run_s(int32_t speed)   //speed的符号体现方向
   direction dir;
   if(speed > 0)
   {
-    dir = ahead;
+    dir = back;
     speed = speed +left_dead;
   }
   else if(speed <0)
   {
-    dir = back;
+    dir = ahead;
     speed = -speed + left_dead;
   }
   else
@@ -226,11 +226,11 @@ void speed_init()
     FTM1_QUAD_init();
     FTM2_QUAD_init();
     
-    pit_init_ms(PIT0,SPEED_SAMPLING_TIME);
-    pit_init_ms(PIT1,5);
+   //pit_init_ms(PIT0,SPEED_SAMPLING_TIME);
+   pit_init_ms(PIT1,5);
 }
 
-float left_speed_get()
+float left_speed()
 {
     s16 temp;
     temp = FTM2_CNT;
@@ -239,13 +239,29 @@ float left_speed_get()
     return((temp*TRANSFER)/(SPEED_SAMPLING_TIME*0.001));
 }
 
-float right_speed_get()
+float right_speed()
 {
     s16 temp;
     temp = FTM1_CNT;
     FTM1_CNT = 0;
     
     return((temp*TRANSFER)/(SPEED_SAMPLING_TIME*0.001));
+}
+
+s16 pulse_cnt_left(void)
+{
+  s16 cnt;
+  cnt = FTM1_CNT;
+  FTM1_CNT = 0;
+  return cnt;
+}
+
+s16 pulse_cnt_right(void)
+{
+  s16 cnt;
+  cnt = FTM2_CNT;
+  FTM2_CNT = 0;
+  return cnt;
 }
 /*
  *************************************************************************************************************
@@ -273,6 +289,17 @@ void sent_to_computer(uint16_t data1 , uint16_t data2 , uint16_t  data3)
 }
 
 
+
+//float PID_implement(float data_in,pid_struct pid)
+//{
+//  pid->SetDate = data_in;
+//  pid->err =pid->SetData-pid->ActualData;
+//  pid->intergal +=pid->err;
+//  pid->Implement
+//}
+
+
+//extern cars_status car;
 void blance_comp_filter(float tg,float dt,cars_status car)
 {
   
@@ -280,8 +307,8 @@ void blance_comp_filter(float tg,float dt,cars_status car)
   car->gyro_m  = gyro_data_get();
   comp_filter(tg, dt,car);
   car->blance_duty = (car->angle - car->angle_set)*car->angle_p + (car->gyro_m - car->gyro_set)*car->gyro_d ;
-  printf("%f\t%f\n",car->angle_m,car->angle);
-   motor_set(car);
+ // printf("%f\t%f\n",car->angle_m,car->angle);
+  
 }
 
 
@@ -294,9 +321,9 @@ void speed_control(cars_status car)
 {
   float speed_err;
   static float speed_integral;
-  speed_err        = car->speed_set - (car->speed_left_m +  car->speed_right_m)/2.0 ;
+  speed_err        = car->speed_set - ((float)(car->speed_left_m) +  (float)(car->speed_right_m))/2.0 ;
   speed_integral  += (car->speed_i)*speed_err;
-  car->speed_duty  =  speed_integral + (car->speed_p)*speed_err;
+  car->speed_duty  = car->speed_duty -  (speed_integral + (car->speed_p)*speed_err)/20;
  // printf("speed_duty:%f\n",car->speed_duty);
   
 }
@@ -312,13 +339,19 @@ void motor_set(cars_status car)
 {
   car->left_duty  = (car->blance_duty) - (car->speed_duty) - (car->direction_left_duty);
   car->right_duty = (car->blance_duty) - (car->speed_duty) + (car->direction_right_duty);
-
-  if(((car->left_duty)>990)||((car->left_duty)<-990)||((car->right_duty)>990)||((car->right_duty)<-990))
-    {
-      (car->left_duty) = (car->right_duty) = 0;
-    }
+ // printf("%f\t%f\n",car->left_duty,car->right_duty);
+  if( (car->left_duty>0) && (car->left_duty + left_dead >=1000))
+        car->left_duty = 1000 -left_dead ;
+  if( (car->left_duty<0) && (car->left_duty - left_dead< -1000))
+        car->left_duty = -1000 + left_dead;
+  if( (car->right_duty>0) && (car->right_duty + right_dead >=1000))
+        car->right_duty = 1000 - right_dead;
+  if( (car->right_duty<0) && (car->right_duty - right_dead<= -1000))
+        car->right_duty = -1000 + right_dead;
+  
   left_run_s((int32_t)(car->left_duty));
   right_run_s((int32_t)(car->right_duty));
+  
 }
 
 

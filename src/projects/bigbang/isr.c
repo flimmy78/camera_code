@@ -105,19 +105,29 @@ u32 a,b,c,d;
 void PIT_CH0_Handler()
 {
     PIT_Flag_Clear(PIT0);
-    
-    /*******用户函数******/
-    
+    car->speed_left_m=pulse_cnt_left();
+    car->speed_right_m= pulse_cnt_right();
+    speed_control(car);
 }
 
 void PIT_CH1_Handler(void)
 {
-    PIT_Flag_Clear(PIT1);
+   
+    PIT_Flag_Clear(PIT1); 
+    static int count;
+   blance_comp_filter(3.5,0.005,car);
+    motor_set(car);
+    count++;
+    if(count==19)
+    {
+         car->speed_left_m=pulse_cnt_left();
+         car->speed_right_m= pulse_cnt_right();
+         speed_control(car);
+         count=0;
+         printf("%f\t%f\n",car->speed_duty,car->left_duty);
+    }
     
-    /*******用户函数******/
     
-    blance_comp_filter(3.5,0.005,car);
-  
 }
 
 char str[10];
@@ -125,12 +135,46 @@ u8 len;
 float num;
 void UART0_IRQHandler(void)
 {
+    u8 i;
     DisableInterrupts;
     
-    /*******用户函数********/
+    uart_pendstr(UART0,str);
+    if(str[0] == '\0')
+    {
+        EnableInterrupts;
+        return;
+    }
+    len = strlen(str);
     
-    
-    
+    if((str[0] == 'p')||(str[0] == 'P'))
+    {
+        for(i=0; i<len-1;i++)
+        {
+            str[i] = str[i+1];
+        }
+        car->speed_p = str2ufloat(str,len-1);
+        printf("you send p = %f\n",car->speed_p);
+        
+        /*****用户函数*********/
+        
+        
+        
+    }
+    else if((str[0] == 'd')||(str[0] == 'D'))
+    {
+        for(i=0; i<len-1;i++)
+        {
+            str[i] = str[i+1];
+        }
+        car->speed_d = str2ufloat(str,len-1);
+        printf("you send d = %f\n",car->speed_d );
+        
+        /*****用户函数*********/
+        
+        
+        
+    }
+
     EnableInterrupts;
 }
 

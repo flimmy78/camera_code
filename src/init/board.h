@@ -9,19 +9,19 @@
 /************电机配置**************/
 //右电机前进的FTM模块
 #define RIGHT_A_FTM FTM0
-#define RIGHT_A_CH  CH0
+#define RIGHT_A_CH  CH2
 
 //右电机后退的FTM模块
 #define RIGHT_B_FTM FTM0
-#define RIGHT_B_CH  CH2
+#define RIGHT_B_CH  CH0
 
 //左电机前进的FTM模块
 #define LEFT_A_FTM FTM0
-#define LEFT_A_CH  CH1
+#define LEFT_A_CH  CH3
 
 //左电机后退的FTM模块
 #define LEFT_B_FTM  FTM0
-#define LEFT_B_CH   CH3
+#define LEFT_B_CH   CH1
 
 //电机驱动频率
 #define MOTOR_FRE 15000
@@ -42,7 +42,7 @@
 /*****************编码器配置*********************/
 #define     TRANSFER        0.000383    //传送比,由脉冲数对应速度，单位是m，(pi*r齿*R轮)/(100*R齿),(3.14 * 40 * 0.032)/(100 * 105),轮胎半径0.032m
 #define     SPEED_PER       200.0       //编码器每转脉冲数。
-#define     SPEED_SAMPLING_TIME     20  //采样时间  20ms
+#define     SPEED_SAMPLING_TIME     100  //采样时间  20ms
 
 //*****算的是轮子的线速度，单位m/s
 
@@ -53,14 +53,14 @@ float   right_speed_get();
 /********加速度计标准值配置*******/
 //加速度计 		  800mV/g ,对应为AD值 15887/g , 1605 * m/s^2
 
-#define	ACC_ZERO	16416.0	//0度对应的AD值
+#define	ACC_ZERO	26088.0	//0度对应的AD值
 #define	ACC_90		11200.0	//实际为加速度计-90度的值
 #define	ACC_NEG_90	42650.0	//实际为加速度计90度的值
 
 #define	ACC_GRA		15887.0   
 
 /********陀螺仪标准值配置********/
-#define	GYRO_ZERO	27583.0	//陀螺仪零值
+#define	GYRO_ZERO	27631.0	//陀螺仪零值
 #define	GYRO_SCALE	119.7    // 13.3*9/deg./sec
 /*******************<<*********************/
 
@@ -129,5 +129,10 @@ void motor_set(cars_status car);
 void speed_pid(cars_status car);
 
 void print(cars_status car);
+
+//编码器正交解码脉冲计数值返回并清除 有符号16位
+s16 pulse_cnt_left(void);
+
+s16 pulse_cnt_right(void);
 
 #endif
