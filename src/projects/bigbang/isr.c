@@ -114,18 +114,43 @@ void PIT_CH1_Handler(void)
 {
    
     PIT_Flag_Clear(PIT1); 
-    static int count;
-   blance_comp_filter(3.5,0.005,car);
-    motor_set(car);
-    count++;
-    if(count==19)
+    static unsigned int count1,count2;
+    switch(count1)
     {
-         car->speed_left_m=pulse_cnt_left();
-         car->speed_right_m= pulse_cnt_right();
-         speed_control(car);
-         count=0;
-         printf("%f\t%f\n",car->speed_duty,car->left_duty);
+    case 0:
+              break;
+    case 1:
+              break;
+    case 2:
+              break;
+    case 3:
+              blance_comp_filter(3.5,0.005,car);
+              break;
+    case 4:
+            count2++;
+          if(count2==20)
+          {
+               car->speed_left_m  = 1000*left_speed();
+               car->speed_right_m = 1000*right_speed();
+               speed_control(car);
+               count2=0;
+               printf("%f\t%f\n",car->speed_duty,car->left_duty);
+          }
+          
+         speed_control_output(car);
+         car->left_duty     = car->blance_duty + car->speed_duty + car->direction_left_duty;
+         car->right_duty    = car->blance_duty + car->speed_duty + car->direction_right_duty;
+         motor_set(car);
+         break;
+         
+    default:
+              break;
     }
+    
+  count1++;
+  
+  if(count1 == 5)
+      count1 = 0;
     
     
 }

@@ -227,7 +227,7 @@ void speed_init()
     FTM2_QUAD_init();
     
    //pit_init_ms(PIT0,SPEED_SAMPLING_TIME);
-   pit_init_ms(PIT1,5);
+   pit_init_ms(PIT1,1);
 }
 
 float left_speed()
@@ -322,11 +322,32 @@ void speed_control(cars_status car)
   float speed_err;
   static float speed_integral;
   speed_err        = car->speed_set - ((float)(car->speed_left_m) +  (float)(car->speed_right_m))/2.0 ;
-  speed_integral  += (car->speed_i)*speed_err;
-  car->speed_duty  = car->speed_duty -  (speed_integral + (car->speed_p)*speed_err)/20;
+  speed_integral  += speed_err;
+  if(speed_integral >= 200)
+  {
+      speed_integral = 200;
+  }
+  if(speed_integral <=-200)
+  {
+    speed_integral = -200;
+  }
+  car->speed_duty_old = car->speed_duty_new;
+  car->speed_duty_new = (car->speed_p)*speed_err + (car->speed_i)*speed_integral;
  // printf("speed_duty:%f\n",car->speed_duty);
   
 }
+
+void speed_control_output(cars_status car) 
+{    
+  float value;  
+  value=(car->speed_duty_new - car->speed_duty_old)/20.0;
+  car->speed_duty += value;         
+}
+
+
+
+
+
 
 /*********************************************************************************************
 *       µç»ú¿ØÖÆ¡£
@@ -337,9 +358,7 @@ void speed_control(cars_status car)
 
 void motor_set(cars_status car)
 {
-  car->left_duty  = (car->blance_duty) - (car->speed_duty) - (car->direction_left_duty);
-  car->right_duty = (car->blance_duty) - (car->speed_duty) + (car->direction_right_duty);
- // printf("%f\t%f\n",car->left_duty,car->right_duty);
+ 
   if( (car->left_duty>0) && (car->left_duty + left_dead >=1000))
         car->left_duty = 1000 -left_dead ;
   if( (car->left_duty<0) && (car->left_duty - left_dead< -1000))
