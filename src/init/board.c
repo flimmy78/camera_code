@@ -15,7 +15,7 @@ direction dir_flag;
 #define RIGHT_DEAD 10
 #define LEFT_DEAD  10
 const int right_dead = 50;  //电机死区
-const int left_dead  = 60;
+const int left_dead  = 40;
 
 /*******************************************
  *
@@ -160,22 +160,23 @@ void right_run(uint32_t speed,direction d)
 
 void right_run_s(int32_t speed)       //speed的符号体现方向
 {
-  direction dir;
-  if(speed>0)
-  {
+    direction dir;
+    if(speed>0)
+    {
     dir = back;
     speed = speed +right_dead;
-  }
-  else if(speed <0)
-  {
+    }
+    else if(speed <0)
+    {
     dir = ahead;
     speed = -speed + right_dead;
-  }
-  else
-  {
+    }
+    else
+    {
     speed = 0;
-  }
-  right_run(speed,dir);
+    }
+    right_run(speed,dir);
+    printf("rd:%d\n",speed);
 }
 
 
@@ -199,22 +200,24 @@ void left_run(uint32_t speed,direction d)
 
 void left_run_s(int32_t speed)   //speed的符号体现方向
 {
-  direction dir;
-  if(speed > 0)
-  {
+    direction dir;
+    if(speed > 0)
+    {
     dir = back;
     speed = speed +left_dead;
-  }
-  else if(speed <0)
-  {
+    }
+    else if(speed <0)
+    {
     dir = ahead;
     speed = -speed + left_dead;
-  }
-  else
-  {
+    }
+    else
+    {
     speed = 0;
-  }
-  left_run(speed,dir);
+    }
+    left_run(speed,dir);
+
+    printf("ld:%d   ",speed);
 }
 
 
@@ -227,7 +230,7 @@ void speed_init()
     FTM2_QUAD_init();
     
    //pit_init_ms(PIT0,SPEED_SAMPLING_TIME);
-   pit_init_ms(PIT1,5);
+//   pit_init_ms(PIT1,5);
 }
 
 float left_speed()
@@ -244,7 +247,7 @@ float right_speed()
     s16 temp;
     temp = FTM1_CNT;
     FTM1_CNT = 0;
-    
+
     return((temp*TRANSFER)/(SPEED_SAMPLING_TIME*0.001));
 }
 

@@ -47,7 +47,7 @@ void pit_init(PITn pitn, u32 cnt)
     /* 定时器控制寄存器 Timer Control Register (PIT_TCTRL0) */
     PIT_TCTRL(pitn) |= ( PIT_TCTRL_TEN_MASK | PIT_TCTRL_TIE_MASK );   //使能 PITn定时器,并开PITn中断
 
-    enable_irq(pitn + 68);			                                //开接收引脚的IRQ中断
+    enable_irq(pitn + 68);			                                //开接收引脚的IRQ中断,68
 }
 
 
@@ -71,8 +71,8 @@ void pit_dma_init(PITn pitn, u32 cnt)
     SIM_SCGC6       |= SIM_SCGC6_PIT_MASK;                            //使能PIT时钟
 
     /* PIT模块控制 PIT Module Control Register (PIT_MCR) */
-    //PIT_MCR         &=~(PIT_MCR_MDIS_MASK | PIT_MCR_FRZ_MASK );       //使能PIT定时器时钟 ，调试模式下继续运行
-    PIT_MCR = 0;
+    PIT_MCR         &=~(PIT_MCR_MDIS_MASK | PIT_MCR_FRZ_MASK );       //使能PIT定时器时钟 ，调试模式下继续运行
+
 
     /* 定时器加载值设置 Timer Load Value Register (PIT_LDVALn) */
     PIT_LDVAL(pitn)  = cnt;                                          //设置溢出中断时间
