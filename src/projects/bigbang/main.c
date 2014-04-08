@@ -68,8 +68,8 @@ void main()
   
   
   car->speed_set = 0.0;
-  car->speed_p   = 0.0;        
-  car->speed_i   = 0.1;         
+  car->speed_p   = 0.55;        
+  car->speed_i   = 0.2;         
   car->speed_d   = 0.0;        
   car->speed_set = 0;      
   car->speed_duty= 0;
