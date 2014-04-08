@@ -134,12 +134,12 @@ void PIT_CH1_Handler(void)
                car->speed_right_m = 1000*right_speed();
                speed_control(car);
                count2=0;
-               printf("%f\t%f\n",car->speed_duty,car->left_duty);
+              // printf("%f\t%f\n",car->speed_left_m ,car->speed_duty);
           }
           
          speed_control_output(car);
-         car->left_duty     = car->blance_duty + car->speed_duty + car->direction_left_duty;
-         car->right_duty    = car->blance_duty + car->speed_duty + car->direction_right_duty;
+         car->left_duty     = car->blance_duty - car->speed_duty + car->direction_left_duty;
+         car->right_duty    = car->blance_duty - car->speed_duty + car->direction_right_duty;
          motor_set(car);
          break;
          

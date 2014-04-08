@@ -321,7 +321,7 @@ void speed_control(cars_status car)
 {
   float speed_err;
   static float speed_integral;
-  speed_err        = car->speed_set - ((float)(car->speed_left_m) +  (float)(car->speed_right_m))/2.0 ;
+  speed_err        = car->speed_set - ((float)(car->speed_left_m) +  (float)(car->speed_right_m)); //左边编码器有问题输出为0，所以未除2.
   speed_integral  += speed_err;
   if(speed_integral >= 200)
   {

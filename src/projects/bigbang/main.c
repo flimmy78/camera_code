@@ -62,14 +62,14 @@ void main()
   car->right_duty =10;
   
   car->angle_p   =  85.5;
-  car->gyro_d    =  5;
-  car->angle_set =  1.0;
+  car->gyro_d    =  2.5;
+  car->angle_set =  -0.5;
   car->gyro_set  =  0.0;
   
   
   car->speed_set = 0.0;
-  car->speed_p   = 50.0;        
-  car->speed_i   = 1.0;         
+  car->speed_p   = 0.0;        
+  car->speed_i   = 0.0;         
   car->speed_d   = 0.0;        
   car->speed_set = 0;      
   car->speed_duty= 0;
