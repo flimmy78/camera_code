@@ -17,14 +17,14 @@
 
 //左电机前进的FTM模块
 #define LEFT_A_FTM FTM0
-#define LEFT_A_CH  CH1
+#define LEFT_A_CH  CH3
 
 //左电机后退的FTM模块
 #define LEFT_B_FTM  FTM0
-#define LEFT_B_CH   CH3
+#define LEFT_B_CH   CH1
 
 //电机驱动频率
-#define MOTOR_FRE 10000
+#define MOTOR_FRE 15000
 
 //电机驱动初始化的占空比，【强烈要求为【0】】
 #define INIT_DUTY (0)

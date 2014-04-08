@@ -155,30 +155,6 @@ void PIT_CH1_Handler(void)
     
 }
 
-
-u16 duty = 0;
-void PIT_CH2_Handler(void)
-{
-    
-    printf("ls:%d  ",pulse_cnt_left());
-    printf("rs:%d\n",pulse_cnt_right());
-    
-    duty += 50;
-    
-    if(duty > 900)
-    {
-        DisableInterrupts;
-        return;
-    }
-    
-    left_run_s(duty);
-    right_run_s(duty);
-    
-    PIT_Flag_Clear(PIT2);
-}
-
-
-
 char str[10];
 u8 len;
 float num;
