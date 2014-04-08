@@ -44,12 +44,7 @@ struct cars_status car_s;
 cars_status car= &car_s;   //
 
 void main()
-{ 
- 
-  
-  DisableInterrupts;
-  board_init();
-  uart_init(UART0,115200);
+{
   
   //车体系统设置
   DisableInterrupts;
@@ -104,11 +99,11 @@ void main()
             }
           switch(str)
           {
-          case 's': DisableInterrupts;
-                    left_run_s(0);
-                    right_run_s(0);  break;
-          case 'p': print(car);break;
-          default : printf("输入命令错请重新输入\n");break;
+              case 's': DisableInterrupts;
+                        left_run_s(0);
+                        right_run_s(0);  break;
+              case 'p': print(car);break;
+              default : printf("输入命令错请重新输入\n");break;
           
           }
           
@@ -122,16 +117,17 @@ void main()
           num[i] = uart_getchar(UART0) - '0';
         }
         data = num[0]*100 + num[1] * 10 + num[2]  + num[3] * 0.1 +num[4] *0.01;
+        
        switch(str)
        {
-       case 'a': car->angle_set = data ; printf("angle_set:%f\n",car->angle_set);break;
-       case 'P':
-       case 'p':  car->speed_p = data;printf("speed_p:%f\n",car->speed_p);break;
-       case 'i':
-       case 'I':  car->speed_i = data;printf("speed_i:%f\n",car->speed_i);break;
-       case 'D':
-       case 'd':  car->speed_d = data;printf("speed_d:%f\n",car->speed_d);break;
-       default :break;
+           case 'a': car->angle_set = data ; printf("angle_set:%f\n",car->angle_set);break;
+           case 'P':
+           case 'p':  car->speed_p = data;printf("speed_p:%f\n",car->speed_p);break;
+           case 'i':
+           case 'I':  car->speed_i = data;printf("speed_i:%f\n",car->speed_i);break;
+           case 'D':
+           case 'd':  car->speed_d = data;printf("speed_d:%f\n",car->speed_d);break;
+           default :break;
       } 
       }
 }
