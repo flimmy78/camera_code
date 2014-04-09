@@ -63,7 +63,7 @@ void main()
   
   car->angle_p   =  55.5;
   car->gyro_d    =  2.5;
-  car->angle_set =  -0.5;
+  car->angle_set =  3.155;
   car->gyro_set  =  0.0;
   
   
@@ -115,6 +115,19 @@ void main()
         
         }
       }
+    else if(str == 's')
+    {  
+      EnableInterrupts;
+      while(1)
+      {
+        if(uart_getchar(UART0) == '+')
+            car->angle_set +=0.1;
+        if(uart_getchar(UART0) == '-')
+            car->angle_set -=0.1;
+        printf("%f\n",car->angle_set);
+      }
+    }
+        
     else
       {
         for(i=0;i<5;i++)

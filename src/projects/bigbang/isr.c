@@ -114,7 +114,8 @@ void PIT_CH1_Handler(void)
 {
    
     PIT_Flag_Clear(PIT1); 
-    static unsigned int count1,count2;
+    
+    static unsigned int count1,count2,duty_full;
     switch(count1)
     {
     case 0:
@@ -134,7 +135,7 @@ void PIT_CH1_Handler(void)
                car->speed_right_m = 1000*right_speed();
                speed_control(car);
                count2=0;
-              // printf("%f\t%f\n",car->speed_left_m ,car->speed_duty);
+             //printf("%f\t%f\n",car->speed_left_m ,car->speed_duty);
           }
           
          speed_control_output(car);
