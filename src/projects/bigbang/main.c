@@ -62,7 +62,7 @@ void main()
   car->right_duty =10;
   
   car->angle_p   =  55.5;
-  car->gyro_d    =  2.5;
+  car->gyro_d    =  1.555;
   car->angle_set =  3.155;
   car->gyro_set  =  0.0;
   
@@ -125,6 +125,8 @@ void main()
         if(uart_getchar(UART0) == '-')
             car->angle_set -=0.1;
         printf("%f\n",car->angle_set);
+        if(uart_getchar(UART0) == 'b')
+          break;
       }
     }
         
