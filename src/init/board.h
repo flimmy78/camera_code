@@ -60,7 +60,7 @@ float   right_speed_get();
 #define	ACC_GRA		15887.0   
 
 /********мсбщрг╠Йв╪ж╣еДжц********/
-#define	GYRO_ZERO	27631.0	//мсбщргаЦж╣
+#define	GYRO_ZERO	29106.0	//мсбщргаЦж╣
 #define	GYRO_SCALE	119.7    // 13.3*9/deg./sec
 /*******************<<*********************/
 

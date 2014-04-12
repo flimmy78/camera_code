@@ -58,21 +58,18 @@ void main()
    
   //车体参数设置。
    
-  car->left_duty = 10;
-  car->right_duty =10;
   
-  car->angle_p   =  55.5;
-  car->gyro_d    =  1.555;
-  car->angle_set =  3.155;
-  car->gyro_set  =  0.0;
+  car->angle_p   =  155.5;
+  car->gyro_d    =  2.555;
+  car->angle_set =  -0.71;
+  car->gyro_set  =  -8.695;
   
   
   car->speed_set = 0.0;
-  car->speed_p   = 0.55;        
-  car->speed_i   = 0.2;         
+  car->speed_p   = 0.85;        
+  car->speed_i   = 0.10;         
   car->speed_d   = 0.0;        
   car->speed_set = 0;      
-  car->speed_duty= 0;
   
   
   
