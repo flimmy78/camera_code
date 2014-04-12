@@ -53,14 +53,14 @@ float   right_speed_get();
 /********加速度计标准值配置*******/
 //加速度计 		  800mV/g ,对应为AD值 15887/g , 1605 * m/s^2
 
-#define	ACC_ZERO	24597.0	//0度对应的AD值
+#define	ACC_ZERO	26088.0	//0度对应的AD值
 #define	ACC_90		11200.0	//实际为加速度计-90度的值
 #define	ACC_NEG_90	42650.0	//实际为加速度计90度的值
 
 #define	ACC_GRA		15887.0   
 
 /********陀螺仪标准值配置********/
-#define	GYRO_ZERO	29106.0	//陀螺仪零值
+#define	GYRO_ZERO	27631.0	//陀螺仪零值
 #define	GYRO_SCALE	119.7    // 13.3*9/deg./sec
 /*******************<<*********************/
 
@@ -122,6 +122,7 @@ void sent_to_computer(uint16_t data1 , uint16_t data2 , uint16_t  data3);
 
 float str2num(char * str,u8 n);
 void blance_comp_filter(float tg,float dt,cars_status car);
+void blance_kalman_filter(cars_status car);
 void speed_control(cars_status car);
 //设置电机。
 void motor_set(cars_status car);

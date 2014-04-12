@@ -119,14 +119,20 @@ void PIT_CH1_Handler(void)
     switch(count1)
     {
     case 0:
+              
               break;
-    case 1:
+    case 1:   
+              car->angle_m = acc_data_get();
+              car->gyro_m = gyro_data_get();
+              //blance_kalman_filter(car);
+              blance_comp_filter(3.5,0.005,car);
+              //printf("%f\t%f\t%f\t%f\n",car->angle_m,car->gyro_m,car->angle,car->gyro);
               break;
     case 2:
               break;
     case 3:
-              blance_comp_filter(3.5,0.005,car);
-              printf("%d\t%d\n",ad_ave(ADC1,SE16,ADC_16bit,10),ad_ave(ADC0,SE16,ADC_16bit,10));
+             
+
               break;
     case 4:
             count2++;
