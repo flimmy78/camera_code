@@ -42,7 +42,7 @@ typedef struct cars_status
 }*cars_status;
 
 extern float  angle_dot; 
-void Kalman_Filter(float angle_m,float gyro_m,float dt,cars_status car);
+void Kalman_Filter(float dt,cars_status car);
 void comp_filter(float tg,float dt,cars_status car);
 /******************************************
  *

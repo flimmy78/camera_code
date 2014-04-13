@@ -106,7 +106,8 @@ void key3_task(void (*task)())
 float gyro_data_get(void)
 {
   
-  return(((GYRO_ZERO - ad_once(ADC0,SE16,ADC_16bit)) / GYRO_SCALE));
+  //return(((GYRO_ZERO - ad_once(ADC0,SE16,ADC_16bit)) / GYRO_SCALE));
+  return(((GYRO_ZERO - ad_ave(ADC0,SE16,ADC_16bit,10)) / GYRO_SCALE));
   
 }
 
@@ -115,7 +116,8 @@ float gyro_data_get(void)
 float acc_data_get(void)
 {
   
-   return(-180*(ACC_ZERO-ad_once(ADC1,SE16,ADC_16bit))/(3.1416*ACC_GRA));
+  // return(-180*(ACC_ZERO-ad_once(ADC1,SE16,ADC_16bit))/(3.1416*ACC_GRA));
+  return(-180*(ACC_ZERO-ad_ave(ADC1,SE16,ADC_16bit,10))/(3.1416*ACC_GRA));
   
 }
 

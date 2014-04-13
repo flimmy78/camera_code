@@ -20,11 +20,11 @@ const char C_0 = 1;
 float q_bias=25000, angle_err, PCt_0, PCt_1, E, K_0, K_1, t_0, t_1;
 //-------------------------------------------------------
 
-void Kalman_Filter(float angle_m,float gyro_m,float dt,cars_status car)			//gyro_m:gyro_measure
+void Kalman_Filter(float dt,cars_status car)			//gyro_m:gyro_measure
 {
 	
 
-	car->angle +=(gyro_m-q_bias) * dt;//先验估计
+	car->angle +=(car->gyro_m-q_bias) * dt;//先验估计
 	
 	Pdot[0]=Q_angle - P[0][1] - P[1][0];// Pk-' 先验估计误差协方差的微分
 	Pdot[1]=- P[1][1];
@@ -37,7 +37,7 @@ void Kalman_Filter(float angle_m,float gyro_m,float dt,cars_status car)			//gyro
 	P[1][1] += Pdot[3] * dt;
 	
 	
-	angle_err = angle_m - car->angle;//zk-先验估计
+	angle_err = car->angle_m - car->angle;//zk-先验估计
 	
 	
 	PCt_0 = C_0 * P[0][0];
@@ -59,7 +59,7 @@ void Kalman_Filter(float angle_m,float gyro_m,float dt,cars_status car)			//gyro
 	
 	car->angle	+= K_0 * angle_err;//后验估计
 	q_bias	+= K_1 * angle_err;//后验估计
-	angle_dot = gyro_m-q_bias;//输出值（后验估计）的微分 = 角速度
+	angle_dot = car->gyro_m-q_bias;//输出值（后验估计）的微分 = 角速度
         
 
 }
