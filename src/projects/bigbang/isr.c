@@ -126,7 +126,7 @@ void PIT_CH1_Handler(void)
               car->gyro_m = gyro_data_get();
               //blance_kalman_filter(car);
               blance_comp_filter(3.5,0.005,car);
-              //printf("%f\t%f\t%f\t%f\n",car->angle_m,car->gyro_m,car->angle,car->gyro);
+             printf("%f\t%f\t%f\t%f\n",car->angle_m,car->gyro_m,car->angle,car->gyro);
               break;
     case 2:
               break;
@@ -135,7 +135,7 @@ void PIT_CH1_Handler(void)
 
               break;
     case 4:
-            count2++;
+           count2++;
           if(count2==20)
           {
                car->speed_left_m  = 1000*left_speed();

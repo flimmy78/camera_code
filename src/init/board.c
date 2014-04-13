@@ -14,8 +14,8 @@ direction dir_flag;
 
 #define RIGHT_DEAD 10
 #define LEFT_DEAD  10
-const int right_dead = 50;  //电机死区
-const int left_dead  = 60;
+const int right_dead = 55;  //电机死区
+const int left_dead  = 50;
 
 /*******************************************
  *
@@ -173,12 +173,12 @@ void right_run_s(int32_t speed)       //speed的符号体现方向
   direction dir;
   if(speed>0)
   {
-    dir = back;
+    dir = ahead;
     speed = speed +right_dead;
   }
   else if(speed <0)
   {
-    dir = ahead;
+    dir = back;
     speed = -speed + right_dead;
   }
   else
@@ -212,12 +212,12 @@ void left_run_s(int32_t speed)   //speed的符号体现方向
   direction dir;
   if(speed > 0)
   {
-    dir = back;
+    dir = ahead;
     speed = speed +left_dead;
   }
   else if(speed <0)
   {
-    dir = ahead;
+    dir = back;
     speed = -speed + left_dead;
   }
   else

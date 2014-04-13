@@ -59,9 +59,9 @@ void main()
   //车体参数设置。
    
   
-  car->angle_p   =  85.5;
-  car->gyro_d    =  0.1;
-  car->angle_set =  -2.35;
+  car->angle_p   =  55.5;
+  car->gyro_d    =  3.50;
+  car->angle_set =  -42.5;
   car->gyro_set  =  0.1;
   
   
