@@ -59,9 +59,9 @@ void main()
   //车体参数设置。
    
   
-  car->angle_p   =  55.5;
+  car->angle_p   =  85.5;
   car->gyro_d    =  3.50;
-  car->angle_set =  -42.5;
+  car->angle_set =  -39.5;
   car->gyro_set  =  0.1;
   
   
@@ -106,10 +106,8 @@ void main()
                     right_run_s(0);  break;
           case 'p': print(car);break;
           default : printf("输入命令错请重新输入\n");break;
-          
           }
           
-        
         }
       }
     else if(str == 's')
