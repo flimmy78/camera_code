@@ -102,7 +102,7 @@ void key3_task(void (*task)())
  *
 ********************************************/
 
-//陀螺仪数据获取,获取AD值
+//陀螺仪数据获取,获取AD值并计算角速度。
 float gyro_data_get(void)
 {
   
@@ -112,7 +112,7 @@ float gyro_data_get(void)
 }
 
 
-//加速度计数据获取，获取AD值
+//加速度计数据获取，获取AD值并计算倾角。
 float acc_data_get(void)
 {
    u16 acc_ad;
@@ -273,6 +273,7 @@ s16 pulse_cnt_right(void)
   FTM2_CNT = 0;
   return cnt;
 }
+
 /*
  *************************************************************************************************************
 *
@@ -282,7 +283,7 @@ s16 pulse_cnt_right(void)
 *  注意  ：在上位机显示时，第一数据位陀螺仪的输出数据，第二个数据为加速度计的输出数据，第三个数据为
 *         联合滤波后的输出，虽然数据发送顺序没有任何关系，但为了便于观察数据请在按上位机的显示的顺序发送数据。
 *       
- *************************************************************************************************************
+*************************************************************************************************************
 */
 
 void sent_to_computer(uint16_t data1 , uint16_t data2 , uint16_t  data3)
@@ -296,6 +297,7 @@ void sent_to_computer(uint16_t data1 , uint16_t data2 , uint16_t  data3)
      uart_putchar(UART0,(char)(data2 & 0x00ff));    //  发送第二个数据的低第八位
      uart_putchar(UART0,(char)(data3 >> 8));        //  发送第三个数据的高八位
      uart_putchar(UART0,(char)(data3 & 0x00ff));    //  发送第三个数据的低第八位
+     
 }
 
 
@@ -310,6 +312,7 @@ void sent_to_computer(uint16_t data1 , uint16_t data2 , uint16_t  data3)
 
 
 //extern cars_status car;
+//使用互补滤波进行直立控制。
 void blance_comp_filter(float tg,float dt,cars_status car)
 {
   comp_filter(tg, dt,car);
@@ -320,8 +323,9 @@ void blance_comp_filter(float tg,float dt,cars_status car)
 //使用卡尔曼滤波直立控制。
 void blance_kalman_filter(cars_status car)
 {
+  
   Kalman_filter(car);
-  car->blance_duty = (car->angle - car->angle_set)*car->angle_p + (car->gyro - car->gyro_set)*car->gyro_d ;
+  car->blance_duty = (car->angle - car->angle_set)*car->angle_p + (car->gyro - car->gyro_set)*car->gyro_d;
   
 }
                           
@@ -339,7 +343,7 @@ void speed_control(cars_status car)
   static float speed_integral;
   speed_err        = car->speed_set - ((float)(car->speed_left_m) +  (float)(car->speed_right_m))/2.0;
   speed_integral  += speed_err;
-  if(speed_integral >= 200)
+  if(speed_integral >= 200)                     //防止出现积分饱和，参数设置有待检验。
   {
       speed_integral = 200;
   }
@@ -353,6 +357,7 @@ void speed_control(cars_status car)
   
 }
 
+//这个函数可以省掉，在直立控制是可直接实现，执行速率应该更高。100ms可以算出一个value，每5ms平滑输出速度控制占空比。
 void speed_control_output(cars_status car) 
 {    
   float value;  
@@ -383,7 +388,6 @@ void motor_set(cars_status car)
         car->right_duty = 1000 - right_dead;
   if( (car->right_duty<0) && (car->right_duty - right_dead<= -1000))
         car->right_duty = -1000 + right_dead;
-  
   left_run_s((int32_t)(car->left_duty));
   right_run_s((int32_t)(car->right_duty));
   
@@ -393,9 +397,9 @@ void motor_set(cars_status car)
 void speed_pid(cars_status car)
 {
    static float err[3];
-   err[0]           = err[1];
-   err[1]           = err[2];
-   err[2]           = car->speed_set - (car->speed_left_m + car->speed_right_m)/2.0;
+   err[0]           =  err[1];
+   err[1]           =  err[2];
+   err[2]           =  car->speed_set - (car->speed_left_m + car->speed_right_m)/2.0;
    car->speed_duty += (car->speed_p)*((err[2] - err[1]) + (car->speed_i)*err[2] + (car->speed_d)*(err[2] - 2 * err[1] + err[0]));
    
 }

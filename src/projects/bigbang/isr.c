@@ -124,22 +124,20 @@ void PIT_CH1_Handler(void)
     case 1:   
               car->angle_m = acc_data_get();
               car->gyro_m = gyro_data_get();
-              //blance_kalman_filter(car);
-              blance_comp_filter(3.5,0.005,car);
-              
+              // blance_kalman_filter(car);
+              blance_comp_filter(3.5,0.005,car);             
               break;
     case 2:
               break;
     case 3:
              
-
               break;
     case 4:
            count2++;
           if(count2==20)
           {
-               car->speed_left_m  =  -1000*left_speed();
-               car->speed_right_m =  1000*right_speed();
+               car->speed_left_m   =  -1000*left_speed();
+               car->speed_right_m  =  1000*right_speed();
                speed_control(car);
                printf("%f\t%f\n",car->speed_left_m,car->speed_right_m);
                count2 = 0;

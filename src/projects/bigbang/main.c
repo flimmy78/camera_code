@@ -65,7 +65,7 @@ void main()
   car->gyro_set  =  0.1;
   
   
-  car->speed_set = 0.0;
+  car->speed_set = 0.0;         
   car->speed_p   = 3.5;        
   car->speed_i   = 0.2;         
   car->speed_d   = 0.0;        
@@ -73,7 +73,6 @@ void main()
   car->direction_left_duty  = 0;
   car->direction_right_duty = 0;
   
-  left_run_s(100);
   
   
   int num[5];
@@ -81,7 +80,7 @@ void main()
   int i;
   float data;
  //EnableInterrupts;
-  //发送调试数据，数据为5为，‘12345’对应123.45.
+ //发送调试数据，数据为5为，‘12345’对应123.45.
   printf("\n\n");
   printf("按c进入命令模式\n");
  while(1)
