@@ -24,6 +24,7 @@ typedef struct cars_status
   float angle_m;        // 加速度计测量角度
   float gyro_m;         //陀螺仪角速度测量值。
   float angle;          //滤波后计算得出的车体角度
+  float gyro;           //陀螺仪滤波计算出的结果。
   float blance_duty;    //直立控制所需的占空比。
   
   //编码器测量与速度控制
@@ -41,14 +42,9 @@ typedef struct cars_status
   
 }*cars_status;
 
-extern float  angle_dot; 
-void Kalman_Filter(float angle_m,float gyro_m,float dt,cars_status car);
+void Kalman_filter(cars_status car);
+
 void comp_filter(float tg,float dt,cars_status car);
-/******************************************
- *
- *定于车体状态结构体carstatus
- *
- ******************************************/
 
 
 #endif

@@ -11,11 +11,11 @@
 #include "Kalman.h"
 direction dir_flag;
 
-
+#define PROTECT_MOTOR
 #define RIGHT_DEAD 10
 #define LEFT_DEAD  10
-const int right_dead = 50;  //电机死区
-const int left_dead  = 60;
+const int right_dead = 55;  //电机死区
+const int left_dead  = 50;
 
 /*******************************************
  *
@@ -106,6 +106,7 @@ void key3_task(void (*task)())
 float gyro_data_get(void)
 {
   
+  //return(((GYRO_ZERO - ad_once(ADC0,SE16,ADC_16bit)) / GYRO_SCALE));
   return(((GYRO_ZERO - ad_once(ADC0,SE16,ADC_16bit)) / GYRO_SCALE));
   
 }
@@ -114,11 +115,20 @@ float gyro_data_get(void)
 //加速度计数据获取，获取AD值
 float acc_data_get(void)
 {
-  
-   return(-180*(ACC_ZERO-ad_once(ADC1,SE16,ADC_16bit))/(3.1416*ACC_GRA));
+   u16 acc_ad;
+   
+   acc_ad = ad_once(ADC1,SE16,ADC_16bit);
+   if(acc_ad<=10301)
+       acc_ad = 10350;
+   else if(acc_ad>=41870)
+       acc_ad = 41820;
+   
+//   printf("%u\n",acc_ad);
+   
+   return   ( 57.296*asin((acc_ad-ACC_ZERO)/ACC_GRA) );
+   
   
 }
-
 //****陀螺仪和加速度计初始化
 void angle_get_init()
 {
@@ -161,20 +171,35 @@ void right_run(uint32_t speed,direction d)
 void right_run_s(int32_t speed)       //speed的符号体现方向
 {
   direction dir;
+  static int i;
   if(speed>0)
   {
-    dir = back;
+    dir = ahead;
     speed = speed +right_dead;
   }
   else if(speed <0)
   {
-    dir = ahead;
+    dir = back;
     speed = -speed + right_dead;
   }
   else
   {
     speed = 0;
   }
+#ifdef      PROTECT_MOTOR
+  if(speed >= 1000)
+  {
+    i++ ;
+    if(i > 150)
+    {
+      speed = 0;
+    }
+  }
+  else
+  {
+    i = 0;
+  }
+#endif
   right_run(speed,dir);
 }
 
@@ -200,20 +225,35 @@ void left_run(uint32_t speed,direction d)
 void left_run_s(int32_t speed)   //speed的符号体现方向
 {
   direction dir;
+  static int i;
   if(speed > 0)
   {
-    dir = back;
+    dir = ahead;
     speed = speed +left_dead;
   }
   else if(speed <0)
   {
-    dir = ahead;
+    dir = back;
     speed = -speed + left_dead;
   }
   else
   {
     speed = 0;
   }
+#ifdef      PROTECT_MOTOR
+  if(speed >= 1000)
+  {
+    i++ ;
+    if(i > 150)
+    {
+      speed = 0;
+    }
+  }
+  else
+  {
+    i = 0;
+  }
+#endif
   left_run(speed,dir);
 }
 
@@ -302,16 +342,22 @@ void sent_to_computer(uint16_t data1 , uint16_t data2 , uint16_t  data3)
 //extern cars_status car;
 void blance_comp_filter(float tg,float dt,cars_status car)
 {
-  
-  car->angle_m = acc_data_get();
-  car->gyro_m  = gyro_data_get();
   comp_filter(tg, dt,car);
   car->blance_duty = (car->angle - car->angle_set)*car->angle_p + (car->gyro_m - car->gyro_set)*car->gyro_d ;
  // printf("%f\t%f\n",car->angle_m,car->angle);
   
 }
-
-
+//使用卡尔曼滤波直立控制。
+void blance_kalman_filter(cars_status car)
+{
+  Kalman_filter(car);
+  car->blance_duty = (car->angle - car->angle_set)*car->angle_p + (car->gyro - car->gyro_set)*car->gyro_d ;
+  
+}
+                          
+                          
+                          
+                          
 /*********************************************************************************************
 *       速度控制函数，根据设定速度计算占空比。
 *

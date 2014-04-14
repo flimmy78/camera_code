@@ -9,19 +9,19 @@
 /************电机配置**************/
 //右电机前进的FTM模块
 #define RIGHT_A_FTM FTM0
-#define RIGHT_A_CH  CH2
+#define RIGHT_A_CH  CH0
 
 //右电机后退的FTM模块
 #define RIGHT_B_FTM FTM0
-#define RIGHT_B_CH  CH0
+#define RIGHT_B_CH  CH2
 
 //左电机前进的FTM模块
 #define LEFT_A_FTM FTM0
-#define LEFT_A_CH  CH3
+#define LEFT_A_CH  CH1
 
 //左电机后退的FTM模块
 #define LEFT_B_FTM  FTM0
-#define LEFT_B_CH   CH1
+#define LEFT_B_CH   CH3
 
 //电机驱动频率
 #define MOTOR_FRE 15000
@@ -122,6 +122,7 @@ void sent_to_computer(uint16_t data1 , uint16_t data2 , uint16_t  data3);
 
 float str2num(char * str,u8 n);
 void blance_comp_filter(float tg,float dt,cars_status car);
+void blance_kalman_filter(cars_status car);
 void speed_control(cars_status car);
 //设置电机。
 void motor_set(cars_status car);

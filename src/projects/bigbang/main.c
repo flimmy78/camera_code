@@ -58,21 +58,18 @@ void main()
    
   //车体参数设置。
    
-  car->left_duty = 10;
-  car->right_duty =10;
   
   car->angle_p   =  55.5;
-  car->gyro_d    =  2.5;
-  car->angle_set =  -0.5;
-  car->gyro_set  =  0.0;
+  car->gyro_d    =  3.50;
+  car->angle_set =  -34.25;
+  car->gyro_set  =  0.1;
   
   
   car->speed_set = 0.0;
-  car->speed_p   = 0.55;        
-  car->speed_i   = 0.2;         
+  car->speed_p   = 3.5;        
+  car->speed_i   = 0.1;         
   car->speed_d   = 0.0;        
   car->speed_set = 0;      
-  car->speed_duty= 0;
   
   
   
@@ -109,12 +106,25 @@ void main()
                     right_run_s(0);  break;
           case 'p': print(car);break;
           default : printf("输入命令错请重新输入\n");break;
-          
           }
           
-        
         }
       }
+    else if(str == 's')
+    {  
+      EnableInterrupts;
+      while(1)
+      {
+        if(uart_getchar(UART0) == '+')
+            car->angle_set +=0.1;
+        if(uart_getchar(UART0) == '-')
+            car->angle_set -=0.1;
+        printf("%f\n",car->angle_set);
+        if(uart_getchar(UART0) == 'b')
+          break;
+      }
+    }
+        
     else
       {
         for(i=0;i<5;i++)
@@ -124,13 +134,11 @@ void main()
         data = num[0]*100 + num[1] * 10 + num[2]  + num[3] * 0.1 +num[4] *0.01;
        switch(str)
        {
-       case 'a': car->angle_set = data ; printf("angle_set:%f\n",car->angle_set);break;
        case 'P':
        case 'p':  car->speed_p = data;printf("speed_p:%f\n",car->speed_p);break;
        case 'i':
        case 'I':  car->speed_i = data;printf("speed_i:%f\n",car->speed_i);break;
        case 'D':
-       case 'd':  car->speed_d = data;printf("speed_d:%f\n",car->speed_d);break;
        default :break;
       } 
       }
