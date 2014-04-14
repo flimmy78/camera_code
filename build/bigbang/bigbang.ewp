@@ -301,9 +301,9 @@
         <option>
           <name>CCIncludePath2</name>
           <state>$PROJ_DIR$\..\..\src\projects\bigbang</state>
-          <state>$PROJ_DIR$\..\..\src\common</state>
-          <state>$PROJ_DIR$\..\..\src\cpu</state>
-          <state>$PROJ_DIR$\..\..\src\cpu\headers</state>
+          <state>$PROJ_DIR$\..\..\src\common </state>
+          <state>$PROJ_DIR$\..\..\src\cpu </state>
+          <state>$PROJ_DIR$\..\..\src\cpu\headers </state>
           <state>$PROJ_DIR$\..\..\src\platforms</state>
           <state>$PROJ_DIR$\..\..\src\drivers</state>
           <state>$PROJ_DIR$\..\..\src\drivers\adc</state>
@@ -315,20 +315,19 @@
           <state>$PROJ_DIR$\..\..\src\drivers\FTM</state>
           <state>$PROJ_DIR$\..\..\src\drivers\gpio</state>
           <state>$PROJ_DIR$\..\..\src\drivers\i2c</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\LED</state>
+          <state>$PROJ_DIR$\..\..\src\drivers\LED </state>
           <state>$PROJ_DIR$\..\..\src\drivers\lptmr</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\mcg</state>
+          <state>$PROJ_DIR$\..\..\src\drivers\mcg </state>
           <state>$PROJ_DIR$\..\..\src\drivers\PIT</state>
           <state>$PROJ_DIR$\..\..\src\drivers\pmc</state>
           <state>$PROJ_DIR$\..\..\src\drivers\rtc</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\uart</state>
+          <state>$PROJ_DIR$\..\..\src\drivers\uart </state>
           <state>$PROJ_DIR$\..\..\src\drivers\wdog</state>
           <state>$PROJ_DIR$\..\..\src\drivers\nokia_5110</state>
           <state>$PROJ_DIR$\..\..\src\init</state>
           <state>$PROJ_DIR$\..\..\src\LIB\CMSIS</state>
           <state>$PROJ_DIR$\..\..\src\LIB\FatFs</state>
           <state>$PROJ_DIR$\..\..\build</state>
-          <state>G:\freescale\camera_code\src\drivers\image</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -2021,12 +2020,6 @@
     </file>
     <file>
       <name>$PROJ_DIR$\..\..\src\drivers\gpio\gpio.c</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\..\src\drivers\image\image.c</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\..\src\drivers\image\image.h</name>
     </file>
     <file>
       <name>$PROJ_DIR$\..\..\src\drivers\LED\LED.C</name>
