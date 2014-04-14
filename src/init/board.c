@@ -173,12 +173,12 @@ void right_run_s(int32_t speed)       //speed的符号体现方向
   direction dir;
   if(speed>0)
   {
-    dir = ahead;
+    dir = back;
     speed = speed +right_dead;
   }
   else if(speed <0)
   {
-    dir = back;
+    dir = ahead;
     speed = -speed + right_dead;
   }
   else
@@ -212,12 +212,12 @@ void left_run_s(int32_t speed)   //speed的符号体现方向
   direction dir;
   if(speed > 0)
   {
-    dir = ahead;
+    dir = back;
     speed = speed +left_dead;
   }
   else if(speed <0)
   {
-    dir = back;
+    dir = ahead;
     speed = -speed + left_dead;
   }
   else
@@ -337,7 +337,7 @@ void speed_control(cars_status car)
 {
   float speed_err;
   static float speed_integral;
-  speed_err        = car->speed_set - ((float)(car->speed_left_m) +  (float)(car->speed_right_m)); //左边编码器有问题输出为0，所以未除2.
+  speed_err        = car->speed_set - ((float)(car->speed_left_m) +  (float)(car->speed_right_m))/2.0;
   speed_integral  += speed_err;
   if(speed_integral >= 200)
   {
