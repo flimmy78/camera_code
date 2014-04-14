@@ -11,7 +11,7 @@
 #include "Kalman.h"
 direction dir_flag;
 
-
+#define PROTECT_MOTOR
 #define RIGHT_DEAD 10
 #define LEFT_DEAD  10
 const int right_dead = 55;  //电机死区
@@ -171,6 +171,7 @@ void right_run(uint32_t speed,direction d)
 void right_run_s(int32_t speed)       //speed的符号体现方向
 {
   direction dir;
+  static int i;
   if(speed>0)
   {
     dir = ahead;
@@ -185,6 +186,20 @@ void right_run_s(int32_t speed)       //speed的符号体现方向
   {
     speed = 0;
   }
+#ifdef      PROTECT_MOTOR
+  if(speed >= 1000)
+  {
+    i++ ;
+    if(i > 150)
+    {
+      speed = 0;
+    }
+  }
+  else
+  {
+    i = 0;
+  }
+#endif
   right_run(speed,dir);
 }
 
@@ -210,6 +225,7 @@ void left_run(uint32_t speed,direction d)
 void left_run_s(int32_t speed)   //speed的符号体现方向
 {
   direction dir;
+  static int i;
   if(speed > 0)
   {
     dir = ahead;
@@ -224,6 +240,20 @@ void left_run_s(int32_t speed)   //speed的符号体现方向
   {
     speed = 0;
   }
+#ifdef      PROTECT_MOTOR
+  if(speed >= 1000)
+  {
+    i++ ;
+    if(i > 150)
+    {
+      speed = 0;
+    }
+  }
+  else
+  {
+    i = 0;
+  }
+#endif
   left_run(speed,dir);
 }
 
