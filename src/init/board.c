@@ -393,17 +393,15 @@ void motor_set(cars_status car)
   
 }
 
-
+//增量式速度pid控制。
 void speed_pid(cars_status car)
 {
    static float err[3];
    err[0]           =  err[1];
    err[1]           =  err[2];
    err[2]           =  car->speed_set - (car->speed_left_m + car->speed_right_m)/2.0;
-   car->speed_duty += (car->speed_p)*((err[2] - err[1]) + (car->speed_i)*err[2] + (car->speed_d)*(err[2] - 2 * err[1] + err[0]));
-   
+   car->speed_duty += (car->speed_p)*((err[2] - err[1]) + (car->speed_i)*err[2] + (car->speed_d)*(err[2] - 2 * err[1] + err[0]));   
 }
-
 
 
 //打印车体运行参数。
