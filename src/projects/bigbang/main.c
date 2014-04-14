@@ -134,13 +134,11 @@ void main()
         data = num[0]*100 + num[1] * 10 + num[2]  + num[3] * 0.1 +num[4] *0.01;
        switch(str)
        {
-       case 'a': car->angle_set = data ; printf("angle_set:%f\n",car->angle_set);break;
        case 'P':
-       case 'p':  car->angle_p = data;printf("speed_p:%f\n",car->angle_p);break;
+       case 'p':  car->speed_p = data;printf("speed_p:%f\n",car->speed_p);break;
        case 'i':
        case 'I':  car->speed_i = data;printf("speed_i:%f\n",car->speed_i);break;
        case 'D':
-       case 'd':  car->gyro_d = data;printf("speed_d:%f\n",car->gyro_d);break;
        default :break;
       } 
       }
