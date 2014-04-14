@@ -138,8 +138,8 @@ void PIT_CH1_Handler(void)
            count2++;
           if(count2==20)
           {
-              car->speed_left_m  = 1000*left_speed();
-              car->speed_right_m = 1000*right_speed();
+               car->speed_left_m  = 1000*left_speed();
+               car->speed_right_m = 1000*right_speed();
                speed_control(car);
                count2=0;
           }
