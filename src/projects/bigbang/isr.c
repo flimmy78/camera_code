@@ -144,7 +144,7 @@ void PIT_CH1_Handler(void)
          speed_control_output(car);
          car->left_duty     = car->blance_duty - car->speed_duty + car->direction_left_duty;
          car->right_duty    = car->blance_duty - car->speed_duty + car->direction_right_duty;
-          printf("%f\n",car->gyro_m);
+          printf("%f\n",car->speed_left_m);
          motor_set(car);
          break;
     default:
