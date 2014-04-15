@@ -139,15 +139,14 @@ void PIT_CH1_Handler(void)
                car->speed_left_m   =  -1000*left_speed();
                car->speed_right_m  =  1000*right_speed();
                speed_control(car);
-               printf("%f\t%f\n",car->speed_left_m,car->speed_right_m);
                count2 = 0;
           }
          speed_control_output(car);
          car->left_duty     = car->blance_duty - car->speed_duty + car->direction_left_duty;
          car->right_duty    = car->blance_duty - car->speed_duty + car->direction_right_duty;
+          printf("%f\n",car->gyro_m);
          motor_set(car);
          break;
-         
     default:
               break;
     }
@@ -155,8 +154,7 @@ void PIT_CH1_Handler(void)
   count1++;
   if(count1 == 5)
       count1 = 0;
-    
-    
+       
 }
 
 char str[10];
