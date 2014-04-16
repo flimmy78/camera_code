@@ -59,15 +59,15 @@ void main()
   //车体参数设置。
    
   
-  car->angle_p   =  55.5;
-  car->gyro_d    =  3.50;
-  car->angle_set =  -31.55;
+  car->angle_p   = 35.5;
+  car->gyro_d    = 3.5;
+  car->angle_set = -34.5;
   car->gyro_set  =  0.1;
   
   
   car->speed_set = 0;         
-  car->speed_p   = 0.4;        
-  car->speed_i   = 0.1;         
+  car->speed_p   = 0.0;        
+  car->speed_i   = 0.0;         
   car->speed_d   = 0.0;        
      
   car->direction_left_duty  = 0;
@@ -135,8 +135,8 @@ void main()
        switch(str)
        {
        case 'a': car->angle_set = data ; printf("angle_set:%f\n",car->angle_set);break;
-       case 'P':
-       case 'p':  car->angle_p = data;printf("speed_p:%f\n",car->angle_p);break;
+       case 'b': car->angle_p  = data ; printf("car->angle_p:%f\n",car->angle_p);break;
+       case 'p':  car->angle_p = data;printf("car->angle_p:%f\n",car->angle_p);break;
        case 'i':
        case 'I':  car->speed_i = data;printf("speed_i:%f\n",car->speed_i);break;
        case 'D':
