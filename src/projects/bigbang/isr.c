@@ -123,8 +123,8 @@ void PIT_CH1_Handler(void)
               car->angle_m = acc_data_get();
               car->gyro_m = gyro_data_get();
              //blance_kalman_filter(car);
-             blance_comp_filter(10.5,0.005,car);
-             //printf("%f\t%f\t%f\t\n",car->angle_m,car->gyro_m,car->angle);
+             blance_comp_filter(3.5,0.005,car);
+            
               break;
     case 2:
               break;
@@ -135,14 +135,15 @@ void PIT_CH1_Handler(void)
            count2++;
           if(count2==20)
           {
-               car->speed_left_m   =  1000*left_speed();
-               car->speed_right_m  =  -1000*right_speed();
+               car->speed_left_m   =  -1000*left_speed();
+               car->speed_right_m  =  1000*right_speed();
                speed_control(car);
                count2 = 0;
           }
          speed_control_output(car);
          car->left_duty     = car->blance_duty - car->speed_duty + car->direction_left_duty;
          car->right_duty    = car->blance_duty - car->speed_duty + car->direction_right_duty;
+         // printf("%f\t%f\t%f\t%d\n",car->angle_m,car->gyro_m,car->angle,ad_ave(ADC0,SE16,ADC_16bit,20));
          motor_set(car);
          break;
     default:
