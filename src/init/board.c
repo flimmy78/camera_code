@@ -118,10 +118,10 @@ float acc_data_get(void)
    u16 acc_ad;
    
    acc_ad = ad_ave(ADC1,SE16,ADC_16bit,20);
-   if(acc_ad<=10301)
-       acc_ad = 10350;
-   else if(acc_ad>=41870)
-       acc_ad = 41820;
+   if(acc_ad<=13400)   //10301
+       acc_ad = 13400;
+   else if(acc_ad>= 43988)  //41870
+       acc_ad =  43988;
    
 //   printf("%u\n",acc_ad);
    
@@ -173,12 +173,12 @@ void right_run_s(int32_t speed)       //speed的符号体现方向
   direction dir;
   if(speed>0)
   {
-    dir = back;
+    dir = ahead;
     speed = speed +right_dead;
   }
   else if(speed <0)
   {
-    dir = ahead;
+    dir = back;
     speed = -speed + right_dead;
   }
   else
@@ -212,12 +212,12 @@ void left_run_s(int32_t speed)   //speed的符号体现方向
   direction dir;
   if(speed > 0)
   {
-    dir = back;
+    dir = ahead;
     speed = speed +left_dead;
   }
   else if(speed <0)
   {
-    dir = ahead;
+    dir = back;
     speed = -speed + left_dead;
   }
   else
@@ -320,6 +320,19 @@ void blance_comp_filter(float tg,float dt,cars_status car)
  // printf("%f\t%f\n",car->angle_m,car->angle);
   
 }
+
+void blance_comp_filter_pid(float tg,float dt,cars_status car)
+{
+  static float err[3];
+  comp_filter(tg, dt,car);
+  err[0]            =  err[1];
+  err[1]            =  err[2];
+  err[2]            =  car->angle_set -  car->angle;
+  car->blance_duty += car->angle_p*((err[2] - err[1]) + 0 *err[2] + car->gyro_d*(err[2] - 2 * err[1] + err[0]));
+}
+
+
+
 //使用卡尔曼滤波直立控制。
 void blance_kalman_filter(cars_status car)
 {

@@ -59,15 +59,15 @@ void main()
   //车体参数设置。
    
   
-  car->angle_p   = 55.5;
-  car->gyro_d    = 3.5;
-  car->angle_set = -33.1;
+  car->angle_p   = 0;
+  car->gyro_d    = 0;
+  car->angle_set = -35.1;
   car->gyro_set  =  -1.1;
   
   
   car->speed_set = 0;         
-  car->speed_p   = 0.5;        
-  car->speed_i   = 0.1;         
+  car->speed_p   = 0.0;        
+  car->speed_i   = 0.0;         
   car->speed_d   = 0.0;        
      
   car->direction_left_duty  = 0;
@@ -116,10 +116,10 @@ void main()
       while(1)
       {
         if(uart_getchar(UART0) == '+')
-            car->angle_set +=0.1;
+             car->angle_p +=1;
         if(uart_getchar(UART0) == '-')
-            car->angle_set -=0.1;
-        printf("%f\n",car->angle_set);
+             car->angle_p -=1;
+        printf("%f\n", car->angle_p);
         if(uart_getchar(UART0) == 'b')
           break;
       }

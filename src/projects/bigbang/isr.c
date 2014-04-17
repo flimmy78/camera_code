@@ -122,9 +122,9 @@ void PIT_CH1_Handler(void)
     case 1:   
               car->angle_m = acc_data_get();
               car->gyro_m = gyro_data_get();
-             //blance_kalman_filter(car);
-             blance_comp_filter(3.5,0.005,car);
-            
+              //blance_kalman_filter(car);
+              blance_comp_filter_pid(5.5,0.005,car);
+              printf("%d\t%d\n",ad_ave(ADC1,SE16,ADC_16bit,20),ad_ave(ADC0,SE16,ADC_16bit,20));
               break;
     case 2:
               break;
@@ -143,7 +143,6 @@ void PIT_CH1_Handler(void)
          speed_control_output(car);
          car->left_duty     = car->blance_duty - car->speed_duty + car->direction_left_duty;
          car->right_duty    = car->blance_duty - car->speed_duty + car->direction_right_duty;
-         // printf("%f\t%f\t%f\t%d\n",car->angle_m,car->gyro_m,car->angle,ad_ave(ADC0,SE16,ADC_16bit,20));
          motor_set(car);
          break;
     default:
