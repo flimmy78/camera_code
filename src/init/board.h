@@ -61,7 +61,7 @@ float   right_speed_get();
 
 /********陀螺仪标准值配置********/
 #define	GYRO_ZERO	29168.0	//陀螺仪零值
-#define	GYRO_SCALE	79.8    // 13.3*9/deg./sec
+#define	GYRO_SCALE	82.46    // 13.3*9/deg./sec
 /*******************<<*********************/
 
 
