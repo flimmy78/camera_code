@@ -107,7 +107,7 @@ float gyro_data_get(void)
 {
   
   //return(((GYRO_ZERO - ad_once(ADC0,SE16,ADC_16bit)) / GYRO_SCALE));
-  return(((GYRO_ZERO - ad_ave(ADC0,SE16,ADC_16bit,20)) / GYRO_SCALE));
+  return(((GYRO_ZERO - (ad_ave(ADC0,SE16,ADC_16bit,20)&0xfff0)) / GYRO_SCALE));
   
 }
 
@@ -117,7 +117,7 @@ float acc_data_get(void)
 {
    u16 acc_ad;
    
-   acc_ad = ad_ave(ADC1,SE16,ADC_16bit,20);
+   acc_ad = ad_ave(ADC1,SE16,ADC_16bit,20)&0xfff0;
    if(acc_ad<=13400)   //10301
        acc_ad = 13400;
    else if(acc_ad>= 43988)  //41870
