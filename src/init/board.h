@@ -120,6 +120,12 @@ void wait_key3(void);
 
 void sent_to_computer(uint16_t data1 , uint16_t data2 , uint16_t  data3);
 
+
+extern float OutData[4];
+unsigned short CRC_CHECK(unsigned char *Buf, unsigned char CRC_CNT);
+void send_toscope(void);
+
+
 float str2num(char * str,u8 n);
 void blance_comp_filter(float tg,float dt,cars_status car);
 void blance_comp_filter_pid(float tg,float dt,cars_status car);

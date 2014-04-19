@@ -13,11 +13,15 @@
 ********************************************************************************/
 void comp_filter(float tg,float dt,cars_status car)
 {
-  
-  float angle_err;
-  angle_err     = tg*(car->angle_m - car->angle);   //计算误差
+//  static float  angle[8];
+    float angle_err;//averge;
+//    static unsigned int i;
+//    angle[(i)&0x07] = car->angle_m;
+//    averge = (angle[i%8+0] + angle[i%8+1]+ angle[i%8+2]+ \
+//      angle[i%8+3]+ angle[i%8+4]+ angle[i%8+5]+ angle[i%8+6]+ angle[i%8+7])*0.125;  //*0.125是乘法比除法快。
+  angle_err      = tg*(car->angle_m - car->angle);   //计算误差
   car->angle    += (angle_err + car->gyro_m)*dt;   //角速度积分得出角度。
- 
+ //i++;
   
 }
 

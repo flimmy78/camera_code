@@ -336,8 +336,8 @@ void blance_comp_filter_pid(float tg,float dt,cars_status car)
 //使用卡尔曼滤波直立控制。
 void blance_kalman_filter(cars_status car)
 {
-  
-  Kalman_filter(car);
+   
+    Kalman_filter(car);
   car->blance_duty = (car->angle - car->angle_set)*car->angle_p + (car->gyro - car->gyro_set)*car->gyro_d;
   
 }
@@ -446,3 +446,52 @@ void print(cars_status car)
 
 
 
+/******************发送滤波值给虚拟示波器visual scope*******************/
+float OutData[4];
+unsigned short CRC_CHECK(unsigned char *Buf, unsigned char CRC_CNT)
+{
+    unsigned short CRC_Temp;
+    unsigned char i,j;
+    CRC_Temp = 0xffff;
+
+    for (i=0;i<CRC_CNT; i++){      
+        CRC_Temp ^= Buf[i];
+        for (j=0;j<8;j++) {
+            if (CRC_Temp & 0x01)
+                CRC_Temp = (CRC_Temp >>1 ) ^ 0xa001;
+            else
+                CRC_Temp = CRC_Temp >> 1;
+        }
+    }
+    return(CRC_Temp);
+}
+
+void send_toscope(void)
+{
+  int temp[4] = {0};
+  unsigned int temp1[4] = {0};
+  unsigned char databuf[10] = {0};
+  unsigned char i;
+  unsigned short CRC16 = 0;
+  for(i=0;i<4;i++)
+   {
+    
+    temp[i]  = (int16)OutData[i];
+    temp1[i] = (uint16)temp[i];
+    
+   }
+   
+  for(i=0;i<4;i++) 
+  {
+    databuf[i*2]   = (int8)(temp1[i]%256);
+    databuf[i*2+1] = (int8)(temp1[i]/256);
+  }
+  
+  CRC16 = CRC_CHECK(databuf,8);
+  databuf[8] = CRC16%256;
+  databuf[9] = CRC16/256;
+  
+  for(i=0;i<10;i++)
+  uart_putchar(UART0,databuf[i]); 
+
+}
