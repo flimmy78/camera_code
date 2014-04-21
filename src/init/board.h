@@ -147,4 +147,15 @@ void speed_control_output(cars_status car) ; //电机平滑输出。
 
 float left_speed();
 float right_speed();
+
+
+/************摄像头配置************/
+#define    ROW_START    120
+#define    ROW_END      159
+#define    ROW          40      //ROW_END-ROW_START
+#define    COL          200
+
+void camera_wait();
+
+
 #endif

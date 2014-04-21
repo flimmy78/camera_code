@@ -43,6 +43,7 @@ volatile u8 SampleFlag = 0;
 struct cars_status car_s;
 cars_status car= &car_s;   //
 
+#if 0
 void main()
 { 
  
@@ -145,3 +146,42 @@ void main()
       }
 }
 }
+
+#else
+
+extern volatile u8 vref_flag;       //场中断判别标志
+extern volatile u16  row_count;     //行计数
+extern u8   image[ROW][COL];   //图像存放区
+
+void main()
+{
+//    u8 i,j;
+    
+    uart_init(UART0,115200);
+//    exti_init(PORTA,17,falling_up);
+    exti_init(PORTA,17,rising_down);
+    exti_init(PORTA,26,rising_down);
+    DMA_count_Init(DMA_CH0, PTA24, 10000, DMA_rising_down);
+    
+    for(;;)
+    {
+//        if(vref_flag == 2)
+//        {
+//            uart_putchar (UART0, 0x00);
+//            uart_putchar (UART0, 0xFF);
+//            uart_putchar (UART0, 0x01);
+//            uart_putchar (UART0, 0x00);
+//
+//            for(i=0;i<ROW;i++)
+//            {
+//                for(j=0;j<COL;j++)
+//                    uart_putchar(UART0,image[i][j]);
+//            }
+//            
+//            vref_flag = 0;
+////            DisableInterrupts;
+//        }
+    }
+}
+
+#endif

@@ -495,3 +495,13 @@ void send_toscope(void)
   uart_putchar(UART0,databuf[i]); 
 
 }
+
+/**************ÉãÏñÍ·ÑÓÊ±º¯Êı**************/
+void camera_wait()
+{
+    u8 i,j;
+    
+    for(i=0;i<25;i++)
+        for(j=0;j<25;j++)
+            asm("nop");
+}
