@@ -1,69 +1,6 @@
 #include "Kalman.h"
-
-//*
-//-------------------------------------------------------
-//Kalman滤波，8MHz的处理时间约1.8ms；
-//-------------------------------------------------------
-
-float  angle_dot; 		//外部需要引用的变量
-//cars_status car;  //声明车体状态函数.
-
-//-------------------------------------------------------
-float Q_angle=0.001, Q_gyro=0.003, R_angle=0.5;
-			//注意：dt的取值为kalman滤波器采样时间;
-float P[2][2] = {{ 1, 0 },{ 0, 1 }};
-	
-float Pdot[4] ={0,0,0,0};
-
-const char C_0 = 1;
-
-float q_bias=25000, angle_err, PCt_0, PCt_1, E, K_0, K_1, t_0, t_1;
-//-------------------------------------------------------
-
-void Kalman_Filter(float dt,cars_status car)			//gyro_m:gyro_measure
-{
-	
-
-	car->angle +=(car->gyro_m-q_bias) * dt;//先验估计
-	
-	Pdot[0]=Q_angle - P[0][1] - P[1][0];// Pk-' 先验估计误差协方差的微分
-	Pdot[1]=- P[1][1];
-	Pdot[2]=- P[1][1];
-	Pdot[3]=Q_gyro;
-	
-	P[0][0] += Pdot[0] * dt;// Pk- 先验估计误差协方差微分的积分 = 先验估计误差协方差
-	P[0][1] += Pdot[1] * dt;
-	P[1][0] += Pdot[2] * dt;
-	P[1][1] += Pdot[3] * dt;
-	
-	
-	angle_err = car->angle_m - car->angle;//zk-先验估计
-	
-	
-	PCt_0 = C_0 * P[0][0];
-	PCt_1 = C_0 * P[1][0];
-	
-	E = R_angle + C_0 * PCt_0;
-	
-	K_0 = PCt_0 / E;//Kk
-	K_1 = PCt_1 / E;
-	
-	t_0 = PCt_0;
-	t_1 = C_0 * P[0][1];
-
-	P[0][0] -= K_0 * t_0;//后验估计误差协方差
-	P[0][1] -= K_0 * t_1;
-	P[1][0] -= K_1 * t_0;
-	P[1][1] -= K_1 * t_1;
-	
-	
-	car->angle	+= K_0 * angle_err;//后验估计
-	q_bias	+= K_1 * angle_err;//后验估计
-	angle_dot = car->gyro_m-q_bias;//输出值（后验估计）的微分 = 角速度
-        
-
-}
-
+#include "board.h"
+#include "common.h"
 /*******************************************************************************
  *  互补滤波函数
  *  inpput：   angle_m,加速度计测量原始值，gyro_m，陀螺仪测量数据，tg，比例参数。
@@ -76,10 +13,96 @@ void Kalman_Filter(float dt,cars_status car)			//gyro_m:gyro_measure
 ********************************************************************************/
 void comp_filter(float tg,float dt,cars_status car)
 {
-  
-  float angle_err;
-  angle_err     = tg*(car->angle_m - car->angle);   //计算误差
+//  static float  angle[8];
+    float angle_err;//averge;
+//    static unsigned int i;
+//    angle[(i)&0x07] = car->angle_m;
+//    averge = (angle[i%8+0] + angle[i%8+1]+ angle[i%8+2]+ \
+//      angle[i%8+3]+ angle[i%8+4]+ angle[i%8+5]+ angle[i%8+6]+ angle[i%8+7])*0.125;  //*0.125是乘法比除法快。
+  angle_err      = tg*(car->angle_m - car->angle);   //计算误差
   car->angle    += (angle_err + car->gyro_m)*dt;   //角速度积分得出角度。
- 
+ //i++;
   
+}
+
+
+
+
+/******************************************************
+*   卡尔曼滤波
+*******************************************************/
+
+//定义采样时间5毫秒
+#define   Kalman_time   0.005   
+//状态变换阵
+     float A1_1 = 1;
+     float A1_2 = -1*Kalman_time;
+     float A2_1 = 0;
+     float A2_2 = 1;
+     float B1_1 = Kalman_time;
+     float B2_1 = 0;
+     float H1_1 = 1;
+     float H1_2 = 0;
+    //系数阵  
+     float Pest1_1;          //先验估计协方差阵 
+     float Pest1_2;
+     float Pest2_1;
+     float Pest2_2;    
+     float Psta1_1 = 1;      //后验估计协方差阵
+     float Psta1_2 = 1;  
+     float Psta2_1 = 1;  
+     float Psta2_2 = 1;   
+     float Q1_1 = 0.00001;   //过程激励噪声协方差
+     float Q1_2 = 0;  
+     float Q2_1 = 0;  
+     float Q2_2 = 0.00001;   
+     float K1_1;             //卡尔曼增益
+     float K2_1;    
+     float R = 0.1;          //观测噪声协方差
+     float I1_1 = 1;         //单位阵
+     float I1_2 = 0;  
+     float I2_1 = 0;  
+     float I2_2 = 1;   
+    //状态阵
+     float Xest1_1;          //先验状态估计
+     float Xest2_1;          
+     float Xsta1_1 = 0;      //后验状态估计
+     float Xsta2_1 = 0;    
+
+
+void Kalman_filter(cars_status car)
+{
+    
+    float th_acc,w_gyro;
+    th_acc = car->angle_m;
+    w_gyro = car->gyro_d;
+    
+    
+    /**************卡尔曼滤波**************/
+    Xest1_1 = Xsta1_1 + A1_2*Xsta2_1 + B1_1*w_gyro;
+    Xest2_1 = Xsta2_1;
+    
+    Pest1_1 = (Psta1_1 + A1_2*Psta2_1) + (Psta1_2 + A1_2*Psta2_2)*A1_2 + Q1_1;
+    Pest1_2 =  Psta1_2 + A1_2*Psta2_2;
+    Pest2_1 = Psta2_1 + Psta2_2*A1_2;
+	Pest2_2 = Psta2_2 + Q2_2;
+
+	K1_1 = Pest1_1/(Pest1_1 + R);
+	K2_1 = Pest2_1/(Pest1_1 + R);
+
+	Xsta1_1 = Xest1_1+K1_1*(th_acc - Xest1_1);        
+	Xsta2_1 = Xest2_1+K2_1*(th_acc - Xest1_1);        
+
+	Psta1_1 = (I1_1-K1_1) * Pest1_1;   
+	Psta1_2 = (I1_1-K1_1) * Pest1_2;
+	Psta2_1 =  -K2_1*Pest1_1 + Pest2_1; 
+	Psta2_2 =  -K2_1*Pest1_2+  Pest2_2; 
+    
+    
+    
+    car->angle = Xsta1_1;
+    car->gyro = w_gyro - Xsta2_1;
+    
+    
+//    printf("%f  %f\t\t%f  %f\n",car.angle_m,th_acc,car.angular_m,w_gyro);
 }

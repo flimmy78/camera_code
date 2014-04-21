@@ -53,15 +53,15 @@ float   right_speed_get();
 /********加速度计标准值配置*******/
 //加速度计 		  800mV/g ,对应为AD值 15887/g , 1605 * m/s^2
 
-#define	ACC_ZERO	24597.0	//0度对应的AD值
+#define	ACC_ZERO	28694.0	//0度对应的AD值  26088.0
 #define	ACC_90		11200.0	//实际为加速度计-90度的值
 #define	ACC_NEG_90	42650.0	//实际为加速度计90度的值
 
-#define	ACC_GRA		15887.0   
+#define	ACC_GRA		15294.0  //15887.0   
 
 /********陀螺仪标准值配置********/
-#define	GYRO_ZERO	29106.0	//陀螺仪零值
-#define	GYRO_SCALE	119.7    // 13.3*9/deg./sec
+#define	GYRO_ZERO	29168.0	//陀螺仪零值
+#define	GYRO_SCALE	82.46    // 13.3*9/deg./sec
 /*******************<<*********************/
 
 
@@ -120,8 +120,16 @@ void wait_key3(void);
 
 void sent_to_computer(uint16_t data1 , uint16_t data2 , uint16_t  data3);
 
+
+extern float OutData[4];
+unsigned short CRC_CHECK(unsigned char *Buf, unsigned char CRC_CNT);
+void send_toscope(void);
+
+
 float str2num(char * str,u8 n);
 void blance_comp_filter(float tg,float dt,cars_status car);
+void blance_comp_filter_pid(float tg,float dt,cars_status car);
+void blance_kalman_filter(cars_status car);
 void speed_control(cars_status car);
 //设置电机。
 void motor_set(cars_status car);
@@ -139,4 +147,15 @@ void speed_control_output(cars_status car) ; //电机平滑输出。
 
 float left_speed();
 float right_speed();
+
+
+/************摄像头配置************/
+#define    ROW_START    120
+#define    ROW_END      159
+#define    ROW          40      //ROW_END-ROW_START
+#define    COL          200
+
+void camera_wait();
+
+
 #endif

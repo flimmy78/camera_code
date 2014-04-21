@@ -13,7 +13,7 @@
 
 #ifndef _FTM_H_
 #define _FTM_H_
-
+#include "common.h"
 extern volatile struct FTM_MemMap *FTMx[3];
 
 typedef enum FTMn
