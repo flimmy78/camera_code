@@ -20,7 +20,7 @@
 
 
 /****************************************************图像采集*****************************************************/
-
+extern cars_status car;
 volatile u8 vref_flag = 0;       //场中断判别标志
 volatile u16  row_count = 0;     //行计数
 u8   image[ROW][COL] = {0};   //图像存放区
@@ -41,9 +41,32 @@ void PORTA_IRQHandler()
             /*********滤波及控制算法**********/
             //最小也大约有2.5ms的时间做控制
             
-            
-            
-        }
+             
+              static unsigned int count2;
+              car->angle_m = acc_data_get();
+              car->gyro_m = gyro_data_get();
+              //blance_kalman_filter(car);
+              blance_comp_filter(3.5,0.005,car);
+////              OutData[0] = car->angle_m;
+////              OutData[1] = car->gyro_m;
+////              OutData[2] = car->angle;
+////              OutData[3] = 0;
+////              send_toscope();
+////           printf("%f\t%f\t%f\t%f\n",car->angle_m,car->gyro_m,car->angle,car->left_duty);
+           count2++;
+          if(count2==20)
+          {
+               car->speed_left_m   =  -1000*left_speed();
+               car->speed_right_m  =  1000*right_speed();
+               speed_control(car);
+               count2 = 0;
+          }
+         speed_control_output(car);
+         car->left_duty     = car->blance_duty - car->speed_duty + car->direction_left_duty;
+         car->right_duty    = car->blance_duty - car->speed_duty + car->direction_right_duty;
+         motor_set(car);  
+         
+ }
         
         
         
@@ -100,7 +123,6 @@ void DMA_CH4_Handler(void)
 
 
 
-extern cars_status car;
 u32 a,b,c,d;
 
 void PIT_CH0_Handler()
@@ -130,7 +152,7 @@ void PIT_CH1_Handler(void)
 //              OutData[2] = car->angle;
 //              OutData[3] = 0;
 //              send_toscope();
-           printf("%f\t%f\t%f\t%f\n",car->angle_m,car->gyro_m,car->angle,car->left_duty);
+         //  printf("%f\t%f\t%f\t%f\n",car->angle_m,car->gyro_m,car->angle,car->left_duty);
               break;
     case 2:
               break;

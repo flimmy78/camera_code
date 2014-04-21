@@ -33,42 +33,38 @@
 const s32 g=15587;
 const s32 zero=26420;
 
-u8 ImageBuf[ROW][COL];
-
-volatile u32 rowCnt = 0 ;
-volatile u8 SampleFlag = 0;
-
 //extern cars_status car;
 
 struct cars_status car_s;
 cars_status car= &car_s;   //
 
-#if 0
+extern volatile u8 vref_flag;       //场中断判别标志
+extern volatile u16  row_count;     //行计数
+extern u8   image[ROW][COL];   //图像存放区
+
+#if 1
 void main()
 { 
- 
-  
-  DisableInterrupts;
-  board_init();
-  uart_init(UART0,115200);
   
   //车体系统设置
   DisableInterrupts;
   board_init();
   uart_init(UART0,115200);
-   
-  //车体参数设置。
-   
+  exti_init(PORTA,17,rising_down);
+  exti_init(PORTA,26,rising_down);
+  DMA_count_Init(DMA_CH0, PTA24, 10000, DMA_rising_down);
   
+  //车体参数设置。
+ 
   car->angle_p   = 105.5;
   car->gyro_d    = 1.5;
-  car->angle_set = -42.24;
+  car->angle_set = -42.24;//-42.5
   car->gyro_set  =  0;
   
   
   car->speed_set = 0.0;         
-  car->speed_p   = 0.8;//2.5;        
-  car->speed_i   = 8.5;//2.5;         
+  car->speed_p   = 0.8; //0.8       
+  car->speed_i   = 8.5; //8.5       
   car->speed_d   = 0.0;        
      
   car->direction_left_duty  = 0;
