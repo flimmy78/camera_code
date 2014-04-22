@@ -28,9 +28,8 @@
 #include "init.h"
 #include "board.h"
 #include "Kalman.h"
+#include "image.h"
 #define  work
-
-//extern cars_status car;
 
 struct cars_status car_s;
 cars_status car= &car_s;   //
@@ -38,6 +37,9 @@ cars_status car= &car_s;   //
 extern volatile u8 vref_flag;       //场中断判别标志
 extern volatile u16  row_count;     //行计数
 extern u8   image[ROW][COL];   //图像存放区
+
+u8 edge_l[COL];                //存取图像左偏差。
+u8 edge_r[COL];               //存取图像右偏差。
 
 #if 1
 void main()
@@ -53,15 +55,15 @@ void main()
 //  
   //车体参数设置。
  
-  car->angle_p   = 165.5;
+  car->angle_p   = 125.5;
   car->gyro_d    = 1.5; //4.5
-  car->angle_set = -32.34;//-42.5
+  car->angle_set = -48.00;//-47.84;//-45.94;//-45.54;//-45.84;//-46.14;//-31.14;//-42.5
   car->gyro_set  =  0;
   
   
-  car->speed_set = 0.0;         
-  car->speed_p   = 0.0; //0.8       
-  car->speed_i   = 0.0; //8.5       
+  car->speed_set = 00.0;         
+  car->speed_p   = 3.8; //0.8       
+  car->speed_i   = 10.0;//8.5       
   car->speed_d   = 0.0;        
      
   car->direction_left_duty  = 0;
@@ -135,7 +137,7 @@ void main()
        case 'i':
        case 'I':  car->speed_i = data;printf("speed_i:%f\n",car->speed_i);break;
        case 'D':
-       case 'd':  car->gyro_d = data;printf("speed_d:%f\n",car->gyro_d);break;
+       case 'd':  car->gyro_d = data;printf("car->gyro_d:%f\n",car->gyro_d);break;
        default :break;
       } 
       }

@@ -12,21 +12,15 @@
  *******************************************************************/
 #ifndef _IMAGE_H_
 #define _IMAGE_H_
-#define image_row	120									//图像行数
-#define image_col	240									//图像列数
+/************摄像头配置************/
 #include "common.h"
-#include "stdint.h"
+#define    ROW_START    120
+#define    ROW_END      159
+#define    ROW          40      //ROW_END-ROW_START
+#define    COL          200					//图像列数
+extern u8 threshold;
 
-/***********************************************************************
- *
- 函数名		:	image_binary
- 参数		:	**image:图像二维数组.threshold。	:图像二值化阈值。
- 输出		:	无
- 操作结果	:	图像二值化
- *
- ************************************************************************/
-
-void image_binary(int8_t   (*image)[image_col],int8_t threshold);
+//#include "stdint.h"
 
 /***********************************************************************
  *
@@ -37,7 +31,7 @@ void image_binary(int8_t   (*image)[image_col],int8_t threshold);
  *
  ************************************************************************/
 
-int8_t image_left_offset(int8_t (*image)[image_col] , int8_t n);
+u8 image_left_offset(u8 (*image)[COL] , u8 n);
 
 /***********************************************************************
  *
@@ -48,7 +42,7 @@ int8_t image_left_offset(int8_t (*image)[image_col] , int8_t n);
  *
  ************************************************************************/
 
-int8_t image_right_offset(int8_t (*image)[image_col] , int8_t n);
+u8 image_right_offset(u8 (*image)[COL] , u8 n);
 
 
  /***********************************************************************
@@ -60,6 +54,6 @@ int8_t image_right_offset(int8_t (*image)[image_col] , int8_t n);
  *
  ************************************************************************/
 
- int8_t image_average_offset(int8_t (*image)[image_col] , int8_t threshold);
+ u8 image_average_offset(u8 (*image)[COL] , u8 m,u8 n);
 
 #endif

@@ -17,7 +17,7 @@
 #include  "include.h"
 #include  "LED_CORE.h"
 #include  "board.h"
-
+#include  "image.h"
 
 /****************************************************Í¼Ïñ²É¼¯*****************************************************/
 extern cars_status car;
@@ -62,7 +62,7 @@ void PORTA_IRQHandler()
                count2 = 0;
           }
          speed_control_output(car);
-         car->left_duty     = car->blance_duty - car->speed_duty + car->direction_left_duty;
+         car->left_duty     = car->blance_duty - car->speed_duty - car->direction_left_duty;
          car->right_duty    = car->blance_duty - car->speed_duty + car->direction_right_duty;
          motor_set(car);  
          
@@ -152,7 +152,7 @@ void PIT_CH1_Handler(void)
 //              OutData[2] = car->angle;
 //              OutData[3] = 0;
 //              send_toscope();
-       //  printf("%f\t%f\t%f\t%f\n",car->angle_m,car->gyro,car->angle,car->left_duty);
+   //   printf("%f\t%f\t%f\t%f\n",car->angle_m,car->gyro,car->angle,car->left_duty);
               break;
     case 2:
               break;
@@ -167,10 +167,12 @@ void PIT_CH1_Handler(void)
                car->speed_right_m  =  1000*right_speed();
                speed_control(car);
                count2 = 0;
+//               printf("%f\n",car->speed_left_m );
           }
          speed_control_output(car);
          car->left_duty     = car->blance_duty - car->speed_duty + car->direction_left_duty;
          car->right_duty    = car->blance_duty - car->speed_duty + car->direction_right_duty;
+
          motor_set(car);
          break;
     default:

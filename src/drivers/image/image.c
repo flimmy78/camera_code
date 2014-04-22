@@ -8,32 +8,8 @@
  *
  *******************************************************************/
  #include "image.h"
-/***********************************************************************
- *
- 函数名		:	image_binary
- 参数		:	**image:图像二维数组.threshold。:图像二值化阈值。
- 输出		:	无
- 操作结果	:	图像二值化
- *
- ************************************************************************/
+ #include "common.h"
  
-void image_binary(int8_t (*image)[image_col] , int8_t threshold)
-{	
-	int8_t i,j;
-	 for(i = 0 ; i < image_row ; i++)
-    {
-        for (j = 0 ; j < image_col ; j++)
-          {
-            if( *( *(image+i) + j) > threshold)
-                *( *(image+i) + j) = 1;
-            else
-                *(*(image+i)+j) = 0;
-
-          }
-    }
-
-}	
-
 /***********************************************************************
  *
  函数名		:	image_left_offset
@@ -43,16 +19,16 @@ void image_binary(int8_t (*image)[image_col] , int8_t threshold)
  *
  ************************************************************************/
  
-int8_t image_left_offset(int8_t (*image)[image_col] , int8_t n)
+u8  image_left_offset(u8 (*image)[COL] , u8 n)
 {
-	int8_t left_edge = image_col / 2;
+	u8 left_edge = COL / 2;
 	while(left_edge > 0)
 	{
-		if(1 == *(*(image + n) + left_edge))
+		if(*(*(image + n) + left_edge) <= threshold)
 			break;
 		left_edge--;
 	}
-	return(left_edge - (image_col / 2));
+	return(left_edge -COL/2 );
 }
 
 /***********************************************************************
@@ -64,16 +40,16 @@ int8_t image_left_offset(int8_t (*image)[image_col] , int8_t n)
  *
  ************************************************************************/
  
-int8_t image_right_offset(int8_t (*image)[image_col] , int8_t n)
+u8 image_right_offset(u8 (*image)[COL] , u8 n)
 {
-	int8_t right_edge = image_col / 2;
-	while(right_edge < image_col)
+	u8 right_edge = COL / 2;
+	while(right_edge < COL)
           {
-		if(1 == *(*(image + n) + right_edge))
+		if( *(*(image + n) + right_edge) <= threshold)
 			break;
 		right_edge++;
           }
-	return(right_edge - image_col / 2);
+	return(right_edge - COL/2);
 }
 
 
@@ -86,15 +62,14 @@ int8_t image_right_offset(int8_t (*image)[image_col] , int8_t n)
  *
  ************************************************************************/
  
- int8_t image_average_offset(int8_t (*image)[image_col] , int8_t threshold)
+ u8 image_average_offset(u8 (*image)[COL] , u8 m,u8 n)
  {
-	int8_t i;
+	u8 i;
 	unsigned int offset;
-	image_binary(image , threshold);
-	for(i=0 ; i<image_row ; i++)
+	for(i=m ; i<n ; i++)
 	{	
 		offset = offset + image_right_offset(image , i) + image_left_offset(image , i);
 	}
-	return((int8_t )(offset / image_row));
+	return((u8 )(offset / (n-m)));
  }
  

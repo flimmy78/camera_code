@@ -148,12 +148,6 @@ float left_speed();
 float right_speed();
 
 
-/************…„œÒÕ∑≈‰÷√************/
-#define    ROW_START    120
-#define    ROW_END      159
-#define    ROW          40      //ROW_END-ROW_START
-#define    COL          200
-
 void camera_wait();
 
 
