@@ -106,29 +106,28 @@ void key3_task(void (*task)())
 float gyro_data_get(void)
 {
   
-  //return(((GYRO_ZERO - ad_once(ADC0,SE16,ADC_16bit)) / GYRO_SCALE));
-  return(((GYRO_ZERO - (ad_ave(ADC0,SE16,ADC_16bit,20)&0xfff0)) / GYRO_SCALE));
+  return(((GYRO_ZERO - ad_ave(ADC0,SE16,ADC_16bit,20)) / GYRO_SCALE));
+//  return(((GYRO_ZERO - (ad_ave(ADC0,SE16,ADC_16bit,20)&0xfff0)) / GYRO_SCALE));
   
 }
 
 
-//加速度计数据获取，获取AD值并计算倾角。
+//加速度计数据获取，返回角度
 float acc_data_get(void)
 {
    u16 acc_ad;
    
-   acc_ad = ad_ave(ADC1,SE16,ADC_16bit,20)&0xfff0;
-   if(acc_ad<=13400)   //10301
-       acc_ad = 13400;
-   else if(acc_ad>= 43988)  //41870
-       acc_ad =  43988;
-   
-//   printf("%u\n",acc_ad);
-   
-   return   ( 57.296*asin((acc_ad-ACC_ZERO)/ACC_GRA) );
+   acc_ad = ad_ave(ADC1,SE16,ADC_16bit,20);
+   if(acc_ad<=13769)   //10301
+       acc_ad = 13769;
+   else if(acc_ad>= 43619)  //41870
+       acc_ad =  43619;
+
+   return   ( 57.296*asin((ACC_ZERO - acc_ad)/ACC_GRA) );
    
   
 }
+
 //****陀螺仪和加速度计初始化
 void angle_get_init()
 {

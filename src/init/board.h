@@ -52,16 +52,13 @@ float   right_speed_get();
 
 /********加速度计标准值配置*******/
 //加速度计 		  800mV/g ,对应为AD值 15887/g , 1605 * m/s^2
+#define	ACC_ZERO	28694.0	//0度对应的AD值 27790
 
-#define	ACC_ZERO	28694.0	//0度对应的AD值  26088.0
-#define	ACC_90		11200.0	//实际为加速度计-90度的值
-#define	ACC_NEG_90	42650.0	//实际为加速度计90度的值
-
-#define	ACC_GRA		15294.0  //15887.0   
+#define	ACC_GRA		14925.0  //15887.0      -12865
 
 /********陀螺仪标准值配置********/
-#define	GYRO_ZERO	29168.0	//陀螺仪零值
-#define	GYRO_SCALE	82.46    // 13.3*9/deg./sec
+#define	GYRO_ZERO	27099.0	//陀螺仪零值
+#define	GYRO_SCALE	82.46  // 13.3*9/deg.c  82.46
 /*******************<<*********************/
 
 
