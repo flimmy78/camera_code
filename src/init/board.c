@@ -107,7 +107,7 @@ float gyro_data_get(void)
 {
   
   //return(((GYRO_ZERO - ad_once(ADC0,SE16,ADC_16bit)) / GYRO_SCALE));
-  return(((GYRO_ZERO - (ad_ave(ADC0,SE16,ADC_16bit,20)&0xfff0)) / GYRO_SCALE));
+  return(((GYRO_ZERO - (ad_ave(ADC0,SE16,ADC_16bit,20))) / GYRO_SCALE));
   
 }
 
@@ -117,17 +117,13 @@ float acc_data_get(void)
 {
    u16 acc_ad;
    
-   acc_ad = ad_ave(ADC1,SE16,ADC_16bit,20)&0xfff0;
-   if(acc_ad<=13400)   //10301
-       acc_ad = 13400;
-   else if(acc_ad>= 43988)  //41870
-       acc_ad =  43988;
-   
-//   printf("%u\n",acc_ad);
-   
+   acc_ad = ad_ave(ADC1,SE16,ADC_16bit,20);
+   if(acc_ad<=13769)   //10301
+       acc_ad = 13769;
+   else if(acc_ad>= 43619)  //41870
+       acc_ad =  43619; 
    return   ( 57.296*asin((acc_ad-ACC_ZERO)/ACC_GRA) );
    
-  
 }
 //****陀螺仪和加速度计初始化
 void angle_get_init()
@@ -237,7 +233,7 @@ void speed_init()
     FTM2_QUAD_init();
     
    //pit_init_ms(PIT0,SPEED_SAMPLING_TIME);
-    pit_init_ms(PIT1,1);
+   pit_init_ms(PIT1,1);
 }
 
 float left_speed()
@@ -338,7 +334,7 @@ void blance_kalman_filter(cars_status car)
 {
    
     Kalman_filter(car);
-  car->blance_duty = (car->angle - car->angle_set)*car->angle_p + (car->gyro - car->gyro_set)*car->gyro_d;
+    car->blance_duty = (car->angle - car->angle_set)*car->angle_p + (car->gyro - car->gyro_set)*car->gyro_d;
   
 }
                           

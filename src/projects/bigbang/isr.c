@@ -45,14 +45,14 @@ void PORTA_IRQHandler()
               static unsigned int count2;
               car->angle_m = acc_data_get();
               car->gyro_m = gyro_data_get();
-              //blance_kalman_filter(car);
-              blance_comp_filter(3.5,0.005,car);
+              blance_kalman_filter(car);
+              //blance_comp_filter(3.5,0.005,car);
 ////              OutData[0] = car->angle_m;
 ////              OutData[1] = car->gyro_m;
 ////              OutData[2] = car->angle;
 ////              OutData[3] = 0;
 ////              send_toscope();
-          // printf("%f\t%f\t%f\t%f\n",car->angle_m,car->gyro_m,car->angle,car->left_duty);
+               printf("%f\t%f\t%f\t%f\n",car->angle_m,car->gyro_m,car->angle,car->left_duty);
            count2++;
           if(count2==20)
           {
@@ -145,14 +145,14 @@ void PIT_CH1_Handler(void)
     case 1:   
               car->angle_m = acc_data_get();
               car->gyro_m = gyro_data_get();
-              //blance_kalman_filter(car);
-              blance_comp_filter(3.5,0.005,car);
+              blance_kalman_filter(car);
+              //blance_comp_filter(3.5,0.005,car);
 //              OutData[0] = car->angle_m;
 //              OutData[1] = car->gyro_m;
 //              OutData[2] = car->angle;
 //              OutData[3] = 0;
 //              send_toscope();
-          printf("%f\t%f\t%f\t%f\n",car->angle_m,car->gyro_m,car->angle,car->left_duty);
+         printf("%f\t%f\t%f\t%f\n",car->angle_m,car->gyro,car->angle,car->left_duty);
               break;
     case 2:
               break;

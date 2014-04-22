@@ -1,6 +1,8 @@
 #include "Kalman.h"
 #include "board.h"
 #include "common.h"
+#define   Kalman_time   0.005 
+
 /*******************************************************************************
  *  互补滤波函数
  *  inpput：   angle_m,加速度计测量原始值，gyro_m，陀螺仪测量数据，tg，比例参数。
@@ -25,15 +27,8 @@ void comp_filter(float tg,float dt,cars_status car)
   
 }
 
-
-
-
-/******************************************************
-*   卡尔曼滤波
-*******************************************************/
-
 //定义采样时间5毫秒
-#define   Kalman_time   0.005   
+  
 //状态变换阵
      float A1_1 = 1;
      float A1_2 = -1*Kalman_time;
@@ -58,7 +53,7 @@ void comp_filter(float tg,float dt,cars_status car)
      float Q2_2 = 0.00001;   
      float K1_1;             //卡尔曼增益
      float K2_1;    
-     float R = 0.1;          //观测噪声协方差
+     float R = 1;          //观测噪声协方差
      float I1_1 = 1;         //单位阵
      float I1_2 = 0;  
      float I2_1 = 0;  
@@ -75,7 +70,7 @@ void Kalman_filter(cars_status car)
     
     float th_acc,w_gyro;
     th_acc = car->angle_m;
-    w_gyro = car->gyro_d;
+    w_gyro = car->gyro_m;
     
     
     /**************卡尔曼滤波**************/
