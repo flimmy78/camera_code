@@ -28,10 +28,7 @@
 #include "init.h"
 #include "board.h"
 #include "Kalman.h"
-
-
-const s32 g=15587;
-const s32 zero=26420;
+#define  work
 
 //extern cars_status car;
 
@@ -71,6 +68,7 @@ void main()
   car->direction_right_duty = 0;
   
   
+#ifdef work
   
   int num[5];
   char str;
@@ -80,6 +78,7 @@ void main()
  //发送调试数据，数据为5为，‘12345’对应123.45.
   printf("\n\n");
   printf("按c进入命令模式\n");
+  
  while(1)
  {    
     str = uart_getchar(UART0);
@@ -141,6 +140,8 @@ void main()
       } 
       }
 }
+
+#endif
 }
 
 #else
