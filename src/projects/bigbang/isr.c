@@ -152,7 +152,7 @@ void PIT_CH1_Handler(void)
 //              OutData[2] = car->angle;
 //              OutData[3] = 0;
 //              send_toscope();
-         printf("%f\t%f\t%f\t%f\n",car->angle_m,car->gyro,car->angle,car->left_duty);
+       //  printf("%f\t%f\t%f\t%f\n",car->angle_m,car->gyro,car->angle,car->left_duty);
               break;
     case 2:
               break;
