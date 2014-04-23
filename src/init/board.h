@@ -24,7 +24,7 @@
 #define LEFT_B_CH   CH1
 
 //电机驱动频率
-#define MOTOR_FRE 15000
+#define MOTOR_FRE 10000
 
 //电机驱动初始化的占空比，【强烈要求为【0】】
 #define INIT_DUTY (0)

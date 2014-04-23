@@ -36,6 +36,11 @@ typedef struct cars_status
   float speed_duty_new;         //速度控制占空比输出更新值
   
   //摄像头采集，角度控制
+  float direction_p ;             //方向控制p参数。
+  float direction_d ;             //方向控制d参数。
+  float direction ;               //方向计算得出的占空比。
+  float direction_err_new;       //偏差新值，
+  float direction_err_old;       //偏差旧值，用于微分控制。
   float direction_left_duty;     //电机转向左轮占空比。
   float direction_right_duty;    //电机转向游轮占空比。
   

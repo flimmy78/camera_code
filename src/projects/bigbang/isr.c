@@ -36,13 +36,13 @@ void PORTA_IRQHandler()
         
         row_count = DMA_count_get(DMA_CH0);
         
-        if(row_count%80 == 0)           //5ms已到
+        if(row_count%80 == 1)           //5ms已到
         {
             /*********滤波及控制算法**********/
             //最小也大约有2.5ms的时间做控制
             
              
-              static unsigned int count2;
+              static unsigned int count1 count2;
               car->angle_m = acc_data_get();
               car->gyro_m = gyro_data_get();
               blance_kalman_filter(car);
@@ -53,6 +53,13 @@ void PORTA_IRQHandler()
 ////              OutData[3] = 0;
 ////              send_toscope();
  //              printf("%f\t%f\t%f\t%f\n",car->angle_m,car->gyro_m,car->angle,car->left_duty);
+          count1++;
+          if(count == 4)
+              {
+                direction_control(car);
+              }  
+              direction_control_output(car);
+          
            count2++;
           if(count2==20)
           {

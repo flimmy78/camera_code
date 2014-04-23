@@ -14,12 +14,16 @@
 #define _IMAGE_H_
 /************摄像头配置************/
 #include "common.h"
+#include "Kalman.h"
 #define    ROW_START    120
 #define    ROW_END      159
 #define    ROW          40      //ROW_END-ROW_START
 #define    COL          200					//图像列数
 extern u8 threshold;
-
+extern u8 image[ROW][COL];   
+extern u8 edge_l[ROW];                //存取图像左偏差。
+extern u8 edge_r[ROW];               //存取图像右偏差。
+   
 //#include "stdint.h"
 
 /***********************************************************************
@@ -44,16 +48,15 @@ u8 image_left_offset(u8 (*image)[COL] , u8 n);
 
 u8 image_right_offset(u8 (*image)[COL] , u8 n);
 
-
- /***********************************************************************
+/***********************************************************************
  *
- 函数名		:	image_average_offset
- 参数		:	图像二维数组。
- 输出		:	每行平均偏差。
- 操作结果	:	提取一行右边偏移值。
+ 函数名		:	image_err
+ 参数		:	image:图像二维数组行指针 
+ 输出		:	无
+ 操作结果	:	提取图像平均偏差。
  *
  ************************************************************************/
 
- u8 image_average_offset(u8 (*image)[COL] , u8 m,u8 n);
+void image_err(cars_status car,u8 m , u8 n);
 
 #endif

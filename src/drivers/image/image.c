@@ -52,24 +52,25 @@ u8 image_right_offset(u8 (*image)[COL] , u8 n)
 	return(right_edge - COL/2);
 }
 
-
- /***********************************************************************
+/***********************************************************************
  *
- 函数名		:	image_average_offset
- 参数		:	图像二维数组。
- 输出		:	每行平均偏差。
- 操作结果	:	提取一行右边偏移值。
+ 函数名		:	image_err
+ 参数		:	image:图像二维数组行指针 
+ 输出		:	无
+ 操作结果	:	提取图像平均偏差。
  *
  ************************************************************************/
- 
- u8 image_average_offset(u8 (*image)[COL] , u8 m,u8 n)
- {
-	u8 i;
-	unsigned int offset;
-	for(i=m ; i<n ; i++)
-	{	
-		offset = offset + image_right_offset(image , i) + image_left_offset(image , i);
-	}
-	return((u8 )(offset / (n-m)));
- }
+
+void image_err(cars_status car,u8 m , u8 n)
+{
+  int temp;
+  int i;
+  car->direction_err_old = car->direction_err_new;
+  for(i = m;i<n ;i++)
+  {
+    temp  += (edge_l[i] = edge_r[i]) / 2;
+  }
+  car->direction_err_new = temp/(n-m) ;
+}
+
  

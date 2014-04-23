@@ -439,6 +439,21 @@ void print(cars_status car)
       
  
 }
+/***********************·½Ïò¿ØÖÆ********************************/
+void direction_control(cars_status car)
+{
+  float direction_diff = ( car->direction_err_new - car->direction_err_old);
+        car->direction = ( car->direction_left_duty- ((car->direction_d) * (car->direction_d) * direction_diff)) / 4.0;  
+}
+
+void direction_control_output(cars_status car)
+{
+  car->direction_left_duty = car->direction_right_duty  = car->direction_left_duty + car->direction;
+}
+
+
+
+
 
 
 
