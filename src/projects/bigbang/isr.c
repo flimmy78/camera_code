@@ -24,6 +24,7 @@ extern cars_status car;
 volatile u8 vref_flag = 0;       //场中断判别标志
 volatile u16  row_count = 0;     //行计数
 u8   image[ROW][COL] = {0};   //图像存放区
+extern u8 flag;
 
 void PORTA_IRQHandler()
 {
@@ -79,6 +80,7 @@ void PORTA_IRQHandler()
         
         
         /******************图像采集部分*******************/
+        if(row_count == ROW_START)  printf("%d\n",flag);
         if(row_count < ROW_START)   return;     //未到需要采集的行
         else if(row_count > ROW_END)
         {
@@ -108,6 +110,8 @@ void PORTA_IRQHandler()
         vref_flag = 1;  //场标志置位
         row_count = 0;  //行计数清零
         DMA_count_reset(DMA_CH0);
+        
+        
     }
     
 }

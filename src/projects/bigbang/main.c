@@ -43,7 +43,7 @@ int16_t edge_r[ROW];               //存取图像右偏差。
 u8 image_flag = ROW_START;                //存取图像处理标志。
 u8  threshold = 150;             //黑白阈值。
 extern volatile u16  row_count;
-
+u8 flag = 0;       //图像行计数。
 #if 1
 void main()
 { 
@@ -146,25 +146,24 @@ void main()
 //      }
 //}
 
-u8 i = 0;       //图像行计数。
+
 
   while(1)
   {    
-    if(i == 40)
-       i = 0;
-    if(row_count > ROW_END )
+    if(flag == 40)
+       flag = 0;
+    if(image_flag > ROW_END )
        image_flag = ROW_START;
-    if(row_count > ROW_START && row_count < ROW_END + 1)
+    if((row_count > ROW_START) && (row_count < ROW_END + 1))
     {
       if(row_count>image_flag)
       {
-        edge_r[i] = image_right_offset(image ,image_flag );
-        edge_l[i] = image_left_offset (image ,image_flag );
-        
-        i++;
+        edge_r[flag] = image_right_offset(image ,flag );
+        edge_l[flag] = image_left_offset (image ,flag );
+//        printf("%d\t%d\t%d\n",row_count,edge_r[i],edge_l[i]);
+        flag++;
         image_flag++;
         
-        printf("%d\t%d\t%d\n",image_flag,edge_r[i],edge_l[i]);
       }
     }
   }
@@ -175,8 +174,7 @@ u8 i = 0;       //图像行计数。
 
 extern volatile u8 vref_flag;       //场中断判别标志
 extern volatile u16  row_count;     //行计数
-extern u8   image[ROW][COL];   //图像存放区
-
+extern u8   image[ROW][COL];        //图像存放区
 void main()
 {
 //    u8 i,j;
