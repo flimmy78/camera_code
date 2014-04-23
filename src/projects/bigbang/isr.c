@@ -172,7 +172,7 @@ void PIT_CH1_Handler(void)
          speed_control_output(car);
          car->left_duty     = car->blance_duty - car->speed_duty + car->direction_left_duty;
          car->right_duty    = car->blance_duty - car->speed_duty + car->direction_right_duty;
-
+         printf("%f\t%f\t%f\n",car->blance_duty,car->speed_duty,car->left_duty);
          motor_set(car);
          break;
     default:

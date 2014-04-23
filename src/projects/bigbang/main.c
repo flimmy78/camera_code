@@ -57,13 +57,13 @@ void main()
  
   car->angle_p   = 125.5;
   car->gyro_d    = 1.5; //4.5
-  car->angle_set = -48.5;//-48.00;//-47.84;//-45.94;//-45.54;//-45.84;//-46.14;//-31.14;//-42.5
+  car->angle_set = -35.4;//-48.5;//-48.00;//-47.84;//-45.94;//-45.54;//-45.84;//-46.14;//-31.14;//-42.5
   car->gyro_set  =  0;
   
   
-  car->speed_set = 0.0;         
-  car->speed_p   = 3.8; //0.8       
-  car->speed_i   = 10.0;//8.5       
+  car->speed_set = -200.0;         
+  car->speed_p   = 0.8; //0.8       
+  car->speed_i   = 1.2;//8.5       
   car->speed_d   = 0.0;        
      
   car->direction_left_duty  = 0;
