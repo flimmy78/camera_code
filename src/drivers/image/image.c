@@ -19,9 +19,9 @@
  *
  ************************************************************************/
  
-u8  image_left_offset(u8 (*image)[COL] , u8 n)
+int16_t  image_left_offset(u8 (*image)[COL] , u8 n)
 {
-	u8 left_edge = COL / 2;
+	int16_t left_edge = COL / 2;
 	while(left_edge > 0)
 	{
 		if(*(*(image + n) + left_edge) <= threshold)
@@ -40,9 +40,9 @@ u8  image_left_offset(u8 (*image)[COL] , u8 n)
  *
  ************************************************************************/
  
-u8 image_right_offset(u8 (*image)[COL] , u8 n)
+int16_t image_right_offset(u8 (*image)[COL] , u8 n)
 {
-	u8 right_edge = COL / 2;
+	int16_t right_edge = COL / 2;
 	while(right_edge < COL)
           {
 		if( *(*(image + n) + right_edge) <= threshold)
@@ -66,11 +66,11 @@ void image_err(cars_status car,u8 m , u8 n)
   int temp;
   int i;
   car->direction_err_old = car->direction_err_new;
-  for(i = m;i<n ;i++)
+  for(i = m;i<= n ;i++)
   {
-    temp  += (edge_l[i] = edge_r[i]) / 2;
+    temp  += (edge_l[i] + edge_r[i]) / 2;
   }
-  car->direction_err_new = temp/(n-m) ;
+  car->direction_err_new = temp/(n-m +1 ) ;
 }
 
  

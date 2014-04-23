@@ -144,6 +144,10 @@ s16 pulse_cnt_right(void);
 
 void speed_control_output(cars_status car) ; //电机平滑输出。
 
+void direction_control(cars_status car) ; //方向控制输出。
+void direction_control_output(cars_status car); //速度控制平滑输出。
+
+
 float left_speed();
 float right_speed();
 

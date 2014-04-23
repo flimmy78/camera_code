@@ -42,7 +42,7 @@ void PORTA_IRQHandler()
             //最小也大约有2.5ms的时间做控制
             
              
-              static unsigned int count1 count2;
+              static unsigned int count1,count2;
               car->angle_m = acc_data_get();
               car->gyro_m = gyro_data_get();
               blance_kalman_filter(car);
@@ -54,8 +54,9 @@ void PORTA_IRQHandler()
 ////              send_toscope();
  //              printf("%f\t%f\t%f\t%f\n",car->angle_m,car->gyro_m,car->angle,car->left_duty);
           count1++;
-          if(count == 4)
+          if(count1 == 4)
               {
+                image_err(car, 0 ,39);
                 direction_control(car);
               }  
               direction_control_output(car);

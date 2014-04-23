@@ -38,9 +38,9 @@ extern volatile u8 vref_flag;       //场中断判别标志
 extern volatile u16  row_count;     //行计数
 extern u8   image[ROW][COL];   //图像存放区
 
-u8 edge_l[ROW];                //存取图像左偏差。
-u8 edge_r[ROW];               //存取图像右偏差。
-u8 image_flag;                //存取图像处理标志。
+int16_t edge_l[ROW];                //存取图像左偏差。
+int16_t edge_r[ROW];               //存取图像右偏差。
+u8 image_flag = ROW_START;                //存取图像处理标志。
 u8  threshold = 150;             //黑白阈值。
 extern volatile u16  row_count;
 
@@ -70,7 +70,7 @@ void main()
   car->speed_d   = 0.0;        
      
   car->direction_p  = 0;             //方向控制p参数。
-  car->direction_d  = 0 ;             //方向控制d参数。
+  car->direction_d  = 0;             //方向控制d参数。
   car->direction_left_duty  = 0;
   car->direction_right_duty = 0;
   EnableInterrupts;
@@ -151,20 +151,23 @@ u8 i = 0;       //图像行计数。
   while(1)
   {    
     if(i == 40)
-      i = 0;
+       i = 0;
+    if(row_count > ROW_END )
+       image_flag = ROW_START;
     if(row_count > ROW_START && row_count < ROW_END + 1)
     {
-      edge_l[i] = image_left_offset (image ,row_count - 1 );
-      edge_r[i] = image_right_offset(image ,row_count - 1 );
-      i++;
+      if(row_count>image_flag)
+      {
+        edge_r[i] = image_right_offset(image ,image_flag );
+        edge_l[i] = image_left_offset (image ,image_flag );
+        
+        i++;
+        image_flag++;
+        
+        printf("%d\t%d\t%d\n",image_flag,edge_r[i],edge_l[i]);
+      }
     }
   }
-  
-  
-  
-  
-  
-  
 }
 
 

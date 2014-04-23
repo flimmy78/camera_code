@@ -21,8 +21,8 @@
 #define    COL          200					//图像列数
 extern u8 threshold;
 extern u8 image[ROW][COL];   
-extern u8 edge_l[ROW];                //存取图像左偏差。
-extern u8 edge_r[ROW];               //存取图像右偏差。
+extern int16_t edge_l[ROW];                //存取图像左偏差。
+extern int16_t edge_r[ROW];               //存取图像右偏差。
    
 //#include "stdint.h"
 
@@ -35,7 +35,7 @@ extern u8 edge_r[ROW];               //存取图像右偏差。
  *
  ************************************************************************/
 
-u8 image_left_offset(u8 (*image)[COL] , u8 n);
+int16_t image_left_offset(u8 (*image)[COL] , u8 n);
 
 /***********************************************************************
  *
@@ -46,7 +46,7 @@ u8 image_left_offset(u8 (*image)[COL] , u8 n);
  *
  ************************************************************************/
 
-u8 image_right_offset(u8 (*image)[COL] , u8 n);
+int16_t image_right_offset(u8 (*image)[COL] , u8 n);
 
 /***********************************************************************
  *
