@@ -106,13 +106,13 @@ void key3_task(void (*task)())
 float gyro_data_get(void)
 {
   
-  return(((GYRO_ZERO - ad_ave(ADC0,SE16,ADC_16bit,20)) / GYRO_SCALE));
-//  return(((GYRO_ZERO - (ad_ave(ADC0,SE16,ADC_16bit,20)&0xfff0)) / GYRO_SCALE));
+  //return(((GYRO_ZERO - ad_once(ADC0,SE16,ADC_16bit)) / GYRO_SCALE));
+  return(((GYRO_ZERO - (ad_ave(ADC0,SE16,ADC_16bit,20))) / GYRO_SCALE));
   
 }
 
 
-//加速度计数据获取，返回角度
+//加速度计数据获取，获取AD值并计算倾角。
 float acc_data_get(void)
 {
    u16 acc_ad;
@@ -121,13 +121,10 @@ float acc_data_get(void)
    if(acc_ad<=13769)   //10301
        acc_ad = 13769;
    else if(acc_ad>= 43619)  //41870
-       acc_ad =  43619;
-
-   return   ( 57.296*asin((ACC_ZERO - acc_ad)/ACC_GRA) );
+       acc_ad =  43619; 
+   return   ( 57.296*asin((acc_ad-ACC_ZERO)/ACC_GRA) );
    
-  
 }
-
 //****陀螺仪和加速度计初始化
 void angle_get_init()
 {
@@ -337,7 +334,7 @@ void blance_kalman_filter(cars_status car)
 {
    
     Kalman_filter(car);
-  car->blance_duty = (car->angle - car->angle_set)*car->angle_p + (car->gyro - car->gyro_set)*car->gyro_d;
+    car->blance_duty = (car->angle - car->angle_set)*car->angle_p + (car->gyro - car->gyro_set)*car->gyro_d;
   
 }
                           
