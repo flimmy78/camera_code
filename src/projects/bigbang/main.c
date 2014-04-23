@@ -49,15 +49,15 @@ void main()
   DisableInterrupts;
   board_init();
   uart_init(UART0,115200);
-//  exti_init(PORTA,17,rising_down);
-//  exti_init(PORTA,26,rising_down);
-//  DMA_count_Init(DMA_CH0, PTA24, 10000, DMA_rising_down);
-//  
+  exti_init(PORTA,17,rising_down);
+  exti_init(PORTA,26,rising_down);
+  DMA_count_Init(DMA_CH0, PTA24, 10000, DMA_rising_down);
+  
   //车体参数设置。
  
   car->angle_p   = 125.5;
   car->gyro_d    = 1.5; //4.5
-  car->angle_set = -35.4;//-48.5;//-48.00;//-47.84;//-45.94;//-45.54;//-45.84;//-46.14;//-31.14;//-42.5
+  car->angle_set = -35.6;//-35.4;//-48.5;//-48.00;//-47.84;//-45.94;//-45.54;//-45.84;//-46.14;//-31.14;//-42.5
   car->gyro_set  =  0;
   
   
