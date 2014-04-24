@@ -23,7 +23,7 @@
 extern cars_status car;
 volatile u8 vref_flag = 0;       //场中断判别标志
 volatile u16  row_count = 0;     //行计数
-u8   image[ROW][COL] = {0};   //图像存放区
+u8   image[ROW][COL] = {255};   //图像存放区
 u8  image_handle_flag = 0;      //图像处理标志
 
 void PORTA_IRQHandler()
@@ -71,8 +71,7 @@ void PORTA_IRQHandler()
          car->right_duty    = car->blance_duty - car->speed_duty + car->direction_right_duty;
          motor_set(car);  
  
-         
- }
+        }
         /********************图像处理部分*********************/
         if((row_count > 161)&&(image_handle_flag == 0))         //第三次控制算法已完成且图像未处理
         {
