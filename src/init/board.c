@@ -451,7 +451,8 @@ void direction_control(cars_status car)
 
 void direction_control_output(cars_status car)
 {
-    car->direction_left_duty = car->direction_right_duty  = car->direction_left_duty + car->direction;
+    car->direction_left_duty   = car->direction_left_duty + car->direction;
+    car->direction_right_duty  = car->direction_left_duty£»
 }
 
 

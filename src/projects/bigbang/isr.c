@@ -28,6 +28,8 @@ u8  image_handle_flag = 0;      //图像处理标志
 
 void PORTA_IRQHandler()
 {
+    u8 i; //计数。
+    static unsigned int count2;
     if(PORTA_ISFR & (1 << 26))     //行中断来临
     {
         PORTA_ISFR |= (1 << 26);
@@ -43,7 +45,7 @@ void PORTA_IRQHandler()
             //最小也大约有2.5ms的时间做控制
             
              
-              static unsigned int count1,count2;
+             
               car->angle_m = acc_data_get();
               car->gyro_m = gyro_data_get();
               blance_kalman_filter(car);
@@ -54,14 +56,7 @@ void PORTA_IRQHandler()
 ////              OutData[3] = 0;
 ////              send_toscope();
  //              printf("%f\t%f\t%f\t%f\n",car->angle_m,car->gyro_m,car->angle,car->left_duty);
-          count1++;
-          if(count1 == 4)
-              {
-                image_err(car, 0 ,39);
-                direction_control(car);
-              }  
-              direction_control_output(car);
-          
+         
            count2++;
           if(count2==20)
           {
@@ -71,25 +66,29 @@ void PORTA_IRQHandler()
                count2 = 0;
           }
          speed_control_output(car);
+         direction_control_output(car);   //方向控制平滑输出，方向控制在下面图像处理部分。
          car->left_duty     = car->blance_duty - car->speed_duty - car->direction_left_duty;
          car->right_duty    = car->blance_duty - car->speed_duty + car->direction_right_duty;
          motor_set(car);  
+ 
          
  }
-        
         /********************图像处理部分*********************/
         if((row_count > 161)&&(image_handle_flag == 0))         //第三次控制算法已完成且图像未处理
         {
             /**********图像处理************/
             
-            
-            /**********方向控制计算********/
-            
-            
-            
+                for(i=0;i<40;i++)
+                {
+                  edge_l[i] = image_left_offset(image , i);
+                  edge_r[i] = image_right_offset(image , i);
+                }
+                image_err(car, 0 ,39);
+                direction_control(car);
             image_handle_flag = 1;      //图像处理标志置1,图像处理及方向计算完成
         }
-        
+         
+            
         
         /******************图像采集部分*******************/
         if(row_count < ROW_START)   return;     //未到需要采集的行
