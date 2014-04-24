@@ -56,7 +56,7 @@ void board_init()
   
   //核心板上的LED灯初始化
   Light_init;
-  printf("light is inited\n");
+//  printf("light is inited\n");
   
   //5110LCD初始化
 //  LCD_init();
@@ -64,8 +64,8 @@ void board_init()
   
   //陀螺仪和加速度计初始化
   angle_get_init();
-  printf("加速度计 is inited\n");
-  printf("陀螺仪 is inited");
+//  printf("加速度计 is inited\n");
+//  printf("陀螺仪 is inited");
   
 //  board_pit_init();
   

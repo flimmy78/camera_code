@@ -233,7 +233,7 @@ void speed_init()
     FTM2_QUAD_init();
     
    //pit_init_ms(PIT0,SPEED_SAMPLING_TIME);
-   pit_init_ms(PIT1,1);
+  // pit_init_ms(PIT1,1);
 }
 
 float left_speed()
@@ -439,6 +439,24 @@ void print(cars_status car)
       
  
 }
+/***********************·½Ïò¿ØÖÆ********************************/
+void direction_control(cars_status car)
+{
+  float direction_diff;
+         direction_diff = ( car->direction_err_new - car->direction_err_old);
+        if(direction_diff > 30)
+           direction_diff = 30;
+        car->direction = ( car->direction_left_duty- ((car->direction_p) *(car->direction_err_new)  + (car->direction_d) * direction_diff)) / 4.0;  
+}
+
+void direction_control_output(cars_status car)
+{
+    car->direction_left_duty = car->direction_right_duty  = car->direction_left_duty + car->direction;
+}
+
+
+
+
 
 
 

@@ -324,6 +324,7 @@
           <state>$PROJ_DIR$\..\..\src\drivers\uart </state>
           <state>$PROJ_DIR$\..\..\src\drivers\wdog</state>
           <state>$PROJ_DIR$\..\..\src\drivers\nokia_5110</state>
+          <state>$PROJ_DIR$\..\..\src\drivers\image</state>
           <state>$PROJ_DIR$\..\..\src\LIB\CMSIS</state>
           <state>$PROJ_DIR$\..\..\src\LIB\FatFs</state>
           <state>$PROJ_DIR$\..\..\build</state>
