@@ -50,9 +50,6 @@ void main()
   //车体系统设置
   DisableInterrupts;
   board_init();
-//  left_run_s(200);
-//  right_run_s(200);
-//  while(1) ;
   uart_init(UART0,115200);
   exti_init(PORTA,17,rising_down);
   exti_init(PORTA,26,rising_down);
@@ -71,7 +68,7 @@ void main()
   car->speed_i   = 1.2;//8.5       
   car->speed_d   = 0.0;        
      
-  car->direction_p  = 1.0;             //方向控制p参数。
+  car->direction_p  = 5.0;             //方向控制p参数。
   car->direction_d  = 0;             //方向控制d参数。
   car->direction_left_duty  = 0;
   car->direction_right_duty = 0;

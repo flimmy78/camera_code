@@ -85,7 +85,8 @@ void PORTA_IRQHandler()
                 }
                 image_err(car, 0 ,39);
                 direction_control(car);
-            image_handle_flag = 1;      //图像处理标志置1,图像处理及方向计算完成
+               // printf("%f\t%f\t%f\n",car->direction,car->direction_left_duty,car->direction_err_new);
+                image_handle_flag = 1;      //图像处理标志置1,图像处理及方向计算完成
         }
          
             

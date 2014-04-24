@@ -63,12 +63,12 @@ int16_t image_right_offset(u8 (*image)[COL] , u8 n)
 
 void image_err(cars_status car,u8 m , u8 n)
 {
-  int temp;
+  float temp;
   int i;
   car->direction_err_old = car->direction_err_new;
   for(i = m;i<= n ;i++)
   {
-    temp  += (edge_l[i] + edge_r[i]) / 2;
+    temp  += (edge_l[i] + edge_r[i]) / 2.0;
   }
   car->direction_err_new = temp/(n-m +1 ) ;
 }
