@@ -67,8 +67,8 @@ void PORTA_IRQHandler()
           }
          speed_control_output(car);
          direction_control_output(car);   //方向控制平滑输出，方向控制在下面图像处理部分。
-         car->left_duty     = car->blance_duty - car->speed_duty - car->direction_left_duty;
-         car->right_duty    = car->blance_duty - car->speed_duty + car->direction_right_duty;
+         car->left_duty     = car->blance_duty - car->speed_duty + car->direction_left_duty;
+         car->right_duty    = car->blance_duty - car->speed_duty - car->direction_right_duty;
          motor_set(car);  
  
         }
