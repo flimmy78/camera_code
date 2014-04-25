@@ -57,9 +57,9 @@ void main()
   
   //车体参数设置。
  
-  car->angle_p   = 125.5;
+  car->angle_p   = 155.5;
   car->gyro_d    = 1.5; //4.5
-  car->angle_set = -35.6;//-35.4;//-48.5;//-48.00;//-47.84;//-45.94;//-45.54;//-45.84;//-46.14;//-31.14;//-42.5
+  car->angle_set = -36.1;//-35.4;//-48.5;//-48.00;//-47.84;//-45.94;//-45.54;//-45.84;//-46.14;//-31.14;//-42.5
   car->gyro_set  =  0;
   
   
@@ -68,8 +68,8 @@ void main()
   car->speed_i   = 1.2;//8.5       
   car->speed_d   = 0.0;        
      
-  car->direction_p  = 5.0;             //方向控制p参数。
-  car->direction_d  = 0;             //方向控制d参数。
+  car->direction_p  = 5.5;             //方向控制p参数。
+  car->direction_d  = 0.5;             //方向控制d参数。
   car->direction_left_duty  = 0;
   car->direction_right_duty = 0;
  
