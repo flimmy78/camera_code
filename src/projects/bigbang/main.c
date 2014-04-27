@@ -41,7 +41,7 @@ extern u8   image[ROW][COL];   //Í¼Ïñ´æ·ÅÇø
 int16_t edge_l[ROW];                //´æÈ¡Í¼Ïñ×óÆ«²î¡£
 int16_t edge_r[ROW];               //´æÈ¡Í¼ÏñÓÒÆ«²î¡£
 u8 image_flag = ROW_START;                //´æÈ¡Í¼Ïñ´¦Àí±êÖ¾¡£
-u8  threshold = 150;             //ºÚ°×ãÐÖµ¡£
+u8  threshold = 130;             //ºÚ°×ãÐÖµ¡£
 extern volatile u16  row_count;
 
 void main()
@@ -65,7 +65,7 @@ void main()
 
     car->speed_set = 0.0;         
     car->speed_p   = 0.8; //0.8       
-    car->speed_i   = 1.2;//8.5       
+    car->speed_i   = 0.0; //1.2;//8.5       
     car->speed_d   = 0.0;        
      
     car->direction_p  = 0.0;             //·½Ïò¿ØÖÆp²ÎÊý¡£
@@ -135,7 +135,33 @@ void main()
                     break;
             }
         }
+         if(str == 'p')
+        {
+            for(;;)
+            {
+                if(uart_getchar(UART0)=='+')
+                {car->direction_p += 0.1;printf("a=%f\n",car->direction_p);break;}
+                if(uart_getchar(UART0)=='-')
+                {car->direction_p -= 0.1;printf("a=%f\n",car->direction_p);break;}
+                if(uart_getchar(UART0)=='b')
+                    break;
+            }
+        }
+            
+             if(str == 'i')
+        {
+            for(;;)
+            {
+                if(uart_getchar(UART0)=='+')
+                {car->direction_d += 0.1;printf("a=%f\n",car->direction_d);break;}
+                if(uart_getchar(UART0)=='-')
+                {car->direction_d -= 0.1;printf("a=%f\n",car->direction_d);break;}
+                if(uart_getchar(UART0)=='b')
+                    break;
+            }
     }
+    }
+}
   
   
 // while(1)
@@ -200,5 +226,3 @@ void main()
 //      }
 // }
  
-}
-
