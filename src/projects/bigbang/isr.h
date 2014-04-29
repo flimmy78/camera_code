@@ -31,8 +31,11 @@
  */
 
 
-#undef     VECTOR_103
-#define	VECTOR_103		    PORTA_IRQHandler		//PORTDÖÐ¶Ï
+#undef     VECTOR_106        
+#define    VECTOR_106         PORTD_IRQHandler
+
+#undef     VECTOR_107         
+#define    VECTOR_107         PORTE_IRQHandler
 
 #undef     VECTOR_020
 #define	VECTOR_020	       DMA_CH4_Handler
@@ -53,7 +56,7 @@ extern void PIT_CH1_Handler();
 
 extern void DMA_CH4_Handler();
 
-extern void PORTA_IRQHandler();
+
 
 #endif  //__ISR_H
 
