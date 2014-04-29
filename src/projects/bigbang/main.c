@@ -65,7 +65,7 @@ void main()
     car->direction_d  = 0;             //方向控制d参数。
     car->direction_left_duty  = 0;
     car->direction_right_duty = 0;
- ;
+    
 //    EnableInterrupts;
     
 #if 1
