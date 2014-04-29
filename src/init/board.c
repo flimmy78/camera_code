@@ -11,7 +11,6 @@
 #include "Kalman.h"
 direction dir_flag;
 
-
 #define RIGHT_DEAD 10
 #define LEFT_DEAD  10
 const int right_dead = 55;  //电机死区
@@ -101,37 +100,40 @@ void key3_task(void (*task)())
  * 角度获取函数配置
  *
 ********************************************/
-
-//陀螺仪数据获取,获取AD值并计算角速度。
+//陀螺仪数据获取,返回角速度
 float gyro_data_get(void)
 {
-  
-  //return(((GYRO_ZERO - ad_once(ADC0,SE16,ADC_16bit)) / GYRO_SCALE));
-  return(((GYRO_ZERO - (ad_ave(ADC0,SE16,ADC_16bit,20))) / GYRO_SCALE));
-  
+    u16 gyro_ad;
+    float angular;
+    
+    gyro_ad = ad_ave(ADC1,SE10,ADC_16bit,20);     //120为补偿值
+    angular = (gyro_ad - GYRO_ZERO - 180) / GYRO_SCALE;
+    
+    return  (angular);
+
 }
 
-
-//加速度计数据获取，获取AD值并计算倾角。
+//加速度计数据获取，返回角度
 float acc_data_get(void)
 {
-   u16 acc_ad;
-   
-   acc_ad = ad_ave(ADC1,SE16,ADC_16bit,20);
-   if(acc_ad<=13769)   //10301
-       acc_ad = 13769;
-   else if(acc_ad>= 43619)  //41870
-       acc_ad =  43619; 
-   return   ( 57.296*asin((acc_ad-ACC_ZERO)/ACC_GRA) );
+    float z_ad = ACC_ZOUT_0 + 75 - ad_ave(ADC1,SE14,ADC_16bit,10);
+    float x_ad = ad_ave(ADC0,SE14,ADC_16bit,10) - ACC_XOUT_0 - 45;
+    
+    return(57.296*atan2(z_ad,x_ad));
    
 }
+
+
 //****陀螺仪和加速度计初始化
 void angle_get_init()
 {
 
-  adc_init(ADC1,SE16); 	//加速度计的AD通道初始化
-
-  adc_init(ADC0,SE16);  //陀螺仪AD通道初始化
+  adc_init(ADC1,SE14); 	    //ZOUT初始化
+  adc_init(ADC0,SE14);      //XOUT初始化
+  adc_init(ADC1,SE10);      //AR1初始化
+//  adc_init(ADC0,AD8);     //AR2初始化
+//  adc_init(ADC0,SE15);    //YOUT初始化,Y轴是坏的
+  
 }
 
 
@@ -147,7 +149,7 @@ void motor_init(void)
 
 
 
-/*************左电机速度控制，包含方向*****************/
+/*************右电机速度控制，包含方向*****************/
 
 void right_run(uint32_t speed,direction d)
 {
@@ -201,8 +203,6 @@ void left_run(uint32_t speed,direction d)
   }
 }
 
-
-
 void left_run_s(int32_t speed)   //speed的符号体现方向
 {
   direction dir;
@@ -229,46 +229,41 @@ void left_run_s(int32_t speed)   //speed的符号体现方向
 *************************************/
 void speed_init()
 {
-    FTM1_QUAD_init();
-    FTM2_QUAD_init();
-    
-   //pit_init_ms(PIT0,SPEED_SAMPLING_TIME);
-  // pit_init_ms(PIT1,1);
+    FTM2_QUAD_init();       //右轮测速
+    FTM1_QUAD_init();       //左轮测速
 }
 
-float left_speed()
+s16 right_speed()
 {
-    s16 temp;
-    temp = FTM2_CNT;
-    FTM2_CNT=0;
+    s16 count = -FTM2_CNT;
+    FTM2_CNT = 0;
     
-    return((temp*TRANSFER)/(SPEED_SAMPLING_TIME*0.001));
+    return count;
 }
 
-float right_speed()
+s16 left_speed()
 {
-    s16 temp;
-    temp = FTM1_CNT;
+    s16 count = FTM1_CNT;
     FTM1_CNT = 0;
     
-    return((temp*TRANSFER)/(SPEED_SAMPLING_TIME*0.001));
+    return count;
 }
 
-s16 pulse_cnt_left(void)
-{
-  s16 cnt;
-  cnt = FTM1_CNT;
-  FTM1_CNT = 0;
-  return cnt;
-}
-
-s16 pulse_cnt_right(void)
-{
-  s16 cnt;
-  cnt = FTM2_CNT;
-  FTM2_CNT = 0;
-  return cnt;
-}
+//s16 pulse_cnt_left(void)
+//{
+//  s16 cnt;
+//  cnt = FTM1_CNT;
+//  FTM1_CNT = 0;
+//  return cnt;
+//}
+//
+//s16 pulse_cnt_right(void)
+//{
+//  s16 cnt;
+//  cnt = FTM2_CNT;
+//  FTM2_CNT = 0;
+//  return cnt;
+//}
 
 /*
  *************************************************************************************************************
@@ -350,7 +345,7 @@ void speed_control(cars_status car)
 {
   float speed_err;
   static float speed_integral;
-  speed_err        = car->speed_set - ((float)(car->speed_left_m)  + (float)(car->speed_right_m))/2.0;
+  speed_err   = car->speed_set - ((float)(car->speed_left_m)  + (float)(car->speed_right_m))/2.0;
   speed_integral  += speed_err;
   if(speed_integral >= 200)                     //防止出现积分饱和，参数设置有待检验。
   {
@@ -403,14 +398,14 @@ void motor_set(cars_status car)
 }
 
 //增量式速度pid控制。
-void speed_pid(cars_status car)
-{
-   static float err[3];
-   err[0]           =  err[1];
-   err[1]           =  err[2];
-   err[2]           =  car->speed_set - (car->speed_left_m + car->speed_right_m)/2.0;
-   car->speed_duty += (car->speed_p)*((err[2] - err[1]) + (car->speed_i)*err[2] + (car->speed_d)*(err[2] - 2 * err[1] + err[0]));   
-}
+//void speed_pid(cars_status car)
+//{
+//   static float err[3];
+//   err[0]           =  err[1];
+//   err[1]           =  err[2];
+//   err[2]           =  car->speed_set - (car->speed_left_m + car->speed_right_m)/2.0;
+//   car->speed_duty += (car->speed_p)*((err[2] - err[1]) + (car->speed_i)*err[2] + (car->speed_d)*(err[2] - 2 * err[1] + err[0]));   
+//}
 
 
 //打印车体运行参数。
@@ -424,7 +419,7 @@ void print(cars_status car)
   printf("gyro_set:%f\n",car->gyro_set);
   printf("speed_p:%f\n",car->speed_p);
   printf("speed_i:%f\n",car->speed_i);
-  printf("speed_d:%f\n",car->speed_d);
+//  printf("speed_d:%f\n",car->speed_d);
   printf("speed_set:%f\n",car->speed_set);
   printf("angle_m:%f\n",car->angle_m);
   printf(" gyro_m; :%f\n",car-> gyro_m);
@@ -509,7 +504,7 @@ void send_toscope(void)
   databuf[9] = CRC16/256;
   
   for(i=0;i<10;i++)
-  uart_putchar(UART0,databuf[i]); 
+  uart_putchar(UART4,databuf[i]); 
 
 }
 

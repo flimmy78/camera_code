@@ -50,18 +50,19 @@ void PORTA_IRQHandler()
               car->gyro_m = gyro_data_get();
               blance_kalman_filter(car);
               //blance_comp_filter(3.5,0.005,car);
-////              OutData[0] = car->angle_m;
-////              OutData[1] = car->gyro_m;
-////              OutData[2] = car->angle;
-////              OutData[3] = 0;
-////              send_toscope();
+//              OutData[0] = car->angle_m;
+//              OutData[1] = car->gyro_m;
+//              OutData[2] = car->angle;
+//              OutData[3] = 0;
+//              send_toscope();
  //              printf("%f\t%f\t%f\t%f\n",car->angle_m,car->gyro_m,car->angle,car->left_duty);
          
            count2++;
           if(count2==20)
           {
-               car->speed_left_m   =  -1000*left_speed();
-               car->speed_right_m  =  1000*right_speed();
+               car->speed_right_m  =  right_speed();
+               car->speed_left_m   =  (car->speed_right_m >= 0)? left_speed(): -left_speed();
+//               printf("%f\t%f\n",car->speed_left_m,car->speed_right_m);
                speed_control(car);
                count2 = 0;
           }
@@ -147,9 +148,9 @@ u32 a,b,c,d;
 void PIT_CH0_Handler()
 {
     PIT_Flag_Clear(PIT0);
-    car->speed_left_m=pulse_cnt_left();
-    car->speed_right_m= pulse_cnt_right();
-    speed_control(car);
+//    car->speed_left_m=pulse_cnt_left();
+//    car->speed_right_m= pulse_cnt_right();
+//    speed_control(car);
 }
 
 void PIT_CH1_Handler(void)
@@ -165,13 +166,12 @@ void PIT_CH1_Handler(void)
               car->angle_m = acc_data_get();
               car->gyro_m = gyro_data_get();
               blance_kalman_filter(car);
-              //blance_comp_filter(3.5,0.005,car);
-//              OutData[0] = car->angle_m;
-//              OutData[1] = car->gyro_m;
-//              OutData[2] = car->angle;
-//              OutData[3] = 0;
+//              OutData[0] = car->angle;
+//              OutData[1] = car->angle_m;
+//              OutData[2] = car->gyro;
+//              OutData[3] = car->gyro_m;
 //              send_toscope();
-   //   printf("%f\t%f\t%f\t%f\n",car->angle_m,car->gyro,car->angle,car->left_duty);
+//              printf("%f\t%f\t%f\t%f\n",car->angle,car->angle_m,car->gyro,car->gyro_m);
               break;
     case 2:
               break;
@@ -182,16 +182,16 @@ void PIT_CH1_Handler(void)
            count2++;
           if(count2==20)
           {
-               car->speed_left_m   =  -1000*left_speed();
-               car->speed_right_m  =  1000*right_speed();
+               car->speed_right_m  =  right_speed();
+               car->speed_left_m   =  (car->speed_right_m >= 0)? left_speed(): -left_speed();
                speed_control(car);
                count2 = 0;
-//              printf("%f\n",car->speed_left_m );
+//              printf("%d\t%d\n",car->speed_left_m,car->speed_right_m);
           }
          speed_control_output(car);
          car->left_duty     = car->blance_duty - car->speed_duty + car->direction_left_duty;
          car->right_duty    = car->blance_duty - car->speed_duty + car->direction_right_duty;
-         printf("%f\t%f\t%f\n",car->blance_duty,car->speed_duty,car->left_duty);
+//         printf("%f\t%f\t%f\n",car->blance_duty,car->speed_duty,car->left_duty);
          motor_set(car);
          break;
     default:
@@ -202,5 +202,6 @@ void PIT_CH1_Handler(void)
   if(count1 == 5)
       count1 = 0;
        
+    
 }
 
