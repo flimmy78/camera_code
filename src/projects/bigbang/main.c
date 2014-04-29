@@ -49,9 +49,9 @@ void main()
     //车体系统设置
     DisableInterrupts;
     board_init();
-    
+    uart_init(UART4,115200); 
     //车体参数设置。
-    car->angle_p   = 125.5;
+    car->angle_p   = 155.5;
     car->gyro_d    = 1.50;
     car->angle_set = 30.7;
     car->gyro_set  =  0;
@@ -65,10 +65,8 @@ void main()
     car->direction_d  = 0;             //方向控制d参数。
     car->direction_left_duty  = 0;
     car->direction_right_duty = 0;
-    
-    printf("OK\n");
 //    EnableInterrupts;
-    
+ 
 #if 1
      char str; 
      while(1)
@@ -80,7 +78,7 @@ void main()
                        left_run_s(0);
                        right_run_s(0);  break;
                        
-            case 'r': EnableInterrupts;  break;
+            case 'r':EnableInterrupts;  break;
             
         }
         
@@ -152,6 +150,7 @@ void main()
   
     }
 
+    
 #endif  
     
     
