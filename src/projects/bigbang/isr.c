@@ -36,6 +36,8 @@ void PORTE_IRQHandler()     //场中断来临
     DMA_count_reset(DMA_CH0);
 }
 
+
+
 void PORTD_IRQHandler()     //行中断来临
 {
     u8 i; //计数。
@@ -51,8 +53,6 @@ void PORTD_IRQHandler()     //行中断来临
         /*********滤波及控制算法**********/
         //最小也大约有2.5ms的时间做控制
         
-         
-         
           car->angle_m = acc_data_get();
           car->gyro_m = gyro_data_get();
           blance_kalman_filter(car);
@@ -80,6 +80,7 @@ void PORTD_IRQHandler()     //行中断来临
      motor_set(car);  
 
     }
+    
     /********************图像处理部分*********************/
     if((row_count > 161)&&(image_handle_flag == 0))         //第三次控制算法已完成且图像未处理
     {
@@ -96,8 +97,6 @@ void PORTD_IRQHandler()     //行中断来临
         image_handle_flag = 1;      //图像处理标志置1,图像处理及方向计算完成
     }
      
-        
-    
     /******************图像采集部分*******************/
     if(row_count < ROW_START)   return;     //未到需要采集的行
     else if(row_count > ROW_END)
@@ -108,7 +107,7 @@ void PORTD_IRQHandler()     //行中断来临
     else
     {
 //          camera_wait();      //越过消隐区
-        DMA_PORTx2BUFF_Init (DMA_CH4, (void *)&PTB_BYTE0_IN, image[row_count-ROW_START], PTD5, DMA_BYTE1, COL, DMA_rising);
+        DMA_PORTx2BUFF_Init (DMA_CH4, (void *)&PTE_BYTE0_IN, image[row_count-ROW_START], PTE27, DMA_BYTE1, COL, DMA_rising);
         //----使能DMA，初始化的时候禁止DMA
         DMA_EN(DMA_CH4); 
     }
@@ -126,7 +125,8 @@ void DMA_CH4_Handler(void)
     DMA_EN(DMA_CH4);                                    //使能通道CHn 硬件请求      (这样才能继续触发DMA传输)
 }
 
-/*********************************************************************************************************************/
+
+/************************************************************************************************************************************/
 
 
 u32 a,b,c,d;
