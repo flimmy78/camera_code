@@ -70,10 +70,11 @@ void main()
 //    EnableInterrupts;
     
 #if 1
+     char str; 
      while(1)
     {    
-
-        switch(uart_getchar(UART4))
+        str = uart_getchar(UART4);
+        switch(str)
         {
             case 's': DisableInterrupts;
                        left_run_s(0);
@@ -83,7 +84,7 @@ void main()
             
         }
         
-        if(uart_getchar(UART4) == 'p')
+        if(str == 'p')
         {
             for(;;)
             {
@@ -96,7 +97,7 @@ void main()
             }
         }
         
-        if(uart_getchar(UART4) == 'd')
+        if(str == 'd')
         {
             for(;;)
             {
@@ -109,7 +110,7 @@ void main()
             }
         }
         
-        if(uart_getchar(UART4) == 'a')
+        if(str == 'a')
         {
             for(;;)
             {
@@ -122,7 +123,7 @@ void main()
             }
         }
         
-        if(uart_getchar(UART4) == 'i')
+        if(str == 'i')
         {
             for(;;)
             {
@@ -136,7 +137,7 @@ void main()
         
         }
         
-        if(uart_getchar(UART4) == 'P')
+        if(str == 'P')
         {
             for(;;)
             {
