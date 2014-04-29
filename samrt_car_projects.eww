@@ -4,27 +4,6 @@
   <project>
     <path>$WS_DIR$\build\bigbang\bigbang.ewp</path>
   </project>
-  <project>
-    <path>$WS_DIR$\build\camera_demo\camera_demo.ewp</path>
-  </project>
-  <project>
-    <path>$WS_DIR$\build\camera_test_demo\camera_test_demo.ewp</path>
-  </project>
-  <project>
-    <path>$WS_DIR$\build\adc_demo\fire_adc_demo.ewp</path>
-  </project>
-  <project>
-    <path>$WS_DIR$\build\fire_demo\fire_demo.ewp</path>
-  </project>
-  <project>
-    <path>$WS_DIR$\build\exti_demo\fire_exti_demo.ewp</path>
-  </project>
-  <project>
-    <path>$WS_DIR$\fire_kinetis_new\Prj\IAR\fire_Kinetis.ewp</path>
-  </project>
-  <project>
-    <path>$WS_DIR$\build\sd_demo\fire_sd_demo.ewp</path>
-  </project>
   <batchBuild/>
 </workspace>
 
