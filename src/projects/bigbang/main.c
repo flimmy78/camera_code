@@ -66,6 +66,7 @@ void main()
     car->direction_left_duty  = 0;
     car->direction_right_duty = 0;
     
+    printf("OK\n");
 //    EnableInterrupts;
     
 #if 1
@@ -78,7 +79,7 @@ void main()
                        left_run_s(0);
                        right_run_s(0);  break;
                        
-            case 'r':EnableInterrupts;  break;
+            case 'r': EnableInterrupts;  break;
             
         }
         
