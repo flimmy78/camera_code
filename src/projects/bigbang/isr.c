@@ -152,12 +152,12 @@ void PIT_CH1_Handler(void)
               car->gyro_m = gyro_data_get();
               blance_kalman_filter(car);
              // comp_filter(3.5,0.005,car);
-//              OutData[0] = car->angle;
-//              OutData[1] = car->angle_m;
-//              OutData[2] = car->gyro;
-//              OutData[3] = car->gyro_m;
-//              send_toscope();
- //           printf("%f\t%f\n",car->angle,car->gyro);
+//             OutData[0] = 100*car->angle;
+//             OutData[1] = 100*car->angle_m;
+//             OutData[2] = 100*car->gyro;
+//             OutData[3] = 100*car->gyro_m;
+//             send_toscope();
+  //         printf("%f\t%f\t%f\t%f\n",car->angle,car->gyro,car->angle_m ,car->gyro_m);
               break;
     case 2:
               break;
