@@ -101,13 +101,14 @@ void key3_task(void (*task)())
  *
 ********************************************/
 //陀螺仪数据获取,返回角速度
+u16 GYRO_ZERO;
 float gyro_data_get(void)
 {
     u16 gyro_ad;
     float angular;
     
     gyro_ad = ad_ave(ADC1,SE10,ADC_16bit,20);     //120为补偿值
-    angular = (gyro_ad - GYRO_ZERO - 180) / GYRO_SCALE;
+    angular = (gyro_ad - GYRO_ZERO - 30) / GYRO_SCALE;
     
     return  (angular);
 
@@ -329,6 +330,8 @@ void blance_kalman_filter(cars_status car)
 {
    
     Kalman_filter(car);
+//    if((car->angle - car->angle_set < 0.2)||(car->angle - car->angle_set > -0.2))
+//        car->angle = car->angle_set;
     car->blance_duty = (car->angle - car->angle_set)*car->angle_p + (car->gyro - car->gyro_set)*car->gyro_d;
   
 }

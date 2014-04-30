@@ -57,9 +57,9 @@ s16   right_speed();
 //#define	ACC_GRA		16040.0     //  -12970
 
 /********陀螺仪标准值配置********/
-#define	GYRO_ZERO	26155.0	//陀螺仪零值,还需280的补偿值
-//extern  u16 GYRO_ZERO;
-#define	GYRO_SCALE	71.28    // 13.3*6/deg.c  
+//#define	GYRO_ZERO	25740.0	//陀螺仪零值,还需280的补偿值
+extern  u16 GYRO_ZERO;
+#define	GYRO_SCALE	74.48    // 13.3*6/deg.c  
 /*******************<<*********************/
 
 

@@ -46,26 +46,39 @@ extern volatile u16  row_count;
 
 void main()
 { 
+    u8 i;
+    u32 gyro_intr;
     //车体系统设置
     DisableInterrupts;
     board_init();
     uart_init(UART4,115200); 
     //车体参数设置。
-    car->angle_p   = 155;//155.5;
-    car->gyro_d    = 1.50;//1.50;
-    car->angle_set = 31.2;
+    car->angle_p   = 125.5;//125.5;
+    car->gyro_d    = 0.8;//0.8;//1.50;
+    car->angle_set = 37.0;//31.5;
     car->gyro_set  =  0;
 
-
-    car->speed_set = 100.0;         
+    car->speed_set = 0.0;         
     car->speed_p   = 0.0;        
-    car->speed_i   = 0.0;           
+    car->speed_i   = 0.36;//0.92//0.36;//0.0;           
      
     car->direction_p  = 0.0;             //方向控制p参数。
-    car->direction_d  = 0.0;             //方向控制d参数。
+    car->direction_d  = 0;             //方向控制d参数。
     car->direction_left_duty  = 0;
     car->direction_right_duty = 0;
+    
+    delayms(2000);
+    for(i=0;i<100;i++)
+    {
+        gyro_intr += ad_ave(ADC1,SE10,ADC_16bit,20);
+        delayms(5);
+    }
+    
+    GYRO_ZERO = gyro_intr/i;
+//    gpio_init(PORTC,14,GPO,1);
+    
 //    EnableInterrupts;
+ 
 #if 1
      char str; 
      while(1)
