@@ -60,13 +60,14 @@ void PORTD_IRQHandler()     //ÐÐÖÐ¶ÏÀ´ÁÙ
               car->angle_m = acc_data_get();
               car->gyro_m = gyro_data_get();
               blance_kalman_filter(car);
-    //          blance_comp_filter(3.5,0.005,car);
-    //          OutData[0] = car->angle;
-    //          OutData[1] = car->angle_m;
-    //          OutData[2] = car->gyro;
-    //          OutData[3] = car->gyro_m;
-    //          send_toscope();
-    //          printf("%f\t%f\t%f\t%f\n",car->angle,car->angle_m,car->gyro,car->gyro_m);
+
+//              OutData[0] = car->angle;
+//              OutData[1] = car->angle_m;
+//              OutData[2] = car->gyro;
+//              OutData[3] = car->gyro_m;
+//              send_toscope();
+              
+//              printf("%f\t%f\t%f\t%f\n",car->angle,car->angle_m,car->gyro,car->gyro_m);
          
            count2++;
           if(count2==20)

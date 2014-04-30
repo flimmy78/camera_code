@@ -43,9 +43,7 @@ int16_t edge_r[ROW];               //存取图像右偏差。
 u8 image_flag = ROW_START;                //存取图像处理标志。
 u8  threshold = 150;             //黑白阈值。
 extern volatile u16  row_count;
-extern int right_dead;
-extern int left_dead;
-
+u8 D = 20;
 void main()
 { 
     u8 i;
@@ -55,9 +53,9 @@ void main()
     board_init();
     uart_init(UART4,115200); 
     //车体参数设置。
-    car->angle_p   = 125.5;//125.5;
-    car->gyro_d    = 0.8;//0.8;//1.50;
-    car->angle_set = 37.0;//31.5;
+    car->angle_p   = 201.5;//125.5;//125.5;
+    car->gyro_d    = 1.59;//0.8;//0.8;//1.50;
+    car->angle_set = 31.4;//37.0;//31.5;
     car->gyro_set  =  0;
 
     car->speed_set = 0.0;         
@@ -77,9 +75,6 @@ void main()
     }
     
     GYRO_ZERO = gyro_intr/i;
-//    gpio_init(PORTC,14,GPO,1);
-    
-//    EnableInterrupts;
  
 #if 1
      char str; 
@@ -161,32 +156,32 @@ void main()
                     break;
             }
         }
-        if(str == 'r')
+        
+        if(str == 'R')
         {
             for(;;)
             {
                 if(uart_getchar(UART4)=='+')
-                {right_dead += 0.01;printf("right_dead=%f\n",right_dead);break;}
+                {R += 0.5;printf("R=%f\n",R);break;}
                 if(uart_getchar(UART4)=='-')
-                    {right_dead -= 0.01;printf("right_dead=%f\n",right_dead);break;}
+                    {R -= 0.5;printf("R=%f\n",R);break;}
                 if(uart_getchar(UART4)=='b')
                     break;
             }
         }
         
-     if(str == 'l')
+        if(str == 'D')
         {
             for(;;)
             {
                 if(uart_getchar(UART4)=='+')
-                {left_dead += 0.01;printf("left_dead=%f\n",left_dead);break;}
+                {D += 1;printf("dead=%d\n",D);right_dead=left_dead=D;break;}
                 if(uart_getchar(UART4)=='-')
-                    {left_dead -= 0.01;printf("left_dead=%f\n",left_dead);break;}
+                    {D -= 1;printf("dead=%d\n",D);right_dead=left_dead=D;break;}
                 if(uart_getchar(UART4)=='b')
                     break;
             }
-        }   
-        
+        }
   
     }
 

@@ -55,7 +55,7 @@ float Q2_1 = 0;
 float Q2_2 = 0.00003;   
 float K1_1;             //卡尔曼增益
 float K2_1;    
-float R = 1.2;          //观测噪声协方差
+float R = 6;          //观测噪声协方差
 float I1_1 = 1;         //单位阵
 float I1_2 = 0;  
 float I2_1 = 0;  

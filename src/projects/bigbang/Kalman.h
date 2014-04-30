@@ -48,6 +48,8 @@ typedef struct cars_status
   
 }*cars_status;
 
+extern float R;
+
 void Kalman_filter(cars_status car);
 
 void comp_filter(float tg,float dt,cars_status car);
