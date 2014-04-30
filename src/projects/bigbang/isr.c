@@ -68,7 +68,7 @@ void PORTD_IRQHandler()     //ÐÐÖÐ¶ÏÀ´ÁÙ
       {
            car->speed_right_m  =  right_speed();
            car->speed_left_m   =  (car->speed_right_m >= 0)? left_speed(): -left_speed();
-//               printf("%f\t%f\n",car->speed_left_m,car->speed_right_m);
+//         printf("%f\t%f\n",car->speed_left_m,car->speed_right_m);
            speed_control(car);
            count2 = 0;
       }
@@ -151,12 +151,13 @@ void PIT_CH1_Handler(void)
               car->angle_m = acc_data_get();
               car->gyro_m = gyro_data_get();
               blance_kalman_filter(car);
+             // comp_filter(3.5,0.005,car);
 //              OutData[0] = car->angle;
 //              OutData[1] = car->angle_m;
 //              OutData[2] = car->gyro;
 //              OutData[3] = car->gyro_m;
 //              send_toscope();
-             // printf("%f\t%f\t%f\t%f\n",car->angle,car->angle_m,car->gyro,car->gyro_m);
+ //           printf("%f\t%f\n",car->angle,car->gyro);
               break;
     case 2:
               break;

@@ -70,10 +70,10 @@ void board_init()
   //速度采样初始化
   speed_init();
   
-//  pit_init_ms(PIT1,1);
+    pit_init_ms(PIT1,1);
   
-    exti_init(PORTE,11,rising_down);     //场中断
-    exti_init(PORTD,14,rising_down);    //行中断
-    DMA_count_Init(DMA_CH0, PTA24, 10000, DMA_rising_down);
+//    exti_init(PORTE,11,rising_down);     //场中断
+//    exti_init(PORTD,14,rising_down);    //行中断
+//    DMA_count_Init(DMA_CH0, PTA24, 10000, DMA_rising_down);
   
 }
