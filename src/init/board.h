@@ -50,7 +50,7 @@ s16   right_speed();
 /********加速度计标准值配置*******/
 //加速度计 		  800mV/g ,对应为AD值 15887/g , 1605 * m/s^2
 
-#define   ACC_ZOUT_0    29900     //75的补偿值
+#define   ACC_ZOUT_0    28780     //75的补偿值
 #define   ACC_XOUT_0    34120     //45的补偿值
 
 //#define	ACC_ZERO	29010.0	    //  0度对应的AD值
@@ -59,9 +59,10 @@ s16   right_speed();
 /********陀螺仪标准值配置********/
 //#define	GYRO_ZERO	25740.0	//陀螺仪零值,还需280的补偿值
 extern  u16 GYRO_ZERO;
-#define	GYRO_SCALE	74.48    // 13.3*6/deg.c  
+#define	GYRO_SCALE	70.49    // 13.3*6/deg.c  
 /*******************<<*********************/
-
+extern int right_dead;  //电机死区
+extern int left_dead;
 
 
 

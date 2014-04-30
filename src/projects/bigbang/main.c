@@ -43,7 +43,7 @@ int16_t edge_r[ROW];               //存取图像右偏差。
 u8 image_flag = ROW_START;                //存取图像处理标志。
 u8  threshold = 150;             //黑白阈值。
 extern volatile u16  row_count;
-
+u8 D = 20;
 void main()
 { 
     u8 i;
@@ -53,9 +53,9 @@ void main()
     board_init();
     uart_init(UART4,115200); 
     //车体参数设置。
-    car->angle_p   = 125.5;//125.5;
-    car->gyro_d    = 0.8;//0.8;//1.50;
-    car->angle_set = 37.0;//31.5;
+    car->angle_p   = 201.5;//125.5;//125.5;
+    car->gyro_d    = 1.59;//0.8;//0.8;//1.50;
+    car->angle_set = 31.4;//37.0;//31.5;
     car->gyro_set  =  0;
 
     car->speed_set = 0.0;         
@@ -75,9 +75,6 @@ void main()
     }
     
     GYRO_ZERO = gyro_intr/i;
-//    gpio_init(PORTC,14,GPO,1);
-    
-//    EnableInterrupts;
  
 #if 1
      char str; 
@@ -155,6 +152,32 @@ void main()
                 {car->speed_p += 0.01;printf("P=%f\n",car->speed_p);break;}
                 if(uart_getchar(UART4)=='-')
                     {car->speed_p -= 0.01;printf("P=%f\n",car->speed_p);break;}
+                if(uart_getchar(UART4)=='b')
+                    break;
+            }
+        }
+        
+        if(str == 'R')
+        {
+            for(;;)
+            {
+                if(uart_getchar(UART4)=='+')
+                {R += 0.5;printf("R=%f\n",R);break;}
+                if(uart_getchar(UART4)=='-')
+                    {R -= 0.5;printf("R=%f\n",R);break;}
+                if(uart_getchar(UART4)=='b')
+                    break;
+            }
+        }
+        
+        if(str == 'D')
+        {
+            for(;;)
+            {
+                if(uart_getchar(UART4)=='+')
+                {D += 1;printf("dead=%d\n",D);right_dead=left_dead=D;break;}
+                if(uart_getchar(UART4)=='-')
+                    {D -= 1;printf("dead=%d\n",D);right_dead=left_dead=D;break;}
                 if(uart_getchar(UART4)=='b')
                     break;
             }

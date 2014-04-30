@@ -11,10 +11,8 @@
 #include "Kalman.h"
 direction dir_flag;
 
-#define RIGHT_DEAD 10
-#define LEFT_DEAD  10
-const int right_dead = 55;  //电机死区
-const int left_dead  = 50;
+int right_dead = 20;  //电机死区
+int left_dead  = 20;
 
 /*******************************************
  *
