@@ -43,6 +43,8 @@ int16_t edge_r[ROW];               //存取图像右偏差。
 u8 image_flag = ROW_START;                //存取图像处理标志。
 u8  threshold = 150;             //黑白阈值。
 extern volatile u16  row_count;
+extern int right_dead;
+extern int left_dead;
 
 void main()
 { 
@@ -159,6 +161,32 @@ void main()
                     break;
             }
         }
+        if(str == 'r')
+        {
+            for(;;)
+            {
+                if(uart_getchar(UART4)=='+')
+                {right_dead += 0.01;printf("right_dead=%f\n",right_dead);break;}
+                if(uart_getchar(UART4)=='-')
+                    {right_dead -= 0.01;printf("right_dead=%f\n",right_dead);break;}
+                if(uart_getchar(UART4)=='b')
+                    break;
+            }
+        }
+        
+     if(str == 'l')
+        {
+            for(;;)
+            {
+                if(uart_getchar(UART4)=='+')
+                {left_dead += 0.01;printf("left_dead=%f\n",left_dead);break;}
+                if(uart_getchar(UART4)=='-')
+                    {left_dead -= 0.01;printf("left_dead=%f\n",left_dead);break;}
+                if(uart_getchar(UART4)=='b')
+                    break;
+            }
+        }   
+        
   
     }
 
