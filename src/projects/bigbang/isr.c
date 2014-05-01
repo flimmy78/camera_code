@@ -115,7 +115,7 @@ void PORTD_IRQHandler()     //行中断来临
         else
         {
 //          camera_wait();      //越过消隐区
-            DMA_PORTx2BUFF_Init (DMA_CH4, (void *)&PTB_BYTE0_IN, image[row_count-ROW_START], PTD5, DMA_BYTE1, COL, DMA_rising);
+            DMA_PORTx2BUFF_Init (DMA_CH4, (void *)&PTE_BYTE0_IN, image[row_count-ROW_START], PTE27, DMA_BYTE1, COL, DMA_rising);
             //----使能DMA，初始化的时候禁止DMA
             DMA_EN(DMA_CH4); 
         }
@@ -124,7 +124,6 @@ void PORTD_IRQHandler()     //行中断来临
             image_handle_flag = 0;      //图像采集完成，图像处理标志清零
     }
 
-        
 }
 
 void DMA_CH4_Handler(void)

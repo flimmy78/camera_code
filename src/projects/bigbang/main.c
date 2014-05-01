@@ -77,9 +77,13 @@ void main()
     GYRO_ZERO = gyro_intr/i;
     
     printf("OK\n");
+    FTM_PWM_Duty(FTM0,CH4,100);
+    FTM_PWM_Duty(FTM0,CH5,100);
+    FTM_PWM_Duty(FTM0,CH6,100);
+    FTM_PWM_Duty(FTM0,CH7,100);
 //    EnableInterrupts;
  
-#if 1
+#if 0
      char str; 
      while(1)
     {    

@@ -328,8 +328,7 @@ void blance_kalman_filter(cars_status car)
 {
    
     Kalman_filter(car);
-//    if((car->angle - car->angle_set < 0.2)||(car->angle - car->angle_set > -0.2))
-//        car->angle = car->angle_set;
+
     car->blance_duty = (car->angle - car->angle_set)*car->angle_p + (car->gyro - car->gyro_set)*car->gyro_d;
   
 }
