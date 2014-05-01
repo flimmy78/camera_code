@@ -109,7 +109,7 @@ void PORTD_IRQHandler()     //行中断来临
             image_err(car, 0 ,39);
             direction_control(car);
 
-//            printf("%f\n",car->direction_err_new);
+            printf("%f\n",car->direction_err_new);
             image_handle_flag = 1;      //图像处理标志置1,图像处理及方向计算完成
         }
          
