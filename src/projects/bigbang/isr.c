@@ -29,6 +29,7 @@ u8  image_handle_flag = 0;      //图像处理标志
 
 void PORTE_IRQHandler()     //场中断来临
 {
+    Light2_turn();
     if(PORTE_ISFR & (1 << 11))
     {
         PORTE_ISFR |= (1 << 11);     
@@ -46,7 +47,7 @@ void PORTD_IRQHandler()     //行中断来临
 {
     u8 i; //计数。
     static unsigned int count2;
-    
+    Light1_turn();
     if(PORTD_ISFR & (1<<14))
     {
         PORTD_ISFR |= (1 << 14);
@@ -85,7 +86,7 @@ void PORTD_IRQHandler()     //行中断来临
          car->left_duty     = car->blance_duty - car->speed_duty + car->direction_left_duty;
          car->right_duty    = car->blance_duty - car->speed_duty - car->direction_right_duty;
          motor_set(car);  
- 
+        printf("%f\t%f\n", car->left_duty ,car->right_duty);
         }
         /********************图像处理部分*********************/
         if((row_count > 161)&&(image_handle_flag == 0))         //第三次控制算法已完成且图像未处理

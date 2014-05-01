@@ -71,7 +71,7 @@ void board_init()
   //速度采样初始化
   speed_init();
   
-//  pit_init_ms(PIT1,1);
+// pit_init_ms(PIT1,1);
   Light_init;
   
     exti_init(PORTE,11,rising_down);     //场中断

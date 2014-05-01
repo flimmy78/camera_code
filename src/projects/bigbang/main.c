@@ -78,7 +78,20 @@ void main()
     
     printf("OK\n");
 //    EnableInterrupts;
- 
+//    while(1){
+//            left_run_s(200);
+//            right_run_s(0);
+//            uart_getchar(UART4);printf("+r\n");
+//            left_run_s(0);
+//            right_run_s(200);
+//            uart_getchar(UART4);printf("-r\n");
+//            left_run_s(0);
+//            right_run_s(-200);
+//             uart_getchar(UART4);printf("-l\n");
+//            left_run_s(-200);
+//            right_run_s(0);
+//            uart_getchar(UART4);printf("+l\n");
+//    }
 #if 1
      char str; 
      while(1)
