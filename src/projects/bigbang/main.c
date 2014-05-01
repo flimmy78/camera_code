@@ -59,8 +59,8 @@ void main()
     car->gyro_set  =  0;
 
     car->speed_set = 0.0;         
-    car->speed_p   = 0.0;        
-    car->speed_i   = 0.36;//0.92//0.36;//0.0;           
+    car->speed_p   = 100.0;        
+    car->speed_i   = 0.0;//0.92//0.36;//0.0;           
      
     car->direction_p  = 0.0;             //方向控制p参数。
     car->direction_d  = 0;             //方向控制d参数。
@@ -68,6 +68,7 @@ void main()
     car->direction_right_duty = 0;
     
     delayms(2000);
+    printf("wait\n");
     for(i=0;i<100;i++)
     {
         gyro_intr += ad_ave(ADC1,SE10,ADC_16bit,20);
@@ -75,7 +76,7 @@ void main()
     }
     
     GYRO_ZERO = gyro_intr/i;
- 
+ printf("start\n");
 #if 1
      char str; 
      while(1)

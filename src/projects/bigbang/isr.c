@@ -50,7 +50,7 @@ void PORTD_IRQHandler()     //行中断来临
         PORTD_ISFR |= (1 << 14);
         if(vert_flag ==0)   return;     //不足一场时返回        
         row_count = DMA_count_get(DMA_CH0);
-        
+         printf("%d\n",row_count);
         /*******************控制部分*********************/
         if(row_count%80 == 1)           //5ms已到
         {
@@ -88,7 +88,7 @@ void PORTD_IRQHandler()     //行中断来临
     //     gpio_turn(PORTC,14);
 
         }
-        
+       
         /********************图像处理部分*********************/
         if((row_count > 161)&&(image_handle_flag == 0))         //第三次控制算法已完成且图像未处理
         {
@@ -115,9 +115,9 @@ void PORTD_IRQHandler()     //行中断来临
         else
         {
     //          camera_wait();      //越过消隐区
-            DMA_PORTx2BUFF_Init (DMA_CH4, (void *)&PTE_BYTE0_IN, image[row_count-ROW_START], PTE27, DMA_BYTE1, COL, DMA_rising);
+//            DMA_PORTx2BUFF_Init (DMA_CH4, (void *)&PTE_BYTE0_IN, image[row_count-ROW_START], PTE27, DMA_BYTE1, COL, DMA_rising);
             //----使能DMA，初始化的时候禁止DMA
-            DMA_EN(DMA_CH4); 
+//            DMA_EN(DMA_CH4); 
         }
         
         if(row_count == ROW_END)
