@@ -33,6 +33,10 @@ void PORTE_IRQHandler()     //场中断来临
     {
         PORTE_ISFR |= (1 << 11);     
     
+//        if(vert_flag != 0) return;
+        
+//        printf("%d\n",row_count);
+        
         vert_flag = 1;  //场标志置位
         row_count = 0;  //行计数清零
         DMA_count_reset(DMA_CH0);
@@ -48,9 +52,9 @@ void PORTD_IRQHandler()     //行中断来临
     if(PORTD_ISFR & (1<<14))
     {
         PORTD_ISFR |= (1 << 14);
-        if(vert_flag ==0)   return;     //不足一场时返回        
+        if(vert_flag == 0)   return;     //不足一场时返回        
         row_count = DMA_count_get(DMA_CH0);
-        
+//        printf("%d\n",row_count);
         /*******************控制部分*********************/
         if(row_count%80 == 1)           //5ms已到
         {
@@ -76,7 +80,7 @@ void PORTD_IRQHandler()     //行中断来临
           {
                car->speed_right_m  =  right_speed();
                car->speed_left_m   =  (car->speed_right_m >= 0)? left_speed(): -left_speed();
-             printf("%f\t%f\n",car->speed_left_m,car->speed_right_m);
+//             printf("%f\t%f\n",car->speed_left_m,car->speed_right_m);
                speed_control(car);
                count2 = 0;
           }
@@ -84,9 +88,9 @@ void PORTD_IRQHandler()     //行中断来临
          direction_control_output(car);   //方向控制平滑输出，方向控制在下面图像处理部分。
          car->left_duty     = car->blance_duty - car->speed_duty + car->direction_left_duty;
          car->right_duty    = car->blance_duty - car->speed_duty - car->direction_right_duty;
-//         motor_set(car);  
+         motor_set(car);  
          
-    //     printf("%d\n",row_count);
+//         printf("%d\n",row_count);
     //     gpio_turn(PORTC,14);
 
         }
@@ -123,10 +127,13 @@ void PORTD_IRQHandler()     //行中断来临
         }
         
         if(row_count == ROW_END)
+        {
             image_handle_flag = 0;      //图像采集完成，图像处理标志清零
+            
+//            vert_flag = 2;
+        }
     }
 
-        
 }
 
 void DMA_CH4_Handler(void)
