@@ -87,7 +87,7 @@
         </option>
         <option>
           <name>OGLastSavedByProductVersion</name>
-          <state>7.10.1.6733</state>
+          <state>7.10.3.6927</state>
         </option>
         <option>
           <name>GeneralEnableMisra</name>
@@ -163,7 +163,7 @@
       <name>ICCARM</name>
       <archiveVersion>2</archiveVersion>
       <data>
-        <version>30</version>
+        <version>31</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>1</debug>
         <option>
@@ -324,6 +324,7 @@
           <state>$PROJ_DIR$\..\..\src\drivers\uart </state>
           <state>$PROJ_DIR$\..\..\src\drivers\wdog</state>
           <state>$PROJ_DIR$\..\..\src\drivers\nokia_5110</state>
+          <state>$PROJ_DIR$\..\..\src\drivers\image</state>
           <state>$PROJ_DIR$\..\..\src\LIB\CMSIS</state>
           <state>$PROJ_DIR$\..\..\src\LIB\FatFs</state>
           <state>$PROJ_DIR$\..\..\build</state>
@@ -432,6 +433,10 @@
           <name>CCOptStrategySlave</name>
           <version>0</version>
           <state>0</state>
+        </option>
+        <option>
+          <name>CCGuardCalls</name>
+          <state>1</state>
         </option>
       </data>
     </settings>
@@ -1130,7 +1135,7 @@
       <name>ICCARM</name>
       <archiveVersion>2</archiveVersion>
       <data>
-        <version>30</version>
+        <version>31</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>0</debug>
         <option>
@@ -1369,6 +1374,10 @@
           <name>CCOptStrategySlave</name>
           <version>0</version>
           <state>0</state>
+        </option>
+        <option>
+          <name>CCGuardCalls</name>
+          <state>1</state>
         </option>
       </data>
     </settings>
@@ -2012,6 +2021,12 @@
     </file>
     <file>
       <name>$PROJ_DIR$\..\..\src\drivers\gpio\gpio.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\src\drivers\image\image.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\src\drivers\image\image.h</name>
     </file>
     <file>
       <name>$PROJ_DIR$\..\..\src\drivers\LED\LED.C</name>

@@ -9,22 +9,22 @@
 /************电机配置**************/
 //右电机前进的FTM模块
 #define RIGHT_A_FTM FTM0
-#define RIGHT_A_CH  CH0
+#define RIGHT_A_CH  CH7
 
 //右电机后退的FTM模块
 #define RIGHT_B_FTM FTM0
-#define RIGHT_B_CH  CH2
+#define RIGHT_B_CH  CH6
 
 //左电机前进的FTM模块
 #define LEFT_A_FTM FTM0
-#define LEFT_A_CH  CH1
+#define LEFT_A_CH  CH5
 
 //左电机后退的FTM模块
 #define LEFT_B_FTM  FTM0
-#define LEFT_B_CH   CH3
+#define LEFT_B_CH   CH4
 
 //电机驱动频率
-#define MOTOR_FRE 15000
+#define MOTOR_FRE 10000
 
 //电机驱动初始化的占空比，【强烈要求为【0】】
 #define INIT_DUTY (0)
@@ -39,31 +39,30 @@
 #define KEY2_IN       PTE3_IN
 #define KEY3_IN       PTE5_IN
 
+
 /*****************编码器配置*********************/
-#define     TRANSFER        0.000383    //传送比,由脉冲数对应速度，单位是m，(pi*r齿*R轮)/(100*R齿),(3.14 * 40 * 0.032)/(100 * 105),轮胎半径0.032m
-#define     SPEED_PER       200.0       //编码器每转脉冲数。
-#define     SPEED_SAMPLING_TIME     100  //采样时间  20ms
 
-//*****算的是轮子的线速度，单位m/s
+void  speed_init();
+s16   left_speed();
+s16   right_speed();
 
-void    speed_init();
-float   left_speed_get();
-float   right_speed_get();
 
 /********加速度计标准值配置*******/
 //加速度计 		  800mV/g ,对应为AD值 15887/g , 1605 * m/s^2
 
-#define	ACC_ZERO	26088.0	//0度对应的AD值
-#define	ACC_90		11200.0	//实际为加速度计-90度的值
-#define	ACC_NEG_90	42650.0	//实际为加速度计90度的值
+#define   ACC_ZOUT_0    28780     //75的补偿值
+#define   ACC_XOUT_0    34120     //45的补偿值
 
-#define	ACC_GRA		15887.0   
+//#define	ACC_ZERO	29010.0	    //  0度对应的AD值
+//#define	ACC_GRA		16040.0     //  -12970
 
 /********陀螺仪标准值配置********/
-#define	GYRO_ZERO	27631.0	//陀螺仪零值
-#define	GYRO_SCALE	119.7    // 13.3*9/deg./sec
+//#define	GYRO_ZERO	25740.0	//陀螺仪零值,还需280的补偿值
+extern  u16 GYRO_ZERO;
+#define	GYRO_SCALE	70.49    // 13.3*6/deg.c  
 /*******************<<*********************/
-
+extern int right_dead;  //电机死区
+extern int left_dead;
 
 
 
@@ -117,27 +116,38 @@ void wait_key2(void);
 
 void wait_key3(void);
 
-
 void sent_to_computer(uint16_t data1 , uint16_t data2 , uint16_t  data3);
+
+
+extern float OutData[4];
+unsigned short CRC_CHECK(unsigned char *Buf, unsigned char CRC_CNT);
+void send_toscope(void);
+
 
 float str2num(char * str,u8 n);
 void blance_comp_filter(float tg,float dt,cars_status car);
+void blance_comp_filter_pid(float tg,float dt,cars_status car);
 void blance_kalman_filter(cars_status car);
 void speed_control(cars_status car);
 //设置电机。
 void motor_set(cars_status car);
 
-void speed_pid(cars_status car);
+//void speed_pid(cars_status car);
 
 void print(cars_status car);
 
 //编码器正交解码脉冲计数值返回并清除 有符号16位
-s16 pulse_cnt_left(void);
-
-s16 pulse_cnt_right(void);
+//s16 pulse_cnt_left(void);
+//
+//s16 pulse_cnt_right(void);
 
 void speed_control_output(cars_status car) ; //电机平滑输出。
 
-float left_speed();
-float right_speed();
+void direction_control(cars_status car) ; //方向控制输出。
+void direction_control_output(cars_status car); //速度控制平滑输出。
+
+
+void camera_wait();
+
+
 #endif

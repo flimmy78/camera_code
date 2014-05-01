@@ -25,7 +25,4 @@
 #include  "Kalman.h"
 #include  "arm_math.h"
 
-#define ROW 120
-#define COL 180
-
 #endif  //__INCLUDE_H__

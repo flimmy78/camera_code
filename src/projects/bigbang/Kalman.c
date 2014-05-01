@@ -1,6 +1,8 @@
 #include "Kalman.h"
 #include "board.h"
 #include "common.h"
+
+
 /*******************************************************************************
  *  互补滤波函数
  *  inpput：   angle_m,加速度计测量原始值，gyro_m，陀螺仪测量数据，tg，比例参数。
@@ -13,57 +15,56 @@
 ********************************************************************************/
 void comp_filter(float tg,float dt,cars_status car)
 {
-  
-  float angle_err;
-  angle_err     = tg*(car->angle_m - car->angle);   //计算误差
+//  static float  angle[8];
+    float angle_err;//averge;
+//    static unsigned int i;
+//    angle[(i)&0x07] = car->angle_m;
+//    averge = (angle[i%8+0] + angle[i%8+1]+ angle[i%8+2]+ \
+//      angle[i%8+3]+ angle[i%8+4]+ angle[i%8+5]+ angle[i%8+6]+ angle[i%8+7])*0.125;  //*0.125是乘法比除法快。
+  angle_err      = tg*(car->angle_m - car->angle);   //计算误差
   car->angle    += (angle_err + car->gyro_m)*dt;   //角速度积分得出角度。
- 
+ //i++;
   
 }
 
 
+/***************卡尔曼滤波,直接设置小车的状态测量值*****************/
 
-
-/******************************************************
-*   卡尔曼滤波
-*******************************************************/
-
-//定义采样时间5毫秒
-#define   Kalman_time   0.005   
+#define   Kalman_time   0.005 //定义采样时间5毫秒
 //状态变换阵
-     float A1_1 = 1;
-     float A1_2 = -1*Kalman_time;
-     float A2_1 = 0;
-     float A2_2 = 1;
-     float B1_1 = Kalman_time;
-     float B2_1 = 0;
-     float H1_1 = 1;
-     float H1_2 = 0;
-    //系数阵  
-     float Pest1_1;          //先验估计协方差阵 
-     float Pest1_2;
-     float Pest2_1;
-     float Pest2_2;    
-     float Psta1_1 = 1;      //后验估计协方差阵
-     float Psta1_2 = 1;  
-     float Psta2_1 = 1;  
-     float Psta2_2 = 1;   
-     float Q1_1 = 0.00001;   //过程激励噪声协方差
-     float Q1_2 = 0;  
-     float Q2_1 = 0;  
-     float Q2_2 = 0.00001;   
-     float K1_1;             //卡尔曼增益
-     float K2_1;    
-     float R = 0.1;          //观测噪声协方差
-     float I1_1 = 1;         //单位阵
-     float I1_2 = 0;  
-     float I2_1 = 0;  
-     float I2_2 = 1;   
-    //状态阵
-     float Xest1_1;          //先验状态估计
-     float Xest2_1;          
-     float Xsta1_1 = 0;      //后验状态估计
-     float Xsta2_1 = 0;    
+float A1_1 = 1;
+float A1_2 = -1*Kalman_time;
+float A2_1 = 0;
+float A2_2 = 1;
+float B1_1 = Kalman_time;
+float B2_1 = 0;
+float H1_1 = 1;
+float H1_2 = 0;
+//系数阵  
+float Pest1_1;          //先验估计协方差阵 
+float Pest1_2;
+float Pest2_1;
+float Pest2_2;    
+float Psta1_1 = 1;      //后验估计协方差阵
+float Psta1_2 = 1;  
+float Psta2_1 = 1;  
+float Psta2_2 = 1;   
+float Q1_1 = 0.0001;   //过程激励噪声协方差
+float Q1_2 = 0;  
+float Q2_1 = 0;  
+float Q2_2 = 0.00003;   
+float K1_1;             //卡尔曼增益
+float K2_1;    
+float R = 6;          //观测噪声协方差
+float I1_1 = 1;         //单位阵
+float I1_2 = 0;  
+float I2_1 = 0;  
+float I2_2 = 1;   
+//状态阵
+float Xest1_1;          //先验状态估计
+float Xest2_1;          
+float Xsta1_1 = 0;      //后验状态估计
+float Xsta2_1 = 0;    
 
 
 void Kalman_filter(cars_status car)
@@ -71,7 +72,7 @@ void Kalman_filter(cars_status car)
     
     float th_acc,w_gyro;
     th_acc = car->angle_m;
-    w_gyro = car->gyro_d;
+    w_gyro = car->gyro_m;
     
     
     /**************卡尔曼滤波**************/
@@ -94,11 +95,8 @@ void Kalman_filter(cars_status car)
 	Psta2_1 =  -K2_1*Pest1_1 + Pest2_1; 
 	Psta2_2 =  -K2_1*Pest1_2+  Pest2_2; 
     
-    
-    
+     
     car->angle = Xsta1_1;
     car->gyro = w_gyro - Xsta2_1;
-    
-    
-//    printf("%f  %f\t\t%f  %f\n",car.angle_m,th_acc,car.angular_m,w_gyro);
+
 }

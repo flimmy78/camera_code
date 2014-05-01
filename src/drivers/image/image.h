@@ -12,21 +12,19 @@
  *******************************************************************/
 #ifndef _IMAGE_H_
 #define _IMAGE_H_
-#define image_row	120									//图像行数
-#define image_col	240									//图像列数
+/************摄像头配置************/
 #include "common.h"
-#include "stdint.h"
-
-/***********************************************************************
- *
- 函数名		:	image_binary
- 参数		:	**image:图像二维数组.threshold。	:图像二值化阈值。
- 输出		:	无
- 操作结果	:	图像二值化
- *
- ************************************************************************/
-
-void image_binary(int8_t   (*image)[image_col],int8_t threshold);
+#include "Kalman.h"
+#define    ROW_START    120
+#define    ROW_END      159
+#define    ROW          40      //ROW_END-ROW_START
+#define    COL          200					//图像列数
+extern u8 threshold;
+extern u8 image[ROW][COL];   
+extern int16_t edge_l[ROW];                //存取图像左偏差。
+extern int16_t edge_r[ROW];               //存取图像右偏差。
+   
+//#include "stdint.h"
 
 /***********************************************************************
  *
@@ -37,7 +35,7 @@ void image_binary(int8_t   (*image)[image_col],int8_t threshold);
  *
  ************************************************************************/
 
-int8_t image_left_offset(int8_t (*image)[image_col] , int8_t n);
+int16_t image_left_offset(u8 (*image)[COL] , u8 n);
 
 /***********************************************************************
  *
@@ -48,18 +46,17 @@ int8_t image_left_offset(int8_t (*image)[image_col] , int8_t n);
  *
  ************************************************************************/
 
-int8_t image_right_offset(int8_t (*image)[image_col] , int8_t n);
+int16_t image_right_offset(u8 (*image)[COL] , u8 n);
 
-
- /***********************************************************************
+/***********************************************************************
  *
- 函数名		:	image_average_offset
- 参数		:	图像二维数组。
- 输出		:	每行平均偏差。
- 操作结果	:	提取一行右边偏移值。
+ 函数名		:	image_err
+ 参数		:	image:图像二维数组行指针 
+ 输出		:	无
+ 操作结果	:	提取图像平均偏差。
  *
  ************************************************************************/
 
- int8_t image_average_offset(int8_t (*image)[image_col] , int8_t threshold);
+void image_err(cars_status car,u8 m , u8 n);
 
 #endif

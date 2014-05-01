@@ -1,6 +1,7 @@
 #ifndef _KALMAN_H
 #define _KALMAN_H
 
+#include "common.h"
 
 typedef struct cars_status
 {
@@ -17,7 +18,7 @@ typedef struct cars_status
   
   float speed_p;        //速度控制kP参数。
   float speed_i;         //速度控制ki参数
-  float speed_d;        //速度控制kd参数
+//  float speed_d;        //速度控制kd参数
   float speed_set;      //设置目标加速度。
   
   //加速度陀螺仪测量控制与直立相关的值
@@ -29,18 +30,25 @@ typedef struct cars_status
   
   //编码器测量与速度控制
   
-  float speed_left_m;           //左电机编码器速度采集值。
-  float speed_right_m;          //右电机编码器速度采集值
+  s16 speed_left_m;           //左电机编码器速度采集值。
+  s16 speed_right_m;          //右电机编码器速度采集值
   float speed_duty;             //速度控制输出值。
   float speed_duty_old;         //速度控制计算出的占空比上一次值。
   float speed_duty_new;         //速度控制占空比输出更新值
   
   //摄像头采集，角度控制
+  float direction_p ;             //方向控制p参数。
+  float direction_d ;             //方向控制d参数。
+  float direction ;               //方向计算得出的占空比。
+  float direction_err_new;       //偏差新值，
+  float direction_err_old;       //偏差旧值，用于微分控制。
   float direction_left_duty;     //电机转向左轮占空比。
   float direction_right_duty;    //电机转向游轮占空比。
   
   
 }*cars_status;
+
+extern float R;
 
 void Kalman_filter(cars_status car);
 
