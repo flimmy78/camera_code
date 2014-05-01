@@ -59,11 +59,11 @@ void main()
     car->angle_set = 28.5;//37.0;//31.5;
     car->gyro_set  =  0;
 
-    car->speed_set = 0.0;         
+    car->speed_set = 600.0;         
     car->speed_p   = 1.6;//10.0;        
     car->speed_i   = 1.0;//1.4;//4.1;//0.92//0.36;//0.0;           
      
-    car->direction_p  = 0.0;             //方向控制p参数。
+    car->direction_p  = 1.0;             //方向控制p参数。
     car->direction_d  = 0;             //方向控制d参数。
     car->direction_left_duty  = 0;
     car->direction_right_duty = 0;

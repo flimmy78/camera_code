@@ -86,8 +86,8 @@ void PORTD_IRQHandler()     //行中断来临
           }
          speed_control_output(car);
          direction_control_output(car);   //方向控制平滑输出，方向控制在下面图像处理部分。
-         car->left_duty     = car->blance_duty - car->speed_duty + car->direction_left_duty;
-         car->right_duty    = car->blance_duty - car->speed_duty - car->direction_right_duty;
+         car->left_duty     = car->blance_duty - car->speed_duty - car->direction_left_duty;
+         car->right_duty    = car->blance_duty - car->speed_duty + car->direction_right_duty;
          motor_set(car);  
          
 //         printf("%d\n",row_count);
@@ -107,7 +107,7 @@ void PORTD_IRQHandler()     //行中断来临
             }
             image_err(car, 0 ,39);
             direction_control(car);
-           // printf("%f\t%f\t%f\n",car->direction,car->direction_left_duty,car->direction_err_new);
+//            printf("%f\t%f\t%f\n",car->direction,car->direction_left_duty,car->direction_err_new);
             image_handle_flag = 1;      //图像处理标志置1,图像处理及方向计算完成
         }
          
