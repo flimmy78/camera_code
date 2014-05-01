@@ -440,6 +440,8 @@ void print(cars_status car)
       
  
 }
+
+extern unsigned char loss_line;
 /***********************·½Ïò¿ØÖÆ********************************/
 void direction_control(cars_status car)
 {
@@ -449,8 +451,10 @@ void direction_control(cars_status car)
            direction_diff = 30;
         if(direction_diff < -30)
            direction_diff = -30;
-        car->direction = (((car->direction_p) *(car->direction_err_new)  + (car->direction_d) * direction_diff) - car->direction_left_duty ) / 4.0;  
-
+        if(loss_line == 0)
+        {
+          car->direction = (((car->direction_p) *(car->direction_err_new)  + (car->direction_d) * direction_diff) - car->direction_left_duty ) / 4.0;  
+        }
 }
 
 void direction_control_output(cars_status car)
