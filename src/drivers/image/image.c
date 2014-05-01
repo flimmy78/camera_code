@@ -21,11 +21,13 @@
  
 int16_t  image_left_offset(u8 (*image)[COL] , u8 n)
 {
+        unsigned int temp = 0;
 	int16_t left_edge = COL / 2;
 	while(left_edge > 0)
 	{
-		if(*(*(image + n) + left_edge) <= threshold)
-			break;
+		if(*(*(image + n) + left_edge) <= threshold) temp++;
+                else temp = 0;
+                if(temp == 3) break;
 		left_edge--;
 	}
 	return(left_edge -COL/2 );
@@ -42,11 +44,13 @@ int16_t  image_left_offset(u8 (*image)[COL] , u8 n)
  
 int16_t image_right_offset(u8 (*image)[COL] , u8 n)
 {
+       unsigned int temp = 0;
 	int16_t right_edge = COL / 2;
 	while(right_edge < COL)
           {
-		if( *(*(image + n) + right_edge) <= threshold)
-			break;
+		if( *(*(image + n) + right_edge) <= threshold) temp++;
+                else temp = 0;
+                if( temp == 0) break;
 		right_edge++;
           }
 	return(right_edge - COL/2);
