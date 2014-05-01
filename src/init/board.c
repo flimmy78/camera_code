@@ -11,8 +11,8 @@
 #include "Kalman.h"
 direction dir_flag;
 
-int right_dead = 20;  //电机死区
-int left_dead  = 20;
+int right_dead = 10;  //电机死区
+int left_dead  = 10;
 
 /*******************************************
  *
@@ -347,13 +347,13 @@ void speed_control(cars_status car)
   static float speed_integral;
   speed_err   = car->speed_set - ((float)(car->speed_left_m)  + (float)(car->speed_right_m))/2.0;
   speed_integral  += speed_err;
-  if(speed_integral >= 200)                     //防止出现积分饱和，参数设置有待检验。
+  if(speed_integral >= 300)                     //防止出现积分饱和，参数设置有待检验。
   {
-      speed_integral = 200;
+      speed_integral = 300;
   }
-  if(speed_integral <=-200)
+  if(speed_integral <=-300)
   {
-    speed_integral = -200;
+    speed_integral = -300;
   }
   car->speed_duty_old = car->speed_duty_new;
   car->speed_duty_new = (car->speed_p)*speed_err + (car->speed_i)*speed_integral;

@@ -43,7 +43,8 @@ int16_t edge_r[ROW];               //存取图像右偏差。
 u8 image_flag = ROW_START;                //存取图像处理标志。
 u8  threshold = 150;             //黑白阈值。
 extern volatile u16  row_count;
-u8 D = 20;
+extern unsigned int count2_temp;
+u8 D = 10;
 void main()
 { 
     u8 i;
@@ -51,23 +52,25 @@ void main()
     //车体系统设置
     DisableInterrupts;
     board_init();
-//    uart_init(UART4,115200); 
+    uart_init(UART4,115200); 
     //车体参数设置。
     car->angle_p   = 201.5;//125.5;//125.5;
     car->gyro_d    = 1.59;//0.8;//0.8;//1.50;
-    car->angle_set = 31.4;//37.0;//31.5;
+    car->angle_set = 30.8;//37.0;//31.5;
     car->gyro_set  =  0;
 
     car->speed_set = 0.0;         
-    car->speed_p   = 0.0;//0.0;        
-    car->speed_i   = 0.0;//0.0;//0.92//0.36;//0.0;           
+    car->speed_p   = 0.0;//10.0;        
+    car->speed_i   = 0.0;//4.1;//0.92//0.36;//0.0;           
      
     car->direction_p  = 0.0;             //方向控制p参数。
     car->direction_d  = 0;             //方向控制d参数。
     car->direction_left_duty  = 0;
     car->direction_right_duty = 0;
     
-    delayms(5000);
+    delayms(2000);
+    printf("发送任意字符计算零偏值\n");
+    uart_getchar(UART4);
     for(i=0;i<100;i++)
     {
         gyro_intr += ad_ave(ADC1,SE10,ADC_16bit,20);
@@ -75,37 +78,44 @@ void main()
     }
     
     GYRO_ZERO = gyro_intr/i;
-    
-    printf("OK\n");
-    FTM_PWM_Duty(FTM0,CH4,100);
-    FTM_PWM_Duty(FTM0,CH5,100);
-    FTM_PWM_Duty(FTM0,CH6,100);
-    FTM_PWM_Duty(FTM0,CH7,100);
-//    EnableInterrupts;
- 
-#if 0
-     char str; 
+ printf("OK 初始化完毕\n");
+#if 1
+     char str;
+     float time = 1.0;
      while(1)
     {    
         str = uart_getchar(UART4);
+        printf("row_count:%u\t count2_temp:%u\n;",row_count,count2_temp);
         switch(str)
         {
             case 's': DisableInterrupts;
                        left_run_s(0);
                        right_run_s(0);  break;
                        
-            case 'r':EnableInterrupts;printf("get r\n");  break;
+            case 'r':EnableInterrupts;  break;
             
         }
         
+        if(str == 't')
+        {
+            for(;;)
+            {
+                if(uart_getchar(UART4)=='*')
+                {time *= 10;printf("t=%f\n",time);break;}
+                if(uart_getchar(UART4)=='/')
+                    {time /= 10;printf("t=%f\n",time);break;}
+                if(uart_getchar(UART4)=='b')
+                    break;
+            }
+        }
         if(str == 'p')
         {
             for(;;)
             {
                 if(uart_getchar(UART4)=='+')
-                {car->angle_p += 1;printf("p=%f\n",car->angle_p);break;}
+                {car->angle_p += 1*time;printf("p=%f\n",car->angle_p);break;}
                 if(uart_getchar(UART4)=='-')
-                    {car->angle_p -= 1;printf("p=%f\n",car->angle_p);break;}
+                    {car->angle_p -= 1*time;printf("p=%f\n",car->angle_p);break;}
                 if(uart_getchar(UART4)=='b')
                     break;
             }
@@ -116,9 +126,9 @@ void main()
             for(;;)
             {
                 if(uart_getchar(UART4)=='+')
-                {car->gyro_d += 0.01;printf("d=%f\n",car->gyro_d);break;}
+                {car->gyro_d += 0.01*time;printf("d=%f\n",car->gyro_d);break;}
                 if(uart_getchar(UART4)=='-')
-                {car->gyro_d -= 0.01;printf("d=%f\n",car->gyro_d);break;}
+                {car->gyro_d -= 0.01*time;printf("d=%f\n",car->gyro_d);break;}
                 if(uart_getchar(UART4)=='b')
                     break;
             }
@@ -142,9 +152,9 @@ void main()
             for(;;)
             {
                 if(uart_getchar(UART4)=='+')
-                {car->speed_i += 0.01;printf("i=%f\n",car->speed_i);break;}
+                {car->speed_i += 0.01*time;printf("i=%f\n",car->speed_i);break;}
                 if(uart_getchar(UART4)=='-')
-                {car->speed_i -= 0.01;printf("i=%f\n",car->speed_i);break;}
+                {car->speed_i -= 0.01*time;printf("i=%f\n",car->speed_i);break;}
                 if(uart_getchar(UART4)=='b')
                     break;
             }
@@ -156,9 +166,9 @@ void main()
             for(;;)
             {
                 if(uart_getchar(UART4)=='+')
-                {car->speed_p += 0.01;printf("P=%f\n",car->speed_p);break;}
+                {car->speed_p += 0.01*time;printf("P=%f\n",car->speed_p);break;}
                 if(uart_getchar(UART4)=='-')
-                    {car->speed_p -= 0.01;printf("P=%f\n",car->speed_p);break;}
+                    {car->speed_p -= 0.01*time;printf("P=%f\n",car->speed_p);break;}
                 if(uart_getchar(UART4)=='b')
                     break;
             }

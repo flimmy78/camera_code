@@ -3,7 +3,6 @@
 #include "init.h"
 #include "board.h"
 #include "FTM.h"
-#include "LED_CORE.h"
 
 /**********************
 *使用到的引脚初始化
@@ -72,7 +71,6 @@ void board_init()
   speed_init();
   
 //  pit_init_ms(PIT1,1);
-  Light_init;
   
     exti_init(PORTE,11,rising_down);     //场中断
     exti_init(PORTD,14,rising_down);    //行中断

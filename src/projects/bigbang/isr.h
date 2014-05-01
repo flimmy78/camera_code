@@ -43,12 +43,15 @@
 #undef     VECTOR_085             
 #define    VECTOR_085          PIT_CH1_Handler
 
+#undef     VECTOR_020
+#define    VECTOR_020          DMA_CH4_Handler
 
 
 extern void PORTD_IRQHandler();				//PORTA中断服务函数
 extern void PORTE_IRQHandler();
 
 extern void DMA_CH4_Handler();					//DMA通道4中断服务函数
+extern void PIT_CH0_Handler();                                 //PIT通道0中断
 extern void PIT_CH1_Handler();
 
 extern void DMA_CH4_Handler();
