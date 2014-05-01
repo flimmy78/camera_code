@@ -64,7 +64,7 @@ void main()
     car->speed_p   = 1.9;//10.0;        
     car->speed_i   = 1.0;//1.4;//4.1;//0.92//0.36;//0.0;           
      
-    car->direction_p  = 2.5;             //方向控制p参数。
+    car->direction_p  = 1.5;             //方向控制p参数。
     car->direction_d  = 0;             //方向控制d参数。
     car->direction_left_duty  = 0;
     car->direction_right_duty = 0;
