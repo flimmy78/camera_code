@@ -72,9 +72,11 @@ void image_err(cars_status car,u8 m , u8 n)
   car->direction_err_old = car->direction_err_new;
   for(i = m;i<= n ;i++)
   {  
+    if(edge_l[i] == 0 && edge_r[i] ==0)
+      break;
     temp  += (edge_l[i] + edge_r[i]) / 2.0;
   }
-  car->direction_err_new = temp/(n-m +1 ) ;
+  car->direction_err_new = temp/(i-m +1 ) ;
 }
 
  
