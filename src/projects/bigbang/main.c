@@ -37,7 +37,6 @@ cars_status car= &car_s;   //
 extern volatile u8 vert_flag;       //场中断判别标志
 extern volatile u16  row_count;     //行计数
 extern u8   image[ROW][COL];   //图像存放区
-//extern u8   err[COL];
 
 int16_t edge_l[ROW];                //存取图像左偏差。
 int16_t edge_r[ROW];               //存取图像右偏差。
@@ -64,7 +63,7 @@ void main()
     car->speed_p   = 1.9;//10.0;        
     car->speed_i   = 1.0;//1.4;//4.1;//0.92//0.36;//0.0;           
      
-    car->direction_p  = 1.5;             //方向控制p参数。
+    car->direction_p  = 2.0;             //方向控制p参数。
     car->direction_d  = 0;             //方向控制d参数。
     car->direction_left_duty  = 0;
     car->direction_right_duty = 0;
@@ -81,7 +80,7 @@ void main()
     GYRO_ZERO = gyro_intr/i;
     printf("OK 初始化完毕\n");
     
-    EnableInterrupts;
+//    EnableInterrupts;
     
     
 #if 1
@@ -206,32 +205,6 @@ void main()
             }
         }
         
-        if(str == 'f')
-        {
-            for(;;)
-            {
-                if(uart_getchar(UART4)=='+')
-                {car->direction_p += 0.1;printf("fp=%f\n",car->direction_p);break;}
-                if(uart_getchar(UART4)=='-')
-                    {car->direction_p -= 0.1;printf("fp=%f\n",car->direction_p);break;}
-                if(uart_getchar(UART4)=='b')
-                    break;
-            }
-        }
-        
-        if(str == 'F')
-        {
-            for(;;)
-            {
-                if(uart_getchar(UART4)=='+')
-                {car->direction_d += 0.1;printf("fd=%f\n",car->direction_d);break;}
-                if(uart_getchar(UART4)=='-')
-                    {car->direction_d -= 0.1;printf("fd=%f\n",car->direction_d);break;}
-                if(uart_getchar(UART4)=='b')
-                    break;
-            }
-        }
-        
     }
    
 #endif
@@ -252,11 +225,8 @@ void main()
 //                
 //            }
 //            
-////            for(j=0;j<COL;j++)
-////                    uart_putchar(UART4,err[j]);
-//            
 //            vert_flag = 0;
-//////            DisableInterrupts;
+////            DisableInterrupts;
 //        }
 //    }
 }
