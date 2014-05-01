@@ -26,6 +26,7 @@ volatile u8 vert_flag = 0;       //场中断判别标志
 volatile u16  row_count = 0;     //行计数
 u8   image[ROW][COL] = {0};   //图像存放区
 u8  image_handle_flag = 0;      //图像处理标志
+//u8 err[COL] = {255};
 
 void PORTE_IRQHandler()     //场中断来临
 {
@@ -76,7 +77,7 @@ void PORTD_IRQHandler()     //行中断来临
            count2++;
            count2_temp = count2;
          //  printf("%d\n",count2);
-          if(count2==20)
+          if(count2>=20)
           {
                car->speed_right_m  =  right_speed();
                car->speed_left_m   =  (car->speed_right_m >= 0)? left_speed(): -left_speed();
@@ -107,7 +108,8 @@ void PORTD_IRQHandler()     //行中断来临
             }
             image_err(car, 0 ,39);
             direction_control(car);
-//            printf("%f\t%f\t%f\n",car->direction,car->direction_left_duty,car->direction_err_new);
+
+//            printf("%f\n",car->direction_err_new);
             image_handle_flag = 1;      //图像处理标志置1,图像处理及方向计算完成
         }
          
