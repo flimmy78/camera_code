@@ -43,8 +43,8 @@
 /*****************编码器配置*********************/
 
 void  speed_init();
-s16   left_speed();
-s16   right_speed();
+float   left_speed();
+float   right_speed();
 
 
 /********加速度计标准值配置*******/

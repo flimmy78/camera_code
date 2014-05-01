@@ -56,12 +56,12 @@ void main()
     //车体参数设置。
     car->angle_p   = 201.5;//125.5;//125.5;
     car->gyro_d    = 1.59;//0.8;//0.8;//1.50;
-    car->angle_set = 30.8;//37.0;//31.5;
+    car->angle_set = 28.5;//37.0;//31.5;
     car->gyro_set  =  0;
 
     car->speed_set = 0.0;         
-    car->speed_p   = 0.0;//10.0;        
-    car->speed_i   = 0.0;//4.1;//0.92//0.36;//0.0;           
+    car->speed_p   = 1.6;//10.0;        
+    car->speed_i   = 1.0;//1.4;//4.1;//0.92//0.36;//0.0;           
      
     car->direction_p  = 0.0;             //方向控制p参数。
     car->direction_d  = 0;             //方向控制d参数。
@@ -78,8 +78,13 @@ void main()
     }
     
     GYRO_ZERO = gyro_intr/i;
- printf("OK 初始化完毕\n");
-#if 1
+    printf("OK 初始化完毕\n");
+ 
+    left_run_s(100);
+    right_run_s(100);
+ 
+    EnableInterrupts;
+#if 0
      char str;
      float time = 1.0;
      while(1)
@@ -195,6 +200,32 @@ void main()
                 {D += 1;printf("dead=%d\n",D);right_dead=left_dead=D;break;}
                 if(uart_getchar(UART4)=='-')
                     {D -= 1;printf("dead=%d\n",D);right_dead=left_dead=D;break;}
+                if(uart_getchar(UART4)=='b')
+                    break;
+            }
+        }
+        
+        if(str == 'B')
+        {
+            for(;;)
+            {
+                if(uart_getchar(UART4)=='+')
+                {car->speed_set += 300;printf("b=%f\n",car->speed_set);break;}
+                if(uart_getchar(UART4)=='-')
+                    {car->speed_set -= 300;printf("b=%f\n",car->speed_set);break;}
+                if(uart_getchar(UART4)=='b')
+                    break;
+            }
+        }
+        
+        if(str == 'C')
+        {
+            for(;;)
+            {
+                if(uart_getchar(UART4)=='+')
+                {car->speed_set += 600;printf("c=%f\n",car->speed_set);break;}
+                if(uart_getchar(UART4)=='-')
+                    {car->speed_set -= 600;printf("c=%f\n",car->speed_set);break;}
                 if(uart_getchar(UART4)=='b')
                     break;
             }

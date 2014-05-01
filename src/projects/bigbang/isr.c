@@ -76,7 +76,7 @@ void PORTD_IRQHandler()     //行中断来临
           {
                car->speed_right_m  =  right_speed();
                car->speed_left_m   =  (car->speed_right_m >= 0)? left_speed(): -left_speed();
-          //   printf("%d\t%d\n",car->speed_left_m,car->speed_right_m);
+             printf("%f\t%f\n",car->speed_left_m,car->speed_right_m);
                speed_control(car);
                count2 = 0;
           }
@@ -84,7 +84,7 @@ void PORTD_IRQHandler()     //行中断来临
          direction_control_output(car);   //方向控制平滑输出，方向控制在下面图像处理部分。
          car->left_duty     = car->blance_duty - car->speed_duty + car->direction_left_duty;
          car->right_duty    = car->blance_duty - car->speed_duty - car->direction_right_duty;
-         motor_set(car);  
+//         motor_set(car);  
          
     //     printf("%d\n",row_count);
     //     gpio_turn(PORTC,14);

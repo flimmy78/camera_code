@@ -87,7 +87,7 @@
         </option>
         <option>
           <name>OGLastSavedByProductVersion</name>
-          <state>7.10.1.6733</state>
+          <state>6.60.2.5494</state>
         </option>
         <option>
           <name>GeneralEnableMisra</name>
@@ -163,19 +163,12 @@
       <name>ICCARM</name>
       <archiveVersion>2</archiveVersion>
       <data>
-        <version>30</version>
+        <version>29</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>1</debug>
         <option>
-          <name>CCOptimizationNoSizeConstraints</name>
-          <state>0</state>
-        </option>
-        <option>
           <name>CCDefines</name>
-          <state>IAR</state>
-          <state>DEBUG</state>
-          <state>TWR_K60N512</state>
-          <state>ARM_MATH_CM4</state>
+          <state></state>
         </option>
         <option>
           <name>CCPreprocFile</name>
@@ -191,11 +184,11 @@
         </option>
         <option>
           <name>CCListCFile</name>
-          <state>1</state>
+          <state>0</state>
         </option>
         <option>
           <name>CCListCMnemonics</name>
-          <state>1</state>
+          <state>0</state>
         </option>
         <option>
           <name>CCListCMessages</name>
@@ -203,11 +196,11 @@
         </option>
         <option>
           <name>CCListAssFile</name>
-          <state>1</state>
+          <state>0</state>
         </option>
         <option>
           <name>CCListAssSource</name>
-          <state>1</state>
+          <state>0</state>
         </option>
         <option>
           <name>CCEnableRemarks</name>
@@ -236,7 +229,7 @@
         <option>
           <name>CCAllowList</name>
           <version>1</version>
-          <state>00000000</state>
+          <state>0000000</state>
         </option>
         <option>
           <name>CCDebugInfo</name>
@@ -304,43 +297,7 @@
         </option>
         <option>
           <name>CCIncludePath2</name>
-          <state>$PROJ_DIR$\..\..\src\projects\fire_uart_send_demo</state>
-          <state>$PROJ_DIR$\..\..\src\app</state>
-          <state>$PROJ_DIR$\..\..\src\common </state>
-          <state>$PROJ_DIR$\..\..\src\cpu </state>
-          <state>$PROJ_DIR$\..\..\src\cpu\headers </state>
-          <state>$PROJ_DIR$\..\..\src\platforms</state>
-          <state>$PROJ_DIR$\..\..\src\drivers</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\adc</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\AT24C02</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\dma</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\GLOBAL</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\SPEED</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\DIRECTION</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\BALANCE</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\exti</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\delay</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\FTM</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\gpio</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\GPIOinit</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\i2c</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\LED </state>
-          <state>$PROJ_DIR$\..\..\src\drivers\lptmr</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\mcg</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\nokia5110 </state>
-          <state>$PROJ_DIR$\..\..\src\drivers\PIT</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\pmc</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\rtc</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\timer</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\uart </state>
-          <state>$PROJ_DIR$\..\..\src\drivers\wdog </state>
-          <state>$PROJ_DIR$\..\..\src\LIB\CMSIS</state>
-          <state>$PROJ_DIR$\..\..\src\LIB\FatFs</state>
-          <state>$PROJ_DIR$\..\..\build</state>
-          <state>$PROJ_DIR$\..\..\src\uCOS-II\Ports</state>
-          <state>$PROJ_DIR$\..\..\src\uCOS-II\Source</state>
-          <state>$PROJ_DIR$\..\..\src\uCOS-II\App</state>
-          <state>$PROJ_DIR$\..\..\src\uCOS-II\App\CFG</state>
+          <state></state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -360,7 +317,7 @@
         </option>
         <option>
           <name>CCOptLevel</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>CCOptStrategy</name>
@@ -369,7 +326,7 @@
         </option>
         <option>
           <name>CCOptLevelSlave</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>CompilerMisraRules98</name>
@@ -434,12 +391,11 @@
           <state>0</state>
         </option>
         <option>
-          <name>CCNoLiteralPool</name>
+          <name>CCOptimizationNoSizeConstraints</name>
           <state>0</state>
         </option>
         <option>
-          <name>CCOptStrategySlave</name>
-          <version>0</version>
+          <name>CCNoLiteralPool</name>
           <state>0</state>
         </option>
       </data>
@@ -1139,19 +1095,12 @@
       <name>ICCARM</name>
       <archiveVersion>2</archiveVersion>
       <data>
-        <version>30</version>
+        <version>29</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>0</debug>
         <option>
-          <name>CCOptimizationNoSizeConstraints</name>
-          <state>0</state>
-        </option>
-        <option>
           <name>CCDefines</name>
           <state>NDEBUG</state>
-          <state>IAR</state>
-          <state>TWR_K60N512</state>
-          <state>ARM_MATH_CM4</state>
         </option>
         <option>
           <name>CCPreprocFile</name>
@@ -1212,7 +1161,7 @@
         <option>
           <name>CCAllowList</name>
           <version>1</version>
-          <state>11111110</state>
+          <state>1111111</state>
         </option>
         <option>
           <name>CCDebugInfo</name>
@@ -1264,7 +1213,7 @@
         </option>
         <option>
           <name>OutputFile</name>
-          <state>$FILE_BNAME$.o</state>
+          <state></state>
         </option>
         <option>
           <name>CCLibConfigHeader</name>
@@ -1280,43 +1229,7 @@
         </option>
         <option>
           <name>CCIncludePath2</name>
-          <state>$PROJ_DIR$\..\..\src\projects\fire_uart_send_demo</state>
-          <state>$PROJ_DIR$\..\..\src\app</state>
-          <state>$PROJ_DIR$\..\..\src\common </state>
-          <state>$PROJ_DIR$\..\..\src\cpu </state>
-          <state>$PROJ_DIR$\..\..\src\cpu\headers </state>
-          <state>$PROJ_DIR$\..\..\src\platforms</state>
-          <state>$PROJ_DIR$\..\..\src\drivers</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\adc</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\AT24C02</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\dma</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\GLOBAL</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\SPEED</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\DIRECTION</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\BALANCE</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\exti</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\delay</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\FTM</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\gpio</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\GPIOinit</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\i2c</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\LED </state>
-          <state>$PROJ_DIR$\..\..\src\drivers\lptmr</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\mcg</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\nokia5110 </state>
-          <state>$PROJ_DIR$\..\..\src\drivers\PIT</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\pmc</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\rtc</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\timer</state>
-          <state>$PROJ_DIR$\..\..\src\drivers\uart </state>
-          <state>$PROJ_DIR$\..\..\src\drivers\wdog </state>
-          <state>$PROJ_DIR$\..\..\src\LIB\CMSIS</state>
-          <state>$PROJ_DIR$\..\..\src\LIB\FatFs</state>
-          <state>$PROJ_DIR$\..\..\build</state>
-          <state>$PROJ_DIR$\..\..\src\uCOS-II\Ports</state>
-          <state>$PROJ_DIR$\..\..\src\uCOS-II\Source</state>
-          <state>$PROJ_DIR$\..\..\src\uCOS-II\App</state>
-          <state>$PROJ_DIR$\..\..\src\uCOS-II\App\CFG</state>
+          <state></state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -1345,7 +1258,7 @@
         </option>
         <option>
           <name>CCOptLevelSlave</name>
-          <state>3</state>
+          <state>1</state>
         </option>
         <option>
           <name>CompilerMisraRules98</name>
@@ -1410,12 +1323,11 @@
           <state>0</state>
         </option>
         <option>
-          <name>CCNoLiteralPool</name>
+          <name>CCOptimizationNoSizeConstraints</name>
           <state>0</state>
         </option>
         <option>
-          <name>CCOptStrategySlave</name>
-          <version>0</version>
+          <name>CCNoLiteralPool</name>
           <state>0</state>
         </option>
       </data>

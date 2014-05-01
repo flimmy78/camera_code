@@ -11,8 +11,8 @@
 #include "Kalman.h"
 direction dir_flag;
 
-int right_dead = 10;  //电机死区
-int left_dead  = 10;
+int right_dead = 0;  //电机死区
+int left_dead  = 0;
 
 /*******************************************
  *
@@ -232,20 +232,20 @@ void speed_init()
     FTM1_QUAD_init();       //左轮测速
 }
 
-s16 right_speed()
+float right_speed()
 {
     s16 count = -FTM2_CNT;
     FTM2_CNT = 0;
     
-    return count;
+    return (count*4.83);
 }
 
-s16 left_speed()
+float left_speed()
 {
     s16 count = FTM1_CNT;
     FTM1_CNT = 0;
     
-    return count;
+    return (count*4.83);
 }
 
 //s16 pulse_cnt_left(void)
@@ -329,6 +329,12 @@ void blance_kalman_filter(cars_status car)
    
     Kalman_filter(car);
 
+    if(car->angle > 60)
+    {
+        DisableInterrupts;
+        left_run_s(0);
+        right_run_s(0);
+    }
     car->blance_duty = (car->angle - car->angle_set)*car->angle_p + (car->gyro - car->gyro_set)*car->gyro_d;
   
 }
@@ -345,15 +351,15 @@ void speed_control(cars_status car)
 {
   float speed_err;
   static float speed_integral;
-  speed_err   = car->speed_set - ((float)(car->speed_left_m)  + (float)(car->speed_right_m))/2.0;
-  speed_integral  += speed_err;
-  if(speed_integral >= 300)                     //防止出现积分饱和，参数设置有待检验。
+  speed_err   = car->speed_set - (car->speed_left_m  + car->speed_right_m)/2.0;
+  speed_integral  += speed_err*0.1;
+  if(speed_integral >= 200)                     //防止出现积分饱和，参数设置有待检验。
   {
-      speed_integral = 300;
+      speed_integral = 200;
   }
-  if(speed_integral <=-300)
+  if(speed_integral <=-200)
   {
-    speed_integral = -300;
+    speed_integral = -200;
   }
   car->speed_duty_old = car->speed_duty_new;
   car->speed_duty_new = (car->speed_p)*speed_err + (car->speed_i)*speed_integral;
